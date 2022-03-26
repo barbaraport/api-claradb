@@ -1,8 +1,8 @@
 import os
 from flask import Blueprint
 
-from src.models.example import helloWorld as hello
-from src.models.example import homeFunction as home
+from models.example import helloWorld as hello
+from models.example import homeFunction as home
 
 routes_bp = Blueprint("routes",__name__)
 
