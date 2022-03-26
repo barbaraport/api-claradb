@@ -17,7 +17,7 @@ def checkInitialization():
 
 
 def registerDefaultUsers():
-    dataFrame = pandas.read_excel("../startUpFiles/usersMock.xlsx", sheet_name="query")
+    dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
     columns = dataFrame.columns.values
@@ -50,7 +50,7 @@ def registerDefaultUsers():
 
 
 def registerDefaultDocuments():
-    dataFrame = pandas.read_excel("../startUpFiles/documentsMock.xlsx", sheet_name="query")
+    dataFrame = pandas.read_excel("../resources/startUpFiles/documentsMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
     columns = dataFrame.columns.values
