@@ -1,1 +1,4 @@
 Flask==2.0.3
+pymongo==4.0.2
+pandas==1.4.1
+openpyxl==3.0.9
