@@ -9,12 +9,15 @@ class PyMongoConnection:
     def getDatabaseNamesList(self):
         return self.__mongoClient.list_database_names()
 
-    def getDocument(self, databaseName, collectionName, condition):
+    def getDocument(self, databaseName, collectionName, condition, includeId=True):
         database = self.__mongoClient[databaseName]
 
         collection = database[collectionName]
 
         document = collection.find_one(condition)
+
+        if not includeId and document is not None:
+            del document["_id"]
 
         return document
 
@@ -40,4 +43,3 @@ class PyMongoConnection:
             collection.insert_many(document)
         else:
             collection.insert_one(document)
-
