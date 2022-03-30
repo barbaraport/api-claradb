@@ -21,6 +21,25 @@ class PyMongoConnection:
 
         return document
 
+    def getDocuments(self, databaseName, collectionName, condition):
+        database = self.__mongoClient[databaseName]
+
+        collection = database[collectionName]
+
+        pipeline = [
+            {"$match": condition},
+            {"$addFields": {
+                "id": {"$toString": "$_id"}
+            }},
+            {"$project": {
+                "_id": 0
+            }}
+        ]
+
+        document = collection.aggregate(pipeline)
+
+        return document
+
     def dropCollections(self, databaseName, collectionsNames):
         database = self.__mongoClient[databaseName]
 
