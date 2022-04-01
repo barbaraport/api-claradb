@@ -7,7 +7,7 @@ from src.models.database.MongoConnection import PyMongoConnection
 authRoutes = Blueprint("authRoutes", __name__)
 
 
-@authRoutes.route("/authentication/login", methods=['POST'])
+@authRoutes.route("/authentication/login", methods=["POST"])
 def login():
     conn = PyMongoConnection()
 
@@ -16,7 +16,7 @@ def login():
         "Password": request.json["password"]
     }
 
-    document = conn.getDocument("folconn", "users", condition, False)
+    document = conn.getDocument("folconn", "users", condition)
 
     if document is None:
         abort(404, "User not found with the given credentials")
