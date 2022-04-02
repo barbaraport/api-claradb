@@ -3,26 +3,21 @@ import React, { Component } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
-    container: {
-      marginTop: 50,
-    },
-    bigBlue: {
-      color: 'blue',
-      fontWeight: 'bold',
-      fontSize: 30,
-      margin: 20
-    },
-    red: {
-      color: 'red',
-    },
-  });
+        bigBlue: {
+            color: 'blue',
+            fontWeight: 'bold',
+            fontSize: 30,
+            margin: 20
+        }
+    }
+);
 
 export class FolconnApp extends Component<any, any> {
     private buildComponent(){
         let component = (
             <SafeAreaView>
                 <View>
-                    <Text style={styles.bigBlue}>Rodei opora</Text>
+                    <Text style={styles.bigBlue}>Texto inicial</Text>
                 </View>
             </SafeAreaView>
         );
