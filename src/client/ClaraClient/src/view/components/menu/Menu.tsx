@@ -1,14 +1,22 @@
 import React, { Component } from "react";
-import { Text } from "react-native";
+import { Button, Text } from "react-native";
+import { MaterialIcons } from '@expo/vector-icons'; 
 
 export class Menu extends Component<any, any> {
 
-     private buildMenu () {
-          let text = <Text>Oi. Aqui vai ficar o menu</Text>
-          return text;
+     private showMenuOptions() {
+          
      }
 
-     render () {
+     private buildMenu() {
+          return (
+               <>
+                    <MaterialIcons name="menu" size={24} color="black"/>
+               </>
+          );
+     }
+
+     render() {
           let component = this.buildMenu();
           return component;
      }
