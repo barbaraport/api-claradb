@@ -8,16 +8,10 @@ import { Menu } from "./menu/Menu";
 import { Colors } from "../../enumerations/Colors";
 
 const styles = StyleSheet.create({
-    bigBlue: {
-        color: Colors.PRIMARY_BLUE,
-        fontWeight: 'bold',
-        fontSize: 30,
-        paddingTop: 10
-    },
     phoneToolbar: {
         width: "100%",
         height: 25,
-        backgroundColor: Colors.PRIMARY_BLUE
+        backgroundColor: Colors.BLUE
     },
     screen: {
         width: "100%",
