@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { StyleSheet, Text, TouchableHighlight, TouchableWithoutFeedbackBase, View } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
+import React, { Component } from "react";
+import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
 import { Sizes } from "../../../enumerations/Sizes";
 
@@ -80,5 +80,7 @@ const styles = StyleSheet.create({
           backgroundColor: Colors.PRIMARY_BLUE,
           borderRadius: 10,
           alignSelf: "flex-start",
+          paddingVertical: 10,
+          paddingHorizontal: 10
      }
 });
