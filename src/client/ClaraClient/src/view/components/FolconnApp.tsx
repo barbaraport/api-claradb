@@ -52,6 +52,11 @@ export class FolconnApp extends Component<any, FolconnAppState> {
                         <LoginPage pageRedirectFunction={this.changeCurrentPage}/>
 
                     }
+                    {this.state["currentPage"] === PageAliases.DEV &&
+                        // Put here your component in development to see it 
+                        //and change the initial state to PageAliases.DEV
+                        <></>
+                    }
                 </View>
             </SafeAreaView>
         );

@@ -1,3 +1,4 @@
 export enum PageAliases {
-    LOGIN = "Login"
+    LOGIN = "Login",
+    DEV = "Dev"
 }
