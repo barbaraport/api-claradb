@@ -4,25 +4,29 @@ import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { PageAliases } from "../../enumerations/PageAliases";
 import { LoginPage } from "../pages/LoginPage";
 import { LoginForm } from "./LoginForm";
+import { Menu } from "./menu/Menu";
+import { Colors } from "../../enumerations/Colors";
 
 const styles = StyleSheet.create({
-        bigBlue: {
-            color: 'blue',
-            fontWeight: 'bold',
-            fontSize: 30,
-            margin: 20
-        },
-        phoneToolbar: {
-            width: "100%",
-            height: 25,
-            backgroundColor: "#7dd6fb"
-        },
-        screen: {
-            width: "100%",
-            height: "100%",
-        }
+    bigBlue: {
+        color: Colors.PRIMARY_BLUE,
+        fontWeight: 'bold',
+        fontSize: 30,
+        paddingTop: 10
+    },
+    phoneToolbar: {
+        width: "100%",
+        height: 25,
+        backgroundColor: Colors.PRIMARY_BLUE
+    },
+    screen: {
+        width: "100%",
+        height: "100%"
+    },
+    content: {
+        padding: 10
     }
-);
+});
 
 interface FolconnAppState {
     currentPage: PageAliases;
