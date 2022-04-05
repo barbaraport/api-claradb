@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import { Colors } from "../../enumerations/Colors";
 import { PageAliases } from "../../enumerations/PageAliases";
+import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 
 const styles = StyleSheet.create({
@@ -29,7 +30,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
         super(props);
 
         this.state = {
-            currentPage: PageAliases.LOGIN
+            currentPage: PageAliases.HOME
         };
 
         this.changeCurrentPage = this.changeCurrentPage.bind(this);
@@ -50,10 +51,8 @@ export class FolconnApp extends Component<any, FolconnAppState> {
                         <LoginPage pageRedirectFunction={this.changeCurrentPage}/>
 
                     }
-                    {this.state["currentPage"] === PageAliases.DEV &&
-                        // Put here your component in development to see it 
-                        //and change the initial state to PageAliases.DEV
-                        <></>
+                    {this.state["currentPage"] === PageAliases.HOME &&
+                        <HomePage pageRedirectFunction={this.changeCurrentPage}/>
                     }
                 </View>
             </SafeAreaView>
