@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
+    "@types/react": "^17.0.43",
     "expo": ">=44.0.0-0 <45.0.0",
     "expo-cli": "^5.3.0",
     "global": "^4.4.0",

@@ -2,34 +2,40 @@ import { registerRootComponent } from "expo";
 import React, { Component } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { Menu } from "./menu/Menu";
+import { Colors } from "../../enumerations/Colors";
 
 const styles = StyleSheet.create({
     bigBlue: {
-        color: 'blue',
+        color: Colors.PRIMARY_BLUE,
         fontWeight: 'bold',
         fontSize: 30,
-        margin: 20
+        paddingTop: 10
     },
     phoneToolbar: {
         width: "100%",
         height: 25,
-        backgroundColor: "#7dd6fb"
+        backgroundColor: Colors.PRIMARY_BLUE
     },
     screen: {
         width: "100%",
-        height: "100%",
+        height: "100%"
+    },
+    content: {
+        padding: 10
     }
-}
-);
+});
 
-export class FolconnApp extends Component<any, any> {
+export class FolconnApp extends React.Component<any, any> {
+
     private buildComponent() {
         let component = (
             <SafeAreaView>
-                <Menu></Menu>
                 <View style={styles.screen}>
                     <View style={styles.phoneToolbar} />
-                    <Text style={styles.bigBlue}>Texto inicial</Text>
+                    <View style={styles.content}>
+                        <Menu></Menu>
+                        <Text style={styles.bigBlue}>FolConn</Text>
+                    </View>
                 </View>
             </SafeAreaView>
         );
