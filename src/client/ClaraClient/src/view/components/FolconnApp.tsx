@@ -1,6 +1,9 @@
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { PageAliases } from "../../enumerations/PageAliases";
+import { LoginPage } from "../pages/LoginPage";
+import { LoginForm } from "./LoginForm";
 
 const styles = StyleSheet.create({
         bigBlue: {
@@ -21,13 +24,36 @@ const styles = StyleSheet.create({
     }
 );
 
-export class FolconnApp extends Component<any, any> {
+interface FolconnAppState {
+    currentPage: PageAliases;
+}
+
+export class FolconnApp extends Component<any, FolconnAppState> {
+    constructor(props: any) {
+        super(props);
+
+        this.state = {
+            currentPage: PageAliases.LOGIN
+        };
+
+        this.changeCurrentPage = this.changeCurrentPage.bind(this);
+
+    }
+
+    private changeCurrentPage(pageToChange: PageAliases){
+        this.setState({"currentPage": pageToChange});
+
+    }
+
     private buildComponent(){
         let component = (
             <SafeAreaView>
                 <View style={styles.screen}>
                     <View style={styles.phoneToolbar}/>
-                    <Text style={styles.bigBlue}>Texto inicial</Text>
+                    {this.state["currentPage"] === PageAliases.LOGIN &&
+                        <LoginPage pageRedirectFunction={this.changeCurrentPage}/>
+
+                    }
                 </View>
             </SafeAreaView>
         );

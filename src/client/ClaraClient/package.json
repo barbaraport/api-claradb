@@ -7,7 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "dev": "expo start --tunnel"
+    "dev": "expo start"
   },
   "dependencies": {
     "@expo/ngrok": "^4.1.0",
@@ -16,7 +16,7 @@
     "global": "^4.4.0",
     "react": "17.0.2",
     "react-dom": "^18.0.0",
-    "react-native": "0.67.4",
+    "react-native": "0.64.3",
     "react-native-web": "^0.17.7"
   },
   "devDependencies": {
