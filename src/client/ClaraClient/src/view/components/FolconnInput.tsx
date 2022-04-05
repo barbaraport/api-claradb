@@ -1,5 +1,5 @@
-import React, { Component, RefObject } from "react";
-import { StyleSheet, TextInput, TextInputProps } from "react-native";
+import React, { Component } from "react";
+import { StyleSheet, TextInput } from "react-native";
 
 let styles = StyleSheet.create({
     folconnInput: {

@@ -1,11 +1,9 @@
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
+import { Colors } from "../../enumerations/Colors";
 import { PageAliases } from "../../enumerations/PageAliases";
 import { LoginPage } from "../pages/LoginPage";
-import { LoginForm } from "./LoginForm";
-import { Menu } from "./menu/Menu";
-import { Colors } from "../../enumerations/Colors";
 
 const styles = StyleSheet.create({
     phoneToolbar: {
