@@ -43,19 +43,19 @@ export class Menu extends Component<Props, State> {
                     {/*this.buildMenu*/}
                     <View style={styles.menuContainer}>
                          <View style={styles.menuItem}>
-                              <MaterialIcons name="home" size={Sizes.ICON} color="black" />
+                              <MaterialIcons name="home" size={Sizes.ICON} color={Colors.BLACK} />
                               <Text>Home</Text>
                          </View>
                          <View style={styles.menuItem}>
-                              <MaterialIcons name="directions-car" size={Sizes.ICON} color="black" />
+                              <MaterialIcons name="directions-car" size={Sizes.ICON} color={Colors.BLACK} />
                               <Text>Cars</Text>
                          </View>
                          <View style={styles.menuItem}>
-                              <MaterialIcons name="insert-drive-file" size={Sizes.ICON} color="black" />
+                              <MaterialIcons name="insert-drive-file" size={Sizes.ICON} color={Colors.BLACK} />
                               <Text>FOLs</Text>
                          </View>
                          <View style={styles.menuItem}>
-                              <MaterialIcons name="logout" size={Sizes.ICON} color="black" />
+                              <MaterialIcons name="logout" size={Sizes.ICON} color={Colors.BLACK} />
                               <Text>Log out</Text>
                          </View>
                     </View>
