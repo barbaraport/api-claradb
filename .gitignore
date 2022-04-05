@@ -127,4 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# IDE
 src/server/.idea/
+
+# npm
+src/client/ClaraClient/yarn.lock
+src/client/ClaraClient/package-lock.json
+
+# Expo
+/.expo

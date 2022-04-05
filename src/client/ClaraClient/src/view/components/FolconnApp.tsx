@@ -1,33 +1,60 @@
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
+import { Colors } from "../../enumerations/Colors";
+import { PageAliases } from "../../enumerations/PageAliases";
+import { LoginPage } from "../pages/LoginPage";
 
 const styles = StyleSheet.create({
-        bigBlue: {
-            color: 'blue',
-            fontWeight: 'bold',
-            fontSize: 30,
-            margin: 20
-        },
-        phoneToolbar: {
-            width: "100%",
-            height: 25,
-            backgroundColor: "#7dd6fb"
-        },
-        screen: {
-            width: "100%",
-            height: "100%",
-        }
+    phoneToolbar: {
+        width: "100%",
+        height: 25,
+        backgroundColor: Colors.BLUE
+    },
+    screen: {
+        width: "100%",
+        height: "100%"
+    },
+    content: {
+        padding: 10
     }
-);
+});
 
-export class FolconnApp extends Component<any, any> {
+interface FolconnAppState {
+    currentPage: PageAliases;
+}
+
+export class FolconnApp extends Component<any, FolconnAppState> {
+    constructor(props: any) {
+        super(props);
+
+        this.state = {
+            currentPage: PageAliases.LOGIN
+        };
+
+        this.changeCurrentPage = this.changeCurrentPage.bind(this);
+
+    }
+
+    private changeCurrentPage(pageToChange: PageAliases){
+        this.setState({"currentPage": pageToChange});
+
+    }
+
     private buildComponent(){
         let component = (
             <SafeAreaView>
                 <View style={styles.screen}>
                     <View style={styles.phoneToolbar}/>
-                    <Text style={styles.bigBlue}>Texto inicial</Text>
+                    {this.state["currentPage"] === PageAliases.LOGIN &&
+                        <LoginPage pageRedirectFunction={this.changeCurrentPage}/>
+
+                    }
+                    {this.state["currentPage"] === PageAliases.DEV &&
+                        // Put here your component in development to see it 
+                        //and change the initial state to PageAliases.DEV
+                        <></>
+                    }
                 </View>
             </SafeAreaView>
         );
