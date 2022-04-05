@@ -76,9 +76,10 @@ const styles = StyleSheet.create({
      menuItem: {
           display: "flex",
           flexDirection: "row",
-          alignContent: "center"
+          alignSelf: "flex-start"
      },
      menuContainer: {
-
+          backgroundColor: Colors.PRIMARY_BLUE,
+          borderRadius: 10,
      }
 });
