@@ -74,12 +74,11 @@ export class Menu extends Component<Props, State> {
 
 const styles = StyleSheet.create({
      menuItem: {
-          display: "flex",
           flexDirection: "row",
-          alignSelf: "flex-start"
      },
      menuContainer: {
           backgroundColor: Colors.PRIMARY_BLUE,
           borderRadius: 10,
+          alignSelf: "flex-start",
      }
 });
