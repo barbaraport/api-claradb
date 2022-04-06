@@ -11,7 +11,6 @@ interface Props {
 
 interface State {
      showMenu: boolean;
-     screenToOpen: string
 }
 
 export class Menu extends Component<Props, State> {
@@ -21,16 +20,15 @@ export class Menu extends Component<Props, State> {
 
           this.state = {
                showMenu: false,
-               screenToOpen: "Home"
           }
      }
 
      private handleScreen(newScreen: string) {
-          this.setState({ screenToOpen: newScreen });
+          this.openSelectedScreen(newScreen);
      }
 
-     private openSelectedScreen() {
-          Alert.alert("Changing screen", "Changing to: " + this.state.screenToOpen);
+     private openSelectedScreen(newScreen: string) {
+          Alert.alert("Changing screen", "Changing to: " + newScreen);
      }
 
      private buildMenu() {
