@@ -24,10 +24,7 @@ export class MenuItem extends Component<MenuItemProps, MenuItemState> {
      }
 
      render() {
-          return (
-               let component = this.buildMenuItemComponent();
-
-               return component;
-          );
+          let component = this.buildMenuItemComponent();
+          return component;
      }
 }

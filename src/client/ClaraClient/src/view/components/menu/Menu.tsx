@@ -5,6 +5,7 @@ import { Colors } from "../../../enumerations/Colors";
 import { PageAliases } from '../../../enumerations/PageAliases';
 import { Sizes } from "../../../enumerations/Sizes";
 import { Styles } from "../../styles/Styles";
+import { MenuItem } from './MenuItem';
 
 interface Props {
 
@@ -37,10 +38,11 @@ export class Menu extends Component<Props, State> {
                <View style={[Styles.menuContainer, Styles.shadow]}>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.HOME) }}>
-                              <View style={Styles.menuItem}>
+                              {/* <View style={Styles.menuItem}>
                                    <MaterialIcons name="home" size={Sizes.ICON} color={Colors.BLACK} />
                                    <Text style={Styles.text}>Home</Text>
-                              </View>
+                              </View> */}
+                              <MenuItem iconName="home" itemName="Home"></MenuItem>
                          </TouchableHighlight>
                     </View>
                     <View>
