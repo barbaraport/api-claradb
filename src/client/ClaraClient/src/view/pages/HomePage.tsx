@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { View } from "react-native";
 import { Menu } from "../components/menu/Menu";
 
 interface HomePageProps {
@@ -12,11 +13,11 @@ export class HomePage extends Component<HomePageProps, any> {
 
     }
 
-    private buildComponent(){
+    private buildComponent() {
         let component = (
-            <>
-               <Menu></Menu>
-            </>
+            <View>
+                <Menu></Menu>
+            </View>
         );
 
         return component;

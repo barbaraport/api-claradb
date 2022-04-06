@@ -14,51 +14,53 @@ interface State {
 
 export class Menu extends Component<Props, State> {
 
-     private buildMenu() {
-          if (this.state.showMenu === true) {
-               return (
-                    <View>
-                    </View>
-               );
-          }
+     constructor(props: Props) {
+          super(props)
+
+          this.state = { showMenu: false }
      }
 
+     private buildMenu() {
+          return (
+               <View style={styles.menuContainer}>
+                    <View style={styles.menuItem}>
+                         <MaterialIcons name="home" size={Sizes.ICON} color={Colors.BLACK} />
+                         <Text style={styles.p}>Home</Text>
+                    </View>
+                    <View style={styles.menuItem}>
+                         <MaterialIcons name="directions-car" size={Sizes.ICON} color={Colors.BLACK} />
+                         <Text style={styles.p}>Cars</Text>
+                    </View>
+                    <View style={styles.menuItem}>
+                         <MaterialIcons name="insert-drive-file" size={Sizes.ICON} color={Colors.BLACK} />
+                         <Text style={styles.p}>FOLs</Text>
+                    </View>
+                    <View style={styles.menuItem}>
+                         <MaterialIcons name="logout" size={Sizes.ICON} color={Colors.BLACK} />
+                         <Text style={styles.p}>Log out</Text>
+                    </View>
+               </View>
+          );
+     }
+
+
      private handleMenu() {
-          if (this.state.showMenu === true) {
-               this.setState({ showMenu: false });
-          }
-          else {
-               this.setState({ showMenu: true });
-          }
+          this.setState({ showMenu: !this.state.showMenu });
      }
 
      private buildMenuComponent() {
           let menu = (
                <View>
-                    <TouchableHighlight onPress={() => { this.handleMenu }}>
+                    <TouchableHighlight onPress={() => { this.handleMenu() }}>
                          <View>
                               <MaterialIcons name="menu" size={Sizes.ICON} color={Colors.BLACK} />
                          </View>
                     </TouchableHighlight>
-                    {/*this.buildMenu*/}
-                    <View style={styles.menuContainer}>
-                         <View style={styles.menuItem}>
-                              <MaterialIcons name="home" size={Sizes.ICON} color={Colors.BLACK} />
-                              <Text>Home</Text>
-                         </View>
-                         <View style={styles.menuItem}>
-                              <MaterialIcons name="directions-car" size={Sizes.ICON} color={Colors.BLACK} />
-                              <Text>Cars</Text>
-                         </View>
-                         <View style={styles.menuItem}>
-                              <MaterialIcons name="insert-drive-file" size={Sizes.ICON} color={Colors.BLACK} />
-                              <Text>FOLs</Text>
-                         </View>
-                         <View style={styles.menuItem}>
-                              <MaterialIcons name="logout" size={Sizes.ICON} color={Colors.BLACK} />
-                              <Text>Log out</Text>
-                         </View>
-                    </View>
+                    {
+                         this.state.showMenu == true
+                              ? this.buildMenu()
+                              : null
+                    }
                </View>
 
           );
@@ -75,12 +77,20 @@ export class Menu extends Component<Props, State> {
 const styles = StyleSheet.create({
      menuItem: {
           flexDirection: "row",
+          marginTop: 5,
+          marginBottom: 5,
+          paddingRight: 5
      },
      menuContainer: {
           backgroundColor: Colors.PRIMARY_BLUE,
           borderRadius: 10,
           alignSelf: "flex-start",
           paddingVertical: 10,
-          paddingHorizontal: 10
+          paddingHorizontal: 10,
+          marginLeft: 5,
+
+     },
+     p: {
+          fontSize: 20
      }
 });
