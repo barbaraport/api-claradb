@@ -1,6 +1,6 @@
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { Colors } from "../../enumerations/Colors";
 import { PageAliases } from "../../enumerations/PageAliases";
 import { HomePage } from "../pages/HomePage";
@@ -45,8 +45,8 @@ export class FolconnApp extends Component<any, FolconnAppState> {
     private buildComponent(){
         let component = (
             <SafeAreaView>
+                <StatusBar barStyle={"light-content"}/>
                 <View style={styles.screen}>
-                    <View style={styles.phoneToolbar}/>
                     {this.state["currentPage"] === PageAliases.LOGIN &&
                         <LoginPage pageRedirectFunction={this.changeCurrentPage}/>
 
