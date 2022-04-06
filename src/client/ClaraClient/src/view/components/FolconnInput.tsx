@@ -1,27 +1,6 @@
 import React, { Component } from "react";
-import { StyleSheet, TextInput } from "react-native";
-
-let styles = StyleSheet.create({
-    folconnInput: {
-        borderRadius: 16,
-        paddingTop: 0,
-        paddingBottom: 0,
-        paddingLeft: 15,
-        paddingRight: 0,
-        width: 200,
-        height: 50,
-        fontSize: 20,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.10,
-        shadowRadius: 1.50,
-        elevation: 2,
-        marginBottom: 15
-    }
-});
+import { TextInput } from "react-native";
+import { Styles } from "../styles/Styles";
 
 interface FolconnInputProps {
     placeholder: string,
@@ -49,7 +28,7 @@ export class FolconnInput extends Component<FolconnInputProps, any> {
         let component = (
             <TextInput onChangeText={this.ejectTypedValue} 
                 secureTextEntry={this.props["secureText"]} 
-                style={styles.folconnInput} 
+                style={[Styles.folconnInput, Styles.shadow]} 
                 textContentType={this.props["type"]} 
                 placeholder={this.props["placeholder"]}></TextInput>
         );

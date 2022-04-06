@@ -1,9 +1,10 @@
 import { MaterialIcons } from '@expo/vector-icons';
 import React, { Component } from "react";
-import { Alert, StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import { Alert, Text, TouchableHighlight, View } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
 import { PageAliases } from '../../../enumerations/PageAliases';
 import { Sizes } from "../../../enumerations/Sizes";
+import { Styles } from "../../styles/Styles";
 
 interface Props {
 
@@ -33,44 +34,44 @@ export class Menu extends Component<Props, State> {
 
      private buildMenu() {
           return (
-               <View style={styles.menuContainer}>
+               <View style={[Styles.menuContainer, Styles.shadow]}>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.HOME) }}>
-                              <View style={styles.menuItem}>
+                              <View style={Styles.menuItem}>
                                    <MaterialIcons name="home" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={styles.text}>Home</Text>
+                                   <Text style={Styles.text}>Home</Text>
                               </View>
                          </TouchableHighlight>
                     </View>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.CARS) }}>
-                              <View style={styles.menuItem}>
+                              <View style={Styles.menuItem}>
                                    <MaterialIcons name="directions-car" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={styles.text}>Cars</Text>
+                                   <Text style={Styles.text}>Cars</Text>
                               </View>
                          </TouchableHighlight>
                     </View>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.FOLS) }}>
-                              <View style={styles.menuItem}>
+                              <View style={Styles.menuItem}>
                                    <MaterialIcons name="insert-drive-file" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={styles.text}>FOLs</Text>
+                                   <Text style={Styles.text}>FOLs</Text>
                               </View>
                          </TouchableHighlight>
                     </View>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.TERMSOFUSE) }}>
-                              <View style={styles.menuItem}>
+                              <View style={Styles.menuItem}>
                                    <MaterialIcons name="check-box" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={styles.text}>Terms Of Use</Text>
+                                   <Text style={Styles.text}>Terms Of Use</Text>
                               </View>
                          </TouchableHighlight>
                     </View>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.LOGOUT) }}>
-                              <View style={styles.menuItem}>
+                              <View style={Styles.menuItem}>
                                    <MaterialIcons name="logout" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={styles.text}>Log out</Text>
+                                   <Text style={Styles.text}>Log out</Text>
                               </View>
                          </TouchableHighlight>
                     </View>
@@ -108,25 +109,3 @@ export class Menu extends Component<Props, State> {
           return component;
      }
 }
-
-const styles = StyleSheet.create({
-     menuItem: {
-          flexDirection: "row",
-          marginTop: 5,
-          marginBottom: 5,
-          paddingRight: 5
-     },
-     menuContainer: {
-          backgroundColor: Colors.WHITE,
-          borderRadius: 10,
-          alignSelf: "flex-start",
-          paddingVertical: 10,
-          paddingHorizontal: 10,
-          marginLeft: 5,
-
-     },
-     text: {
-          paddingLeft: 5,
-          fontSize: 20
-     }
-});

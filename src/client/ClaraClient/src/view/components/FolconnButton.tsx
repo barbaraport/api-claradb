@@ -1,24 +1,6 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
-
-const styles = StyleSheet.create({
-    buttonContainer: {
-        elevation: 8,
-        backgroundColor: "#1839be",
-        borderRadius: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 15,
-        alignSelf: "center",
-        marginTop: 10
-    },
-    buttonText: {
-        fontSize: 15,
-        color: "#fff",
-        fontWeight: "bold",
-        alignSelf: "center",
-        textTransform: "uppercase"
-    }
-});
+import { Text, TouchableOpacity } from "react-native";
+import { Styles } from "../styles/Styles";
 
 interface FolconnButtonProps {
     text: string,
@@ -40,8 +22,8 @@ export class FolconnButton extends Component<FolconnButtonProps, any> {
 
     private buildComponent(){
         let component = (
-            <TouchableOpacity activeOpacity={0.6} style={styles.buttonContainer} onPress={this.onClick}>
-                <Text style={styles.buttonText}>{this.props["text"]}</Text>
+            <TouchableOpacity activeOpacity={0.6} style={Styles.buttonContainer} onPress={this.onClick}>
+                <Text style={Styles.buttonText}>{this.props["text"]}</Text>
             </TouchableOpacity>
         );
 
