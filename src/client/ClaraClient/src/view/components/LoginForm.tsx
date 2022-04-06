@@ -58,7 +58,7 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
     private buildComponent() {
         let component = (
-            <View style={Styles.formModal}>
+            <View style={[Styles.formModal, Styles.shadow]}>
                 <Text style={Styles.title}>Welcome!</Text>
                 <View>
                     <FolconnInput placeholder="Username" type="username" ejectFunction={this.receiveTypedUserName} secureText={false} />
