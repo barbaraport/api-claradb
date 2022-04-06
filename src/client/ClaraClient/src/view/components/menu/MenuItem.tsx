@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
-import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome5  } from '@expo/vector-icons';
 import { Sizes } from "../../../enumerations/Sizes";
 import { Styles } from "../../styles/Styles";
 
@@ -17,7 +17,7 @@ export class MenuItem extends Component<MenuItemProps, MenuItemState> {
      private buildMenuItemComponent() {
           return (
                <View style={Styles.menuItem}>
-                    <MaterialIcons name={this.props.iconName} size={Sizes.ICON} color={Colors.BLACK} />
+                    <FontAwesome5 name={this.props.iconName} size={Sizes.ICON} color={Colors.BLACK} />
                     <Text style={Styles.text}>{this.props.itemName}</Text>
                </View>
           );

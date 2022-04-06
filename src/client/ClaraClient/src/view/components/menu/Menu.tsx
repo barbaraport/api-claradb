@@ -38,43 +38,27 @@ export class Menu extends Component<Props, State> {
                <View style={[Styles.menuContainer, Styles.shadow]}>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.HOME) }}>
-                              {/* <View style={Styles.menuItem}>
-                                   <MaterialIcons name="home" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={Styles.text}>Home</Text>
-                              </View> */}
                               <MenuItem iconName="home" itemName="Home"></MenuItem>
                          </TouchableHighlight>
                     </View>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.CARS) }}>
-                              <View style={Styles.menuItem}>
-                                   <MaterialIcons name="directions-car" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={Styles.text}>Cars</Text>
-                              </View>
+                              <MenuItem iconName="car" itemName="Cars"></MenuItem>
                          </TouchableHighlight>
                     </View>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.FOLS) }}>
-                              <View style={Styles.menuItem}>
-                                   <MaterialIcons name="insert-drive-file" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={Styles.text}>FOLs</Text>
-                              </View>
+                              <MenuItem iconName="file-medical-alt" itemName="FOLs"></MenuItem>
                          </TouchableHighlight>
                     </View>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.TERMSOFUSE) }}>
-                              <View style={Styles.menuItem}>
-                                   <MaterialIcons name="check-box" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={Styles.text}>Terms Of Use</Text>
-                              </View>
+                              <MenuItem iconName="clipboard-check" itemName="Terms of Use"></MenuItem>
                          </TouchableHighlight>
                     </View>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.LOGOUT) }}>
-                              <View style={Styles.menuItem}>
-                                   <MaterialIcons name="logout" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={Styles.text}>Log out</Text>
-                              </View>
+                              <MenuItem iconName="sign-out-alt" itemName="Sign Out"></MenuItem>
                          </TouchableHighlight>
                     </View>
                </View>
