@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
+import { Colors } from "../../enumerations/Colors";
 import { FolconnButton } from "./FolconnButton";
 import { FolconnInput } from "./FolconnInput";
 
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
         paddingBottom: 40,
         paddingLeft: 40,
         paddingRight: 40,
+        backgroundColor: Colors.WHITE
     },
     loginForm: {
         display: "flex",
