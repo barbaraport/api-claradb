@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Alert, Text, View } from "react-native";
-import { Styles } from "../styles/Styles";
-import { FolconnButton } from "./FolconnButton";
-import { FolconnInput } from "./FolconnInput";
+import { Styles } from "../../styles/Styles";
+import { FolconnButton } from "../button/FolconnButton";
+import { FolconnInput } from "../input/FolconnInput";
 
 interface LoginFormProps {
 	redirectPageFunction: Function;

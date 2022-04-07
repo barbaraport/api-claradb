@@ -1,5 +1,4 @@
-import {AppRegistry} from 'react-native';
-import {name as appName} from './app.json';
-import { FolconnApp } from './src/view/components/FolconnApp';
+import { AppRegistry } from 'react-native';
+import { FolconnApp } from './src/FolconnApp';
 
 AppRegistry.registerComponent("main", () => FolconnApp);

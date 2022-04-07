@@ -1,10 +1,10 @@
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { Button, SafeAreaView, StatusBar, View } from "react-native";
-import { PageAliases } from "../../enumerations/PageAliases";
-import { HomePage } from "../pages/HomePage";
-import { LoginPage } from "../pages/LoginPage";
-import { Styles } from "../styles/Styles";
+import { SafeAreaView, StatusBar, View } from "react-native";
+import { PageAliases } from "./enumerations/PageAliases";
+import { HomePage } from "./view/pages/HomePage";
+import { LoginPage } from "./view/pages/LoginPage";
+import { Styles } from "./view/styles/Styles";
 
 interface FolconnAppState {
 	currentPage: PageAliases;

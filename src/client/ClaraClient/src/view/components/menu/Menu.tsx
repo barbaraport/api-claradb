@@ -1,10 +1,8 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import React, { Component } from "react";
-import { Alert, Text, TouchableHighlight, View } from "react-native";
-import { Colors } from "../../../enumerations/Colors";
+import { Alert, TouchableHighlight, View } from "react-native";
 import { PageAliases } from '../../../enumerations/PageAliases';
-import { Sizes } from "../../../enumerations/Sizes";
 import { Styles } from "../../styles/Styles";
+import { FolConnIcon } from '../icon/FolConnIcon';
 import { MenuItem } from './MenuItem';
 
 interface Props {
@@ -53,7 +51,7 @@ export class Menu extends Component<Props, State> {
                     </View>
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.TERMSOFUSE) }}>
-                              <MenuItem iconName="clipboard-check" itemName="Terms of Use"></MenuItem>
+                              <MenuItem iconName="user-check" itemName="Terms of Use"></MenuItem>
                          </TouchableHighlight>
                     </View>
                     <View>
@@ -74,9 +72,7 @@ export class Menu extends Component<Props, State> {
           let menu = (
                <View>
                     <TouchableHighlight onPress={() => { this.handleMenu() }}>
-                         <View>
-                              <MaterialIcons name="menu" size={Sizes.ICON} color={Colors.BLACK} />
-                         </View>
+                         <FolConnIcon iconName="bars" ></FolConnIcon>
                     </TouchableHighlight>
                     {
                          this.state.showMenu == true

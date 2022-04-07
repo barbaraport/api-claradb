@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
-import { Colors } from "../../../enumerations/Colors";
-import { FontAwesome5  } from '@expo/vector-icons';
-import { Sizes } from "../../../enumerations/Sizes";
+import { Text, View } from "react-native";
 import { Styles } from "../../styles/Styles";
+import { FolConnIcon } from "../icon/FolConnIcon";
 
 interface MenuItemProps {
      iconName: string,
@@ -17,7 +15,7 @@ export class MenuItem extends Component<MenuItemProps, MenuItemState> {
      private buildMenuItemComponent() {
           return (
                <View style={Styles.menuItem}>
-                    <FontAwesome5 name={this.props.iconName} size={Sizes.ICON} color={Colors.BLACK} />
+                    <FolConnIcon iconName={this.props.iconName}></FolConnIcon>
                     <Text style={Styles.text}>{this.props.itemName}</Text>
                </View>
           );

@@ -1,7 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { Component } from "react";
 import { Text } from "react-native";
-import { LoginForm } from "../components/LoginForm";
+import { LoginForm } from "../components/loginForm/LoginForm";
 import { Styles } from "../styles/Styles";
 
 interface LoginPageProps {
