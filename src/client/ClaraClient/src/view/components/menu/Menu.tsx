@@ -48,7 +48,7 @@ export class Menu extends Component<MenuProps, MenuState> {
                          </TouchableHighlight>
                     </View>
                     <View>
-                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.LOGOUT) }}>
+                         <TouchableHighlight onPress={() => { this.handleScreen("SignOut") }}>
                               <MenuItem iconName="sign-out-alt" itemName="Sign Out"></MenuItem>
                          </TouchableHighlight>
                     </View>
