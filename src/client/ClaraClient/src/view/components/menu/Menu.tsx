@@ -5,17 +5,15 @@ import { Styles } from "../../styles/Styles";
 import { FolConnIcon } from '../icon/FolConnIcon';
 import { MenuItem } from './MenuItem';
 
-interface Props {
+interface MenuProps { }
 
-}
-
-interface State {
+interface MenuState {
      showMenu: boolean;
 }
 
-export class Menu extends Component<Props, State> {
+export class Menu extends Component<MenuProps, MenuState> {
 
-     constructor(props: Props) {
+     constructor(props: MenuProps) {
           super(props)
 
           this.state = {
@@ -37,11 +35,6 @@ export class Menu extends Component<Props, State> {
                     <View>
                          <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.HOME) }}>
                               <MenuItem iconName="home" itemName="Home"></MenuItem>
-                         </TouchableHighlight>
-                    </View>
-                    <View>
-                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.CARS) }}>
-                              <MenuItem iconName="car" itemName="Cars"></MenuItem>
                          </TouchableHighlight>
                     </View>
                     <View>

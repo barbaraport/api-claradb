@@ -4,7 +4,9 @@ import { SafeAreaView, StatusBar, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
 import { HomePage } from "./view/pages/HomePage";
 import { LoginPage } from "./view/pages/LoginPage";
+import { FOLsPage } from "./view/pages/FOLsPage";
 import { Styles } from "./view/styles/Styles";
+import { TermsOfUsePage } from "./view/pages/TermsOfUsePage";
 
 interface FolconnAppState {
 	currentPage: PageAliases;
@@ -43,12 +45,26 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 			<HomePage pageRedirectFunction={this.changeCurrentPage} />
 		);
 
+		const folsPage: JSX.Element = (
+			<FOLsPage pageRedirectFunction={this.changeCurrentPage}/>
+		);
+
+		const termsOfUsePage: JSX.Element = (
+			<TermsOfUsePage pageRedirectFunction={this.changeCurrentPage}/>
+		);
+
 		switch (this.state["currentPage"]) {
 			case PageAliases.HOME:
 				return homePage;
 
 			case PageAliases.LOGIN:
 				return loginPage;
+
+			case PageAliases.FOLS:
+				return folsPage;
+
+			case PageAliases.TERMSOFUSE:
+				return termsOfUsePage;
 
 			default:
 				return homePage;
