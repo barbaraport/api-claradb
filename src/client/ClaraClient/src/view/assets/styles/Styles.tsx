@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Colors } from "../../enumerations/Colors";
+import { Colors } from "../../../enumerations/Colors";
 
 export const Styles = StyleSheet.create({
      headerAlignment: {

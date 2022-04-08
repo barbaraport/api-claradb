@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { Styles } from "../../styles/Styles";
+import { Styles } from "../../assets/styles/Styles";
 
 interface FolconnButtonProps {
     text: string,

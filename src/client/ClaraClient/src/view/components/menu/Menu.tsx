@@ -3,7 +3,7 @@ import { TouchableHighlight, View } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
 import { PageAliases } from '../../../enumerations/PageAliases';
 import { Sizes } from "../../../enumerations/Sizes";
-import { Styles } from "../../styles/Styles";
+import { Styles } from "../../assets/styles/Styles";
 import { FolConnIcon } from '../icon/FolConnIcon';
 import { MenuItem } from './MenuItem';
 

@@ -2,7 +2,8 @@ import { LinearGradient } from "expo-linear-gradient";
 import React, { Component } from "react";
 import { Text } from "react-native";
 import { LoginForm } from "../components/loginForm/LoginForm";
-import { Styles } from "../styles/Styles";
+import { Styles } from "../assets/styles/Styles";
+import { Colors } from "../../enumerations/Colors";
 
 interface LoginPageProps {
 	pageRedirectFunction: Function;
@@ -17,7 +18,7 @@ export class LoginPage extends Component<LoginPageProps, any> {
 		let component = (
 			<>
 				<LinearGradient
-					colors={["#526ac4", "#b0b8d4", "#526ac4"]}
+					colors={[Colors.GRADIENT_1, Colors.GRADIENT_2, Colors.GRADIENT_3]}
 					style={Styles.background}
 				>
 					<Text style={Styles.titleWhite}>FolConn</Text>

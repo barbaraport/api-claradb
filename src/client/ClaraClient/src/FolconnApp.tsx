@@ -2,13 +2,12 @@ import { registerRootComponent } from "expo";
 import React, { Component } from "react";
 import { SafeAreaView, StatusBar, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
-import { Menu } from "./view/components/menu/Menu";
-import { FOLsPage } from "./view/pages/FOLsPage";
+import { Styles } from "./view/assets/styles/Styles";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
+import { FOLsPage } from "./view/pages/FOLsPage";
 import { HomePage } from "./view/pages/HomePage";
 import { LoginPage } from "./view/pages/LoginPage";
 import { TermsOfUsePage } from "./view/pages/TermsOfUsePage";
-import { Styles } from "./view/styles/Styles";
 
 interface FolconnAppState {
 	currentPage: PageAliases;

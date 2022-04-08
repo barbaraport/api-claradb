@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Alert, Text, View } from "react-native";
-import { Styles } from "../../styles/Styles";
+import { Styles } from "../../assets/styles/Styles";
 import { FolconnButton } from "../button/FolconnButton";
 import { FolconnInput } from "../input/FolconnInput";
 
