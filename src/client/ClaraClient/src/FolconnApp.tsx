@@ -4,6 +4,7 @@ import { SafeAreaView, StatusBar, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
 import { Menu } from "./view/components/menu/Menu";
 import { FOLsPage } from "./view/pages/FOLsPage";
+import { FolconnHeader } from "./view/components/menu/FolconnHeader";
 import { HomePage } from "./view/pages/HomePage";
 import { LoginPage } from "./view/pages/LoginPage";
 import { TermsOfUsePage } from "./view/pages/TermsOfUsePage";
@@ -84,10 +85,9 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 				<StatusBar barStyle={"light-content"} />
 				<View style={Styles.screen}>
 					{this.state.currentPage !== PageAliases.LOGIN && (
-						<Menu
-							pageRedirectFunction={this.changeCurrentPage}
-						></Menu>
+						<FolconnHeader pageReditectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
 					)}
+
 					{this.getPageToRender()}
 				</View>
 			</SafeAreaView>

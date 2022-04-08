@@ -3,15 +3,24 @@ import { View } from "react-native";
 
 interface HomePageProps {
 	pageRedirectFunction: Function;
+
 }
 
 export class HomePage extends Component<HomePageProps, any> {
 	constructor(props: HomePageProps) {
 		super(props);
+
+
+
 	}
 
+
 	private buildComponent() {
-		let component = <View></View>;
+		let component = (
+			<View>
+
+			</View>
+		);
 
 		return component;
 	}
@@ -21,4 +30,5 @@ export class HomePage extends Component<HomePageProps, any> {
 
 		return component;
 	}
+
 }

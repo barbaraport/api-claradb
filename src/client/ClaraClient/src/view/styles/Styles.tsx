@@ -2,6 +2,38 @@ import { StyleSheet } from "react-native";
 import { Colors } from "../../enumerations/Colors";
 
 export const Styles = StyleSheet.create({
+     headerAlignment: {
+          margin:10,
+          flex:1,
+          flexDirection: "row",
+          width:355,
+          justifyContent:'space-between',
+     },
+     iconMargin:{
+          marginRight:15
+     },
+     headerIconsAlignment:{
+          flexDirection: "row",
+     },
+     imageBackground: {
+          marginTop: 0,
+          width: 400,
+          height: 95,
+     },
+     viewIcon: {
+          display: "flex",
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+     },
+     headerTitle: {
+          fontWeight: "bold",
+          fontSize: 28,
+          color: Colors.WHITE,
+          paddingLeft:'15%'
+     },
+     menu:{
+          position:'absolute'
+     },
      menuItem: {
           flexDirection: "row",
           marginTop: 5,
@@ -36,8 +68,8 @@ export const Styles = StyleSheet.create({
           backgroundColor: Colors.BLUE
      },
      screen: {
-          width: "100%",
-          height: "100%"
+          // width: "100%",
+          // height: "100%"
      },
      content: {
           padding: 10
@@ -98,17 +130,17 @@ export const Styles = StyleSheet.create({
           display: "flex",
           flexDirection: "column",
           alignItems: "center"
-      },
-      titleWhite: {
+     },
+     titleWhite: {
           fontSize: 40,
           fontWeight: "bold",
           marginBottom: 20,
           marginTop: 50,
           color: Colors.WHITE
-      },
-      label: {
+     },
+     label: {
           fontSize: 20,
           marginBottom: 40,
           color: Colors.WHITE
-      }
+     }
 });

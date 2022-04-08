@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
+import { Colors } from "../../../enumerations/Colors";
+import { Sizes } from "../../../enumerations/Sizes";
 import { Styles } from "../../styles/Styles";
 import { FolConnIcon } from "../icon/FolConnIcon";
 
@@ -15,7 +17,7 @@ export class MenuItem extends Component<MenuItemProps, MenuItemState> {
      private buildMenuItemComponent() {
           return (
                <View style={Styles.menuItem}>
-                    <FolConnIcon iconName={this.props.iconName}></FolConnIcon>
+                    <FolConnIcon iconName={this.props.iconName} iconSize={Sizes.ICON} iconColor={Colors.BLACK}></FolConnIcon>
                     <Text style={Styles.text}>{this.props.itemName}</Text>
                </View>
           );

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { TouchableHighlight, View } from "react-native";
+import { Colors } from "../../../enumerations/Colors";
 import { PageAliases } from '../../../enumerations/PageAliases';
+import { Sizes } from "../../../enumerations/Sizes";
 import { Styles } from "../../styles/Styles";
 import { FolConnIcon } from '../icon/FolConnIcon';
 import { MenuItem } from './MenuItem';
 
-interface MenuProps { 
+interface MenuProps {
      pageRedirectFunction: Function;
 }
 
@@ -15,13 +17,13 @@ interface MenuState {
 
 export class Menu extends Component<MenuProps, MenuState> {
 
-	constructor(props: MenuProps) {
-		super(props);
+     constructor(props: MenuProps) {
+          super(props);
 
-		this.state = {
-			showMenu: false,
-		};
-	}
+          this.state = {
+               showMenu: false,
+          };
+     }
 
      private buildMenu() {
           return (
@@ -52,9 +54,9 @@ export class Menu extends Component<MenuProps, MenuState> {
 
      private buildMenuComponent() {
           let menu = (
-               <View>
+               <View style={Styles.menu}>
                     <TouchableHighlight onPress={() => { this.handleMenu() }}>
-                         <FolConnIcon iconName="bars" ></FolConnIcon>
+                         <FolConnIcon iconName="bars" iconSize={Sizes.BIGICON} iconColor={Colors.WHITE} ></FolConnIcon>
                     </TouchableHighlight>
                     {
                          this.state.showMenu == true
@@ -64,27 +66,27 @@ export class Menu extends Component<MenuProps, MenuState> {
                </View>
           );
 
-		return menu;
-	}
+          return menu;
+     }
 
      render() {
-		let component = this.buildMenuComponent();
-		return component;
-	}
+          let component = this.buildMenuComponent();
+          return component;
+     }
 
      private signOut() {
           this.handleScreen(PageAliases.LOGIN);
      }
 
      private handleScreen(newScreen: PageAliases) {
-		this.openSelectedScreen(newScreen);
-	}
+          this.openSelectedScreen(newScreen);
+     }
 
      private openSelectedScreen(newScreen: PageAliases) {
-		this.props.pageRedirectFunction(newScreen);
-	}
+          this.props.pageRedirectFunction(newScreen);
+     }
 
      private handleMenu() {
-		this.setState({ showMenu: !this.state.showMenu });
-	}
+          this.setState({ showMenu: !this.state.showMenu });
+     }
 }

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { Sizes } from "../../../enumerations/Sizes";
 import { FontAwesome5  } from '@expo/vector-icons';
+import { Colors } from "../../../enumerations/Colors";
 
-interface FolConnIconProps { 
+interface FolConnIconProps {
      iconName: string
+     iconColor: Colors;
+     iconSize:Sizes;
 }
 
 interface FolConnIconState { }
@@ -12,7 +14,7 @@ interface FolConnIconState { }
 export class FolConnIcon extends Component<FolConnIconProps, FolConnIconState> {
 
      private buildFolconnIcon () {
-         return <FontAwesome5 name={this.props.iconName} size={Sizes.ICON} color={Colors.BLACK} />;
+         return <FontAwesome5 name={this.props.iconName} size={this.props.iconSize} color={this.props.iconColor} />;
      }
 
      render () {
