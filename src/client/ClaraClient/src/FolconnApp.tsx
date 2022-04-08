@@ -7,6 +7,7 @@ import { LoginPage } from "./view/pages/LoginPage";
 import { FOLsPage } from "./view/pages/FOLsPage";
 import { Styles } from "./view/styles/Styles";
 import { TermsOfUsePage } from "./view/pages/TermsOfUsePage";
+import { Menu } from "./view/components/menu/Menu";
 
 interface FolconnAppState {
 	currentPage: PageAliases;
@@ -41,9 +42,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 			<LoginPage pageRedirectFunction={this.changeCurrentPage} />
 		);
 
-		const homePage: JSX.Element = (
-			<HomePage pageRedirectFunction={this.changeCurrentPage} />
-		);
+		const homePage: JSX.Element = <HomePage />;
 
 		const folsPage: JSX.Element = (
 			<FOLsPage pageRedirectFunction={this.changeCurrentPage}/>
@@ -82,7 +81,14 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		let component = (
 			<SafeAreaView>
 				<StatusBar barStyle={"light-content"} />
-				<View style={Styles.screen}>{this.getPageToRender()}</View>
+				<View style={Styles.screen}>
+					{this.state.currentPage !== PageAliases.LOGIN && (
+						<Menu
+							pageRedirectFunction={this.changeCurrentPage}
+						></Menu>
+					)}
+					{this.getPageToRender()}
+				</View>
 			</SafeAreaView>
 		);
 
