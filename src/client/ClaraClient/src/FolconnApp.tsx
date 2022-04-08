@@ -1,11 +1,13 @@
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { Button, SafeAreaView, StatusBar, View } from "react-native";
-import { PageAliases } from "../../enumerations/PageAliases";
-import { HomePage } from "../pages/HomePage";
-import { LoginPage } from "../pages/LoginPage";
-import { Styles } from "../styles/Styles";
-import { Menu } from "./menu/Menu";
+import { SafeAreaView, StatusBar, View } from "react-native";
+import { PageAliases } from "./enumerations/PageAliases";
+import { Menu } from "./view/components/menu/Menu";
+import { FOLsPage } from "./view/pages/FOLsPage";
+import { HomePage } from "./view/pages/HomePage";
+import { LoginPage } from "./view/pages/LoginPage";
+import { TermsOfUsePage } from "./view/pages/TermsOfUsePage";
+import { Styles } from "./view/styles/Styles";
 
 interface FolconnAppState {
 	currentPage: PageAliases;
@@ -36,11 +38,20 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 	}
 
 	private getPageToRender(): JSX.Element {
+
+		const homePage: JSX.Element = (
+			<HomePage pageRedirectFunction={this.changeCurrentPage} />
+		);
+
 		const loginPage: JSX.Element = (
 			<LoginPage pageRedirectFunction={this.changeCurrentPage} />
 		);
-
-		const homePage: JSX.Element = <HomePage />;
+		const folsPage: JSX.Element = (
+			<FOLsPage pageRedirectFunction={this.changeCurrentPage} />
+		);
+		const termsOfUsePage: JSX.Element = (
+			<TermsOfUsePage pageRedirectFunction={this.changeCurrentPage} />
+		);
 
 		switch (this.state["currentPage"]) {
 			case PageAliases.HOME:
@@ -48,6 +59,12 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 
 			case PageAliases.LOGIN:
 				return loginPage;
+
+			case PageAliases.FOLS:
+				return folsPage;
+
+			case PageAliases.TERMSOFUSE:
+				return termsOfUsePage;
 
 			default:
 				return homePage;

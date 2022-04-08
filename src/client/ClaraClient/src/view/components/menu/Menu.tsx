@@ -1,21 +1,21 @@
-import { MaterialIcons } from "@expo/vector-icons";
 import React, { Component } from "react";
-import { Alert, Text, TouchableHighlight, View } from "react-native";
-import { Colors } from "../../../enumerations/Colors";
-import { PageAliases } from "../../../enumerations/PageAliases";
-import { Sizes } from "../../../enumerations/Sizes";
+import { TouchableHighlight, View } from "react-native";
+import { PageAliases } from '../../../enumerations/PageAliases';
 import { Styles } from "../../styles/Styles";
+import { FolConnIcon } from '../icon/FolConnIcon';
+import { MenuItem } from './MenuItem';
 
-interface Props {
-	pageRedirectFunction: Function;
+interface MenuProps { 
+     pageRedirectFunction: Function;
 }
 
-interface State {
-	showMenu: boolean;
+interface MenuState {
+     showMenu: boolean;
 }
 
-export class Menu extends Component<Props, State> {
-	constructor(props: Props) {
+export class Menu extends Component<MenuProps, MenuState> {
+
+	constructor(props: MenuProps) {
 		super(props);
 
 		this.state = {
@@ -23,131 +23,68 @@ export class Menu extends Component<Props, State> {
 		};
 	}
 
-	private handleScreen(newScreen: PageAliases) {
-		this.openSelectedScreen(newScreen);
-	}
+     private buildMenu() {
+          return (
+               <View style={[Styles.menuContainer, Styles.shadow]}>
+                    <View>
+                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.HOME) }}>
+                              <MenuItem iconName="home" itemName="Home"></MenuItem>
+                         </TouchableHighlight>
+                    </View>
+                    <View>
+                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.FOLS) }}>
+                              <MenuItem iconName="file-medical-alt" itemName="FOLs"></MenuItem>
+                         </TouchableHighlight>
+                    </View>
+                    <View>
+                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.TERMSOFUSE) }}>
+                              <MenuItem iconName="user-check" itemName="Terms of Use"></MenuItem>
+                         </TouchableHighlight>
+                    </View>
+                    <View>
+                         <TouchableHighlight onPress={() => { this.signOut() }}>
+                              <MenuItem iconName="sign-out-alt" itemName="Sign Out"></MenuItem>
+                         </TouchableHighlight>
+                    </View>
+               </View>
+          );
+     }
 
-	private openSelectedScreen(newScreen: PageAliases) {
-		Alert.alert("Changing screen", "Changing to: " + newScreen);
-		this.props.pageRedirectFunction(newScreen);
-	}
-
-	private buildMenu() {
-		return (
-			<View style={[Styles.menuContainer, Styles.shadow]}>
-				<View>
-					<TouchableHighlight
-						onPress={() => {
-							this.handleScreen(PageAliases.HOME);
-						}}
-					>
-						<View style={Styles.menuItem}>
-							<MaterialIcons
-								name="home"
-								size={Sizes.ICON}
-								color={Colors.BLACK}
-							/>
-							<Text style={Styles.text}>Home</Text>
-						</View>
-					</TouchableHighlight>
-				</View>
-				<View>
-					<TouchableHighlight
-						onPress={() => {
-							this.handleScreen(PageAliases.CARS);
-						}}
-					>
-						<View style={Styles.menuItem}>
-							<MaterialIcons
-								name="directions-car"
-								size={Sizes.ICON}
-								color={Colors.BLACK}
-							/>
-							<Text style={Styles.text}>Cars</Text>
-						</View>
-					</TouchableHighlight>
-				</View>
-				<View>
-					<TouchableHighlight
-						onPress={() => {
-							this.handleScreen(PageAliases.FOLS);
-						}}
-					>
-						<View style={Styles.menuItem}>
-							<MaterialIcons
-								name="insert-drive-file"
-								size={Sizes.ICON}
-								color={Colors.BLACK}
-							/>
-							<Text style={Styles.text}>FOLs</Text>
-						</View>
-					</TouchableHighlight>
-				</View>
-				<View>
-					<TouchableHighlight
-						onPress={() => {
-							this.handleScreen(PageAliases.TERMSOFUSE);
-						}}
-					>
-						<View style={Styles.menuItem}>
-							<MaterialIcons
-								name="check-box"
-								size={Sizes.ICON}
-								color={Colors.BLACK}
-							/>
-							<Text style={Styles.text}>Terms Of Use</Text>
-						</View>
-					</TouchableHighlight>
-				</View>
-				<View>
-					<TouchableHighlight
-						onPress={() => {
-							this.handleScreen(PageAliases.LOGOUT);
-						}}
-					>
-						<View style={Styles.menuItem}>
-							<MaterialIcons
-								name="logout"
-								size={Sizes.ICON}
-								color={Colors.BLACK}
-							/>
-							<Text style={Styles.text}>Log out</Text>
-						</View>
-					</TouchableHighlight>
-				</View>
-			</View>
-		);
-	}
-
-	private handleMenu() {
-		this.setState({ showMenu: !this.state.showMenu });
-	}
-
-	private buildMenuComponent() {
-		let menu = (
-			<View>
-				<TouchableHighlight
-					onPress={() => {
-						this.handleMenu();
-					}}
-				>
-					<View>
-						<MaterialIcons
-							name="menu"
-							size={Sizes.ICON}
-							color={Colors.BLACK}
-						/>
-					</View>
-				</TouchableHighlight>
-				{this.state.showMenu == true ? this.buildMenu() : null}
-			</View>
-		);
+     private buildMenuComponent() {
+          let menu = (
+               <View>
+                    <TouchableHighlight onPress={() => { this.handleMenu() }}>
+                         <FolConnIcon iconName="bars" ></FolConnIcon>
+                    </TouchableHighlight>
+                    {
+                         this.state.showMenu == true
+                              ? this.buildMenu()
+                              : null
+                    }
+               </View>
+          );
 
 		return menu;
 	}
 
-	render() {
+     render() {
 		let component = this.buildMenuComponent();
 		return component;
+	}
+
+     private signOut() {
+          this.handleScreen(PageAliases.LOGIN);
+     }
+
+     private handleScreen(newScreen: PageAliases) {
+		this.openSelectedScreen(newScreen);
+	}
+
+     private openSelectedScreen(newScreen: PageAliases) {
+		this.props.pageRedirectFunction(newScreen);
+	}
+
+     private handleMenu() {
+		this.setState({ showMenu: !this.state.showMenu });
 	}
 }

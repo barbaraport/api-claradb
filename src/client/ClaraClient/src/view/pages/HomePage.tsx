@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { View } from "react-native";
-import { Menu } from "../components/menu/Menu";
 
-interface HomePageProps {}
+interface HomePageProps {
+	pageRedirectFunction: Function;
+}
 
 export class HomePage extends Component<HomePageProps, any> {
 	constructor(props: HomePageProps) {
