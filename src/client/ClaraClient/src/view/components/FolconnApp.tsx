@@ -5,6 +5,7 @@ import { PageAliases } from "../../enumerations/PageAliases";
 import { HomePage } from "../pages/HomePage";
 import { LoginPage } from "../pages/LoginPage";
 import { Styles } from "../styles/Styles";
+import { Menu } from "./menu/Menu";
 
 interface FolconnAppState {
 	currentPage: PageAliases;
@@ -39,9 +40,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 			<LoginPage pageRedirectFunction={this.changeCurrentPage} />
 		);
 
-		const homePage: JSX.Element = (
-			<HomePage pageRedirectFunction={this.changeCurrentPage} />
-		);
+		const homePage: JSX.Element = <HomePage />;
 
 		switch (this.state["currentPage"]) {
 			case PageAliases.HOME:
@@ -66,7 +65,14 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		let component = (
 			<SafeAreaView>
 				<StatusBar barStyle={"light-content"} />
-				<View style={Styles.screen}>{this.getPageToRender()}</View>
+				<View style={Styles.screen}>
+					{this.state.currentPage !== PageAliases.LOGIN && (
+						<Menu
+							pageRedirectFunction={this.changeCurrentPage}
+						></Menu>
+					)}
+					{this.getPageToRender()}
+				</View>
 			</SafeAreaView>
 		);
 
