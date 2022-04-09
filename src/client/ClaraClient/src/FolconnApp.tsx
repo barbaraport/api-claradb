@@ -4,6 +4,7 @@ import { SafeAreaView, StatusBar, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
 import { Styles } from "./view/assets/styles/Styles";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
+import { Menu } from "./view/components/menu/Menu";
 import { FOLsPage } from "./view/pages/FOLsPage";
 import { HomePage } from "./view/pages/HomePage";
 import { LoginPage } from "./view/pages/LoginPage";
@@ -40,17 +41,32 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 	private getPageToRender(): JSX.Element {
 
 		const homePage: JSX.Element = (
-			<HomePage pageRedirectFunction={this.changeCurrentPage} />
+			<>
+				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
+				<View style={{marginTop: 120}}>
+					<HomePage pageRedirectFunction={this.changeCurrentPage} />
+				</View>
+			</>
 		);
 
 		const loginPage: JSX.Element = (
 			<LoginPage pageRedirectFunction={this.changeCurrentPage} />
 		);
 		const folsPage: JSX.Element = (
-			<FOLsPage pageRedirectFunction={this.changeCurrentPage} />
+			<>
+				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
+				<View style={{marginTop: 120}}>
+					<FOLsPage pageRedirectFunction={this.changeCurrentPage} />
+				</View>
+			</>
 		);
 		const termsOfUsePage: JSX.Element = (
-			<TermsOfUsePage pageRedirectFunction={this.changeCurrentPage} />
+			<>
+				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
+				<View style={{marginTop: 120}}>
+					<TermsOfUsePage pageRedirectFunction={this.changeCurrentPage} />
+				</View>
+			</>
 		);
 
 		switch (this.state["currentPage"]) {
@@ -83,14 +99,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 			<SafeAreaView>
 				<StatusBar barStyle={"light-content"} />
 				<View style={Styles.screen}>
-					{this.state.currentPage !== PageAliases.LOGIN && (
-						<View style={{zIndex: 10}}>
-							<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-						</View>
-					)}
-					<View>
-						{this.getPageToRender()}
-					</View>
+					{this.getPageToRender()}
 				</View>
 			</SafeAreaView>
 		);
