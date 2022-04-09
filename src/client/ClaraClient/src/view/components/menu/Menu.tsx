@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { TouchableHighlight, View } from "react-native";
+import ReactNativeModal from "react-native-modal";
 import { Colors } from "../../../enumerations/Colors";
 import { PageAliases } from '../../../enumerations/PageAliases';
 import { Sizes } from "../../../enumerations/Sizes";
@@ -39,7 +40,7 @@ export class Menu extends Component<MenuProps, MenuState> {
                          </TouchableHighlight>
                     </View>
                     <View>
-                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.TERMSOFUSE) }}>
+                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.TERMS_OF_USE) }}>
                               <MenuItem iconName="user-check" itemName="Terms of Use"></MenuItem>
                          </TouchableHighlight>
                     </View>

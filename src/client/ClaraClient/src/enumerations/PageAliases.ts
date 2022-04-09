@@ -2,5 +2,5 @@ export enum PageAliases {
     LOGIN = "Login",
     HOME = "Home",
     FOLS = "FOLs",
-    TERMSOFUSE = "TermsOfUse",
+    TERMS_OF_USE = "TermsOfUse",
 }

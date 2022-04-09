@@ -63,7 +63,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 			case PageAliases.FOLS:
 				return folsPage;
 
-			case PageAliases.TERMSOFUSE:
+			case PageAliases.TERMS_OF_USE:
 				return termsOfUsePage;
 
 			default:
@@ -84,14 +84,13 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 				<StatusBar barStyle={"light-content"} />
 				<View style={Styles.screen}>
 					{this.state.currentPage !== PageAliases.LOGIN && (
-						<View>
+						<View style={{zIndex: 10}}>
 							<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
 						</View>
 					)}
 					<View>
 						{this.getPageToRender()}
 					</View>
-
 				</View>
 			</SafeAreaView>
 		);

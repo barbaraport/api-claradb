@@ -3,6 +3,10 @@ import { Colors } from "../../../enumerations/Colors";
 import { Sizes } from "../../../enumerations/Sizes";
 
 export const Styles = StyleSheet.create({
+     menuOptionsModal: {
+          width: "25%",
+          height: 100
+     },
      icons: {
           width: "25%",
           display: "flex",
@@ -28,7 +32,7 @@ export const Styles = StyleSheet.create({
           marginTop: 0,
           width: "100%",
           height: 95,
-          zIndex: 0
+          elevation: 10
      },
      viewIcon: {
           display: "flex",
@@ -54,13 +58,14 @@ export const Styles = StyleSheet.create({
      },
      menuContainer: {
           position: "absolute",
-          zIndex: 2,
           marginTop: Sizes.BIGICON * 1.25,
           backgroundColor: Colors.WHITE,
           borderRadius: 10,
           paddingVertical: 10,
           paddingHorizontal: 10,
-          marginLeft: 5
+          marginLeft: 5,
+          elevation: 5,
+          zIndex: 10
      },
      textBlack: {
           paddingLeft: 5,
@@ -89,7 +94,9 @@ export const Styles = StyleSheet.create({
      },
      content: {
           backgroundColor: Colors.BLACK,
-          padding: 10
+          padding: 10,
+          zIndex: -1,
+          elevation: -1
      },
      buttonContainer: {
           elevation: 8,
