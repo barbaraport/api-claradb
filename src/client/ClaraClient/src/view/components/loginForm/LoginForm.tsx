@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Alert, Text, View } from "react-native";
+import { Alert, Text, TouchableNativeFeedbackBase, View } from "react-native";
+import { User } from "../../../model/User";
+import { UserService } from "../../../services/UserService";
 import { Styles } from "../../assets/styles/Styles";
 import { FolconnButton } from "../button/FolconnButton";
 import { FolconnInput } from "../input/FolconnInput";
@@ -14,6 +16,9 @@ interface LoginFormState {
 }
 
 export class LoginForm extends Component<LoginFormProps, LoginFormState> {
+
+	private userService = new UserService();
+
 	constructor(props: LoginFormProps) {
 		super(props);
 
@@ -44,8 +49,15 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 				"Invalid credentials",
 				"The username and password fields must be not empty"
 			);
-		} else {
-			this.props.redirectPageFunction("Home");
+		} 
+		else {
+			Alert.alert("Credentials", "Username: " + this.state.typedUserName + ". Password: " + this.state.typedPassword);
+
+			let user = new User();
+			user.setUserName(this.state.typedUserName);
+			user.setPassword(this.state.typedPassword);
+			
+			let credential = this.userService.login(user);
 		}
 	}
 

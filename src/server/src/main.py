@@ -6,6 +6,7 @@ from controllers.folController import folRoutes
 app = Flask(__name__)
 app.register_blueprint(authRoutes)
 app.register_blueprint(folRoutes)
+app.debug(debugMode = True)
 
 restartDatabaseDefaultData = True
 
