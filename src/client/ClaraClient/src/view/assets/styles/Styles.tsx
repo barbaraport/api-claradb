@@ -28,6 +28,7 @@ export const Styles = StyleSheet.create({
           marginTop: 0,
           width: "100%",
           height: 95,
+          zIndex: 0
      },
      viewIcon: {
           display: "flex",
@@ -73,21 +74,13 @@ export const Styles = StyleSheet.create({
           shadowRadius: 1.41,
           elevation: 2
      },
-     phoneToolbar: {
-          width: "100%",
-          height: 25,
-          backgroundColor: Colors.BLUE
-     },
-     screen: {
-          // width: "100%",
-          // height: "100%"
-     },
+     screen: { },
      content: {
           padding: 10
      },
      buttonContainer: {
           elevation: 8,
-          backgroundColor: "#1839be",
+          backgroundColor: Colors.PRIMARY_BLUE,
           borderRadius: 20,
           paddingVertical: 10,
           paddingHorizontal: 15,
@@ -96,7 +89,7 @@ export const Styles = StyleSheet.create({
      },
      buttonText: {
           fontSize: 15,
-          color: "#fff",
+          color: Colors.WHITE,
           fontWeight: "bold",
           alignSelf: "center",
           textTransform: "uppercase"
@@ -131,7 +124,7 @@ export const Styles = StyleSheet.create({
           alignItems: "center"
      },
      title: {
-          fontSize: 42,
+          fontSize: Sizes.TITLE,
           fontWeight: "bold",
           marginBottom: 25
      },
