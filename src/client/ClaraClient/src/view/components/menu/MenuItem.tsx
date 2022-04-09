@@ -18,7 +18,7 @@ export class MenuItem extends Component<MenuItemProps, MenuItemState> {
           return (
                <View style={Styles.menuItem}>
                     <FolConnIcon iconName={this.props.iconName} iconSize={Sizes.ICON} iconColor={Colors.BLACK}></FolConnIcon>
-                    <Text style={Styles.text}>{this.props.itemName}</Text>
+                    <Text style={Styles.textBlack}>{this.props.itemName}</Text>
                </View>
           );
      }

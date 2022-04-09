@@ -18,8 +18,8 @@ export const Styles = StyleSheet.create({
      headerAlignment: {
           display: "flex",
           flexDirection: "row",
-          width:"100%",
-          justifyContent:'space-between',
+          width: "100%",
+          justifyContent: 'space-between',
           alignItems: "center",
           alignContent: "center",
           marginTop: 10
@@ -40,12 +40,13 @@ export const Styles = StyleSheet.create({
           fontSize: Sizes.TITLE,
           color: Colors.WHITE,
      },
-     menu:{
+     menu: {
           display: "flex",
           flexDirection: "row",
-          alignContent: "space-between"
+          alignContent: "space-between",
      },
      menuItem: {
+          display: "flex",
           flexDirection: "row",
           marginTop: 5,
           marginBottom: 5,
@@ -53,6 +54,7 @@ export const Styles = StyleSheet.create({
      },
      menuContainer: {
           position: "absolute",
+          zIndex: 2,
           marginTop: Sizes.BIGICON * 1.25,
           backgroundColor: Colors.WHITE,
           borderRadius: 10,
@@ -60,9 +62,15 @@ export const Styles = StyleSheet.create({
           paddingHorizontal: 10,
           marginLeft: 5
      },
-     text: {
+     textBlack: {
           paddingLeft: 5,
-          fontSize: 20
+          fontSize: 20,
+          color: Colors.BLACK
+     },
+     textWhite: {
+          paddingLeft: 5,
+          fontSize: 20,
+          color: Colors.WHITE
      },
      shadow: {
           shadowColor: Colors.BLACK,
@@ -74,8 +82,13 @@ export const Styles = StyleSheet.create({
           shadowRadius: 1.41,
           elevation: 2
      },
-     screen: { },
+     screen: {
+          margin: 0,
+          width: "100%",
+          height: "100%"
+     },
      content: {
+          backgroundColor: Colors.BLACK,
           padding: 10
      },
      buttonContainer: {

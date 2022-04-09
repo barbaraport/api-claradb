@@ -19,7 +19,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		super(props);
 
 		this.state = {
-			currentPage: PageAliases.LOGIN,
+			currentPage: PageAliases.HOME,
 			pageHistory: [PageAliases.LOGIN],
 		};
 
@@ -84,10 +84,14 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 				<StatusBar barStyle={"light-content"} />
 				<View style={Styles.screen}>
 					{this.state.currentPage !== PageAliases.LOGIN && (
-						<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
+						<View>
+							<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
+						</View>
 					)}
+					<View>
+						{this.getPageToRender()}
+					</View>
 
-					{this.getPageToRender()}
 				</View>
 			</SafeAreaView>
 		);
