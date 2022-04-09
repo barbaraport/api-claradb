@@ -1,23 +1,32 @@
 import { StyleSheet } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
+import { Sizes } from "../../../enumerations/Sizes";
 
 export const Styles = StyleSheet.create({
+     icons: {
+          width: "25%",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center"
+     },
+     fixed: {
+          width: "50%",
+          display: "flex",
+          alignItems: "center"
+     },
      headerAlignment: {
-          margin:10,
-          flex:1,
+          display: "flex",
           flexDirection: "row",
-          width:355,
+          width:"100%",
           justifyContent:'space-between',
-     },
-     iconMargin:{
-          marginRight:15
-     },
-     headerIconsAlignment:{
-          flexDirection: "row",
+          alignItems: "center",
+          alignContent: "center",
+          marginTop: 10
      },
      imageBackground: {
           marginTop: 0,
-          width: 400,
+          width: "100%",
           height: 95,
      },
      viewIcon: {
@@ -27,12 +36,13 @@ export const Styles = StyleSheet.create({
      },
      headerTitle: {
           fontWeight: "bold",
-          fontSize: 28,
+          fontSize: Sizes.TITLE,
           color: Colors.WHITE,
-          paddingLeft:'15%'
      },
      menu:{
-          position:'absolute'
+          display: "flex",
+          flexDirection: "row",
+          alignContent: "space-between"
      },
      menuItem: {
           flexDirection: "row",
@@ -41,12 +51,13 @@ export const Styles = StyleSheet.create({
           paddingRight: 5
      },
      menuContainer: {
+          position: "absolute",
+          marginTop: Sizes.BIGICON * 1.25,
           backgroundColor: Colors.WHITE,
           borderRadius: 10,
-          alignSelf: "flex-start",
           paddingVertical: 10,
           paddingHorizontal: 10,
-          marginLeft: 5,
+          marginLeft: 5
      },
      text: {
           paddingLeft: 5,

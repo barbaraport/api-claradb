@@ -1,4 +1,5 @@
 export enum Sizes {
      ICON = 24,
-     BIGICON = 35
+     BIGICON = 32,
+     TITLE = 28
 }

@@ -7,7 +7,7 @@ import { FolConnIcon } from '../icon/FolConnIcon';
 import { Menu } from './Menu';
 
 interface HeaderProps {
-     pageReditectFunction: Function;
+     pageRedirectFunction: Function;
      goBack: Function;
 }
 
@@ -31,19 +31,19 @@ export class FolconnHeader extends Component<HeaderProps, HeaderState> {
                <View>
                     <ImageBackground source={require("../../assets/imgs/header.png")} style={Styles.imageBackground}>
                          <View style={Styles.headerAlignment}>
-                              <View>
-                                   <Menu pageRedirectFunction={this.props.pageReditectFunction} />
+                              <View style={Styles.icons} >
+                                   <Menu pageRedirectFunction={this.props.pageRedirectFunction} />
                               </View>
-                              <View>
+                              <View style = {Styles.fixed}>
                                    <Text style={Styles.headerTitle}>FolConn</Text>
                               </View>
-                              <View style={Styles.headerIconsAlignment}>
-                                   <View style={Styles.iconMargin}>
+                              <View style = {Styles.icons}>
+                                   <View>
                                         <TouchableHighlight onPress={() => this.props.goBack()}>
                                              <FolConnIcon iconName='arrow-left' iconSize={Sizes.ICON} iconColor={Colors.SECONDARY_BLUE} />
                                         </TouchableHighlight>
                                    </View>
-                                   <View style={Styles.iconMargin}>
+                                   <View>
                                         <TouchableHighlight>
                                              <FolConnIcon iconName='bell' iconSize={Sizes.ICON} iconColor={Colors.SECONDARY_BLUE} />
                                         </TouchableHighlight>

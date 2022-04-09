@@ -84,7 +84,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 				<StatusBar barStyle={"light-content"} />
 				<View style={Styles.screen}>
 					{this.state.currentPage !== PageAliases.LOGIN && (
-						<FolconnHeader pageReditectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
+						<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
 					)}
 
 					{this.getPageToRender()}

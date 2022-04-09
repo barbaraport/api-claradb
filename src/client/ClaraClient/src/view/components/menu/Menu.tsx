@@ -56,7 +56,7 @@ export class Menu extends Component<MenuProps, MenuState> {
           let menu = (
                <View style={Styles.menu}>
                     <TouchableHighlight onPress={() => { this.handleMenu() }}>
-                         <FolConnIcon iconName="bars" iconSize={Sizes.BIGICON} iconColor={Colors.WHITE} ></FolConnIcon>
+                         <FolConnIcon iconName="bars" iconSize={Sizes.BIGICON} iconColor={Colors.SECONDARY_BLUE} ></FolConnIcon>
                     </TouchableHighlight>
                     {
                          this.state.showMenu == true
