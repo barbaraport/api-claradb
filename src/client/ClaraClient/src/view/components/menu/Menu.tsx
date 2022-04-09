@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { TouchableHighlight, View } from "react-native";
-import ReactNativeModal from "react-native-modal";
 import { Colors } from "../../../enumerations/Colors";
 import { PageAliases } from '../../../enumerations/PageAliases';
 import { Sizes } from "../../../enumerations/Sizes";
