@@ -3,6 +3,47 @@ import { Colors } from "../../../enumerations/Colors";
 import { Sizes } from "../../../enumerations/Sizes";
 
 export const Styles = StyleSheet.create({
+     textInputCollapsible:{
+		flexDirection:'row',
+		justifyContent:'space-between'
+	},
+     textInput:{
+		backgroundColor:Colors.WHITE,
+		borderRadius:50,
+		paddingLeft:5,
+		width:'80%'
+	},
+     search:{
+		color:Colors.PRIMARY_BLUE,
+		backgroundColor:Colors.WHITE,
+		paddingHorizontal:7,
+		paddingVertical:4,
+		borderRadius:50,
+
+	},
+     filterFolsTitle:{
+		textAlign:'center',
+		marginBottom:"10%"
+	},
+	collapsibleHeader:{
+		alignItems:'center',
+		flexDirection:'row',
+		justifyContent:'space-between',
+		borderTopLeftRadius:10,
+		borderTopRightRadius:10,
+		paddingHorizontal:10,
+		paddingVertical:2,
+		backgroundColor: Colors.PRIMARY_BLUE,
+		color: Colors.WHITE,
+	},
+	collapsible:{
+		backgroundColor: Colors.PRIMARY_BLUE,
+		color: Colors.WHITE,
+		padding:10,
+		borderBottomLeftRadius:4,
+		borderBottomRightRadius:4,
+
+	},
      menuOptionsModal: {
           width: "25%",
           height: 100
@@ -98,6 +139,9 @@ export const Styles = StyleSheet.create({
           flexDirection: "column",
           alignItems: "center"
      },
+	 folPageScrollViewContent:{
+		padding:10,
+	 },
      buttonContainer: {
           elevation: 8,
           backgroundColor: Colors.PRIMARY_BLUE,

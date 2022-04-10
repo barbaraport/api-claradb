@@ -5,7 +5,7 @@ import { PageAliases } from "./enumerations/PageAliases";
 import { Styles } from "./view/assets/styles/Styles";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
 import { Menu } from "./view/components/menu/Menu";
-import { FOLsPage } from "./view/pages/FOLsPage";
+import { FolPage } from "./view/pages/FolPage";
 import { HomePage } from "./view/pages/HomePage";
 import { LoginPage } from "./view/pages/LoginPage";
 import { TermsOfUsePage } from "./view/pages/TermsOfUsePage";
@@ -53,7 +53,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		const folsPage: JSX.Element = (
 			<>
 				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<FOLsPage pageRedirectFunction={this.changeCurrentPage} />
+				<FolPage pageRedirectFunction={this.changeCurrentPage} />
 			</>
 		);
 		const termsOfUsePage: JSX.Element = (

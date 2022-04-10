@@ -7,7 +7,6 @@ import { FolconnButton } from "../components/button/FolconnButton";
 
 interface HomePageProps {
 	pageRedirectFunction: Function;
-
 }
 
 export class HomePage extends Component<HomePageProps, any> {
@@ -16,17 +15,14 @@ export class HomePage extends Component<HomePageProps, any> {
 
 		this.openFolsScreen = this.openFolsScreen.bind(this);
 		this.openCarDetailsScreen = this.openCarDetailsScreen.bind(this);
-
 	}
 
 	private openCarDetailsScreen(){
 		Alert.alert("Abrindo página de detalhes");
-		
 	}
-	
+
 	private openFolsScreen(){
 		Alert.alert("Abrindo página de FOLs");
-
 	}
 
 	private buildComponent() {
@@ -51,5 +47,4 @@ export class HomePage extends Component<HomePageProps, any> {
 
 		return component;
 	}
-
 }
