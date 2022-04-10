@@ -13,7 +13,7 @@ app.run(host='0.0.0.0', port=5000)
 CORS(app)
 app.debug = True
 
-restartDatabaseDefaultData = False
+restartDatabaseDefaultData = True
 
 
 if __name__ == '__main__':

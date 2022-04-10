@@ -1,4 +1,5 @@
 import pandas
+import bcrypt
 
 from src.models.database import MongoConnection
 
@@ -40,7 +41,12 @@ def registerDefaultUsers():
                 document[column] = equipmentsList
 
             else:
-                document[column] = value[i]
+                columnValue = value[i]
+
+                if column == "Password":
+                    columnValue = bcrypt.hashpw(str(columnValue).encode("utf-8"), bcrypt.gensalt(8))
+
+                document[column] = columnValue
 
         documents.append(document)
 
