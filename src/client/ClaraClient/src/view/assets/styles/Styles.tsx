@@ -3,7 +3,7 @@ import { Colors } from "../../../enumerations/Colors";
 import { Sizes } from "../../../enumerations/Sizes";
 
 export const Styles = StyleSheet.create({
-	textInputCollapsible:{
+     textInputCollapsible:{
 		flexDirection:'row',
 		justifyContent:'space-between'
 	},
