@@ -13,9 +13,15 @@ authRoutes = Blueprint("authRoutes", __name__)
 def login():
     conn = PyMongoConnection()
 
+    userLogin = request.json["login"].strip()
+    password = request.json["password"].strip()
+
+    if not password.isnumeric():
+        abort(404, "User not found with the given credentials")
+
     condition = {
-        "Login": request.json["login"].strip(),
-        "Password": int(request.json["password"].strip())
+        "Login": userLogin,
+        "Password": int(password)
     }
 
     document = conn.getDocument("folconn", "users", condition)

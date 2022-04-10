@@ -56,22 +56,21 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 			user.setPassword(this.state.typedPassword);
 
 			let credential = await this.userService.login(user);
-			let credentialCode = null;
 
-			if (credential != null || credential != undefined) {
+			if (credential != null) {
+				// setar credential globalmente de alguma forma D:
+				// let code = credential.getCode();
+				const credentialCode = credential.getCode();
 
-				credentialCode = credential.getCode();
+				this.props.redirectPageFunction("Home");
 
-				if (credentialCode != null && credentialCode != undefined && credentialCode != "") {
-					// setar credential globalmente de alguma forma D:
-					// let code = credential.getCode();
-					this.props.redirectPageFunction("Home");
-				}
-				else {
-					Alert.alert("Wrong Credentials", "No user found. Verify your credentials.");
-				}
+			}else {
+				Alert.alert("Wrong Credentials", "No user found. Verify your credentials.");
+
 			}
+
 		}
+		
 	}
 
 	private buildComponent() {
