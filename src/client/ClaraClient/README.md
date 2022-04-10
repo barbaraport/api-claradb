@@ -1,11 +1,9 @@
-# How to run the client
+# :running_woman: Como rodar o aplicativo
 
-## Android
-First, you'll need to configure the Java environment variables.
-1. Install NodeJS.
-2. Create the ```JAVA_HOME``` environment variable in the system (not in the user). It stores the location of your Java installation. Ex.: ```C:\Program Files\Java\jdk-15.0.2```
-3. Add the path to ```C:\Program Files\Java\jdk-15.0.2\bin``` to a variable named ```Path``` in system variables. It will recognize the Java commands in terminal.
-4. Please write ```java --version``` in the Terminal. If the command "bleeds", it means that you may need to restart your computer to the variables be set. If you had restarted and it still doesn't working, check the previously steps.
-5. Open the ClaraClient folder in Visual Studio Code.
-6. The most affordable way to run the app is by Expo. Download the Expo Go app and return here to run our React Native App.
-7. Run our React Native app using the command ```expo start --tunnel``` . It will displays the QR Code and then you can access our app!
+Primeiramente, clone o repositório. Depois siga os seguintes passos:
+1. Instale o NodeJS. Talvez seja necessário reiniciar o computador para que a instalação seja reconhecida.
+2. Abra a pasta ClaraClient no Visual Studio Code. Essa pasta é correspondente ao aplicativo mobile.
+3. No terminal, execute o comando ```npm i``` para instalar as dependências.
+4. Um outro detalhe para que você tenha a experiência completa: é necessário [executar o back-end](https://github.com/barbaraport/api-claradb/tree/main/src/server) e inserir no arquivo ```src/enumerations/ApiAccess.tsx``` o IP e a porta do servidor.
+5. O jeito mais simples para executar o aplicativo é a partir do Expo. Sendo assim, faça o download do Expo Go no seu celular para poder interagir com o nosso app.
+6. Execute o nosso app com o comando ```expo start --tunnel``` . Um código QR será exibido. Abra o Expo Go e escaneie o código!

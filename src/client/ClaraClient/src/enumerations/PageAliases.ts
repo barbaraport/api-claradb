@@ -1,8 +1,6 @@
 export enum PageAliases {
     LOGIN = "Login",
     HOME = "Home",
-    CARS = "Cars",
     FOLS = "FOLs",
-    TERMSOFUSE = "TermsOfUse",
-    LOGOUT = "LogOut"
+    TERMS_OF_USE = "TermsOfUse",
 }

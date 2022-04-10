@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { TextInput } from "react-native";
-import { Styles } from "../styles/Styles";
+import { Styles } from "../../assets/styles/Styles";
 
 interface FolconnInputProps {
     placeholder: string,
