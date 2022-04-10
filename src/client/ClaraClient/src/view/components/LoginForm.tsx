@@ -44,7 +44,6 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
         const password = this.state["typedPassword"];
 
         if (userName === "" || password === "") {
-            //Alert.alert("Credenciais inválidas", "Os campos de usuário e senha não devem ser vazios");
             Alert.alert("Invalid credentials", "The username and password fields must be not empty");
 
         } else {

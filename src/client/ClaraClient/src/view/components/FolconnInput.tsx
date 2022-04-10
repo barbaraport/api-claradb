@@ -4,7 +4,7 @@ import { Styles } from "../styles/Styles";
 
 interface FolconnInputProps {
     placeholder: string,
-    type: "username" | "password",
+    type: "username" | "password" | 'none',
     secureText: boolean,
     ejectFunction: Function;
 }
@@ -14,9 +14,7 @@ interface FolconnInputProps {
 export class FolconnInput extends Component<FolconnInputProps, any> {
     constructor(props: FolconnInputProps) {
         super(props);
-
         this.ejectTypedValue = this.ejectTypedValue.bind(this);
-
     }
 
     private ejectTypedValue(typedValue: string){
@@ -26,10 +24,10 @@ export class FolconnInput extends Component<FolconnInputProps, any> {
 
     private buildComponent(){
         let component = (
-            <TextInput onChangeText={this.ejectTypedValue} 
-                secureTextEntry={this.props["secureText"]} 
-                style={[Styles.folconnInput, Styles.shadow]} 
-                textContentType={this.props["type"]} 
+            <TextInput onChangeText={this.ejectTypedValue}
+                secureTextEntry={this.props["secureText"]}
+                style={[Styles.folconnInput, Styles.shadow]}
+                textContentType={this.props["type"]}
                 placeholder={this.props["placeholder"]}></TextInput>
         );
 

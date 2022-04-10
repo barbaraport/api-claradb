@@ -19,6 +19,9 @@
     "react": "17.0.2",
     "react-dom": "^18.0.0",
     "react-native": "0.64.3",
+    "react-native-collapsible": "^1.6.0",
+    "react-native-radio-buttons": "^1.0.0",
+    "react-native-radio-buttons-group": "^2.2.10",
     "react-native-web": "^0.17.7"
   },
   "devDependencies": {
