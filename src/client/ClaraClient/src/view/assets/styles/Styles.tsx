@@ -93,7 +93,10 @@ export const Styles = StyleSheet.create({
           position: "absolute",
           width: "100%",
           height: "100%",
-          marginTop: 55
+          marginTop: 55,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
      },
      buttonContainer: {
           elevation: 8,
