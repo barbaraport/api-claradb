@@ -63,13 +63,13 @@ export class FolPage extends Component<HomePageProps, HomePageState> {
 	private buildComponent() {
 		let component = (
 			<ScrollView style={Styles.folPageScrollViewContent}>
-				<Text style={Styles.filterFolsTitle}>Filter FOLs:</Text>
+				<Text style={Styles.title}>Filter FOLs:</Text>
 
-				<RadioGroupButtonCollapsible title="Model" radioData={this.models} ejectData={this.setModel} />
-				<RadioGroupButtonCollapsible title="Status" radioData={this.status} ejectData={this.setStatus} />
-				<TextInputCollapsible title="Keyword" ejectData={this.setKeyword} />
-				<TextInputCollapsible title="Title" ejectData={this.setTitle} />
-				<RadioGroupButtonCollapsible title="Category" radioData={this.category} ejectData={this.setCategory} />
+				<RadioGroupButtonCollapsible title="Car Model" radioData={this.models} ejectData={this.setModel} />
+				<RadioGroupButtonCollapsible title="FOL Status" radioData={this.status} ejectData={this.setStatus} />
+				<TextInputCollapsible title="FOL Keyword" ejectData={this.setKeyword} />
+				<TextInputCollapsible title="FOL Title" ejectData={this.setTitle} />
+				<RadioGroupButtonCollapsible title=" FOL Category" radioData={this.category} ejectData={this.setCategory} />
 			</ScrollView>
 		);
 
