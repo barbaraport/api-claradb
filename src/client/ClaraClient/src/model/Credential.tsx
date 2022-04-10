@@ -1,12 +1,12 @@
 export class Credential {
-     
-     private code: string;
 
-     constructor (code: string) {
-          this.code = code;
-     }
+     private code: string = "";
 
      public getCode () : string {
           return this.code;
+     }
+
+     public setCode (code : string) : void {
+          this.code = code;
      }
 }

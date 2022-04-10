@@ -26,6 +26,6 @@ def login():
     user_id = str(document["_id"])
 
     data = {"id": user_id}
-    response = make_response(json.dumps(data))
+    response = make_response(data)
 
     return response

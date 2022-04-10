@@ -4,7 +4,7 @@ import { User } from "../model/User";
 
 export class UserService {
 
-     public async login(user: User): Promise<Credential | null> {
+     public login(user: User) {
 
           let request = {
                method: "POST",
@@ -15,13 +15,20 @@ export class UserService {
                }
           }
 
-          fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/authentication/login", request)
-               .then((response) => {
-                    response.json().then((body) => {
-                         return new Credential(body.id);
-                    });
-               });
+          let credential = new Credential();
 
-          return null;
+          return fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/authentication/login", request)
+          .then((response) => {
+               return response.json() as Promise<{ data: any }>
+          })
+          .then((data) => {
+               let code = (JSON.parse(JSON.stringify(data)).id);
+               console.log(code);
+
+               let credential = new Credential();
+               credential.setCode(code);
+
+               return credential;
+          });
      }
 }

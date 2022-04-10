@@ -40,7 +40,7 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 		this.setState({ typedPassword: typedPassword });
 	}
 
-	private submitLoginForm() {
+	private async submitLoginForm() {
 		const userName = this.state["typedUserName"];
 		const password = this.state["typedPassword"];
 
@@ -55,10 +55,14 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 			user.setUserName(this.state.typedUserName);
 			user.setPassword(this.state.typedPassword);
 
-			this.userService.login(user).then((credential) => {
-				console.log(credential)
+			let credential = await this.userService.login(user);
+			let credentialCode = null;
 
-				if (credential != null || credential != undefined) {
+			if (credential != null || credential != undefined) {
+
+				credentialCode = credential.getCode();
+
+				if (credentialCode != null && credentialCode != undefined && credentialCode != "") {
 					// setar credential globalmente de alguma forma D:
 					// let code = credential.getCode();
 					this.props.redirectPageFunction("Home");
@@ -66,7 +70,7 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 				else {
 					Alert.alert("Wrong Credentials", "No user found. Verify your credentials.");
 				}
-			});
+			}
 		}
 	}
 
