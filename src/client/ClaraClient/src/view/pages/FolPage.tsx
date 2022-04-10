@@ -32,6 +32,12 @@ export class FolPage extends Component<HomePageProps, HomePageState> {
 			keyword:'',
 			status:'',
 		}
+
+		this.setModel=this.setModel.bind(this);
+		this.setStatus=this.setStatus.bind(this);
+		this.setKeyword=this.setKeyword.bind(this);
+		this.setCategory=this.setCategory.bind(this);
+		this.setTitle=this.setTitle.bind(this);
 	}
 
 	private setModel(value:string){
@@ -57,21 +63,13 @@ export class FolPage extends Component<HomePageProps, HomePageState> {
 	private buildComponent() {
 		let component = (
 			<ScrollView style={Styles.content}>
-
 				<Text style={Styles.filterFolsTitle}>Filter FOLs:</Text>
 
-				<RadioGroupButtonCollapsible title="Model" radioData={this.models} ejectData={this.setModel}></RadioGroupButtonCollapsible>
-				<RadioGroupButtonCollapsible title="Status" radioData={this.status} ejectData={this.setStatus}></RadioGroupButtonCollapsible>
-				<TextInputCollapsible title="Keyword" ejectData={this.setKeyword}></TextInputCollapsible>
-				<TextInputCollapsible title="Title" ejectData={this.setTitle}></TextInputCollapsible>
-				<RadioGroupButtonCollapsible title="Category" radioData={this.category} ejectData={this.setCategory}></RadioGroupButtonCollapsible>
-
-				<Text>{this.state.model}</Text>
-				<Text>{this.state.status}</Text>
-				<Text>{this.state.keyword}</Text>
-				<Text>{this.state.title}</Text>
-				<Text>{this.state.category}</Text>
-
+				<RadioGroupButtonCollapsible title="Model" radioData={this.models} ejectData={this.setModel} />
+				<RadioGroupButtonCollapsible title="Status" radioData={this.status} ejectData={this.setStatus} />
+				<TextInputCollapsible title="Keyword" ejectData={this.setKeyword} />
+				<TextInputCollapsible title="Title" ejectData={this.setTitle} />
+				<RadioGroupButtonCollapsible title="Category" radioData={this.category} ejectData={this.setCategory} />
 			</ScrollView>
 		);
 
