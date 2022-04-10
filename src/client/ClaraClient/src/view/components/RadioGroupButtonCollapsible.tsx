@@ -38,7 +38,7 @@ export class RadioGroupButtonCollapsible extends Component<CollapsibleProps,Coll
         const radioGroupButton:JSX.Element=(
             <View>
                 {this.props.radioData.map((value,index)=>(
-                    <View>
+                    <View key={index}>
                         <RadioButton id={index+''} value={value.value} label={value.label} selected={ this.state.checked === value} color={Colors.WHITE} labelStyle={{color:Colors.WHITE,}} onPress={()=> this.setChecked(value)}
                             />
                     </View>
