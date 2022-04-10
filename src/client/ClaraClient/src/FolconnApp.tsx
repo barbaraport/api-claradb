@@ -43,9 +43,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		const homePage: JSX.Element = (
 			<>
 				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<View style={{marginTop: 120}}>
-					<HomePage pageRedirectFunction={this.changeCurrentPage} />
-				</View>
+				<HomePage pageRedirectFunction={this.changeCurrentPage} />
 			</>
 		);
 
@@ -55,17 +53,13 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		const folsPage: JSX.Element = (
 			<>
 				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<View style={{marginTop: 120}}>
-					<FOLsPage pageRedirectFunction={this.changeCurrentPage} />
-				</View>
+				<FOLsPage pageRedirectFunction={this.changeCurrentPage} />
 			</>
 		);
 		const termsOfUsePage: JSX.Element = (
 			<>
 				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<View style={{marginTop: 120}}>
-					<TermsOfUsePage pageRedirectFunction={this.changeCurrentPage} />
-				</View>
+				<TermsOfUsePage pageRedirectFunction={this.changeCurrentPage} />
 			</>
 		);
 
