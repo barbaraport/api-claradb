@@ -1,4 +1,6 @@
-from flask import Blueprint
+import json
+
+from flask import Blueprint, make_response, jsonify
 from flask import request
 from flask import abort
 
@@ -12,8 +14,8 @@ def login():
     conn = PyMongoConnection()
 
     condition = {
-        "Login": request.json["login"],
-        "Password": request.json["password"]
+        "Login": request.json["userName"].strip(),
+        "Password": int(request.json["password"].strip())
     }
 
     document = conn.getDocument("folconn", "users", condition)
@@ -21,4 +23,9 @@ def login():
     if document is None:
         abort(404, "User not found with the given credentials")
 
-    return document
+    user_id = str(document["_id"])
+
+    data = {"id": user_id}
+    response = make_response(json.dumps(data))
+
+    return response

@@ -1,25 +1,27 @@
-import { Alert } from "react-native";
+import { ApiAccess } from "../enumerations/ApiAccess";
 import { Credential } from "../model/Credential";
 import { User } from "../model/User";
 
 export class UserService {
 
-     public login(user: User): Credential {
+     public async login(user: User): Promise<Credential | null> {
 
           let request = {
-               method: "GET",
-               body: JSON.stringify(user)
+               method: "POST",
+               body: JSON.stringify(user),
+               headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+               }
           }
 
-          let response = "afjs";
+          fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/authentication/login", request)
+               .then((response) => {
+                    response.json().then((body) => {
+                         return new Credential(body.id);
+                    });
+               });
 
-          // fetch('localhost:5000/', request)
-          //      .then((response) => {
-          //           console.log(response)
-          //      });
-
-               console.log(response)
-
-          return new Credential("Hi");
+          return null;
      }
 }

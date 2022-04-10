@@ -49,15 +49,24 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 				"Invalid credentials",
 				"The username and password fields must be not empty"
 			);
-		} 
+		}
 		else {
-			Alert.alert("Credentials", "Username: " + this.state.typedUserName + ". Password: " + this.state.typedPassword);
-
 			let user = new User();
 			user.setUserName(this.state.typedUserName);
 			user.setPassword(this.state.typedPassword);
-			
-			let credential = this.userService.login(user);
+
+			this.userService.login(user).then((credential) => {
+				console.log(credential)
+
+				if (credential != null || credential != undefined) {
+					// setar credential globalmente de alguma forma D:
+					// let code = credential.getCode();
+					this.props.redirectPageFunction("Home");
+				}
+				else {
+					Alert.alert("Wrong Credentials", "No user found. Verify your credentials.");
+				}
+			});
 		}
 	}
 
