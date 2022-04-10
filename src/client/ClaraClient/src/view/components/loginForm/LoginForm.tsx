@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Alert, Text, View } from "react-native";
+import { Alert, Text, TouchableNativeFeedbackBase, View } from "react-native";
+import { User } from "../../../model/User";
+import { UserService } from "../../../services/UserService";
 import { Styles } from "../../assets/styles/Styles";
 import { FolconnButton } from "../button/FolconnButton";
 import { FolconnInput } from "../input/FolconnInput";
@@ -14,6 +16,9 @@ interface LoginFormState {
 }
 
 export class LoginForm extends Component<LoginFormProps, LoginFormState> {
+
+	private userService = new UserService();
+
 	constructor(props: LoginFormProps) {
 		super(props);
 
@@ -35,7 +40,7 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 		this.setState({ typedPassword: typedPassword });
 	}
 
-	private submitLoginForm() {
+	private async submitLoginForm() {
 		const userName = this.state["typedUserName"];
 		const password = this.state["typedPassword"];
 
@@ -44,9 +49,28 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 				"Invalid credentials",
 				"The username and password fields must be not empty"
 			);
-		} else {
-			this.props.redirectPageFunction("Home");
 		}
+		else {
+			let user = new User();
+			user.setLogin(this.state.typedUserName);
+			user.setPassword(this.state.typedPassword);
+
+			let credential = await this.userService.login(user);
+
+			if (credential != null) {
+				// setar credential globalmente de alguma forma D:
+				// let code = credential.getCode();
+				const credentialCode = credential.getCode();
+
+				this.props.redirectPageFunction("Home");
+
+			}else {
+				Alert.alert("Wrong Credentials", "No user found. Verify your credentials.");
+
+			}
+
+		}
+		
 	}
 
 	private buildComponent() {

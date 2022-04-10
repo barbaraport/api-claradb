@@ -20,7 +20,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		super(props);
 
 		this.state = {
-			currentPage: PageAliases.HOME,
+			currentPage: PageAliases.LOGIN,
 			pageHistory: [PageAliases.LOGIN],
 		};
 
