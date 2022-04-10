@@ -23,8 +23,7 @@ export class UserService {
           })
           .then((data) => {
                let code = (JSON.parse(JSON.stringify(data)).id);
-               console.log(code);
-
+               
                let credential = new Credential();
                credential.setCode(code);
 
