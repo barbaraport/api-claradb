@@ -52,7 +52,7 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 		}
 		else {
 			let user = new User();
-			user.setUserName(this.state.typedUserName);
+			user.setLogin(this.state.typedUserName);
 			user.setPassword(this.state.typedPassword);
 
 			let credential = await this.userService.login(user);

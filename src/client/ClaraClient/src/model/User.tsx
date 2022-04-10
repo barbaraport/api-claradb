@@ -1,18 +1,18 @@
 export class User {
 
-     private userName: string = "";
+     private login: string = "";
      private password: string = "";
 
-     public setUserName (userName: string) : void {
-          this.userName = userName;
+     public setLogin (login: string) : void {
+          this.login = login;
      }
 
-     public getUserName () : string {
-          return this.userName;
+     public getLogin () : string {
+          return this.login;
      }
 
-     public setPassword (Password: string) : void {
-          this.password = Password;
+     public setPassword (password: string) : void {
+          this.password = password;
      }
 
      public getPassword () : string {

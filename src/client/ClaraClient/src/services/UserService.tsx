@@ -15,8 +15,6 @@ export class UserService {
                }
           }
 
-          let credential = new Credential();
-
           return fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/authentication/login", request)
           .then((response) => {
                return response.json() as Promise<{ data: any }>

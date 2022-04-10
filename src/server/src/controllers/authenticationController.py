@@ -14,7 +14,7 @@ def login():
     conn = PyMongoConnection()
 
     condition = {
-        "Login": request.json["userName"].strip(),
+        "Login": request.json["login"].strip(),
         "Password": int(request.json["password"].strip())
     }
 
