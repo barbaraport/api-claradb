@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Styles } from "../styles/Styles";
+import { Styles } from "../assets/styles/Styles";
 import SelectDropdown from "react-native-select-dropdown";
 import { MaterialIcons } from "@expo/vector-icons";
 import { Sizes } from "../../enumerations/Sizes";

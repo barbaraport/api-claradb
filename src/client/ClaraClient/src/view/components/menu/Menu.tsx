@@ -1,104 +1,82 @@
-import { MaterialIcons } from '@expo/vector-icons';
 import React, { Component } from "react";
-import { Alert, Text, TouchableHighlight, View } from "react-native";
+import { Alert, GestureResponderEvent, LogBox, Modal, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
 import { PageAliases } from '../../../enumerations/PageAliases';
 import { Sizes } from "../../../enumerations/Sizes";
-import { Styles } from "../../styles/Styles";
+import { Styles } from "../../assets/styles/Styles";
+import { FolConnIcon } from '../icon/FolConnIcon';
+import { MenuItem } from './MenuItem';
 
-interface Props {
-
+interface MenuProps {
+     pageRedirectFunction: Function;
 }
 
-interface State {
+interface MenuState {
      showMenu: boolean;
 }
 
-export class Menu extends Component<Props, State> {
+export class Menu extends Component<MenuProps, MenuState> {
 
-     constructor(props: Props) {
-          super(props)
+     constructor(props: MenuProps) {
+          super(props);
 
           this.state = {
                showMenu: false,
-          }
+          };
+
+          this.close = this.close.bind(this);
+          this.redirectToHome = this.redirectToHome.bind(this);
+          this.redirectToLogin = this.redirectToLogin.bind(this);
+          this.redirectFols = this.redirectFols.bind(this);
+          this.redirectToTermsOfUse = this.redirectToTermsOfUse.bind(this);
+
      }
 
-     private handleScreen(newScreen: string) {
-          this.openSelectedScreen(newScreen);
-     }
+     private redirectToHome(){
+          this.props.pageRedirectFunction(PageAliases.HOME);
 
-     private openSelectedScreen(newScreen: string) {
-          Alert.alert("Changing screen", "Changing to: " + newScreen);
+     }
+     private redirectToLogin(){
+          this.props.pageRedirectFunction(PageAliases.LOGIN);
+
+     }
+     private redirectFols(){
+          this.props.pageRedirectFunction(PageAliases.FOLS);
+
+     }
+     private redirectToTermsOfUse(){
+          this.props.pageRedirectFunction(PageAliases.TERMS_OF_USE);
+
      }
 
      private buildMenu() {
           return (
-               <View style={[Styles.menuContainer, Styles.shadow]}>
-                    <View>
-                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.HOME) }}>
-                              <View style={Styles.menuItem}>
-                                   <MaterialIcons name="home" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={Styles.text}>Home</Text>
-                              </View>
-                         </TouchableHighlight>
-                    </View>
-                    <View>
-                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.CARS) }}>
-                              <View style={Styles.menuItem}>
-                                   <MaterialIcons name="directions-car" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={Styles.text}>Cars</Text>
-                              </View>
-                         </TouchableHighlight>
-                    </View>
-                    <View>
-                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.FOLS) }}>
-                              <View style={Styles.menuItem}>
-                                   <MaterialIcons name="insert-drive-file" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={Styles.text}>FOLs</Text>
-                              </View>
-                         </TouchableHighlight>
-                    </View>
-                    <View>
-                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.TERMSOFUSE) }}>
-                              <View style={Styles.menuItem}>
-                                   <MaterialIcons name="check-box" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={Styles.text}>Terms Of Use</Text>
-                              </View>
-                         </TouchableHighlight>
-                    </View>
-                    <View>
-                         <TouchableHighlight onPress={() => { this.handleScreen(PageAliases.LOGOUT) }}>
-                              <View style={Styles.menuItem}>
-                                   <MaterialIcons name="logout" size={Sizes.ICON} color={Colors.BLACK} />
-                                   <Text style={Styles.text}>Log out</Text>
-                              </View>
-                         </TouchableHighlight>
-                    </View>
-               </View>
+               <Modal visible={this.state["showMenu"]} transparent={true} 
+               onRequestClose={() => this.setState({showMenu: false})}>
+                    <TouchableOpacity activeOpacity={1} onPressIn={this.close} style={{height: "100%"}}>
+                         <View style={{alignSelf: "flex-start", marginTop: 40, marginLeft: 30, padding: 15, borderRadius: 16, backgroundColor: Colors.WHITE}}>
+                              <MenuItem itemAction={this.redirectToHome} iconName="home" itemName="Home"></MenuItem>
+                              <MenuItem itemAction={this.redirectFols} iconName="file-medical-alt" itemName="FOLs"></MenuItem>
+                              <MenuItem itemAction={this.redirectToTermsOfUse} iconName="user-check" itemName="Terms of Use"></MenuItem>
+                              <MenuItem itemAction={this.redirectToLogin} iconName="sign-out-alt" itemName="Sign Out"></MenuItem>
+                         </View>
+                    </TouchableOpacity>
+               </Modal>
           );
      }
 
-
-     private handleMenu() {
-          this.setState({ showMenu: !this.state.showMenu });
+     private close(event: GestureResponderEvent){
+          this.setState({showMenu: false});
      }
 
      private buildMenuComponent() {
           let menu = (
-               <View>
+               <View style={Styles.menu}>
                     <TouchableHighlight onPress={() => { this.handleMenu() }}>
-                         <View>
-                              <MaterialIcons name="menu" size={Sizes.ICON} color={Colors.BLACK} />
-                         </View>
+                         <FolConnIcon iconName="bars" iconSize={Sizes.BIGICON} iconColor={Colors.SECONDARY_BLUE} ></FolConnIcon>
                     </TouchableHighlight>
-                    {
-                         this.state.showMenu == true
-                              ? this.buildMenu()
-                              : null
-                    }
+                    {this.buildMenu()}
                </View>
-
           );
 
           return menu;
@@ -107,5 +85,21 @@ export class Menu extends Component<Props, State> {
      render() {
           let component = this.buildMenuComponent();
           return component;
+     }
+
+     private signOut() {
+          this.handleScreen(PageAliases.LOGIN);
+     }
+
+     private handleScreen(newScreen: PageAliases) {
+          this.openSelectedScreen(newScreen);
+     }
+
+     private openSelectedScreen(newScreen: PageAliases) {
+          this.props.pageRedirectFunction(newScreen);
+     }
+
+     private handleMenu() {
+          this.setState({ showMenu: !this.state.showMenu });
      }
 }

@@ -1,7 +1,7 @@
 import React,{ Component } from "react";
 import { MaterialIcons } from '@expo/vector-icons';
 import { Sizes } from "../../enumerations/Sizes";
-import { Styles } from "../styles/Styles";
+import { Styles } from "../assets/styles/Styles";
 import { Pressable, Text, TouchableHighlight, View } from "react-native";
 import CollapsibleComponent from 'react-native-collapsible';
 import RadioGroup, { RadioButton } from 'react-native-radio-buttons-group';

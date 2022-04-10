@@ -3,7 +3,7 @@ import { ScrollView, Text, View } from "react-native";
 import { RadioData } from "../../types/RadioData";
 import {RadioGroupButtonCollapsible} from "../components/RadioGroupButtonCollapsible";
 import { TextInputCollapsible } from "../components/TextInputCollapsible";
-import { Styles } from "../styles/Styles";
+import { Styles } from "../assets/styles/Styles";
 
 interface HomePageProps {
 	pageRedirectFunction: Function;
@@ -62,7 +62,7 @@ export class FolPage extends Component<HomePageProps, HomePageState> {
 
 	private buildComponent() {
 		let component = (
-			<ScrollView style={Styles.content}>
+			<ScrollView style={Styles.folPageScrollViewContent}>
 				<Text style={Styles.filterFolsTitle}>Filter FOLs:</Text>
 
 				<RadioGroupButtonCollapsible title="Model" radioData={this.models} ejectData={this.setModel} />
