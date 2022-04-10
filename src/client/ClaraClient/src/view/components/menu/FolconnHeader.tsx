@@ -18,6 +18,7 @@ interface HeaderState {
 
 const styles = StyleSheet.create({
      headerContainer: {
+          elevation: 1
      }
 });
 
