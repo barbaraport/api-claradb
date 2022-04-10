@@ -29,10 +29,9 @@ export const Styles = StyleSheet.create({
           marginTop: 10
      },
      imageBackground: {
-          marginTop: 0,
           width: "100%",
-          height: 95,
-          elevation: 10
+          height: 100,
+          position: "absolute"
      },
      viewIcon: {
           display: "flex",
@@ -48,12 +47,13 @@ export const Styles = StyleSheet.create({
           display: "flex",
           flexDirection: "row",
           alignContent: "space-between",
+          height: 100
      },
      menuItem: {
           display: "flex",
           flexDirection: "row",
-          marginTop: 5,
-          marginBottom: 5,
+          marginTop: 10,
+          marginBottom: 10,
           paddingRight: 5
      },
      menuContainer: {
@@ -63,9 +63,7 @@ export const Styles = StyleSheet.create({
           borderRadius: 10,
           paddingVertical: 10,
           paddingHorizontal: 10,
-          marginLeft: 5,
-          elevation: 5,
-          zIndex: 10
+          marginLeft: 5
      },
      textBlack: {
           paddingLeft: 5,
@@ -84,8 +82,7 @@ export const Styles = StyleSheet.create({
                height: 1,
           },
           shadowOpacity: 0.20,
-          shadowRadius: 1.41,
-          elevation: 2
+          shadowRadius: 1.41
      },
      screen: {
           margin: 0,
