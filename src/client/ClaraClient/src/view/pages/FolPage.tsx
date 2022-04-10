@@ -3,7 +3,7 @@ import { ScrollView, Text, View } from "react-native";
 import { RadioData } from "../../types/RadioData";
 import {RadioGroupButtonCollapsible} from "../components/RadioGroupButtonCollapsible";
 import { TextInputCollapsible } from "../components/TextInputCollapsible";
-import { Styles } from "../styles/Styles";
+import { Styles } from "../assets/styles/Styles";
 
 interface HomePageProps {
 	pageRedirectFunction: Function;

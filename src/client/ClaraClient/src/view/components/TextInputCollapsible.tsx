@@ -1,7 +1,7 @@
 import React,{ Component } from "react";
 import { Text, TouchableHighlight, View } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
-import { Styles } from "../styles/Styles";
+import { Styles } from "../assets/styles/Styles";
 import { TextInput } from "react-native";
 import {Collapsible} from './Collapsible'
 

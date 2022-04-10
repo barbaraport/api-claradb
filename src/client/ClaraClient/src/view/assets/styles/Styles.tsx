@@ -3,6 +3,28 @@ import { Colors } from "../../../enumerations/Colors";
 import { Sizes } from "../../../enumerations/Sizes";
 
 export const Styles = StyleSheet.create({
+     textInputCollapsible:{
+		flexDirection:'row',
+		justifyContent:'space-between'
+	},
+     textInput:{
+		backgroundColor:Colors.WHITE,
+		borderRadius:50,
+		paddingLeft:5,
+		width:'80%'
+	},
+     search:{
+		color:Colors.PRIMARY_BLUE,
+		backgroundColor:Colors.WHITE,
+		paddingHorizontal:7,
+		paddingVertical:4,
+		borderRadius:50,
+
+	},
+     filterFolsTitle:{
+		textAlign:'center',
+		marginBottom:"10%"
+	},
      menuOptionsModal: {
           width: "25%",
           height: 100
