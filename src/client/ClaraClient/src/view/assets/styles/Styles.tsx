@@ -90,10 +90,13 @@ export const Styles = StyleSheet.create({
           height: "100%"
      },
      content: {
-          backgroundColor: Colors.BLACK,
-          padding: 10,
-          zIndex: -1,
-          elevation: -1
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          marginTop: 55,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
      },
      buttonContainer: {
           elevation: 8,
@@ -104,8 +107,24 @@ export const Styles = StyleSheet.create({
           alignSelf: "center",
           marginTop: 10
      },
+     buttonContainerLarge: {
+          elevation: 8,
+          backgroundColor: Colors.PRIMARY_BLUE,
+          borderRadius: 20,
+          paddingVertical: 10,
+          paddingHorizontal: 15,
+          alignSelf: "center",
+          marginTop: 10,
+     },
      buttonText: {
           fontSize: 15,
+          color: Colors.WHITE,
+          fontWeight: "bold",
+          alignSelf: "center",
+          textTransform: "uppercase"
+     },
+     buttonTextLarge: {
+          fontSize: 24,
           color: Colors.WHITE,
           fontWeight: "bold",
           alignSelf: "center",

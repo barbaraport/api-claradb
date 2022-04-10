@@ -4,6 +4,7 @@ import { Styles } from "../../assets/styles/Styles";
 
 interface FolconnButtonProps {
     text: string,
+    size: "small" | "large"
     onClick: Function;
 }
 
@@ -21,9 +22,21 @@ export class FolconnButton extends Component<FolconnButtonProps, any> {
     }
 
     private buildComponent(){
+        let buttonTtyle;
+        let textStyle;
+
+        if(this.props["size"] == "small"){
+            buttonTtyle = Styles.buttonContainer;
+            textStyle = Styles.buttonText;
+
+        }else if(this.props["size"] == "large"){
+            buttonTtyle = Styles.buttonContainerLarge;
+            textStyle = Styles.buttonTextLarge;
+        }
+
         let component = (
-            <TouchableOpacity activeOpacity={0.6} style={Styles.buttonContainer} onPress={this.onClick}>
-                <Text style={Styles.buttonText}>{this.props["text"]}</Text>
+            <TouchableOpacity activeOpacity={0.6} style={buttonTtyle} onPress={this.onClick}>
+                <Text style={textStyle}>{this.props["text"]}</Text>
             </TouchableOpacity>
         );
 

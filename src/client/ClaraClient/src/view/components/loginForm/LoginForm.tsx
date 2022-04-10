@@ -91,7 +91,8 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 						ejectFunction={this.receiveTypedPassword}
 						secureText={true}
 					/>
-					<FolconnButton
+					<FolconnButton 
+						size="small"
 						text="Log in"
 						onClick={this.submitLoginForm}
 					/>
