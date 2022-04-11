@@ -3,10 +3,13 @@ import { Text, View } from "react-native";
 import { Styles } from "../assets/styles/Styles";
 
 interface TermsOfUsePageProps {
-    pageRedirectFunction: Function;
+    pageRedirectFunction: Function,
+	userID: string;
 }
 
-interface TermsOfUsePageState { }
+interface TermsOfUsePageState { 
+
+}
 
 export class TermsOfUsePage extends Component<TermsOfUsePageProps, TermsOfUsePageState> {
 

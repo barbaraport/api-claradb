@@ -6,7 +6,8 @@ import { Styles } from "../assets/styles/Styles";
 import { FolconnButton } from "../components/button/FolconnButton";
 
 interface HomePageProps {
-	pageRedirectFunction: Function;
+	pageRedirectFunction: Function,
+	userID: string;
 }
 
 export class HomePage extends Component<HomePageProps, any> {

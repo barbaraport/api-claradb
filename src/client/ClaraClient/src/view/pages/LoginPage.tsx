@@ -6,7 +6,8 @@ import { Styles } from "../assets/styles/Styles";
 import { Colors } from "../../enumerations/Colors";
 
 interface LoginPageProps {
-	pageRedirectFunction: Function;
+	pageRedirectFunction: Function,
+	setUserIDFunction: Function;
 }
 
 export class LoginPage extends Component<LoginPageProps, any> {
@@ -27,7 +28,7 @@ export class LoginPage extends Component<LoginPageProps, any> {
 					</Text>
 					<LoginForm
 						redirectPageFunction={this.props.pageRedirectFunction}
-					/>
+						setUserIDFunction={this.props.setUserIDFunction}/>
 				</LinearGradient>
 			</>
 		);

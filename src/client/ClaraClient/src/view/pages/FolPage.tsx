@@ -7,7 +7,8 @@ import { Styles } from "../assets/styles/Styles";
 import { CarService } from "../../services/CarService";
 
 interface HomePageProps {
-	pageRedirectFunction: Function;
+	pageRedirectFunction: Function,
+	userID: string;
 }
 
 interface HomePageState{
