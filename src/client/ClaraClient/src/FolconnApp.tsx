@@ -1,6 +1,6 @@
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { SafeAreaView, StatusBar, View } from "react-native";
+import { Alert, SafeAreaView, StatusBar, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
 import { Styles } from "./view/assets/styles/Styles";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
@@ -13,6 +13,7 @@ import { TermsOfUsePage } from "./view/pages/TermsOfUsePage";
 interface FolconnAppState {
 	currentPage: PageAliases;
 	pageHistory: Array<PageAliases>;
+	userID: string;
 }
 
 export class FolconnApp extends Component<any, FolconnAppState> {
@@ -22,11 +23,19 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		this.state = {
 			currentPage: PageAliases.LOGIN,
 			pageHistory: [PageAliases.LOGIN],
+			userID: ""
 		};
 
-		this.changeCurrentPage = this.changeCurrentPage.bind(this);
 		this.goBack = this.goBack.bind(this);
+		this.setUserId = this.setUserId.bind(this);
 		this.getPageToRender = this.getPageToRender.bind(this);
+		this.changeCurrentPage = this.changeCurrentPage.bind(this);
+
+	}
+
+	private setUserId(userID: string){
+		this.setState({userID: userID});
+
 	}
 
 	private changeCurrentPage(pageToChange: PageAliases) {
@@ -39,27 +48,28 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 	}
 
 	private getPageToRender(): JSX.Element {
-
 		const homePage: JSX.Element = (
 			<>
 				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<HomePage pageRedirectFunction={this.changeCurrentPage} />
+				<HomePage pageRedirectFunction={this.changeCurrentPage} userID={this.state["userID"]}/>
 			</>
 		);
 
 		const loginPage: JSX.Element = (
-			<LoginPage pageRedirectFunction={this.changeCurrentPage} />
+			<LoginPage pageRedirectFunction={this.changeCurrentPage} setUserIDFunction={this.setUserId}/>
 		);
+
 		const folsPage: JSX.Element = (
 			<>
 				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<FolPage pageRedirectFunction={this.changeCurrentPage} />
+				<FolPage pageRedirectFunction={this.changeCurrentPage} userID={this.state["userID"]}/>
 			</>
 		);
+
 		const termsOfUsePage: JSX.Element = (
 			<>
 				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<TermsOfUsePage pageRedirectFunction={this.changeCurrentPage} />
+				<TermsOfUsePage pageRedirectFunction={this.changeCurrentPage} userID={this.state["userID"]}/>
 			</>
 		);
 
@@ -79,6 +89,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 			default:
 				return homePage;
 		}
+
 	}
 
 	private goBack() {

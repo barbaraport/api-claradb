@@ -6,7 +6,8 @@ import { TextInputCollapsible } from "../components/TextInputCollapsible";
 import { Styles } from "../assets/styles/Styles";
 
 interface HomePageProps {
-	pageRedirectFunction: Function;
+	pageRedirectFunction: Function,
+	userID: string;
 }
 
 interface HomePageState{

@@ -7,7 +7,8 @@ import { FolconnButton } from "../button/FolconnButton";
 import { FolconnInput } from "../input/FolconnInput";
 
 interface LoginFormProps {
-	redirectPageFunction: Function;
+	redirectPageFunction: Function,
+	setUserIDFunction: Function;
 }
 
 interface LoginFormState {
@@ -62,6 +63,7 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 				// let code = credential.getCode();
 				const credentialCode = credential.getCode();
 
+				this.props.setUserIDFunction(credentialCode);
 				this.props.redirectPageFunction("Home");
 
 			}else {
