@@ -46,7 +46,11 @@
                      </table>
   
   <h2>:running_woman: FolConn em funcionamento :computer::computer_mouse:</h2>
-  <img/>
+  <p align="center">
+    <img/>
+  </p>
+  <p align="center">Caso queira executar nosso projeto, clique <a href="">aqui</a>.</p>
+ 
   
   <h2>:girl: Integrantes da equipe :boy:</h2>
   <ul>
