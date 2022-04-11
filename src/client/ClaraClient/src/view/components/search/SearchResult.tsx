@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
 import { SearchType } from "../../../enumerations/SearchType";
 import { FOLSearchResult } from "../../../interfaces/FOLSearchResult";
@@ -52,7 +52,7 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
             searchResultItems.push(component);
             
         }
-
+        
         return searchResultItems;
     }
 
