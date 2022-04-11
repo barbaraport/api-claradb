@@ -6,6 +6,41 @@
   <p>Temos três <i>sprints</i> para o desenvolvimento de uma solução para o problema do nosso cliente. Sendo assim, priorizamos as funcionalidades desejadas de acordo com a imagem abaixo, de forma que cada entrega evolua em relação à última.</p>
   <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/backlog/backlog.png"/>
   
+  <h2>:calendar: Cronograma das Entregas :spiral_calendar:</h2>
+                     <table>
+                            <thead>
+                                   <th width=100px>Entrega</th>
+                                   <th width=450px>Descrição</th>
+                                   <th width=70px>Disponibilidade</th>
+                                   <th width=45px>Read-me</th>
+                                   <th width=65px>Código-fonte</th>
+                            </thead>
+                            <tr>
+                                   <td><p align="center">Entrega 1</p></td>
+                                   <td><p align="justify">O acesso será liberado para clientes que possuem um cadastro. Eles poderão visualizar uma lista com as FOLs dos seus veículos.</p></td>
+                                   <td><p align="center">14/04</p></td>
+                                   <td><p align="center"><a href="">Visualizar</a></p></td>
+                                   <td><p align="center"><a href="">Baixar</a></p></td>
+                            </tr>
+                            <tr>
+                                   <td><p align="center">Entrega 2</p></td>
+                                   <td><p align="justify">Em desenvolvimento!</p></td>
+                                   <td><p align="center">15/05</p></td>
+                                   <td><p align="center"><a href="">Visualizar</a></p></td>
+                                   <td><p align="center"><a href="">Baixar</a></p></td>
+                            </tr>
+                            <tr>
+                                   <td><p align="center">Entrega 3</p></td>
+                                   <td><p align="justify">Em desenvolvimento!</p></td>
+                                   <td><p align="center">05/06</p></td>
+                                   <td><p align="center"><a href="">Visualizar</a></p></td>
+                                   <td><p align="center"><a href="">Baixar</a></p></td>
+                            </tr>
+                     </table>
+  
+  <h2>:running_woman: FolConn em funcionamento :computer::computer_mouse:</h2>
+  <img/>
+  
   <h2>:girl: Integrantes da equipe :boy:</h2>
   <ul>
     <li><a href="https://www.linkedin.com/in/rafael-furtado-613a9712a/">Rafael Furtado Rodrigues dos Santos</a> (<i>Scrum Master</i>)</li>
