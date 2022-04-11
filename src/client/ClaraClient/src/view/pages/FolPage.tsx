@@ -4,6 +4,7 @@ import { RadioData } from "../../types/RadioData";
 import {RadioGroupButtonCollapsible} from "../components/RadioGroupButtonCollapsible";
 import { TextInputCollapsible } from "../components/TextInputCollapsible";
 import { Styles } from "../assets/styles/Styles";
+import { CarService } from "../../services/CarService";
 
 interface HomePageProps {
 	pageRedirectFunction: Function;
@@ -15,13 +16,16 @@ interface HomePageState{
 	keyword:string;
 	title:string;
 	category:string;
+
+	userCarModels: RadioData[];
 }
 
 export class FolPage extends Component<HomePageProps, HomePageState> {
-    private models:RadioData[]=[{id:'1',label:'BMW',value:'BMW'},{id:'2',label:'VOLVO',value:'VOLVO'},{id:'3',label:'CHEVROLET',value:'CHEVROLET'}]
+
     private status:RadioData[]=[{id:'1',label:'IN EFFECT',value:'INEFFECT'},{id:'2',label:'CANCELLED',value:'CANCELLED'},{id:'3',label:'INCORPORATED',value:'INCORPORATED'}]
     private category:RadioData[]=[{id:'1',label:'Cat 1',value:'cat1'},{id:'2',label:'Cat 2',value:'cat2'},{id:'3',label:'Cat 3',value:'cat3'}]
 
+    private carService = new CarService();
 
 	constructor(props: HomePageProps) {
 		super(props);
@@ -31,6 +35,7 @@ export class FolPage extends Component<HomePageProps, HomePageState> {
 			category:'',
 			keyword:'',
 			status:'',
+			userCarModels: []
 		}
 
 		this.setModel=this.setModel.bind(this);
@@ -38,6 +43,21 @@ export class FolPage extends Component<HomePageProps, HomePageState> {
 		this.setKeyword=this.setKeyword.bind(this);
 		this.setCategory=this.setCategory.bind(this);
 		this.setTitle=this.setTitle.bind(this);
+	}
+
+	async componentDidMount () {
+		let equipments = await this.carService.getUserCars("62537756b56809f1d413231b");
+
+		let models:RadioData[]=[];
+		
+		let index = 1;
+		equipments.forEach((equipment : string) => {
+			let model = {id : index.toString(), label: equipment, value: equipment}
+			models.push(model)
+			index++;
+		});
+		
+		this.setState({userCarModels : models});
 	}
 
 	private setModel(value:string){
@@ -65,7 +85,7 @@ export class FolPage extends Component<HomePageProps, HomePageState> {
 			<ScrollView style={Styles.folPageScrollViewContent}>
 				<Text style={Styles.title}>Filter FOLs:</Text>
 
-				<RadioGroupButtonCollapsible title="Car Model" radioData={this.models} ejectData={this.setModel} />
+				<RadioGroupButtonCollapsible title="Car Model" radioData={this.state.userCarModels} ejectData={this.setModel} />
 				<RadioGroupButtonCollapsible title="FOL Status" radioData={this.status} ejectData={this.setStatus} />
 				<TextInputCollapsible title="FOL Keyword" ejectData={this.setKeyword} />
 				<TextInputCollapsible title="FOL Title" ejectData={this.setTitle} />
