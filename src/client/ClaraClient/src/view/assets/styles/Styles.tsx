@@ -19,7 +19,10 @@ export const Styles = StyleSheet.create({
 		paddingHorizontal:7,
 		paddingVertical:4,
 		borderRadius:50,
-
+          flex: 1,
+          alignItems: "center",
+          marginTop: 10,
+          elevation: 5
 	},
 	collapsibleHeader:{
 		alignItems:'center',
