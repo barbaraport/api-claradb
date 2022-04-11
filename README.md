@@ -49,7 +49,7 @@
   <p align="center">
     <img/>
   </p>
-  <p align="center">Caso queira executar nosso projeto, clique <a href="">aqui</a>.</p>
+  <p align="center">Caso queira executar nosso projeto, clique <a href="https://github.com/barbaraport/api-claradb/tree/main/docs/running_project">aqui</a>.</p>
  
   
   <h2>:girl: Integrantes da equipe :boy:</h2>
