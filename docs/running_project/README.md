@@ -1,4 +1,4 @@
-# :running_woman: Running the FolConn app :iphone:
+# :running_woman: Executando o FolConn :iphone:
 
 Olá! Obrigada por escolher executar o nosso aplicativo. Siga os passos a seguir:
 
