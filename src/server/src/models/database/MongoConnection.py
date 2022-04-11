@@ -21,7 +21,7 @@ class PyMongoConnection:
 
         return document
 
-    def getDocuments(self, databaseName, collectionName, condition):
+    def getDocuments(self, databaseName, collectionName, condition, projection={"_id": 0}):
         database = self.__mongoClient[databaseName]
 
         collection = database[collectionName]
@@ -31,9 +31,7 @@ class PyMongoConnection:
             {"$addFields": {
                 "id": {"$toString": "$_id"}
             }},
-            {"$project": {
-                "_id": 0
-            }}
+            {"$project": projection}
         ]
 
         document = collection.aggregate(pipeline)

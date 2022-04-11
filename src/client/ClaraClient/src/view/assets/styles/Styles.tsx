@@ -19,11 +19,10 @@ export const Styles = StyleSheet.create({
 		paddingHorizontal:7,
 		paddingVertical:4,
 		borderRadius:50,
-
-	},
-     filterFolsTitle:{
-		textAlign:'center',
-		marginBottom:"10%"
+          flex: 1,
+          alignItems: "center",
+          marginTop: 10,
+          elevation: 5
 	},
 	collapsibleHeader:{
 		alignItems:'center',
@@ -206,7 +205,8 @@ export const Styles = StyleSheet.create({
      title: {
           fontSize: Sizes.TITLE,
           fontWeight: "bold",
-          marginBottom: 25
+          marginBottom: 25,
+          textAlign: "center"
      },
      background: {
           width: "100%",

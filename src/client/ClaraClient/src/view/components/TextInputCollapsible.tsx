@@ -1,13 +1,13 @@
 import React,{ Component } from "react";
-import { Text, TouchableHighlight, View } from "react-native";
+import { Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import { Styles } from "../assets/styles/Styles";
 import { TextInput } from "react-native";
 import {Collapsible} from './Collapsible'
 
 interface CollapsibleProps{
-    title:string;
-    ejectData:Function;
+    title:string,
+    performsSearchFunction: Function;
 }
 
 interface CollapsibleState{
@@ -24,22 +24,30 @@ export class TextInputCollapsible extends React.Component<CollapsibleProps,Colla
             value:''
         }
 
-        this.changeInputText=this.changeInputText.bind(this)
+        this.changeInputText=this.changeInputText.bind(this);
+        this.performsSearch = this.performsSearch.bind(this);
 
 	}
 
     private changeInputText(newValue:string){
-        this.setState({value:newValue})
-        this.props.ejectData(newValue)
+        this.setState({value:newValue});
+
+    }
+
+    private performsSearch(){
+        this.props.performsSearchFunction(this.state["value"]);
+
     }
 
     private buildComponent(){
         const textInput:JSX.Element=(
             <View>
-                    <View style={Styles.textInputCollapsible}>
-                        <TextInput placeholder="Type words..." style={Styles.textInput} onChangeText={(value)=>this.changeInputText(value)}></TextInput>
-                        <Text style={Styles.search}>Search</Text>
-                    </View>
+                <View style={Styles.textInputCollapsible}>
+                    <TextInput placeholder="Type words..." style={Styles.textInput} onChangeText={(value)=>this.changeInputText(value)}></TextInput>
+                    <TouchableOpacity style={Styles.search} activeOpacity={0.5} onPress={this.performsSearch}>
+                        <Text>Search</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
 

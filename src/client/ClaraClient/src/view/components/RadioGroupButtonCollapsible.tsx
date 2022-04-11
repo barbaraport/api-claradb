@@ -1,14 +1,15 @@
 import React,{ Component } from "react";
-import { View } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import { RadioButton } from 'react-native-radio-buttons-group';
 import { Colors } from "../../enumerations/Colors";
 import { RadioData } from "../../types/RadioData";
+import { Styles } from "../assets/styles/Styles";
 import {Collapsible} from './Collapsible'
 
 interface CollapsibleProps{
     title:string;
     radioData:RadioData[];
-    ejectData:Function;
+    performsSearchFunction: Function;
 }
 
 interface CollapsibleState{
@@ -23,15 +24,26 @@ export class RadioGroupButtonCollapsible extends Component<CollapsibleProps,Coll
 
         this.state={
             isCollapsed:false,
-            checked:{id:'',label:'',value:''}
+            checked: {
+                id:'',
+                label:'',
+                value:''
+            }
         }
 
-        this.setChecked=this.setChecked.bind(this)
+        this.setChecked=this.setChecked.bind(this);
+        this.performSearch = this.performSearch.bind(this);
+        
 	}
 
     private setChecked(value:RadioData){
-        this.setState({checked:value})
-        this.props.ejectData(value.value)
+        this.setState({checked:value});
+        
+    }
+
+    private performSearch(){
+        this.props.performsSearchFunction(this.state["checked"]["value"]);
+
     }
 
     private buildComponent(){
@@ -39,10 +51,12 @@ export class RadioGroupButtonCollapsible extends Component<CollapsibleProps,Coll
             <View>
                 {this.props.radioData.map((value,index)=>(
                     <View key={index}>
-                        <RadioButton id={index+''} value={value.value} label={value.label} selected={ this.state.checked === value} color={Colors.WHITE} labelStyle={{color:Colors.WHITE,}} onPress={()=> this.setChecked(value)}
-                            />
+                        <RadioButton id={index+''} value={value.value} label={value.label} selected={ this.state.checked === value} color={Colors.WHITE} labelStyle={{color:Colors.WHITE,}} onPress={()=> this.setChecked(value)}/>
                     </View>
                 ))}
+                <TouchableOpacity style={Styles.search} activeOpacity={0.5} onPress={this.performSearch}>
+                    <Text>Search</Text>
+                </TouchableOpacity>
             </View>
         )
 
