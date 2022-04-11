@@ -9,7 +9,7 @@ on:
       - 'main'
 
 jobs:
-  build:
+  buildServer:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v2
@@ -23,3 +23,14 @@ jobs:
         cd server
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+  buildClient:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '14'
+    - run: |
+        cd src
+        cd client
+        npm install
