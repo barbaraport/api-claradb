@@ -47,7 +47,7 @@ export class FolPage extends Component<HomePageProps, HomePageState> {
 	}
 
 	async componentDidMount () {
-		let equipments = await this.carService.getUserCars("62537756b56809f1d413231b");
+		let equipments = await this.carService.getUserCars(this.props["userID"]);
 
 		let models:RadioData[]=[];
 		
