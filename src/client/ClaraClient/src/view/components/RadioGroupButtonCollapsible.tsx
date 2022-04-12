@@ -10,6 +10,7 @@ interface CollapsibleProps{
     title:string;
     radioData:RadioData[];
     performsSearchFunction: Function;
+    userID: string;
 }
 
 interface CollapsibleState{

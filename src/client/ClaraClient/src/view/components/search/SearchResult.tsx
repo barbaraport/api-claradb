@@ -9,7 +9,8 @@ import { SearchResultItem } from "./SearchResultItem";
 interface SearchResultProps {
     searchType: SearchType,
     searchFilter: string,
-    closeSearchResultFunction: Function;
+    closeSearchResultFunction: Function,
+    userID: string;
 
 }
 
@@ -31,7 +32,30 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
     }
 
     async componentDidMount(){
-        const folsList = await FOLService.getFolsByEquipment(this.props["searchFilter"]);
+        let folsList:FOLSearchResult[] = [];
+        
+        switch (this.props["searchType"]) {
+            case SearchType.CAR_MODEL:
+                folsList = await FOLService.getFolsByEquipment(this.props["searchFilter"]);
+                
+                break;
+            case SearchType.FOL_CATEGORY:
+
+                break;
+            case SearchType.FOL_KEYWORD:
+                
+                break;
+            case SearchType.FOL_STATUS:
+                folsList = await FOLService.getFolsByStatus(this.props["userID"], this.props["searchFilter"]);
+                
+                break;
+            case SearchType.FOL_TITLE:
+                
+                break;
+            default:
+                break;
+        }
+        
 
         this.setState({folsSearchResultList: folsList});
 
@@ -65,7 +89,7 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
         let component = (
             <Modal transparent={true} onRequestClose={this.closeSearchResult}>
                 <TouchableOpacity style={{height: "100%"}} activeOpacity={1} onPress={this.closeSearchResult}>
-                    <View style={{margin: 50, height: "80%", backgroundColor: Colors.WHITE, borderRadius: 8}}>
+                    <View style={{margin: 50, marginTop: 120, height: "70%", backgroundColor: Colors.WHITE, borderRadius: 8, shadowColor: "#000", shadowOffset: {width: 0, height: 0,}, shadowOpacity: 0.50, shadowRadius: 4.22, elevation: 5}}>
                         <Text style={{fontSize: 26, fontWeight: "bold", marginTop: 20, marginBottom: 20, alignSelf: "center"}}>Search result</Text>
                         <ScrollView style={{paddingLeft: 20}}>
                             {this.getSearchResult()}

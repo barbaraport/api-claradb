@@ -108,15 +108,14 @@ export class FolPage extends Component<HomePageProps, HomePageState> {
 				<Text style={Styles.title}>Filter FOLs:</Text>
 
 				{this.state["inSearch"] &&
-					<SearchResult closeSearchResultFunction={this.closeSearchResult} searchType={this.state["searchType"]} searchFilter={this.state["searchFilter"]}></SearchResult>
-
+					<SearchResult closeSearchResultFunction={this.closeSearchResult} searchType={this.state["searchType"]} searchFilter={this.state["searchFilter"]} userID={this.props["userID"]}></SearchResult>
 				}
 
-				<RadioGroupButtonCollapsible title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />
-				<RadioGroupButtonCollapsible title="FOL Status" radioData={this.status} performsSearchFunction={this.setStatus} />
-				<TextInputCollapsible title="FOL Keyword" performsSearchFunction={this.setKeyword} />
-				<TextInputCollapsible title="FOL Title" performsSearchFunction={this.setTitle} />
-				<RadioGroupButtonCollapsible title=" FOL Category" radioData={this.category} performsSearchFunction={this.setCategory} />
+				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />
+				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Status" radioData={this.status} performsSearchFunction={this.setStatus} />
+				<TextInputCollapsible userID={this.props["userID"]} title="FOL Keyword" performsSearchFunction={this.setKeyword} />
+				<TextInputCollapsible userID={this.props["userID"]} title="FOL Title" performsSearchFunction={this.setTitle} />
+				<RadioGroupButtonCollapsible userID={this.props["userID"]} title=" FOL Category" radioData={this.category} performsSearchFunction={this.setCategory} />
 			</ScrollView>
 		);
 

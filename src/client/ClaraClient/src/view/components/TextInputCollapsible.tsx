@@ -8,6 +8,7 @@ import {Collapsible} from './Collapsible'
 interface CollapsibleProps{
     title:string,
     performsSearchFunction: Function;
+    userID: string;
 }
 
 interface CollapsibleState{
