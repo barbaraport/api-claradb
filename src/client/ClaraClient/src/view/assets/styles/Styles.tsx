@@ -158,6 +158,7 @@ export const Styles = StyleSheet.create({
           paddingHorizontal: 15,
           alignSelf: "center",
           marginTop: 10,
+          width: 200
      },
      buttonText: {
           fontSize: 15,
