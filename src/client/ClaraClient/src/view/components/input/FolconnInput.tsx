@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { TextInput } from "react-native";
+import { Colors } from "../../../enumerations/Colors";
 import { Styles } from "../../assets/styles/Styles";
 
 interface FolconnInputProps {
@@ -26,9 +27,11 @@ export class FolconnInput extends Component<FolconnInputProps, any> {
         let component = (
             <TextInput onChangeText={this.ejectTypedValue}
                 secureTextEntry={this.props["secureText"]}
-                style={[Styles.folconnInput, Styles.shadow]}
+                style={[Styles.folconnInput]}
                 textContentType={this.props["type"]}
-                placeholder={this.props["placeholder"]}></TextInput>
+                placeholder={this.props["placeholder"]}
+                underlineColorAndroid={Colors.SECONDARY_BLUE}>
+            </TextInput>
         );
 
         return component;

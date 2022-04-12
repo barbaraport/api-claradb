@@ -121,7 +121,7 @@ export const Styles = StyleSheet.create({
                width: 0,
                height: 1,
           },
-          shadowOpacity: 0.20,
+          shadowOpacity: 0.50,
           shadowRadius: 1.41
      },
      screen: {

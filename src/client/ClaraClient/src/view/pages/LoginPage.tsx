@@ -18,17 +18,12 @@ export class LoginPage extends Component<LoginPageProps, any> {
 	private buildComponent() {
 		let component = (
 			<>
-				<LinearGradient
-					colors={[Colors.GRADIENT_1, Colors.GRADIENT_2, Colors.GRADIENT_3]}
-					style={Styles.background}
-				>
+				<LinearGradient colors={[Colors.GRADIENT_1, Colors.GRADIENT_2, Colors.GRADIENT_3]} style={Styles.background}>
 					<Text style={Styles.titleWhite}>FolConn</Text>
 					<Text style={Styles.label}>
 						Get notified and read FOLs instantly!
 					</Text>
-					<LoginForm
-						redirectPageFunction={this.props.pageRedirectFunction}
-						setUserIDFunction={this.props.setUserIDFunction}/>
+					<LoginForm redirectPageFunction={this.props.pageRedirectFunction} setUserIDFunction={this.props.setUserIDFunction} />
 				</LinearGradient>
 			</>
 		);
