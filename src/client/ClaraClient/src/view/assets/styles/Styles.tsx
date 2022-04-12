@@ -148,7 +148,8 @@ export const Styles = StyleSheet.create({
           paddingVertical: 10,
           paddingHorizontal: 15,
           alignSelf: "center",
-          marginTop: 10
+          marginTop: 10,
+          width: 135
      },
      buttonContainerLarge: {
           elevation: 8,
