@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { GestureResponderEvent, Modal, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { GestureResponderEvent, Modal, TouchableOpacity, View } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
 import { PageAliases } from '../../../enumerations/PageAliases';
 import { Sizes } from "../../../enumerations/Sizes";
@@ -52,14 +52,14 @@ export class Menu extends Component<MenuProps, MenuState> {
      private buildMenu() {
           return (
                <Modal visible={this.state["showMenu"]} transparent={true} onRequestClose={() => this.setState({ showMenu: false })}>
-                    <TouchableHighlight activeOpacity={1} onPressIn={this.close} style={{ height: "100%" }}>
+                    <TouchableOpacity activeOpacity={0} onPressIn={this.close} style={{ height: "100%" }}>
                          <View style={{ alignSelf: "flex-start", marginTop: 50, marginLeft: 20, padding: 15, borderRadius: 16, backgroundColor: Colors.WHITE }}>
                               <MenuItem itemAction={this.redirectToHome} iconName="home" itemName="Home"></MenuItem>
                               <MenuItem itemAction={this.redirectFols} iconName="file-medical-alt" itemName="FOLs"></MenuItem>
                               <MenuItem itemAction={this.redirectToTermsOfUse} iconName="user-check" itemName="Terms of Use"></MenuItem>
                               <MenuItem itemAction={this.redirectToLogin} iconName="sign-out-alt" itemName="Sign Out"></MenuItem>
                          </View>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                </Modal>
           );
      }
@@ -71,9 +71,9 @@ export class Menu extends Component<MenuProps, MenuState> {
      private buildMenuComponent() {
           let menu = (
                <View style={Styles.menu}>
-                    <TouchableHighlight activeOpacity={1} underlayColor={Colors.BLUE} onPress={() => { this.handleMenu() }}>
+                    <TouchableOpacity onPress={() => { this.handleMenu() }}>
                          <FolConnIcon iconName="bars" iconSize={Sizes.BIGICON} iconColor={Colors.SECONDARY_BLUE}></FolConnIcon>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                     {this.buildMenu()}
                </View>
           );

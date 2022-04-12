@@ -1,9 +1,7 @@
-import React, { Component } from "react";
-import { Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
-import { MaterialIcons } from '@expo/vector-icons';
+import React from "react";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Styles } from "../assets/styles/Styles";
-import { TextInput } from "react-native";
-import { Collapsible } from './Collapsible'
+import { Collapsible } from './Collapsible';
 
 interface CollapsibleProps {
     title: string,
@@ -45,7 +43,7 @@ export class TextInputCollapsible extends React.Component<CollapsibleProps, Coll
             <View>
                 <View style={Styles.textInputCollapsible}>
                     <TextInput placeholder="Type words..." style={Styles.textInput} onChangeText={(value) => this.changeInputText(value)}></TextInput>
-                    <TouchableOpacity style={[Styles.search, {marginLeft: 3}]} activeOpacity={0.5} onPress={this.performsSearch}>
+                    <TouchableOpacity style={[Styles.search, { marginLeft: 3 }]} activeOpacity={0.5} onPress={this.performsSearch}>
                         <Text>Search</Text>
                     </TouchableOpacity>
                 </View>
