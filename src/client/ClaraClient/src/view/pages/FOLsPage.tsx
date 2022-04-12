@@ -1,24 +1,24 @@
 import React, { Component } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { RadioData } from "../../types/RadioData";
-import {RadioGroupButtonCollapsible} from "../components/RadioGroupButtonCollapsible";
+import { RadioGroupButtonCollapsible } from "../components/RadioGroupButtonCollapsible";
 import { TextInputCollapsible } from "../components/TextInputCollapsible";
 import { Styles } from "../assets/styles/Styles";
 import { CarService } from "../../services/CarService";
 import { SearchResult } from "../components/search/SearchResult";
 import { SearchType } from "../../enumerations/SearchType";
 
-interface HomePageProps {
+interface FOLsPageProps {
 	pageRedirectFunction: Function,
 	userID: string;
 }
 
-interface HomePageState{
-	model:string;
-	status:string;
-	keyword:string;
-	title:string;
-	category:string;
+interface FOLsPageState {
+	model: string;
+	status: string;
+	keyword: string;
+	title: string;
+	category: string;
 
 	userCarModels: RadioData[];
 
@@ -27,78 +27,78 @@ interface HomePageState{
 	searchFilter: string;
 }
 
-export class FolPage extends Component<HomePageProps, HomePageState> {
+export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
-    private status:RadioData[]=[{id:'1',label:'IN EFFECT',value:'INEFFECT'},{id:'2',label:'CANCELLED',value:'CANCELLED'},{id:'3',label:'INCORPORATED',value:'INCORPORATED'}]
-    private category:RadioData[]=[{id:'1',label:'Cat 1',value:'cat1'},{id:'2',label:'Cat 2',value:'cat2'},{id:'3',label:'Cat 3',value:'cat3'}]
+	private status: RadioData[] = [{ id: '1', label: 'IN EFFECT', value: 'INEFFECT' }, { id: '2', label: 'CANCELLED', value: 'CANCELLED' }, { id: '3', label: 'INCORPORATED', value: 'INCORPORATED' }]
+	private category: RadioData[] = [{ id: '1', label: 'Cat 1', value: 'cat1' }, { id: '2', label: 'Cat 2', value: 'cat2' }, { id: '3', label: 'Cat 3', value: 'cat3' }]
 
-    private carService = new CarService();
+	private carService = new CarService();
 
-	constructor(props: HomePageProps) {
+	constructor(props: FOLsPageProps) {
 		super(props);
-		this.state={
-			model:'',
-			title:'',
-			category:'',
-			keyword:'',
-			status:'',
+		this.state = {
+			model: '',
+			title: '',
+			category: '',
+			keyword: '',
+			status: '',
 			userCarModels: [],
 			inSearch: false,
 			searchFilter: "",
 			searchType: SearchType.CAR_MODEL
 		}
 
-		this.setModel=this.setModel.bind(this);
-		this.setStatus=this.setStatus.bind(this);
-		this.setKeyword=this.setKeyword.bind(this);
-		this.setCategory=this.setCategory.bind(this);
-		this.setTitle=this.setTitle.bind(this);
+		this.setModel = this.setModel.bind(this);
+		this.setStatus = this.setStatus.bind(this);
+		this.setKeyword = this.setKeyword.bind(this);
+		this.setCategory = this.setCategory.bind(this);
+		this.setTitle = this.setTitle.bind(this);
 		this.closeSearchResult = this.closeSearchResult.bind(this);
 
 	}
 
-	async componentDidMount () {
+	async componentDidMount() {
 		let equipments = await this.carService.getUserCars(this.props["userID"]);
 
-		let models:RadioData[]=[];
-		
+		let models: RadioData[] = [];
+
 		let index = 1;
-		equipments.forEach((equipment : string) => {
-			let model = {id : index.toString(), label: equipment, value: equipment}
+		equipments.forEach((equipment: string) => {
+			let model = { id: index.toString(), label: equipment, value: equipment }
 			models.push(model)
 			index++;
 		});
-		
-		this.setState({userCarModels : models});
+
+		this.setState({ userCarModels: models });
 	}
 
-	private setModel(filter: string){
-		this.setState({searchFilter: filter, searchType: SearchType.CAR_MODEL, inSearch: true});
-
-	}
-
-	private setStatus(filter: string){
-		this.setState({searchFilter: filter, searchType: SearchType.FOL_STATUS, inSearch: true});
+	private setModel(filter: string) {
+		this.setState({ searchFilter: filter, searchType: SearchType.CAR_MODEL, inSearch: true });
 
 	}
 
-	private setKeyword(filter: string){
-		this.setState({searchFilter: filter, searchType: SearchType.FOL_KEYWORD, inSearch: true});
+	private setStatus(filter: string) {
+		this.setState({ searchFilter: filter, searchType: SearchType.FOL_STATUS, inSearch: true });
 
 	}
 
-	private setTitle(filter: string){
-		this.setState({searchFilter: filter, searchType: SearchType.FOL_TITLE, inSearch: true});
+	private setKeyword(filter: string) {
+		this.setState({ searchFilter: filter, searchType: SearchType.FOL_KEYWORD, inSearch: true });
 
 	}
 
-	private setCategory(filter: string){
-		this.setState({searchFilter: filter, searchType: SearchType.FOL_CATEGORY, inSearch: true});
+	private setTitle(filter: string) {
+		this.setState({ searchFilter: filter, searchType: SearchType.FOL_TITLE, inSearch: true });
 
 	}
 
-	private closeSearchResult(){
-		this.setState({inSearch: false});
+	private setCategory(filter: string) {
+		this.setState({ searchFilter: filter, searchType: SearchType.FOL_CATEGORY, inSearch: true });
+
+	}
+
+	private closeSearchResult() {
+		this.setState({ inSearch: false });
 
 	}
 
