@@ -20,7 +20,7 @@ export class HomePage extends Component<HomePageProps, any> {
 	}
 
 	private openCarDetailsScreen(){
-		Alert.alert("Abrindo página de detalhes");
+		Alert.alert("Oops!", "The car details screen is under development!", [{text: 'Ok!'}]);
 	}
 
 	private openFolsScreen(){
