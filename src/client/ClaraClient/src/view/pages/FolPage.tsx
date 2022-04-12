@@ -105,7 +105,7 @@ export class FolPage extends Component<HomePageProps, HomePageState> {
 	private buildComponent() {
 		let component = (
 			<ScrollView style={Styles.folPageScrollViewContent}>
-				<Text style={Styles.title}>Filter FOLs:</Text>
+				<Text style={Styles.title}>Filter FOLs</Text>
 
 				{this.state["inSearch"] &&
 					<SearchResult closeSearchResultFunction={this.closeSearchResult} searchType={this.state["searchType"]} searchFilter={this.state["searchFilter"]} userID={this.props["userID"]}></SearchResult>
