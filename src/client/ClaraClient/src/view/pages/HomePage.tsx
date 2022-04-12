@@ -2,6 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import React, { Component } from "react";
 import { Alert, ImageBackground, Text, View } from "react-native";
 import { Colors } from "../../enumerations/Colors";
+import { PageAliases } from "../../enumerations/PageAliases";
 import { Styles } from "../assets/styles/Styles";
 import { FolconnButton } from "../components/button/FolconnButton";
 
@@ -23,7 +24,7 @@ export class HomePage extends Component<HomePageProps, any> {
 	}
 
 	private openFolsScreen(){
-		Alert.alert("Abrindo página de FOLs");
+		this.props.pageRedirectFunction(PageAliases.FOLS);
 	}
 
 	private buildComponent() {
