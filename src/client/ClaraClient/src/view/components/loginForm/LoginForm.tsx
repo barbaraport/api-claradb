@@ -59,8 +59,6 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 			let credential = await this.userService.login(user);
 
 			if (credential != null) {
-				// setar credential globalmente de alguma forma D:
-				// let code = credential.getCode();
 				const credentialCode = credential.getCode();
 
 				this.props.setUserIDFunction(credentialCode);
@@ -80,23 +78,9 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 			<View style={[Styles.formModal, Styles.shadow]}>
 				<Text style={Styles.title}>Welcome!</Text>
 				<View>
-					<FolconnInput
-						placeholder="Username"
-						type="username"
-						ejectFunction={this.receiveTypedUserName}
-						secureText={false}
-					/>
-					<FolconnInput
-						placeholder="Password"
-						type="password"
-						ejectFunction={this.receiveTypedPassword}
-						secureText={true}
-					/>
-					<FolconnButton
-						size="small"
-						text="Log in"
-						onClick={this.submitLoginForm}
-					/>
+					<FolconnInput placeholder="Username" type="username" ejectFunction={this.receiveTypedUserName}secureText={false}/>
+					<FolconnInput placeholder="Password" type="password" ejectFunction={this.receiveTypedPassword} secureText={true}/>
+					<FolconnButton size="small" text="Log in" onClick={this.submitLoginForm}/>
 				</View>
 			</View>
 		);

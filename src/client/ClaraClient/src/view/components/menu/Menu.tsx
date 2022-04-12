@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, GestureResponderEvent, LogBox, Modal, TouchableHighlight, TouchableOpacity, View } from "react-native";
+import { GestureResponderEvent, Modal, TouchableOpacity, View } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
 import { PageAliases } from '../../../enumerations/PageAliases';
 import { Sizes } from "../../../enumerations/Sizes";
@@ -32,29 +32,28 @@ export class Menu extends Component<MenuProps, MenuState> {
 
      }
 
-     private redirectToHome(){
+     private redirectToHome() {
           this.props.pageRedirectFunction(PageAliases.HOME);
 
      }
-     private redirectToLogin(){
+     private redirectToLogin() {
           this.props.pageRedirectFunction(PageAliases.LOGIN);
 
      }
-     private redirectFols(){
+     private redirectFols() {
           this.props.pageRedirectFunction(PageAliases.FOLS);
 
      }
-     private redirectToTermsOfUse(){
+     private redirectToTermsOfUse() {
           this.props.pageRedirectFunction(PageAliases.TERMS_OF_USE);
 
      }
 
      private buildMenu() {
           return (
-               <Modal visible={this.state["showMenu"]} transparent={true} 
-               onRequestClose={() => this.setState({showMenu: false})}>
-                    <TouchableOpacity activeOpacity={1} onPressIn={this.close} style={{height: "100%"}}>
-                         <View style={{alignSelf: "flex-start", marginTop: 40, marginLeft: 30, padding: 15, borderRadius: 16, backgroundColor: Colors.WHITE}}>
+               <Modal visible={this.state["showMenu"]} transparent={true} onRequestClose={() => this.setState({ showMenu: false })}>
+                    <TouchableOpacity activeOpacity={0} onPressIn={this.close} style={{ height: "100%" }}>
+                         <View style={{ alignSelf: "flex-start", marginTop: 50, marginLeft: 20, padding: 15, borderRadius: 16, backgroundColor: Colors.WHITE }}>
                               <MenuItem itemAction={this.redirectToHome} iconName="home" itemName="Home"></MenuItem>
                               <MenuItem itemAction={this.redirectFols} iconName="file-medical-alt" itemName="FOLs"></MenuItem>
                               <MenuItem itemAction={this.redirectToTermsOfUse} iconName="user-check" itemName="Terms of Use"></MenuItem>
@@ -65,16 +64,16 @@ export class Menu extends Component<MenuProps, MenuState> {
           );
      }
 
-     private close(event: GestureResponderEvent){
-          this.setState({showMenu: false});
+     private close(event: GestureResponderEvent) {
+          this.setState({ showMenu: false });
      }
 
      private buildMenuComponent() {
           let menu = (
                <View style={Styles.menu}>
-                    <TouchableHighlight onPress={() => { this.handleMenu() }}>
-                         <FolConnIcon iconName="bars" iconSize={Sizes.BIGICON} iconColor={Colors.SECONDARY_BLUE} ></FolConnIcon>
-                    </TouchableHighlight>
+                    <TouchableOpacity onPress={() => { this.handleMenu() }}>
+                         <FolConnIcon iconName="bars" iconSize={Sizes.BIGICON} iconColor={Colors.SECONDARY_BLUE}></FolConnIcon>
+                    </TouchableOpacity>
                     {this.buildMenu()}
                </View>
           );

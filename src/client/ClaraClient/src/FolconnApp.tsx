@@ -1,11 +1,10 @@
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { Alert, SafeAreaView, StatusBar, View } from "react-native";
+import { SafeAreaView, StatusBar, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
 import { Styles } from "./view/assets/styles/Styles";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
-import { Menu } from "./view/components/menu/Menu";
-import { FolPage } from "./view/pages/FolPage";
+import { FolPage } from "./view/pages/FOLsPage";
 import { HomePage } from "./view/pages/HomePage";
 import { LoginPage } from "./view/pages/LoginPage";
 import { TermsOfUsePage } from "./view/pages/TermsOfUsePage";
