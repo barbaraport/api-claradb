@@ -11,8 +11,6 @@ def getUserCarsList(userId):
 
     document = conn.getDocument("folconn", "users", condition)
 
-    print(document)
-
     userEquipments = document["Equipment"]
 
     return userEquipments

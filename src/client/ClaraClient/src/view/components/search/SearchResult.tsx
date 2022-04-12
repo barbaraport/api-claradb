@@ -40,17 +40,20 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
                 
                 break;
             case SearchType.FOL_CATEGORY:
+                //folsList = await FOLService.getFolsByCategory(this.props["userID"], this.props["searchFilter"]);
 
                 break;
             case SearchType.FOL_KEYWORD:
-                
+                folsList = await FOLService.getFolsByKeyword(this.props["userID"], this.props["searchFilter"]);
+
                 break;
             case SearchType.FOL_STATUS:
                 folsList = await FOLService.getFolsByStatus(this.props["userID"], this.props["searchFilter"]);
                 
                 break;
             case SearchType.FOL_TITLE:
-                
+                //folsList = await FOLService.getFolsByTitle(this.props["userID"], this.props["searchFilter"]);
+
                 break;
             default:
                 break;
