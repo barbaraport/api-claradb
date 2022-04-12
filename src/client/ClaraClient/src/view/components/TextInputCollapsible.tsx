@@ -1,49 +1,49 @@
-import React,{ Component } from "react";
+import React, { Component } from "react";
 import { Text, TouchableHighlight, TouchableOpacity, View } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import { Styles } from "../assets/styles/Styles";
 import { TextInput } from "react-native";
-import {Collapsible} from './Collapsible'
+import { Collapsible } from './Collapsible'
 
-interface CollapsibleProps{
-    title:string,
+interface CollapsibleProps {
+    title: string,
     performsSearchFunction: Function;
 }
 
-interface CollapsibleState{
-    isCollapsed:boolean;
-    value:string;
+interface CollapsibleState {
+    isCollapsed: boolean;
+    value: string;
 }
 
-export class TextInputCollapsible extends React.Component<CollapsibleProps,CollapsibleState>{
+export class TextInputCollapsible extends React.Component<CollapsibleProps, CollapsibleState>{
     constructor(props: CollapsibleProps) {
-		super(props);
+        super(props);
 
-        this.state={
-            isCollapsed:false,
-            value:''
+        this.state = {
+            isCollapsed: false,
+            value: ''
         }
 
-        this.changeInputText=this.changeInputText.bind(this);
+        this.changeInputText = this.changeInputText.bind(this);
         this.performsSearch = this.performsSearch.bind(this);
-
-	}
-
-    private changeInputText(newValue:string){
-        this.setState({value:newValue});
 
     }
 
-    private performsSearch(){
+    private changeInputText(newValue: string) {
+        this.setState({ value: newValue });
+
+    }
+
+    private performsSearch() {
         this.props.performsSearchFunction(this.state["value"]);
 
     }
 
-    private buildComponent(){
-        const textInput:JSX.Element=(
+    private buildComponent() {
+        const textInput: JSX.Element = (
             <View>
                 <View style={Styles.textInputCollapsible}>
-                    <TextInput placeholder="Type words..." style={Styles.textInput} onChangeText={(value)=>this.changeInputText(value)}></TextInput>
+                    <TextInput placeholder="Type words..." style={Styles.textInput} onChangeText={(value) => this.changeInputText(value)}></TextInput>
                     <TouchableOpacity style={Styles.search} activeOpacity={0.5} onPress={this.performsSearch}>
                         <Text>Search</Text>
                     </TouchableOpacity>
@@ -51,8 +51,8 @@ export class TextInputCollapsible extends React.Component<CollapsibleProps,Colla
             </View>
         )
 
-        let component =(
-            <View style={{marginBottom:10}}>
+        let component = (
+            <View style={{ marginBottom: 10 }}>
                 <Collapsible title={this.props.title} component={textInput} valueDisplay={this.state.value}></Collapsible>
             </View>
         )
@@ -60,8 +60,8 @@ export class TextInputCollapsible extends React.Component<CollapsibleProps,Colla
         return component;
     }
 
-    render(){
+    render() {
         const component = this.buildComponent();
-		return component;
+        return component;
     }
 }

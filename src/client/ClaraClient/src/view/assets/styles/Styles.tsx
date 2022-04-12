@@ -5,7 +5,8 @@ import { Sizes } from "../../../enumerations/Sizes";
 export const Styles = StyleSheet.create({
      textInputCollapsible:{
 		flexDirection:'row',
-		justifyContent:'space-between'
+		justifyContent:'space-between',
+          alignItems: "center"
 	},
      textInput:{
 		backgroundColor:Colors.WHITE,
@@ -21,7 +22,6 @@ export const Styles = StyleSheet.create({
 		borderRadius:50,
           flex: 1,
           alignItems: "center",
-          marginTop: 10,
           elevation: 5
 	},
 	collapsibleHeader:{
