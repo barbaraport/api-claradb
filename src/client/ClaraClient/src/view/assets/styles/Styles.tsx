@@ -119,10 +119,11 @@ export const Styles = StyleSheet.create({
           shadowColor: Colors.BLACK,
           shadowOffset: {
                width: 0,
-               height: 1,
+               height: 0,
           },
           shadowOpacity: 0.50,
-          shadowRadius: 1.41
+          shadowRadius: 1.41,
+          elevation: 5
      },
      screen: {
           margin: 0,
