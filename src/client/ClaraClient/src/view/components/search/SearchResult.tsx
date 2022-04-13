@@ -52,7 +52,7 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
                 
                 break;
             case SearchType.FOL_TITLE:
-                //folsList = await FOLService.getFolsByTitle(this.props["userID"], this.props["searchFilter"]);
+                folsList = await FOLService.getFolsByTitle(this.props["userID"], this.props["searchFilter"]);
 
                 break;
             default:

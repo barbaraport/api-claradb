@@ -102,3 +102,26 @@ def getFolsCategories(equipmentList):
         categoriesList.append(category)
 
     return jsonify(categoriesList)
+
+
+def getFolsByTitle(carsList, title):
+    conn = PyMongoConnection()
+
+    condition = {
+        "Equipment": {
+            "$in": carsList
+        },
+        "Title": {"$regex": title}
+    }
+
+    projection = {
+        "_id": 0,
+        "id": 1,
+        "Title": 1,
+        "Equipment": 1,
+        "Issue description": 1
+    }
+
+    document = jsonify(list(conn.getDocuments("folconn", "documents", condition, projection)))
+
+    return document
