@@ -4,7 +4,7 @@ from flask import abort
 from flask import jsonify
 
 from src.models.database.MongoConnection import PyMongoConnection
-from src.models.services.folsService import getFolsByStatus, getFolsByKeywords
+from src.models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory
 from src.models.services.userService import getUserCarsList
 
 folRoutes = Blueprint("folRoutes", __name__)
@@ -60,5 +60,25 @@ def getEquipmentFolsByKeywords():
 
     if folsList is None:
         abort(404, "No FOL found for the given keywords")
+
+    return folsList
+
+
+@folRoutes.route("/fol/getCategories", methods=["GET"])
+def getCategories():
+    userId = request.args.get("userId")
+
+    carsList = getUserCarsList(userId)
+
+    return getFolsCategories(carsList)
+
+
+@folRoutes.route("/fol/getByCategory")
+def getByCategory():
+    userId = request.args.get("userId")
+    category = request.args.get("category")
+    carsList = getUserCarsList(userId)
+
+    folsList = getFolsByCategory(carsList, category)
 
     return folsList

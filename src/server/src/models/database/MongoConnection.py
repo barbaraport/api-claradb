@@ -38,6 +38,15 @@ class PyMongoConnection:
 
         return document
 
+    def aggregate(self, databaseName, collectionName, pipeline):
+        database = self.__mongoClient[databaseName]
+
+        collection = database[collectionName]
+
+        document = collection.aggregate(pipeline)
+
+        return document
+
     def dropCollections(self, databaseName, collectionsNames):
         database = self.__mongoClient[databaseName]
 

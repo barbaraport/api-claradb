@@ -78,4 +78,42 @@ export class FOLService {
           throw new Error("Unable to gets the FOLs from the server");
      }
 
+     public static async getFolsCategories(userId: string){
+          let request = {
+               method: "GET",
+               headers: {
+                    Accept: 'application/json',
+               }
+          }
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/getCategories?userId=" + userId, request);
+
+          if (response["ok"]) {
+               const folsCategories = await response.json() as Array<string>;
+
+               return folsCategories;
+          }
+
+          throw new Error("Unable to gets the FOLs from the server");
+     }
+
+     public static async getFolsByCategory(userId: string, category: string){
+          let request = {
+               method: "GET",
+               headers: {
+                    Accept: 'application/json',
+               }
+          }
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/getByCategory?userId=" + userId + "&category=" + category, request);
+
+          if (response["ok"]) {
+               const folsCategories = await response.json() as Array<FOLSearchResult>;
+
+               return folsCategories;
+          }
+
+          throw new Error("Unable to gets the FOLs from the server");
+     }
+
 }

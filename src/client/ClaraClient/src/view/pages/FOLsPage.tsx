@@ -7,6 +7,7 @@ import { Styles } from "../assets/styles/Styles";
 import { CarService } from "../../services/CarService";
 import { SearchResult } from "../components/search/SearchResult";
 import { SearchType } from "../../enumerations/SearchType";
+import { FOLService } from "../../services/FOLService";
 
 interface FOLsPageProps {
 	pageRedirectFunction: Function,
@@ -25,12 +26,13 @@ interface FOLsPageState {
 	inSearch: boolean;
 	searchType: SearchType,
 	searchFilter: string;
+
+	categories: Array<any>
 }
 
 export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 	private status: RadioData[] = [{ id: '1', label: 'IN EFFECT', value: 'IN EFFECT' }, { id: '2', label: 'CANCELLED', value: 'CANCELLED' }, { id: '3', label: 'INCORPORATED', value: 'INCORPORATED' }]
-	private category: RadioData[] = [{ id: '1', label: 'Cat 1', value: 'cat1' }, { id: '2', label: 'Cat 2', value: 'cat2' }, { id: '3', label: 'Cat 3', value: 'cat3' }]
 
 	private carService = new CarService();
 
@@ -45,7 +47,8 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 			userCarModels: [],
 			inSearch: false,
 			searchFilter: "",
-			searchType: SearchType.CAR_MODEL
+			searchType: SearchType.CAR_MODEL,
+			categories: []
 		}
 
 		this.setModel = this.setModel.bind(this);
@@ -59,6 +62,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 	async componentDidMount() {
 		let equipments = await this.carService.getUserCars(this.props["userID"]);
+		let categoriesList = await FOLService.getFolsCategories(this.props["userID"]);
 
 		let models: RadioData[] = [];
 
@@ -69,7 +73,23 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 			index++;
 		});
 
-		this.setState({ userCarModels: models });
+		const categoriesData = [];
+
+		for (let i = 0; i < categoriesList.length; i++) {
+			const category = categoriesList[i];
+			
+			const categoryObject = {
+				id: i + 1,
+				label: category,
+				value: category
+			};
+
+			categoriesData.push(categoryObject);
+
+		}
+
+		this.setState({userCarModels: models, categories: categoriesData});
+
 	}
 
 	private setModel(filter: string) {
@@ -115,7 +135,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Status" radioData={this.status} performsSearchFunction={this.setStatus} />
 				<TextInputCollapsible userID={this.props["userID"]} title="FOL Keyword" performsSearchFunction={this.setKeyword} />
 				<TextInputCollapsible userID={this.props["userID"]} title="FOL Title" performsSearchFunction={this.setTitle} />
-				<RadioGroupButtonCollapsible userID={this.props["userID"]} title=" FOL Category" radioData={this.category} performsSearchFunction={this.setCategory} />
+				<RadioGroupButtonCollapsible userID={this.props["userID"]} title=" FOL Category" radioData={this.state["categories"]} performsSearchFunction={this.setCategory} />
 			</ScrollView>
 		);
 
