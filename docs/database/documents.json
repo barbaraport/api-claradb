@@ -1,0 +1,14 @@
+{
+     "_id": ObjectId,
+     "Title": String,
+     "Equipment": String,
+     "Applicability": Int32,
+     "Issue description": String,
+     "Category": String,
+     "Status": String,
+     "Issue date": Date,
+     "Revision number": Double,
+     "Revision date": Date,
+     "Remarks": Int32,
+     "Keywords": Array
+}

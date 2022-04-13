@@ -1,0 +1,7 @@
+{
+     "_id": ObjectId,
+     "Username": String,
+     "Login": String,
+     "Password": Binary,
+     "Equipment": Array
+}
