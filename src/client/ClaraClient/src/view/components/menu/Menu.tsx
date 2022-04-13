@@ -53,7 +53,7 @@ export class Menu extends Component<MenuProps, MenuState> {
           return (
                <Modal visible={this.state["showMenu"]} transparent={true} onRequestClose={() => this.setState({ showMenu: false })}>
                     <TouchableOpacity activeOpacity={0} onPressIn={this.close} style={{ height: "100%" }}>
-                         <View style={{ alignSelf: "flex-start", marginTop: 50, marginLeft: 20, padding: 15, borderRadius: 16, backgroundColor: Colors.WHITE }}>
+                         <View style={[{ alignSelf: "flex-start", marginTop: 50, marginLeft: 20, padding: 15, borderRadius: 16, backgroundColor: Colors.WHITE }, Styles.shadow]}>
                               <MenuItem itemAction={this.redirectToHome} iconName="home" itemName="Home"></MenuItem>
                               <MenuItem itemAction={this.redirectFols} iconName="file-medical-alt" itemName="FOLs"></MenuItem>
                               <MenuItem itemAction={this.redirectToTermsOfUse} iconName="user-check" itemName="Terms of Use"></MenuItem>

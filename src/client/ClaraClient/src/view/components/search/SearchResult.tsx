@@ -92,9 +92,9 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
         let component = (
             <Modal transparent={true} onRequestClose={this.closeSearchResult}>
                 <TouchableOpacity style={{height: "100%"}} activeOpacity={1} onPress={this.closeSearchResult}>
-                    <View style={{margin: 50, marginTop: 120, height: "70%", backgroundColor: Colors.WHITE, borderRadius: 8, shadowColor: "#000", shadowOffset: {width: 0, height: 0,}, shadowOpacity: 0.50, shadowRadius: 4.22, elevation: 5}}>
+                    <View style={{alignSelf:"center", marginTop: 120, height: "80%", width:"90%", backgroundColor: Colors.WHITE, borderRadius: 8, shadowColor: "#000", shadowOffset: {width: 0, height: 0,}, shadowOpacity: 0.50, shadowRadius: 4.22, elevation: 5}}>
                         <Text style={{fontSize: 26, fontWeight: "bold", marginTop: 20, marginBottom: 20, alignSelf: "center"}}>Search result</Text>
-                        <ScrollView style={{paddingLeft: 20}}>
+                        <ScrollView style={{paddingHorizontal: 20}}>
                             {this.getSearchResult()}
                         </ScrollView>
                     </View>
