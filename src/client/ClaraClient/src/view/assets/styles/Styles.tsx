@@ -139,6 +139,13 @@ export const Styles = StyleSheet.create({
           flexDirection: "column",
           alignItems: "center"
      },
+     homeBackground:{
+          width: "100%", 
+          height: "100%", 
+          position: "absolute", 
+          opacity: 0.8, 
+          backgroundColor: '#B7E1FF'
+     },
      folPageScrollViewContent: {
           padding: 10,
      },

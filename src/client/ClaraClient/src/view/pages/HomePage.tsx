@@ -30,7 +30,11 @@ export class HomePage extends Component<HomePageProps, any> {
 	private buildComponent() {
 		let component = (
 			<View style={Styles.content}>
-				<ImageBackground source={require("../assets/imgs/phoneUser.jpg")} blurRadius={2} style={{width: "100%", height: "100%", position: "absolute", opacity: 0.7}}/>
+				<ImageBackground 
+					source={require("../assets/imgs/phoneUser.jpg")} blurRadius={2} 
+					style={Styles.homeBackground}
+					resizeMode="cover" imageStyle={{opacity: 0.8}}
+				/>
 				<View style={{marginTop: 150}}>
 					<Text style={{fontSize: 24, color: Colors.WHITE}}>What do you wish to see first?</Text>
 				</View>
