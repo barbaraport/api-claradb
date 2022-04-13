@@ -1,6 +1,10 @@
 # Montando o ambiente 💻
 
-### Para execução do projeto é necessario que você tenha o Python instalado em seu computador na versão 3.9.
+### Instale o MongoDB
+
+Baixe o [MongoDB](https://www.mongodb.com/try/download/tools) e instale-o. Após isso, crie um banco de dados chamado ```folconn``` na sua máquina local.
+
+### Para execução do projeto é necessario que você tenha, também, o Python instalado em seu computador na versão 3.9.
 
 ***Para fazer o download [clique aqui](https://www.python.org/downloads/release/python-390/)***.
 
