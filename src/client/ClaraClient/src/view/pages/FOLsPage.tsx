@@ -29,7 +29,7 @@ interface FOLsPageState {
 
 export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
-	private status: RadioData[] = [{ id: '1', label: 'IN EFFECT', value: 'INEFFECT' }, { id: '2', label: 'CANCELLED', value: 'CANCELLED' }, { id: '3', label: 'INCORPORATED', value: 'INCORPORATED' }]
+	private status: RadioData[] = [{ id: '1', label: 'IN EFFECT', value: 'IN EFFECT' }, { id: '2', label: 'CANCELLED', value: 'CANCELLED' }, { id: '3', label: 'INCORPORATED', value: 'INCORPORATED' }]
 	private category: RadioData[] = [{ id: '1', label: 'Cat 1', value: 'cat1' }, { id: '2', label: 'Cat 2', value: 'cat2' }, { id: '3', label: 'Cat 3', value: 'cat3' }]
 
 	private carService = new CarService();
