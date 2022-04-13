@@ -2,7 +2,7 @@ from bson import ObjectId
 from flask import Blueprint, request, make_response
 from werkzeug.exceptions import abort
 
-from src.models.database.MongoConnection import PyMongoConnection
+from models.database.MongoConnection import PyMongoConnection
 
 carRoutes = Blueprint("carRoutes", __name__)
 
