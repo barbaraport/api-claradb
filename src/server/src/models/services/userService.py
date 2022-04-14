@@ -1,4 +1,4 @@
-from src.models.database.MongoConnection import PyMongoConnection
+from models.database.MongoConnection import PyMongoConnection
 from bson.objectid import ObjectId
 
 

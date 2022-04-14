@@ -3,10 +3,10 @@ from flask import request
 from flask import abort
 from flask import jsonify
 
-from src.models.database.MongoConnection import PyMongoConnection
-from src.models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
+from models.database.MongoConnection import PyMongoConnection
+from models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
     getFolsByTitle
-from src.models.services.userService import getUserCarsList
+from models.services.userService import getUserCarsList
 
 folRoutes = Blueprint("folRoutes", __name__)
 

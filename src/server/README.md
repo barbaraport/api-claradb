@@ -18,6 +18,8 @@ Depois de instalado o python na máquina abra a pasta *server* no PyCharm, crie 
 
 ```pip install -r requirements.txt```
 
+Em alguns casos, pode ser que seja necessário utilizar o argumento ```--user``` também.
+
 ### Como rodar
 
 No terminal e dentro da pasta ```server/src``` execute os seguintes comandos para o start do projeto: ```python main.py```
