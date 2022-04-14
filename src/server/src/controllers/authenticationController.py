@@ -4,7 +4,7 @@ from flask import abort
 
 import bcrypt
 
-from src.models.database.MongoConnection import PyMongoConnection
+from models.database.MongoConnection import PyMongoConnection
 
 authRoutes = Blueprint("authRoutes", __name__)
 

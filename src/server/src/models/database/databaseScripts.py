@@ -1,7 +1,7 @@
 import pandas
 import bcrypt
 
-from src.models.database import MongoConnection
+from models.database import MongoConnection
 
 
 def checkInitialization():

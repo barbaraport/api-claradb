@@ -4,7 +4,7 @@ from flask_cors import CORS
 from models.database.databaseScripts import initializeDatabase
 from controllers.authenticationController import authRoutes
 from controllers.folController import folRoutes
-from src.controllers.carController import carRoutes
+from controllers.carController import carRoutes
 
 app = Flask(__name__)
 app.register_blueprint(authRoutes)

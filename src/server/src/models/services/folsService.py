@@ -1,6 +1,6 @@
 from flask import jsonify
 
-from src.models.database.MongoConnection import PyMongoConnection
+from models.database.MongoConnection import PyMongoConnection
 
 
 def getFolsByStatus(equipmentList, status):
