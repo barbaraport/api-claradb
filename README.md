@@ -27,8 +27,8 @@
                                    <td><p align="center">Entrega 1</p></td>
                                    <td><p align="justify">O acesso será liberado para clientes que possuem um cadastro. Eles poderão visualizar uma lista com as FOLs dos seus veículos.</p></td>
                                    <td><p align="center">14/04</p></td>
-                                   <td><p align="center"><a href="">Visualizar</a></p></td>
-                                   <td><p align="center"><a href="">Baixar</a></p></td>
+                                   <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/blob/main/docs/sprint_readmes/README_s1.md">Visualizar</a></p></td>
+                                   <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/releases/tag/v0.1">Baixar</a></p></td>
                             </tr>
                             <tr>
                                    <td><p align="center">Entrega 2</p></td>
