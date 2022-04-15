@@ -12,7 +12,7 @@
   
   <h2 align="center">:rainbow::spiral_calendar: Primeira Entrega :stars:</h2>
   <h3>:question: O que fizemos?</h3>
-  <p align="justify">Na sprint 1 decidimos iniciar o projeto a partir do acesso do usuário ao aplicativo, em que ele é cadastrado externamento e só o trazemos para o nosso banco, e a pesquisa das FOLs a partir do equipamento do usuário logado, status da FOL e palavras-chave da FOL. Ainda não é possível clicar nos resultados para visualizar o arquivo em PDF do documento selecionado.
+  <p align="justify">Na sprint 1 decidimos iniciar o projeto a partir do acesso do usuário ao aplicativo, em que ele é cadastrado externamente e só o trazemos para o nosso banco, e a pesquisa das FOLs a partir do equipamento do usuário logado, status da FOL e palavras-chave da FOL. Ainda não é possível clicar nos resultados para visualizar o arquivo em PDF do documento selecionado.
   </p>
   <p align="center">
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/media/imgs/user_stories/s1.png" width="348px"/>
@@ -75,7 +75,7 @@
 
 ```javascript
 {
-     "_id": ObjectId ,
+     "_id": ObjectId,
      "statusName": String,
      "statusValue": Boolean
 }
