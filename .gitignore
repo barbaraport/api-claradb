@@ -130,6 +130,7 @@ dmypy.json
 
 # IDE
 src/server/.idea/
+.idea/
 
 # npm
 src/client/ClaraClient/yarn.lock
