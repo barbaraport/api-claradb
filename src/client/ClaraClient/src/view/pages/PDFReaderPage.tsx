@@ -9,27 +9,38 @@ interface PDFReaderPageProps {
     userID: string;
 }
 
-interface PDFReaderPageState { }
+interface PDFReaderPageState {
+    fol: string;
+    folFirstPage: number;
+}
 
 export class PDFReaderPage extends Component<PDFReaderPageProps, PDFReaderPageState> {
 
     private folService = new FOLService();
 
     private async getFolFile() {
-        return await this.folService.getFol();
+        let folFile = await this.folService.getFol();
+        return folFile as string;
     }
 
-    private async getFolFirstPage () {
-        return await this.folService.getFolFirstPage(this.props.folTitle);
+    private async getFolFirstPage() {
+        let firstPage = await this.folService.getFolFirstPage(this.props.folTitle);
+        this.setState({ folFirstPage: firstPage });
+    }
+
+    componentDidMount () {
+        this.getFolFile();
+        this.getFolFirstPage();
     }
 
     render() {
-        return <View style={{flex:1, justifyContent: "flex-start", alignItems: "center" }}>
-            <Pdf
-                source={{ uri: "https://www.escaux.com/rsrc/EscauxCustomerDocs/DRD_T38Support_AdminGuide/T38_TEST_PAGES.pdf" }}
-                page={1}
-                style={Styles.pdf}
-            />
-        </View>;
+        const folFile = this.getFolFile();
+        return <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "center" }}>
+                <Pdf
+                    source={{ uri: folFile }}
+                    page={1}
+                    style={Styles.pdf}
+                />
+            </View>;
     }
 }

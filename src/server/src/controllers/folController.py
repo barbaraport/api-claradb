@@ -3,6 +3,8 @@ from flask import request
 from flask import abort
 from flask import jsonify
 
+import base64
+
 from models.database.MongoConnection import PyMongoConnection
 from models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
     getFolsByTitle, getFolFirstPage
@@ -100,11 +102,7 @@ def getByTitle():
 def getFolFile():
 
     opened_pdf = open("../resources/FOL-MUS-FATEC.pdf")
-
-    buffered = BytesIO()
-    opened_pdf.save(buffered, format="pdf")
-
-    fol_base_64 = base64.b64encode(buffered.getvalue()).decode()
+    fol_base_64 = base64.b64encode(opened_pdf.read())
 
     response = make_response(fol_base_64)
     return response
