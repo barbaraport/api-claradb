@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
 import { SearchType } from "../../../enumerations/SearchType";
 import { FOLSearchResult } from "../../../interfaces/FOLSearchResult";
@@ -15,7 +15,6 @@ interface SearchResultProps {
 
 interface SearchResultState {
     folsSearchResultList: Array<FOLSearchResult>,
-    inPdfReader: boolean,
     chosenFol: string;
 }
 
@@ -28,7 +27,6 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
 
         this.state = {
             folsSearchResultList: [],
-            inPdfReader: false,
             chosenFol: "MUS-003/19"
         };
 
@@ -76,7 +74,7 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
             const folData = this.state["folsSearchResultList"][i];
 
             const component = (
-                <TouchableOpacity key={"react-list-key-" + i} activeOpacity={0.3} onPress={() => { this.setToViewFolPdfReader }}>
+                <TouchableOpacity key={"react-list-key-" + i} activeOpacity={0.3}>
                     <SearchResultItem equipment={folData["Equipment"]} title={folData["Title"]} id={folData["id"]} issueDescription={folData["Issue description"]} />
                 </TouchableOpacity>
             );
@@ -93,35 +91,6 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
 
     }
 
-    private closeFolPdfReader() {
-        this.setState({ inPdfReader: false });
-
-    }
-
-    private setToViewFolPdfReader() {
-        this.setState({ inPdfReader: true });
-    }
-
-    private async showFolInPDF() {
-
-        this.closeSearchResult();
-        let folFirstPage = await this.folService.getFolFirstPage(this.state.chosenFol);
-
-        let pdfReaderComponent = (
-            <Modal transparent={true} onRequestClose={this.closeFolPdfReader}>
-                <Text>PDF Reader will be here! FOL Title: {this.state.chosenFol}</Text>
-                <Text>First Page: {folFirstPage}</Text>
-            </Modal>
-            // <Pdf
-            //     source={{ uri: "https://www.escaux.com/rsrc/EscauxCustomerDocs/DRD_T38Support_AdminGuide/T38_TEST_PAGES.pdf" }}
-            //     page={2}
-            //     style={Styles.pdf}
-            // />
-        );
-
-        return pdfReaderComponent;
-    }
-
     private buildComponent() {
         let component = (
             <>
@@ -135,11 +104,6 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
                         </View>
                     </TouchableOpacity>
                 </Modal>
-                {
-                    this.state.inPdfReader ?
-                    this.showFolInPDF :
-                    null
-                }
             </>
         );
 
