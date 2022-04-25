@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { ScrollView, Text, View } from "react-native";
-import { RadioData } from "../../types/RadioData";
-import { RadioGroupButtonCollapsible } from "../components/RadioGroupButtonCollapsible";
-import { TextInputCollapsible } from "../components/TextInputCollapsible";
-import { Styles } from "../assets/styles/Styles";
-import { CarService } from "../../services/CarService";
-import { SearchResult } from "../components/search/SearchResult";
+import { ScrollView, Text } from "react-native";
 import { SearchType } from "../../enumerations/SearchType";
+import { CarService } from "../../services/CarService";
 import { FOLService } from "../../services/FOLService";
+import { RadioData } from "../../types/RadioData";
+import { Styles } from "../assets/styles/Styles";
+import { RadioGroupButtonCollapsible } from "../components/RadioGroupButtonCollapsible";
+import { SearchResult } from "../components/search/SearchResult";
+import { TextInputCollapsible } from "../components/TextInputCollapsible";
 
 interface FOLsPageProps {
 	pageRedirectFunction: Function,
@@ -24,7 +24,7 @@ interface FOLsPageState {
 	userCarModels: RadioData[];
 
 	inSearch: boolean;
-	searchType: SearchType,
+	searchType: SearchType;
 	searchFilter: string;
 
 	categories: Array<any>
@@ -77,7 +77,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 		for (let i = 0; i < categoriesList.length; i++) {
 			const category = categoriesList[i];
-			
+
 			const categoryObject = {
 				id: i + 1,
 				label: category,
@@ -88,7 +88,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 		}
 
-		this.setState({userCarModels: models, categories: categoriesData});
+		this.setState({ userCarModels: models, categories: categoriesData });
 
 	}
 
@@ -128,7 +128,12 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 				<Text style={Styles.title}>Filter FOLs</Text>
 
 				{this.state["inSearch"] &&
-					<SearchResult closeSearchResultFunction={this.closeSearchResult} searchType={this.state["searchType"]} searchFilter={this.state["searchFilter"]} userID={this.props["userID"]}></SearchResult>
+					<SearchResult
+						closeSearchResultFunction={this.closeSearchResult}
+						searchType={this.state["searchType"]}
+						searchFilter={this.state["searchFilter"]}
+						userID={this.props["userID"]}>
+					</SearchResult>
 				}
 
 				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />

@@ -5,7 +5,7 @@ from flask import jsonify
 
 from models.database.MongoConnection import PyMongoConnection
 from models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
-    getFolsByTitle
+    getFolsByTitle, getFolFirstPage
 from models.services.userService import getUserCarsList
 
 folRoutes = Blueprint("folRoutes", __name__)
@@ -94,3 +94,12 @@ def getByTitle():
     folsList = getFolsByTitle(carsList, title)
 
     return folsList
+
+
+@folRoutes.route("/fol/getFirstPage", methods=["GET"])
+def getFirstPage():
+    fol_title = request.args.get("folTitle")
+
+    first_page = getFolFirstPage(fol_title)
+
+    return first_page

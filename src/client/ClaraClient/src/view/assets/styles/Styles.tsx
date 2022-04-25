@@ -1,8 +1,11 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
 import { Sizes } from "../../../enumerations/Sizes";
 
 export const Styles = StyleSheet.create({
+     pdf: {
+		flex: 1
+	},
      textInputCollapsible: {
           flexDirection: 'row',
           justifyContent: 'space-between',

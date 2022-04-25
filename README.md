@@ -6,7 +6,6 @@
     <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
     <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"/>
     <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/>
-    <img src="https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37"/>
   </p>
   <p align="justify">A empresa parceira fabrica diversos veículos, que são utilizados ao redor do mundo por todos os seus clientes. Algumas vezes, eles são fabricados e possuem algum problema generalizado e os compradores precisam ser informados para que não ocorram acidentes ao utilizá-los. Atualmente, a empresa parceira não possui nenhuma plataforma que centraliza todas as informações e notifica os usuários sobre <i>recalls</i> e avisos sobre possíveis avarias nos veículos fabricados. Sendo assim, nós, da equipe ClaraDB, fomos desafiados a desenvolver um aplicativo que comunica, através de notificações, os usuários sobre atualizações de possíveis transtornos nos veículos e automatiza a visualização do novo aviso.</p>
   

@@ -3,6 +3,26 @@ import { FOLSearchResult } from "../interfaces/FOLSearchResult";
 
 export class FOLService {
 
+     public async getFolFirstPage (folTitle: string) {
+
+          let request = {
+               method: "GET",
+               headers: {
+                    Accept: 'application/json',
+               }
+          }
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/getFirstPage?folTitle=" + folTitle, request);
+
+          if (response["ok"]) {
+               const folFirstPage = await response.json() as number;
+
+               return folFirstPage;
+          }
+
+          throw new Error(`There was an error to get the first page from ${folTitle} FOL`);
+     }
+
      public static async getFolsByEquipment(equipment: string) {
           let request = {
                method: "GET",
