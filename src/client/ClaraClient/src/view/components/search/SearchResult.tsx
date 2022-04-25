@@ -10,6 +10,7 @@ interface SearchResultProps {
     searchType: SearchType,
     searchFilter: string,
     closeSearchResultFunction: Function,
+    pageRedirectFunction: Function,
     userID: string;
 }
 
@@ -20,7 +21,6 @@ interface SearchResultState {
 
 export class SearchResult extends Component<SearchResultProps, SearchResultState> {
 
-    private folService = new FOLService();
 
     constructor(props: SearchResultProps) {
         super(props);

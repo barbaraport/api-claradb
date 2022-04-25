@@ -129,11 +129,12 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 				{this.state["inSearch"] &&
 					<SearchResult
+						pageRedirectFunction={this.props.pageRedirectFunction}
 						closeSearchResultFunction={this.closeSearchResult}
 						searchType={this.state["searchType"]}
 						searchFilter={this.state["searchFilter"]}
-						userID={this.props["userID"]}>
-					</SearchResult>
+						userID={this.props["userID"]}
+					/>
 				}
 
 				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />

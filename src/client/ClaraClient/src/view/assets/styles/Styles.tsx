@@ -4,7 +4,9 @@ import { Sizes } from "../../../enumerations/Sizes";
 
 export const Styles = StyleSheet.create({
      pdf: {
-		flex: 1
+		flex: 1,
+          width:"100%",
+          height:"100%"
 	},
      textInputCollapsible: {
           flexDirection: 'row',

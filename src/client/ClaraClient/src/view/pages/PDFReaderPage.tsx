@@ -1,36 +1,35 @@
 import React, { Component } from "react";
+import { View } from "react-native";
 import Pdf from "react-native-pdf";
 import { FOLService } from "../../services/FOLService";
 import { Styles } from "../assets/styles/Styles";
 
-interface PDFReaderPageProps { 
-     folTitle: string;
+interface PDFReaderPageProps {
+    folTitle: string;
+    userID: string;
 }
 
 interface PDFReaderPageState { }
 
 export class PDFReaderPage extends Component<PDFReaderPageProps, PDFReaderPageState> {
 
-     private folService = new FOLService();
+    private folService = new FOLService();
 
-     private async showFolInPDF() {
+    private async getFolFile() {
+        return await this.folService.getFol();
+    }
 
-          let folFirstPage = await this.folService.getFolFirstPage(this.props.folTitle);
-  
-          let pdfReaderComponent = (
-              <Pdf
-                  source={{ uri: "https://www.escaux.com/rsrc/EscauxCustomerDocs/DRD_T38Support_AdminGuide/T38_TEST_PAGES.pdf" }}
-                  page={folFirstPage}
-                  style={Styles.pdf}
-              />
-          );
-  
-          return pdfReaderComponent;
-      }
+    private async getFolFirstPage () {
+        return await this.folService.getFolFirstPage(this.props.folTitle);
+    }
 
-      render () {
-           
-          let component = this.showFolInPDF();
-          return component;
-      }
+    render() {
+        return <View style={{flex:1, justifyContent: "flex-start", alignItems: "center" }}>
+            <Pdf
+                source={{ uri: "https://www.escaux.com/rsrc/EscauxCustomerDocs/DRD_T38Support_AdminGuide/T38_TEST_PAGES.pdf" }}
+                page={1}
+                style={Styles.pdf}
+            />
+        </View>;
+    }
 }

@@ -3,4 +3,5 @@ export enum PageAliases {
     HOME = "Home",
     FOLS = "FOLs",
     TERMS_OF_USE = "TermsOfUse",
+    PDF_READER = "PdfReader",
 }

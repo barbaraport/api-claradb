@@ -96,6 +96,20 @@ def getByTitle():
     return folsList
 
 
+@folRoutes.route("/fol", methods=["GET"])
+def getFolFile():
+
+    opened_pdf = open("../resources/FOL-MUS-FATEC.pdf")
+
+    buffered = BytesIO()
+    opened_pdf.save(buffered, format="pdf")
+
+    fol_base_64 = base64.b64encode(buffered.getvalue()).decode()
+
+    response = make_response(fol_base_64)
+    return response
+
+
 @folRoutes.route("/fol/getFirstPage", methods=["GET"])
 def getFirstPage():
     fol_title = request.args.get("folTitle")

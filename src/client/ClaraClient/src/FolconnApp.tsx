@@ -7,6 +7,7 @@ import { FolconnHeader } from "./view/components/menu/FolconnHeader";
 import { FolPage } from "./view/pages/FOLsPage";
 import { HomePage } from "./view/pages/HomePage";
 import { LoginPage } from "./view/pages/LoginPage";
+import { PDFReaderPage } from "./view/pages/PDFReaderPage";
 import { TermsOfUsePage } from "./view/pages/TermsOfUsePage";
 
 interface FolconnAppState {
@@ -32,8 +33,8 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 
 	}
 
-	private setUserId(userID: string){
-		this.setState({userID: userID});
+	private setUserId(userID: string) {
+		this.setState({ userID: userID });
 
 	}
 
@@ -50,25 +51,36 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		const homePage: JSX.Element = (
 			<>
 				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<HomePage pageRedirectFunction={this.changeCurrentPage} userID={this.state["userID"]}/>
+				<HomePage pageRedirectFunction={this.changeCurrentPage} userID={this.state["userID"]} />
 			</>
 		);
 
 		const loginPage: JSX.Element = (
-			<LoginPage pageRedirectFunction={this.changeCurrentPage} setUserIDFunction={this.setUserId}/>
+			// <LoginPage pageRedirectFunction={this.changeCurrentPage} setUserIDFunction={this.setUserId} />
+			<>
+				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
+				<PDFReaderPage userID={this.state.userID} folTitle="MUS-003/19"></PDFReaderPage>
+			</>
 		);
 
 		const folsPage: JSX.Element = (
 			<>
 				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<FolPage pageRedirectFunction={this.changeCurrentPage} userID={this.state["userID"]}/>
+				<FolPage pageRedirectFunction={this.changeCurrentPage} userID={this.state["userID"]} />
 			</>
 		);
 
 		const termsOfUsePage: JSX.Element = (
 			<>
 				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<TermsOfUsePage pageRedirectFunction={this.changeCurrentPage} userID={this.state["userID"]}/>
+				<TermsOfUsePage pageRedirectFunction={this.changeCurrentPage} userID={this.state["userID"]} />
+			</>
+		);
+
+		const pdfReaderPage: JSX.Element = (
+			<>
+				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
+				<PDFReaderPage userID={this.state.userID} folTitle="MUS-003/19"></PDFReaderPage>
 			</>
 		);
 
@@ -84,6 +96,9 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 
 			case PageAliases.TERMS_OF_USE:
 				return termsOfUsePage;
+
+			case PageAliases.PDF_READER:
+				return pdfReaderPage;
 
 			default:
 				return homePage;

@@ -3,6 +3,20 @@ import { FOLSearchResult } from "../interfaces/FOLSearchResult";
 
 export class FOLService {
 
+     public async getFol () {
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol");
+
+          if (response["ok"]) {
+               const fol = await response.json();
+
+               return fol;
+          }
+
+          throw new Error(`There was an error getting the FOL File.`);
+
+     }
+
      public async getFolFirstPage (folTitle: string) {
 
           let request = {
