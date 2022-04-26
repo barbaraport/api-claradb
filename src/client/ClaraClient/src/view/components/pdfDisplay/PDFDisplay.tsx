@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, Modal, Touchable, TouchableOpacity, View } from "react-native";
+import { Modal, TouchableOpacity, View } from "react-native";
 import Pdf from "react-native-pdf";
 import { FOLService } from "../../../services/FOLService";
 import { Styles } from "../../assets/styles/Styles";

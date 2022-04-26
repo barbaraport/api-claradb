@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, Text, TouchableNativeFeedbackBase, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { User } from "../../../model/User";
 import { UserService } from "../../../services/UserService";
 import { Styles } from "../../assets/styles/Styles";

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Text } from "react-native";
-import Pdf from "react-native-pdf";
-import { Styles } from "../assets/styles/Styles";
 
 
 interface TermsOfUsePageProps {
