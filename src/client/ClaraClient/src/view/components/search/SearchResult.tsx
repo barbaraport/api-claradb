@@ -16,8 +16,7 @@ interface SearchResultProps {
 }
 
 interface SearchResultState {
-    folsSearchResultList: Array<FOLSearchResult>,
-    chosenFol: string;
+    folsSearchResultList: Array<FOLSearchResult>
 }
 
 export class SearchResult extends Component<SearchResultProps, SearchResultState> {
@@ -27,8 +26,7 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
         super(props);
 
         this.state = {
-            folsSearchResultList: [],
-            chosenFol: "MUS-003/19"
+            folsSearchResultList: []
         };
 
         this.closeSearchResult = this.closeSearchResult.bind(this);
@@ -93,7 +91,7 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
     private buildComponent() {
         let component = (
             <>
-                <Modal transparent={true} onRequestClose={this.closeSearchResult}>
+                <Modal transparent={true}>
                     <TouchableOpacity style={{ height: "100%" }} activeOpacity={1} onPress={this.closeSearchResult}>
                         <View style={{ alignSelf: "center", marginTop: 120, height: "80%", width: "90%", backgroundColor: Colors.WHITE, borderRadius: 8, shadowColor: "#000", shadowOffset: { width: 0, height: 0, }, shadowOpacity: 0.50, shadowRadius: 4.22, elevation: 5 }}>
                             <Text style={{ fontSize: 26, fontWeight: "bold", marginTop: 20, marginBottom: 20, alignSelf: "center" }}>Search result</Text>

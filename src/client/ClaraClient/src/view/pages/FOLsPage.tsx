@@ -55,13 +55,14 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 			searchType: SearchType.CAR_MODEL,
 			categories: []
 		}
-		
+
 		this.setTitle = this.setTitle.bind(this);
 		this.setModel = this.setModel.bind(this);
 		this.setStatus = this.setStatus.bind(this);
 		this.setKeyword = this.setKeyword.bind(this);
 		this.setCategory = this.setCategory.bind(this);
 		this.showPdfFile = this.showPdfFile.bind(this);
+		this.closeFolPdf = this.closeFolPdf.bind(this);
 		this.closeSearchResult = this.closeSearchResult.bind(this);
 	}
 
@@ -97,8 +98,8 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 	}
 
-	private showPdfFile (title: string) {
-		this.setState({folTitle: title, showPdf: true, inSearch: false});
+	private showPdfFile(title: string) {
+		this.setState({ folTitle: title, showPdf: true, inSearch: false });
 	}
 
 	private setModel(filter: string) {
@@ -131,6 +132,10 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 	}
 
+	private closeFolPdf() {
+		this.setState({ showPdf: false });
+	}
+
 	private buildComponent() {
 		let component = (
 			<ScrollView style={Styles.folPageScrollViewContent}>
@@ -148,7 +153,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 				}
 
 				{
-					this.state.showPdf && <PDFDisplay folTitle={this.state.folTitle}/>
+					this.state.showPdf && <PDFDisplay folTitle={this.state.folTitle} closePdfDisplay={this.closeFolPdf}/>
 				}
 
 				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />
