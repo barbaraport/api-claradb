@@ -34,6 +34,9 @@ export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
     async componentDidMount() {
         let folBase64 = await this.getFolFile();
         this.setState({ fol: folBase64 });
+
+        let folFirstPageNumber = await this.getFolFirstPage();
+        this.setState({ folFirstPage: folFirstPageNumber });
     }
 
     private closePdfDisplay() {
@@ -53,7 +56,7 @@ export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
     private getPdfRenderer() {
         let view = <>
             <Modal transparent={true}>
-                <TouchableOpacity style={{ height: 120 }} activeOpacity={1} onPress={this.closePdfDisplay}/>
+                <TouchableOpacity style={{ height: 120 }} activeOpacity={1} onPress={this.closePdfDisplay} />
                 <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "center", height: "100%" }}>
                     <Pdf
                         page={this.state.folFirstPage}
