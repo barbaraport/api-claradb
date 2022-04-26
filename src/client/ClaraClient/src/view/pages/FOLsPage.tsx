@@ -5,6 +5,7 @@ import { CarService } from "../../services/CarService";
 import { FOLService } from "../../services/FOLService";
 import { RadioData } from "../../types/RadioData";
 import { Styles } from "../assets/styles/Styles";
+import { PDFDisplay } from "../components/pdfDisplay/PDFDisplay";
 import { RadioGroupButtonCollapsible } from "../components/RadioGroupButtonCollapsible";
 import { SearchResult } from "../components/search/SearchResult";
 import { TextInputCollapsible } from "../components/TextInputCollapsible";
@@ -20,12 +21,14 @@ interface FOLsPageState {
 	keyword: string;
 	title: string;
 	category: string;
+	folTitle: string;
 
 	userCarModels: RadioData[];
 
 	inSearch: boolean;
 	searchType: SearchType;
 	searchFilter: string;
+	showPdf: boolean;
 
 	categories: Array<any>
 }
@@ -41,23 +44,25 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 		this.state = {
 			model: '',
 			title: '',
+			folTitle: '',
 			category: '',
 			keyword: '',
 			status: '',
 			userCarModels: [],
 			inSearch: false,
 			searchFilter: "",
+			showPdf: false,
 			searchType: SearchType.CAR_MODEL,
 			categories: []
 		}
-
+		
+		this.setTitle = this.setTitle.bind(this);
 		this.setModel = this.setModel.bind(this);
 		this.setStatus = this.setStatus.bind(this);
 		this.setKeyword = this.setKeyword.bind(this);
 		this.setCategory = this.setCategory.bind(this);
-		this.setTitle = this.setTitle.bind(this);
+		this.showPdfFile = this.showPdfFile.bind(this);
 		this.closeSearchResult = this.closeSearchResult.bind(this);
-
 	}
 
 	async componentDidMount() {
@@ -90,6 +95,10 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 		this.setState({ userCarModels: models, categories: categoriesData });
 
+	}
+
+	private showPdfFile (title: string) {
+		this.setState({folTitle: title, showPdf: true, inSearch: false});
 	}
 
 	private setModel(filter: string) {
@@ -129,12 +138,17 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 				{this.state["inSearch"] &&
 					<SearchResult
+						getFolTitle={this.showPdfFile}
 						pageRedirectFunction={this.props.pageRedirectFunction}
 						closeSearchResultFunction={this.closeSearchResult}
 						searchType={this.state["searchType"]}
 						searchFilter={this.state["searchFilter"]}
 						userID={this.props["userID"]}
 					/>
+				}
+
+				{
+					this.state.showPdf && <PDFDisplay folTitle={this.state.folTitle}/>
 				}
 
 				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />

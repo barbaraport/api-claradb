@@ -1,29 +1,28 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { Modal, View } from "react-native";
 import Pdf from "react-native-pdf";
-import { FOLService } from "../../services/FOLService";
-import { Styles } from "../assets/styles/Styles";
+import { FOLService } from "../../../services/FOLService";
+import { Styles } from "../../assets/styles/Styles";
 
-interface PDFReaderPageProps {
+interface PDFDisplayProps {
     folTitle: string;
-    userID: string;
 }
 
-interface PDFReaderPageState {
+interface PDFDisplayState {
     fol: string;
     folFirstPage: number;
 }
 
-export class PDFReaderPage extends Component<PDFReaderPageProps, PDFReaderPageState> {
+export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
 
     private folService = new FOLService();
 
-    constructor(props: PDFReaderPageProps) {
+    constructor(props: PDFDisplayProps) {
         super(props);
 
         this.state = {
             fol: "",
-            folFirstPage: 20
+            folFirstPage: 5
         }
     }
 
@@ -44,13 +43,15 @@ export class PDFReaderPage extends Component<PDFReaderPageProps, PDFReaderPageSt
 
     private getPdfRenderer() {
 
-        let view = <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "center" }}>
-            <Pdf
-                page={this.state.folFirstPage}
-                source={{ uri: this.state.fol }}
-                style={Styles.pdf}
-            />
-        </View>;
+        let view = <Modal transparent={true}>
+            <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "center", marginTop:120 }}>
+                <Pdf
+                    page={this.state.folFirstPage}
+                    source={{ uri: this.state.fol }}
+                    style={Styles.pdf}
+                />
+            </View>
+        </Modal>
 
         return view;
     }

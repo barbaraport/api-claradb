@@ -11,6 +11,7 @@ interface SearchResultProps {
     searchFilter: string,
     closeSearchResultFunction: Function,
     pageRedirectFunction: Function,
+    getFolTitle: Function,
     userID: string;
 }
 
@@ -74,9 +75,7 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
             const folData = this.state["folsSearchResultList"][i];
 
             const component = (
-                <TouchableOpacity key={"react-list-key-" + i} activeOpacity={0.3}>
-                    <SearchResultItem equipment={folData["Equipment"]} title={folData["Title"]} id={folData["id"]} issueDescription={folData["Issue description"]} />
-                </TouchableOpacity>
+                <SearchResultItem key={"react-list-key-" + i} onPress={this.props.getFolTitle} equipment={folData["Equipment"]} title={folData["Title"]} id={folData["id"]} issueDescription={folData["Issue description"]} />
             );
 
             searchResultItems.push(component);

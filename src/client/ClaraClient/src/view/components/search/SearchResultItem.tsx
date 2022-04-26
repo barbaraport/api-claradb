@@ -1,32 +1,40 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 
 
 interface SearchResultItemProps {
     id: string,
     title: string,
     equipment: string,
-    issueDescription: string
+    issueDescription: string,
+    onPress: Function
 }
 
 export class SearchResultItem extends Component<SearchResultItemProps, any> {
     constructor(props: SearchResultItemProps) {
         super(props);
 
+        this.openPdf = this.openPdf.bind(this);
     }
 
-    private buildComponent(){
+    private openPdf() {
+        this.props.onPress(this.props.title);
+    }
+
+    private buildComponent() {
         let component = (
-            <View style={{marginBottom: 15}}>
-                <Text style={{fontSize: 18}}>{this.props["title"] + " - " + this.props["equipment"]}</Text>
-                <Text style={{fontSize: 16}}>{this.props["issueDescription"]}</Text>
-            </View>
+            <TouchableOpacity activeOpacity={0.3} onPress={this.openPdf}>
+                <View style={{ marginBottom: 15 }}>
+                    <Text style={{ fontSize: 18 }}>{this.props["title"] + " - " + this.props["equipment"]}</Text>
+                    <Text style={{ fontSize: 16 }}>{this.props["issueDescription"]}</Text>
+                </View>
+            </TouchableOpacity>
         );
 
         return component;
     }
 
-    render(){
+    render() {
         const component = this.buildComponent();
 
         return component;

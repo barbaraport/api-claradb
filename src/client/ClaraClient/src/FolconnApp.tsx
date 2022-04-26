@@ -7,7 +7,6 @@ import { FolconnHeader } from "./view/components/menu/FolconnHeader";
 import { FolPage } from "./view/pages/FOLsPage";
 import { HomePage } from "./view/pages/HomePage";
 import { LoginPage } from "./view/pages/LoginPage";
-import { PDFReaderPage } from "./view/pages/PDFReaderPage";
 import { TermsOfUsePage } from "./view/pages/TermsOfUsePage";
 
 interface FolconnAppState {
@@ -73,13 +72,6 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 			</>
 		);
 
-		const pdfReaderPage: JSX.Element = (
-			<>
-				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<PDFReaderPage userID={this.state.userID} folTitle="MUS-003/19"></PDFReaderPage>
-			</>
-		);
-
 		switch (this.state["currentPage"]) {
 			case PageAliases.HOME:
 				return homePage;
@@ -92,9 +84,6 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 
 			case PageAliases.TERMS_OF_USE:
 				return termsOfUsePage;
-
-			case PageAliases.PDF_READER:
-				return pdfReaderPage;
 
 			default:
 				return homePage;
