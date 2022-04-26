@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, TouchableOpacity, View } from "react-native";
+import { Dimensions, Modal, TouchableOpacity, View } from "react-native";
 import Pdf from "react-native-pdf";
 import { FOLService } from "../../../services/FOLService";
 import { Styles } from "../../assets/styles/Styles";
@@ -51,18 +51,18 @@ export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
     }
 
     private getPdfRenderer() {
-
-        let view = <Modal transparent={true}>
-            <TouchableOpacity style={{ height: "100%" }} activeOpacity={1} onPress={this.closePdfDisplay}>
-                <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "center", marginTop: 100 }}>
+        let view = <>
+            <Modal transparent={true}>
+                <TouchableOpacity style={{ height: 120 }} activeOpacity={1} onPress={this.closePdfDisplay}/>
+                <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "center", height: "100%" }}>
                     <Pdf
                         page={this.state.folFirstPage}
                         source={{ uri: this.state.fol }}
                         style={Styles.pdf}
                     />
                 </View>
-            </TouchableOpacity>
-        </Modal>
+            </Modal>
+        </>
 
         return view;
     }
