@@ -8,8 +8,8 @@ export class FOLService {
           const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol");
 
           if (response["ok"]) {
-               const fol = await response.json();
-
+               let fol = await response.json();
+               fol = "data:application/pdf;base64," + fol.data
                return fol;
           }
 

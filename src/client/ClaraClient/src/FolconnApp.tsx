@@ -56,11 +56,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		);
 
 		const loginPage: JSX.Element = (
-			// <LoginPage pageRedirectFunction={this.changeCurrentPage} setUserIDFunction={this.setUserId} />
-			<>
-				<FolconnHeader pageRedirectFunction={this.changeCurrentPage} goBack={this.goBack}></FolconnHeader>
-				<PDFReaderPage userID={this.state.userID} folTitle="MUS-003/19"></PDFReaderPage>
-			</>
+			<LoginPage pageRedirectFunction={this.changeCurrentPage} setUserIDFunction={this.setUserId} />
 		);
 
 		const folsPage: JSX.Element = (

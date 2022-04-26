@@ -1,7 +1,9 @@
 from flask import Blueprint
 from flask import request
+from flask import Response
 from flask import abort
 from flask import jsonify
+from flask import make_response
 
 import base64
 
@@ -101,10 +103,12 @@ def getByTitle():
 @folRoutes.route("/fol", methods=["GET"])
 def getFolFile():
 
-    opened_pdf = open("../resources/FOL-MUS-FATEC.pdf")
-    fol_base_64 = base64.b64encode(opened_pdf.read())
+    opened_pdf = open("../resources/FOL-MUS-FATEC.pdf", "rb")
+    opened_pdf_read = opened_pdf.read()
 
-    response = make_response(fol_base_64)
+    fol_base_64 = base64.b64encode(opened_pdf_read).decode()
+
+    response = make_response(jsonify({"data": str(fol_base_64)}))
     return response
 
 
