@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import Pdf from "react-native-pdf";
 import { FOLService } from "../../services/FOLService";
 import { Styles } from "../assets/styles/Styles";
@@ -21,8 +21,15 @@ export class PDFReaderPage extends Component<PDFReaderPageProps, PDFReaderPageSt
     constructor(props: PDFReaderPageProps) {
         super(props);
 
-        this.setState({ fol: "" });
-        this.setState({ folFirstPage: 0 });
+        this.state = {
+            fol: "",
+            folFirstPage: 20
+        }
+    }
+
+    async componentDidMount() {
+        let folBase64 = await this.getFolFile();
+        this.setState({ fol: folBase64 });
     }
 
     private async getFolFile() {
@@ -39,8 +46,8 @@ export class PDFReaderPage extends Component<PDFReaderPageProps, PDFReaderPageSt
 
         let view = <View style={{ flex: 1, justifyContent: "flex-start", alignItems: "center" }}>
             <Pdf
-                page={2}
-                source={{ uri: "http://www.africau.edu/images/default/sample.pdf" }}
+                page={this.state.folFirstPage}
+                source={{ uri: this.state.fol }}
                 style={Styles.pdf}
             />
         </View>;
