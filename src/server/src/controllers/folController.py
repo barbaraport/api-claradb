@@ -1,12 +1,10 @@
+import base64
+
 from flask import Blueprint
-from flask import request
-from flask import Response
 from flask import abort
 from flask import jsonify
 from flask import make_response
-
-import base64
-
+from flask import request
 from models.database.MongoConnection import PyMongoConnection
 from models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
     getFolsByTitle, getFolFirstPage
