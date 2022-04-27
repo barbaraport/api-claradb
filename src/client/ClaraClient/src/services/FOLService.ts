@@ -8,9 +8,8 @@ export class FOLService {
           const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol");
 
           if (response["ok"]) {
-               let fol = await response.json();
-               fol = "data:application/pdf;base64," + fol.data
-               return fol;
+               const fol = await response.json();
+               return "data:application/pdf;base64," + fol.data as string;
           }
 
           throw new Error(`There was an error getting the FOL File.`);
@@ -29,9 +28,8 @@ export class FOLService {
           const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/getFirstPage?folTitle=" + folTitle, request);
 
           if (response["ok"]) {
-               const folFirstPage = await response.json() as number;
-
-               return folFirstPage;
+               const folFirstPage = await response.json();
+               return folFirstPage.page as number;
           }
 
           throw new Error(`There was an error to get the first page from ${folTitle} FOL`);
