@@ -1,10 +1,10 @@
 # :running_woman: Como rodar o aplicativo
 
-Primeiramente, clone o repositório. Depois siga os seguintes passos:
+Primeiramente, clone o repositório. Atente-se sobre o caminho do clone dentro da sua máquina. Evite que quaisquer pastas tenham caracteres especiais e espaços no nome. Depois, siga os seguintes passos:
 
 ## Android :robot:
 
-1. Instale o Java. Talvez seja necessário reiniciar o computador para que a instalação seja reconhecida.
+1. Instale o JDK (Java Development Kit). Recomendamos utilizar o [JDK 8](https://www.oracle.com/br/java/technologies/javase/javase8-archive-downloads.html). Talvez seja necessário reiniciar o computador para que a instalação seja reconhecida.
 2. Instale o NodeJS. Talvez seja necessário reiniciar o computador para que a instalação seja reconhecida.
 3. Crie a variável de ambiente, para o sistema, chamada ```JAVA_HOME```. Nela terá o caminho em que o JDK está instalado. Exemplo: ```C:\Program Files\Java\jdk-15.0.2```.
 4. Adicione o caminho ```C:\Program Files\Java\jdk-15.0.2\bin``` (não se esqueça de verificar a versão do seu JDK) a uma variável chamada ```Path```, já existente, nas variáveis de sistema. Crie uma nova linha (:warning: cuidado para não alterar os caminhos já existentes :warning:) Esse passo faz com que comandos do Java sejam reconhecidos no terminal.
