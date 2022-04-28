@@ -1,3 +1,5 @@
+import PyPDF2
+import re
 from flask import jsonify
 
 from models.database.MongoConnection import PyMongoConnection
@@ -125,3 +127,26 @@ def getFolsByTitle(carsList, title):
     document = jsonify(list(conn.getDocuments("folconn", "documents", condition, projection)))
 
     return document
+
+
+def getFolFirstPage(folTitle):
+    opened_pdf = PyPDF2.PdfFileReader("../resources/FOL-MUS-FATEC.pdf")
+    total_pages_pdf = opened_pdf.getNumPages()
+
+    page = 0
+    total_matches = 0
+
+    for page_number in range(0, total_pages_pdf):
+
+        opened_page = opened_pdf.getPage(page_number)
+        page_text = opened_page.extractText()
+
+        result_search = re.search(folTitle, page_text)
+        if result_search is not None:
+            total_matches += 1
+
+            if total_matches > 1:
+                page = page_number + 1
+                break
+
+    return jsonify({"page": page})

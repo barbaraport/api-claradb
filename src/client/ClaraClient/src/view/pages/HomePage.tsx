@@ -1,4 +1,3 @@
-import { LinearGradient } from "expo-linear-gradient";
 import React, { Component } from "react";
 import { Alert, ImageBackground, Text, View } from "react-native";
 import { Colors } from "../../enumerations/Colors";

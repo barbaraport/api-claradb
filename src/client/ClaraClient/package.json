@@ -10,6 +10,8 @@
     "dev": "expo start"
   },
   "dependencies": {
+    "@config-plugins/react-native-blob-util": "^1.0.3",
+    "@config-plugins/react-native-pdf": "^1.0.2",
     "@expo/ngrok": "^4.1.0",
     "@types/react": "^17.0.43",
     "expo": ">=44.0.0-0 <45.0.0",
@@ -19,10 +21,11 @@
     "react": "17.0.2",
     "react-dom": "^18.0.0",
     "react-native": "0.64.3",
+    "react-native-blob-util": "^0.15.0",
     "react-native-collapsible": "^1.6.0",
+    "react-native-pdf": "^6.5.0",
     "react-native-radio-buttons": "^1.0.0",
-    "react-native-radio-buttons-group": "^2.2.10",
-    "react-native-web": "^0.17.7"
+    "react-native-radio-buttons-group": "^2.2.10"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

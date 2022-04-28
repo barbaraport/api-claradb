@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert, Text, TouchableNativeFeedbackBase, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { User } from "../../../model/User";
 import { UserService } from "../../../services/UserService";
 import { Styles } from "../../assets/styles/Styles";
@@ -78,7 +78,7 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 			<View style={[Styles.formModal, Styles.shadow]}>
 				<Text style={Styles.title}>Welcome!</Text>
 				<View>
-					<FolconnInput placeholder="Username" type="username" ejectFunction={this.receiveTypedUserName}secureText={false}/>
+					<FolconnInput placeholder="Username" type="username" ejectFunction={this.receiveTypedUserName} secureText={false}/>
 					<FolconnInput placeholder="Password" type="password" ejectFunction={this.receiveTypedPassword} secureText={true}/>
 					<FolconnButton size="small" text="Log in" onClick={this.submitLoginForm}/>
 				</View>

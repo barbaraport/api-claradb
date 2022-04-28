@@ -3,6 +3,38 @@ import { FOLSearchResult } from "../interfaces/FOLSearchResult";
 
 export class FOLService {
 
+     public async getFol () {
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol");
+
+          if (response["ok"]) {
+               const fol = await response.json();
+               return "data:application/pdf;base64," + fol.data as string;
+          }
+
+          throw new Error(`There was an error getting the FOL File.`);
+
+     }
+
+     public async getFolFirstPage (folTitle: string) {
+
+          let request = {
+               method: "GET",
+               headers: {
+                    Accept: 'application/json',
+               }
+          }
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/getFirstPage?folTitle=" + folTitle, request);
+
+          if (response["ok"]) {
+               const folFirstPage = await response.json();
+               return folFirstPage.page as number;
+          }
+
+          throw new Error(`There was an error to get the first page from ${folTitle} FOL`);
+     }
+
      public static async getFolsByEquipment(equipment: string) {
           let request = {
                method: "GET",

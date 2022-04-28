@@ -10,16 +10,18 @@ interface SearchResultProps {
     searchType: SearchType,
     searchFilter: string,
     closeSearchResultFunction: Function,
+    pageRedirectFunction: Function,
+    getFolTitle: Function,
     userID: string;
-
 }
 
 interface SearchResultState {
-    folsSearchResultList: Array<FOLSearchResult>;
-
+    folsSearchResultList: Array<FOLSearchResult>
 }
 
 export class SearchResult extends Component<SearchResultProps, SearchResultState> {
+
+
     constructor(props: SearchResultProps) {
         super(props);
 
@@ -31,13 +33,13 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
 
     }
 
-    async componentDidMount(){
-        let folsList:FOLSearchResult[] = [];
-        
+    async componentDidMount() {
+        let folsList: FOLSearchResult[] = [];
+
         switch (this.props["searchType"]) {
             case SearchType.CAR_MODEL:
                 folsList = await FOLService.getFolsByEquipment(this.props["searchFilter"]);
-                
+
                 break;
             case SearchType.FOL_CATEGORY:
                 folsList = await FOLService.getFolsByCategory(this.props["userID"], this.props["searchFilter"]);
@@ -49,7 +51,7 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
                 break;
             case SearchType.FOL_STATUS:
                 folsList = await FOLService.getFolsByStatus(this.props["userID"], this.props["searchFilter"]);
-                
+
                 break;
             case SearchType.FOL_TITLE:
                 folsList = await FOLService.getFolsByTitle(this.props["userID"], this.props["searchFilter"]);
@@ -58,28 +60,26 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
             default:
                 break;
         }
-        
 
-        this.setState({folsSearchResultList: folsList});
+
+        this.setState({ folsSearchResultList: folsList });
 
     }
 
-    private getSearchResult(){
+    private getSearchResult() {
         const searchResultItems: Array<JSX.Element> = [];
 
         for (let i = 0; i < this.state["folsSearchResultList"].length; i++) {
             const folData = this.state["folsSearchResultList"][i];
-            
+
             const component = (
-                <TouchableOpacity key={"react-list-key-" + i} activeOpacity={0.3}>
-                    <SearchResultItem equipment={folData["Equipment"]} title={folData["Title"]} id={folData["id"]} issueDescription={folData["Issue description"]}/>
-                </TouchableOpacity>
+                <SearchResultItem key={"react-list-key-" + i} onPress={this.props.getFolTitle} equipment={folData["Equipment"]} title={folData["Title"]} id={folData["id"]} issueDescription={folData["Issue description"]} />
             );
 
             searchResultItems.push(component);
-            
+
         }
-        
+
         return searchResultItems;
     }
 
@@ -87,25 +87,27 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
         this.props.closeSearchResultFunction();
 
     }
-    
-    private buildComponent(){
+
+    private buildComponent() {
         let component = (
-            <Modal transparent={true} onRequestClose={this.closeSearchResult}>
-                <TouchableOpacity style={{height: "100%"}} activeOpacity={1} onPress={this.closeSearchResult}>
-                    <View style={{alignSelf:"center", marginTop: 120, height: "80%", width:"90%", backgroundColor: Colors.WHITE, borderRadius: 8, shadowColor: "#000", shadowOffset: {width: 0, height: 0,}, shadowOpacity: 0.50, shadowRadius: 4.22, elevation: 5}}>
-                        <Text style={{fontSize: 26, fontWeight: "bold", marginTop: 20, marginBottom: 20, alignSelf: "center"}}>Search result</Text>
-                        <ScrollView style={{paddingHorizontal: 20}}>
-                            {this.getSearchResult()}
-                        </ScrollView>
-                    </View>
-                </TouchableOpacity>
-            </Modal>
+            <>
+                <Modal transparent={true}>
+                    <TouchableOpacity style={{ height: "100%" }} activeOpacity={1} onPress={this.closeSearchResult}>
+                        <View style={{ alignSelf: "center", marginTop: 120, height: "80%", width: "90%", backgroundColor: Colors.WHITE, borderRadius: 8, shadowColor: "#000", shadowOffset: { width: 0, height: 0, }, shadowOpacity: 0.50, shadowRadius: 4.22, elevation: 5 }}>
+                            <Text style={{ fontSize: 26, fontWeight: "bold", marginTop: 20, marginBottom: 20, alignSelf: "center" }}>Search result</Text>
+                            <ScrollView style={{ paddingHorizontal: 20 }}>
+                                {this.getSearchResult()}
+                            </ScrollView>
+                        </View>
+                    </TouchableOpacity>
+                </Modal>
+            </>
         );
 
         return component;
     }
 
-    render(){
+    render() {
         const component = this.buildComponent();
 
         return component;

@@ -1,11 +1,13 @@
+import base64
+
 from flask import Blueprint
-from flask import request
 from flask import abort
 from flask import jsonify
-
+from flask import make_response
+from flask import request
 from models.database.MongoConnection import PyMongoConnection
 from models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
-    getFolsByTitle
+    getFolsByTitle, getFolFirstPage
 from models.services.userService import getUserCarsList
 
 folRoutes = Blueprint("folRoutes", __name__)
@@ -94,3 +96,24 @@ def getByTitle():
     folsList = getFolsByTitle(carsList, title)
 
     return folsList
+
+
+@folRoutes.route("/fol", methods=["GET"])
+def getFolFile():
+
+    opened_pdf = open("../resources/FOL-MUS-FATEC.pdf", "rb")
+    opened_pdf_read = opened_pdf.read()
+
+    fol_base_64 = base64.b64encode(opened_pdf_read).decode()
+
+    response = make_response(jsonify({"data": str(fol_base_64)}))
+    return response
+
+
+@folRoutes.route("/fol/getFirstPage", methods=["GET"])
+def getFirstPage():
+    fol_title = request.args.get("folTitle")
+
+    first_page = getFolFirstPage(fol_title)
+
+    return first_page

@@ -1,10 +1,10 @@
-import React,{ Component } from "react";
-import { Alert, Text, TouchableOpacity, View } from "react-native";
+import React, { Component } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import { RadioButton } from 'react-native-radio-buttons-group';
 import { Colors } from "../../enumerations/Colors";
 import { RadioData } from "../../types/RadioData";
 import { Styles } from "../assets/styles/Styles";
-import {Collapsible} from './Collapsible'
+import { Collapsible } from './Collapsible';
 
 interface CollapsibleProps{
     title:string;

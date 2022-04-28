@@ -6,6 +6,10 @@ platform :ios, '12.0'
 
 target 'ClaraClient' do
   use_expo_modules!
+  pod 'react-native-blob-util', :path => '../node_modules/react-native-blob-util'
+
+  pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
+
   post_integrate do |installer|
     begin
       expo_patch_react_imports!(installer)

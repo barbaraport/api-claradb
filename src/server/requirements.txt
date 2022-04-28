@@ -35,3 +35,4 @@ Werkzeug==2.0.3
 zope.event==4.5.0
 zope.interface==5.4.0
 bcrypt==3.2.0
+PyPDF2==1.27.9
