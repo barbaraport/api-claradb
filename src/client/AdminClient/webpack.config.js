@@ -34,6 +34,7 @@ module.exports = {
         homeHtml
     ],
     devServer: {
+        watchFiles: ["./src/*"],
         static: {
             directory: path.join(__dirname, "public")
         },

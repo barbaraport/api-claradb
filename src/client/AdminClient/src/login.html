@@ -4,9 +4,79 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
     <title>Login</title>
+
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        .mainContent {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(82,106,196,1) 0%, rgba(176,184,212,1) 50%, rgba(82,106,196,1) 100%);
+        }
+
+        .mainContent > h1 {
+            font-weight: bolder;
+            color: white;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .loginContainer {
+            background-color: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0px 0px 22px 9px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loginContainer > label {
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .loginForm {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            border-radius: 16px;
+            margin-bottom: 20px;
+
+        }
+    </style>
 </head>
 <body>
-    <h1>aaaa</h1>
+    <main class="mainContent">
+        <h1>FolConn</h1>
+        <div class="loginContainer">
+            <label>Welcome</label>
+            <form class="loginForm">
+                <input type="text">
+                <input type="text">
+                <button>Log in</button>
+            </form>
+        </div>
+    </main>
 </body>
 </html>
