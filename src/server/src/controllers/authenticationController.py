@@ -3,6 +3,7 @@ from flask import request
 from flask import abort
 
 import bcrypt
+from flask_cors import cross_origin
 
 from models.database.MongoConnection import PyMongoConnection
 
@@ -36,6 +37,40 @@ def login():
     user_id = str(document["_id"])
 
     data = {"id": user_id}
+    response = make_response(data)
+
+    return response
+
+
+@authRoutes.route("/authentication/admin/login", methods=["POST"])
+@cross_origin()
+def adminLogin():
+    conn = PyMongoConnection()
+
+    print(request.json)
+    userLogin = request.json["login"].strip()
+    password = request.json["password"].strip()
+
+    condition = {
+        "login": userLogin
+    }
+
+    document = conn.getDocument("folconn", "adminUsers", condition)
+
+    if document is None:
+        abort(404, "User not found with the given credentials")
+
+    userStoredPassword = document["password"]
+
+    if not bcrypt.checkpw(password.encode("utf-8"), userStoredPassword):
+        abort(404, "User not found with the given credentials")
+
+    user_id = str(document["_id"])
+
+    data = {
+        "id": user_id
+    }
+
     response = make_response(data)
 
     return response

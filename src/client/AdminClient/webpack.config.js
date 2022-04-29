@@ -15,6 +15,7 @@ module.exports = {
     output: {
         filename: "[name]/js/[name].js",
         path: path.resolve(__dirname, "dist"),
+        library: "ts",
         clean: true
     },
     module: {
@@ -38,6 +39,6 @@ module.exports = {
         static: {
             directory: path.join(__dirname, "public")
         },
-        port: 5000
+        port: 4000
     }
 }
