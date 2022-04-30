@@ -6,6 +6,9 @@ export function openMenu() {
     if(!isShow) {
         menuOptions.classList.add("show");
         
+    }else {
+        menuOptions.classList.remove("show");
+        
     }
 }
 
