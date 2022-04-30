@@ -22,8 +22,8 @@
         <header class="headerContainer">
             <img src="./assets/images/header.png" class="headerImage">
             <div class="headerContent">
-                <div class="menuButton" onmouseleave="ts.closeMenu()">
-                    <span class="material-symbols-outlined icon" onclick="ts.openMenu()">menu</span>
+                <div class="menuButton" onmouseleave="global.closeMenu()">
+                    <span class="material-symbols-outlined icon" onclick="global.openMenu()">menu</span>
                     <div class="menuOptions" id="menuOptions">
                         <div class="menuOption">
                             <span class="material-symbols-outlined">cottage</span>
@@ -50,9 +50,9 @@
             <label>FOLs Access</label>
             <div class="searchContainer">
                 <div class="searchFols container" id="searchFols">
-                    <div class="folSearchContainer" onclick="ts.setFocusToInput('searchInput')">
+                    <div class="folSearchContainer" onclick="folsAccess.setFocusToInput('searchInput')">
                         <input type="text" placeholder="Search FOLs by Title" id="searchInput">
-                        <span class="material-symbols-outlined" onclick="ts.searchFols()">search</span>
+                        <span class="material-symbols-outlined" onclick="folsAccess.searchFols()">search</span>
                     </div>
                     <div class="folsSearchResults" id="folSearchResults">
                         <label class="folSearchResult">FOL Title - X Accesses</label>
