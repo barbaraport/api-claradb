@@ -4,7 +4,7 @@ from flask import abort, make_response
 from models.database.MongoConnection import PyMongoConnection
 
 
-def login(userLogin, password):
+def userLogin(userLogin, password):
     conn = PyMongoConnection()
     if not password.isnumeric():
         abort(404, "User not found with the given credentials")

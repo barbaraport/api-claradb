@@ -5,7 +5,7 @@ carRoutes = Blueprint("carRoutes", __name__)
 from models.services.carService import getCarsByUser
 
 @carRoutes.route("/car/carsByUser", methods=["POST"])
-def getCarsByUser():
+def getUserCars():
     code = request.json["code"].strip()
 
     if code == "":
