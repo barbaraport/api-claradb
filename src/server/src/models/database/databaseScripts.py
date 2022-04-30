@@ -106,7 +106,7 @@ def initializeDatabase(restartData=False):
     initialized = checkInitialization()
 
     if not initialized:
-        print("initializing database")
+        print("Initializing database and adding data")
         registerDefaultUsers()
         registerDefaultDocuments()
 
@@ -120,7 +120,7 @@ def initializeDatabase(restartData=False):
     conn.update("folconn", "databaseStatus", {"statusName": "isInitialized", "statusValue": True},
                 {"statusName": "isInitialized"}, True)
 
-    print("Database initialized.")
+    print("Database ready")
 
 if __name__ == "main":
     raise Exception("Module can not be executed without the main.py scope. Use the main file to execute it")
