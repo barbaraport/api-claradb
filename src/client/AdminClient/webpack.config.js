@@ -3,17 +3,19 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const loginHtml = new HtmlWebpackPlugin({template: "./src/login.html", filename: "login/index.html", chunks: ["login"]});
-const homeHtml = new HtmlWebpackPlugin({template: "./src/home.html", filename: "home/index.html", chunks: ["home"]});
+const homeHtml = new HtmlWebpackPlugin({template: "./src/home.html", filename: "home/index.html", chunks: ["home", "global"]});
+const folsAccess = new HtmlWebpackPlugin({template: "./src/folsAccess.html", filename: "fols-access/index.html", chunks: ["folsAccess", "global"]});
 
 module.exports = {
     mode: "development",
     devtool: "inline-source-map",
     entry: {
         login: "./src/ts/login.ts",
-        home: "./src/ts/home.ts"
+        home: "./src/ts/home.ts",
+        global: "./src/ts/global.ts"
     },
     output: {
-        filename: "[name]/js/[name].js",
+        filename: "js/[name].js",
         path: path.resolve(__dirname, "dist"),
         library: "ts",
         clean: true,
@@ -41,7 +43,8 @@ module.exports = {
     },
     plugins: [
         loginHtml,
-        homeHtml
+        homeHtml,
+        folsAccess
     ],
     devServer: {
         watchFiles: ["./src/*"],
