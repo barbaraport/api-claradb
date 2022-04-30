@@ -50,7 +50,10 @@
             <label>FOLs Access</label>
             <div class="searchContainer">
                 <div class="searchFols container" id="searchFols">
-    
+                    <div class="folSearchContainer" onclick="ts.setFocusToInput('searchInput')">
+                        <input type="text" placeholder="Search FOLs by Title" id="searchInput">
+                        <span class="material-symbols-outlined" onclick="ts.searchFols()">search</span>
+                    </div>
                 </div>
                 <div class="searchResult container" id="searchResult">
     

@@ -12,7 +12,8 @@ module.exports = {
     entry: {
         login: "./src/ts/login.ts",
         home: "./src/ts/home.ts",
-        global: "./src/ts/global.ts"
+        global: "./src/ts/global.ts",
+        folsAccess: "./src/ts/folsAccess.ts"
     },
     output: {
         filename: "js/[name].js",
