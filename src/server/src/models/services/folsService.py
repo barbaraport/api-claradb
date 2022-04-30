@@ -1,6 +1,8 @@
+import base64
+
 import PyPDF2
 import re
-from flask import jsonify
+from flask import jsonify, make_response
 
 from models.database.MongoConnection import PyMongoConnection
 
@@ -150,3 +152,11 @@ def getFolFirstPage(folTitle):
                 break
 
     return jsonify({"page": page})
+
+def getOpenedFolFile():
+    opened_pdf = open("../resources/FOL-MUS-FATEC.pdf", "rb")
+    opened_pdf_read = opened_pdf.read()
+
+    fol_base_64 = base64.b64encode(opened_pdf_read).decode()
+
+    return make_response(jsonify({"data": str(fol_base_64)}))
