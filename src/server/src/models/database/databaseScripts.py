@@ -1,6 +1,5 @@
-import pandas
 import bcrypt
-
+import pandas
 from models.database import MongoConnection
 
 

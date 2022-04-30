@@ -1,10 +1,32 @@
 import base64
+import re
 
 import PyPDF2
-import re
-from flask import jsonify, make_response
-
+from flask import jsonify, make_response, abort
 from models.database.MongoConnection import PyMongoConnection
+
+
+def getFolsByEquipment(equipment):
+    conn = PyMongoConnection()
+
+    condition = {
+        "Equipment": equipment
+    }
+
+    projection = {
+        "_id": 0,
+        "id": 1,
+        "Title": 1,
+        "Equipment": 1,
+        "Issue description": 1
+    }
+
+    document = jsonify(list(conn.getDocuments("folconn", "documents", condition, projection)))
+
+    if document is None:
+        abort(404, "No FOL found for the given equipment")
+
+    return document
 
 
 def getFolsByStatus(equipmentList, status):

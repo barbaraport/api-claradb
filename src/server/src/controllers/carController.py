@@ -1,33 +1,16 @@
-from bson import ObjectId
-from flask import Blueprint, request, make_response
-from werkzeug.exceptions import abort
-
-from models.database.MongoConnection import PyMongoConnection
+from flask import Blueprint, request, abort
 
 carRoutes = Blueprint("carRoutes", __name__)
 
+from models.services.carService import getCarsByUser
 
 @carRoutes.route("/car/carsByUser", methods=["POST"])
 def getCarsByUser():
-    conn = PyMongoConnection()
-
     code = request.json["code"].strip()
 
     if code == "":
         abort(404, "User not found with the given credentials")
 
-    condition = {
-        "_id": ObjectId(code)
-    }
+    user_cars = getCarsByUser(code)
 
-    document = conn.getDocument("folconn", "users", condition)
-
-    if document is None:
-        abort(404, "User not found with the given credentials")
-
-    equipments = document["Equipment"]
-
-    data = {"equipments": equipments}
-    response = make_response(data)
-
-    return response
+    return user_cars
