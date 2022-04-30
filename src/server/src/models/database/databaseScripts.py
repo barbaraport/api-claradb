@@ -20,7 +20,10 @@ def registerDefaultUsers():
     dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
+    termsOfUseColumn = "currentlyAcceptingTermsOfUse"
+
     columns = dataFrame.columns.values
+    columns.append(termsOfUseColumn)
 
     documents = []
 
@@ -38,6 +41,9 @@ def registerDefaultUsers():
                     equipmentsList.append(equipment.strip())
 
                 document[column] = equipmentsList
+
+            elif column == termsOfUseColumn:
+                document[column] = False
 
             else:
                 columnValue = value[i]
@@ -96,23 +102,25 @@ def dropDefaultCollections():
 
 
 def initializeDatabase(restartData=False):
-    isInitialized = checkInitialization()
+    print("Checking if is needed to initialize the database")
+    initialized = checkInitialization()
 
-    if not isInitialized:
+    if not initialized:
+        print("initializing database")
         registerDefaultUsers()
         registerDefaultDocuments()
 
     elif restartData:
+        print("Restarting data")
         dropDefaultCollections()
-
         registerDefaultUsers()
         registerDefaultDocuments()
 
     conn = MongoConnection.PyMongoConnection()
-
     conn.update("folconn", "databaseStatus", {"statusName": "isInitialized", "statusValue": True},
                 {"statusName": "isInitialized"}, True)
 
+    print("Database initialized.")
 
 if __name__ == "main":
     raise Exception("Module can not be executed without the main.py scope. Use the main file to execute it")
