@@ -21,9 +21,9 @@ def registerDefaultUsers():
     dataFrame = dataFrame.fillna(-1)
 
     termsOfUseColumn = "currentlyAcceptingTermsOfUse"
+    dataFrame.insert(0, termsOfUseColumn, False)
 
     columns = dataFrame.columns.values
-    columns.append(termsOfUseColumn)
 
     documents = []
 
