@@ -16,7 +16,8 @@ module.exports = {
         filename: "[name]/js/[name].js",
         path: path.resolve(__dirname, "dist"),
         library: "ts",
-        clean: true
+        clean: true,
+        assetModuleFilename: 'assets/[hash][ext][query]'
     },
     module: {
         rules: [
@@ -24,6 +25,14 @@ module.exports = {
                 test: /\.ts/,
                 exclude: /node_modules/,
                 loader: "ts-loader"
+            },
+            {
+                test: /\.html$/,
+                loader: "html-loader"
+            },
+            {
+                test: /\.(png)$/,
+                type: "asset/resource"
             }
         ]
     },

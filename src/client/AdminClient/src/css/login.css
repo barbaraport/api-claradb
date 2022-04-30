@@ -1,0 +1,77 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+.mainContent {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, rgba(82,106,196,1) 0%, rgba(176,184,212,1) 50%, rgba(82,106,196,1) 100%);
+}
+
+.mainContent > h1 {
+    font-weight: bolder;
+    color: white;
+    font-size: 36px;
+    margin-bottom: 50px;
+}
+
+.loginContainer {
+    background-color: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0px 0px 22px 9px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginContainer > label {
+    margin-bottom: 30px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.formInput {
+    border: none;
+    border-bottom: solid #526ac4 1px;
+    margin-bottom: 20px;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    outline: none;
+}
+
+.submitButton {
+    border: none;
+    background-color: #021046;
+    color: white;
+    width: fit-content;
+    padding: 5px 30px;
+    border-radius: 16px;
+    font-weight: bold;
+    box-shadow: 0px 2px 8px 2px rgb(0 0 0 / 60%);
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: #051866;
+}
+
+.submitButton:active {
+    background-color: #06103a;
+}

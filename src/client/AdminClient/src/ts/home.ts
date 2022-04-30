@@ -1,1 +1,1 @@
-console.log("askldasd1");
+console.log("a");

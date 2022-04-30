@@ -1,0 +1,24 @@
+.headerContainer {
+    width: 100vw;
+    height: var(--headerHeigth);
+}
+
+.headerImage {
+    width: 100%;
+    height: var(--headerHeigth);
+    position: absolute
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+}
+
+.headerContent > label {
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 5px;
+}

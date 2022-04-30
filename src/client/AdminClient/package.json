@@ -5,11 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack serve --open /login",
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "ClaraDB",
   "license": "ISC",
   "dependencies": {
+    "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "ts-loader": "^9.2.9",
     "typescript": "^4.6.3",
