@@ -10,3 +10,8 @@
 body {
     margin: 0px
 }
+
+.icon {
+    user-select: none;
+    color: #91B6ED;
+}
