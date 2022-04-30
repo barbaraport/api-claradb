@@ -115,8 +115,29 @@ body {
 .menuOption > label {
     margin-left: 10px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .menuOption:hover {
     background-color: #d8e5f9;
+}
+
+.exitButton {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-right: 10px;
+    height: 25px;
+    align-items: center;
+}
+
+.exitButton > span {
+    color: white !important;
+}
+.exitButton > label {
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
 }
