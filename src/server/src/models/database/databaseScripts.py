@@ -122,5 +122,6 @@ def initializeDatabase(restartData=False):
 
     print("Database ready")
 
+
 if __name__ == "main":
     raise Exception("Module can not be executed without the main.py scope. Use the main file to execute it")
