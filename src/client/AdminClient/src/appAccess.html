@@ -25,7 +25,7 @@
                 <div class="menuButton" onmouseleave="global.closeMenu()">
                     <span class="material-symbols-outlined icon" onclick="global.openMenu()">menu</span>
                     <div class="menuOptions" id="menuOptions">
-                        <div class="menuOption">
+                        <div class="menuOption" onclick="global.goToHome()">
                             <span class="material-symbols-outlined">cottage</span>
                             <label>Home</label>
                         </div>
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <label>FolConn</label>
-                <div class="exitButton">
+                <div class="exitButton" onclick="global.performLogout()">
                     <span class="material-symbols-outlined icon">logout</span>
                     <label>Log out</label>
                 </div>
@@ -55,43 +55,10 @@
                         <span class="material-symbols-outlined" onclick="appAccess.searchFols()">search</span>
                     </div>
                     <div class="folsSearchResults" id="folSearchResults">
-                        <label class="folSearchResult">Brazil - 15 accesses</label>
-                        <label class="folSearchResult">Canada - 20 accesses</label>
-                        <label class="folSearchResult">Italia - 5 accesses</label>
                     </div>
                 </div>
-                <div class="searchResult container" id="searchResult">
-                    <div class="accessResult">
-                        <label>User X</label>
-                        <label>São José dos Campos, São Paulo</label>
-                        <label>16/09/1997 10:00:00</label>
-                    </div>
-                    <div class="accessResult">
-                        <label>User X</label>
-                        <label>São José dos Campos, São Paulo</label>
-                        <label>16/09/1997 10:00:00</label>
-                    </div>
-                    <div class="accessResult">
-                        <label>User X</label>
-                        <label>São José dos Campos, São Paulo</label>
-                        <label>16/09/1997 10:00:00</label>
-                    </div>
-                    <div class="accessResult">
-                        <label>User X</label>
-                        <label>São José dos Campos, São Paulo</label>
-                        <label>16/09/1997 10:00:00</label>
-                    </div>
-                    <div class="accessResult">
-                        <label>User X</label>
-                        <label>São José dos Campos, São Paulo</label>
-                        <label>16/09/1997 10:00:00</label>
-                    </div>
-                    <div class="accessResult">
-                        <label>User X</label>
-                        <label>São José dos Campos, São Paulo</label>
-                        <label>16/09/1997 10:00:00</label>
-                    </div>
-                </div>
+                <table class="searchResult container" id="searchResult">
+                </table>
             </div>
         </main>
     </main>

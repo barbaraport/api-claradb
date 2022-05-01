@@ -1,3 +1,11 @@
+import { UserService } from "./model/services/UserService";
+
+async function checkSession() {
+    await UserService.checkSession();
+}
+
+checkSession();
+
 export function openMenu() {
     const menuOptions = document.getElementById("menuOptions")!;
 
@@ -21,4 +29,12 @@ export function closeMenu() {
         menuOptions.classList.remove("show");
         
     }
+}
+
+export function performLogout() {
+    UserService.performLogout();
+}
+
+export function goToHome(){
+    window.location.href = window.location.origin + "/home";
 }
