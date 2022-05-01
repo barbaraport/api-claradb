@@ -7,10 +7,13 @@ from models.database.MongoConnection import PyMongoConnection
 
 
 def registerLoginAttempt(user):
-
-    loginAttempt = {}
-    loginAttempt["userId"] = None
-    loginAttempt["date"] = datetime.today().replace(microsecond=0)
+    loginAttempt = {
+        "userId": None,
+        "userName": user["Username"],
+        "country": "Brazil",
+        "city": "São José dos Campos",
+        "date": datetime.today().replace(microsecond=0)
+    }
 
     if user["currentlyAcceptingTermsOfUse"]:
         loginAttempt["userId"] = user["_id"]
@@ -33,8 +36,6 @@ def userLogin(login, password):
     if document is None:
         abort(404, "User not found with the given credentials")
 
-    registerLoginAttempt(document)
-
     userStoredPassword = document["Password"]
 
     if not bcrypt.checkpw(password.encode("utf-8"), userStoredPassword):
@@ -43,6 +44,9 @@ def userLogin(login, password):
     user_id = str(document["_id"])
 
     data = {"id": user_id}
+
+    registerLoginAttempt(document)
+
     return make_response(data)
 
 
