@@ -27,7 +27,7 @@
 }
 
 .searchResult {
-    width: 300px;
+    width: fit-content;
     max-height: 448px;
     overflow: auto;
 }
@@ -98,4 +98,8 @@
 
 .searchResult .accessResult:not(:last-child) {
     border-bottom: solid black 1px;
+}
+
+.accessResult > label:not(:last-child) {
+    margin-right: 20px;
 }

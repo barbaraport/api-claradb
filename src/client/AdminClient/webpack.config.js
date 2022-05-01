@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const loginHtml = new HtmlWebpackPlugin({template: "./src/login.html", filename: "login/index.html", chunks: ["login"]});
 const homeHtml = new HtmlWebpackPlugin({template: "./src/home.html", filename: "home/index.html", chunks: ["home", "global"]});
 const folsAccess = new HtmlWebpackPlugin({template: "./src/folsAccess.html", filename: "fols-access/index.html", chunks: ["folsAccess", "global"]});
+const appAccess = new HtmlWebpackPlugin({template: "./src/appAccess.html", filename: "app-access/index.html", chunks: ["appAccess", "global"]});
 
 module.exports = {
     mode: "development",
@@ -13,7 +14,8 @@ module.exports = {
         login: "./src/ts/login.ts",
         home: "./src/ts/home.ts",
         global: "./src/ts/global.ts",
-        folsAccess: "./src/ts/folsAccess.ts"
+        folsAccess: "./src/ts/folsAccess.ts",
+        appAccess: "./src/ts/appAccess.ts"
     },
     output: {
         filename: "js/[name].js",
@@ -45,7 +47,8 @@ module.exports = {
     plugins: [
         loginHtml,
         homeHtml,
-        folsAccess
+        folsAccess,
+        appAccess
     ],
     devServer: {
         watchFiles: ["./src/*"],
