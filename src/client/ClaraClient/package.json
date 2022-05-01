@@ -6,8 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "test": "jest",
-    "dev": "expo start"
+    "test": "jest"
   },
   "dependencies": {
     "@config-plugins/react-native-blob-util": "^1.0.3",

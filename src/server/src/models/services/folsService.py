@@ -1,8 +1,32 @@
-import PyPDF2
+import base64
 import re
-from flask import jsonify
 
+import PyPDF2
+from flask import jsonify, make_response, abort
 from models.database.MongoConnection import PyMongoConnection
+
+
+def getFolsByEquipment(equipment):
+    conn = PyMongoConnection()
+
+    condition = {
+        "Equipment": equipment
+    }
+
+    projection = {
+        "_id": 0,
+        "id": 1,
+        "Title": 1,
+        "Equipment": 1,
+        "Issue description": 1
+    }
+
+    document = jsonify(list(conn.getDocuments("folconn", "documents", condition, projection)))
+
+    if document is None:
+        abort(404, "No FOL found for the given equipment")
+
+    return document
 
 
 def getFolsByStatus(equipmentList, status):
@@ -150,3 +174,11 @@ def getFolFirstPage(folTitle):
                 break
 
     return jsonify({"page": page})
+
+def getOpenedFolFile():
+    opened_pdf = open("../resources/FOL-MUS-FATEC.pdf", "rb")
+    opened_pdf_read = opened_pdf.read()
+
+    fol_base_64 = base64.b64encode(opened_pdf_read).decode()
+
+    return make_response(jsonify({"data": str(fol_base_64)}))
