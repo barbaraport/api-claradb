@@ -10,15 +10,10 @@ app = Flask(__name__)
 app.register_blueprint(authRoutes)
 app.register_blueprint(folRoutes)
 app.register_blueprint(carRoutes)
-app.run(host='0.0.0.0', port=5000)
 
 CORS(app)
-app.debug = True
 
 restartDatabaseDefaultData = True
+initializeDatabase(restartDatabaseDefaultData)
 
-
-if __name__ == '__main__':
-    initializeDatabase(restartDatabaseDefaultData)
-
-    app.run()
+app.run(host='0.0.0.0', port=5000, debug=True)
