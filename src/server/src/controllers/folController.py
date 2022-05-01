@@ -1,13 +1,6 @@
-import base64
-
-from flask import Blueprint
-from flask import abort
-from flask import jsonify
-from flask import make_response
-from flask import request
-from models.database.MongoConnection import PyMongoConnection
+from flask import Blueprint, abort, request
 from models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
-    getFolsByTitle, getFolFirstPage
+    getFolsByTitle, getFolFirstPage, getOpenedFolFile, getFolsByEquipment
 from models.services.userService import getUserCarsList
 
 folRoutes = Blueprint("folRoutes", __name__)
@@ -15,26 +8,11 @@ folRoutes = Blueprint("folRoutes", __name__)
 
 @folRoutes.route("/fol/getByEquipment", methods=["GET"])
 def getByEquipment():
-    conn = PyMongoConnection()
 
-    condition = {
-        "Equipment": request.args.get("equipment")
-    }
+    equipment = request.args.get("equipment")
+    equipmentFols = getFolsByEquipment(equipment)
 
-    projection = {
-        "_id": 0,
-        "id": 1,
-        "Title": 1,
-        "Equipment": 1,
-        "Issue description": 1
-    }
-
-    document = jsonify(list(conn.getDocuments("folconn", "documents", condition, projection)))
-
-    if document is None:
-        abort(404, "No FOL found for the given equipment")
-
-    return document
+    return equipmentFols
 
 
 @folRoutes.route("/fol/getByStatus", methods=["GET"])
@@ -100,14 +78,8 @@ def getByTitle():
 
 @folRoutes.route("/fol", methods=["GET"])
 def getFolFile():
-
-    opened_pdf = open("../resources/FOL-MUS-FATEC.pdf", "rb")
-    opened_pdf_read = opened_pdf.read()
-
-    fol_base_64 = base64.b64encode(opened_pdf_read).decode()
-
-    response = make_response(jsonify({"data": str(fol_base_64)}))
-    return response
+    fol_file = getOpenedFolFile()
+    return fol_file
 
 
 @folRoutes.route("/fol/getFirstPage", methods=["GET"])

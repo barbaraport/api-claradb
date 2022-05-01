@@ -1,6 +1,5 @@
-import pandas
 import bcrypt
-
+import pandas
 from models.database import MongoConnection
 
 
@@ -21,6 +20,9 @@ def registerDefaultUsers():
     dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
+    termsOfUseColumn = "currentlyAcceptingTermsOfUse"
+    dataFrame.insert(0, termsOfUseColumn, False)
+
     columns = dataFrame.columns.values
 
     documents = []
@@ -39,6 +41,9 @@ def registerDefaultUsers():
                     equipmentsList.append(equipment.strip())
 
                 document[column] = equipmentsList
+
+            elif column == termsOfUseColumn:
+                document[column] = False
 
             else:
                 columnValue = value[i]
@@ -111,24 +116,27 @@ def dropDefaultCollections():
 
 
 def initializeDatabase(restartData=False):
-    isInitialized = checkInitialization()
+    print("Checking if is needed to initialize the database")
+    initialized = checkInitialization()
 
-    if not isInitialized:
+    if not initialized:
+        print("Initializing database and adding data")
         registerDefaultUsers()
         registerDefaultDocuments()
         createInitialUserAdminCollection()
 
     elif restartData:
+        print("Restarting data")
         dropDefaultCollections()
-
         registerDefaultUsers()
         registerDefaultDocuments()
         createInitialUserAdminCollection()
 
     conn = MongoConnection.PyMongoConnection()
-
     conn.update("folconn", "databaseStatus", {"statusName": "isInitialized", "statusValue": True},
                 {"statusName": "isInitialized"}, True)
+
+    print("Database ready")
 
 
 if __name__ == "main":
