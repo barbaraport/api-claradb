@@ -1,0 +1,22 @@
+:root {
+    --headerHeigth: 100px;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.root {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    margin: 0px
+}
+
+.icon {
+    user-select: none;
+    color: #91B6ED;
+}

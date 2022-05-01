@@ -1,0 +1,105 @@
+.mainContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+
+.mainContent > label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.searchContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: space-around;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+.searchFols {
+    width: 300px;
+}
+
+.searchResult {
+    width: fit-content;
+    max-height: 448px;
+    overflow: auto;
+}
+
+.container {
+    height: 100%;
+    border-radius: 16px;
+    box-shadow: 0px 0px 15px 0px rgb(0 0 0 / 30%);
+    display: flex;
+    flex-direction: column;
+}
+
+.folSearchContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 16px;
+    background-color: #e9e9e9;
+    margin: 5px 10px;
+    padding: 5px;
+}
+
+.folSearchContainer:focus-within {
+    background-color: #c0c0c0;
+}
+
+.folSearchContainer > input {
+    outline: none;
+    border: none;
+    background-color: inherit;
+    padding-left: 20px;
+}
+
+.folSearchContainer > span {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.folsSearchResults {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    margin: 5px 10px;
+    overflow: auto;
+    max-height: 390px;
+}
+
+.folSearchResult {
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 8px;
+    width: auto;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.folSearchResult:hover {
+    background-color: #e9e9e9;
+}
+
+.accessResult {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 15px;
+    font-weight: bold;
+}
+
+.searchResult .accessResult:not(:last-child) {
+    border-bottom: solid black 1px;
+}
+
+.accessResult > label:not(:last-child) {
+    margin-right: 20px;
+}

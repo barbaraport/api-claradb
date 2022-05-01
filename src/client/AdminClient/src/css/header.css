@@ -1,0 +1,105 @@
+.headerContainer {
+    width: 100vw;
+    height: var(--headerHeigth);
+}
+
+.headerImage {
+    width: 100%;
+    height: var(--headerHeigth);
+    position: absolute
+}
+
+.headerContent {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+}
+
+.headerContent > label {
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+
+.menuOptions {
+    background-color: white;
+    width: 150px;
+    position: absolute;
+    left: 15px;
+    border-radius: 8px;
+    top: 35px;
+    box-shadow: 5px 5px 15px 5px rgb(0 0 0 / 40%);
+    opacity: 0%;
+    padding: 5px 10px;
+
+    pointer-events: none;
+
+    transition: all 0.3s ease-out;
+}
+
+.show {
+    top: 75px;
+    opacity: 100%;
+    pointer-events: inherit;
+}
+
+.menuOption {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.menuOption > label {
+    margin-left: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.menuOption:hover {
+    background-color: #d8e5f9;
+}
+
+.exitButton {
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-right: 10px;
+    height: 25px;
+    align-items: center;
+}
+
+.exitButton > span {
+    color: white !important;
+}
+.exitButton > label {
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left: 10px;
+    user-select: none;
+}
+
+.menuButton {
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.menuButton > span {
+    font-size: 60px;
+    cursor: pointer;
+}
+
+.menuButton > span:hover {
+    color: #617fac;
+}
+
+.menuButton > span:active {
+    color: #c2d7f7;
+}

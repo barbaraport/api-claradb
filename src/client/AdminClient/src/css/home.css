@@ -1,0 +1,59 @@
+body {
+    margin: 0px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.homeContent {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeBackground {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    opacity: 60%;
+}
+
+.homeOptions {
+    display: flex;
+    flex-direction: column;
+}
+
+.homeOptions > * {
+    margin-top: 20px;
+}
+
+.homeOptions > label {
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.folconnButton {
+    border: none;
+    background-color: #021046;
+    color: white;
+    width: 100%;
+    padding: 10px 30px;
+    border-radius: 16px;
+    font-weight: bold;
+    box-shadow: 0px 2px 8px 2px rgb(0 0 0 / 60%);
+    cursor: pointer;
+}
+
+.folconnButton:hover {
+    background-color: #051866;
+}
+
+.folconnButton:active {
+    background-color: #06103a;
+}

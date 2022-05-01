@@ -94,11 +94,25 @@ def registerDefaultDocuments():
 
     conn.insert("folconn", "documents", documents)
 
+def createInitialUserAdminCollection():
+    conn = MongoConnection.PyMongoConnection()
+
+    adminPassword = bcrypt.hashpw("admin".encode("utf-8"), bcrypt.gensalt(8))
+
+    initialAdminUser = {
+        "name": "Administrator",
+        "login": "admin",
+        "password": adminPassword
+    }
+
+    admins = [initialAdminUser]
+
+    conn.insert("folconn", "adminUsers", admins)
 
 def dropDefaultCollections():
     conn = MongoConnection.PyMongoConnection()
 
-    conn.dropCollections("folconn", ["users", "documents"])
+    conn.dropCollections("folconn", ["users", "documents", "adminUsers"])
 
 
 def initializeDatabase(restartData=False):
@@ -109,12 +123,14 @@ def initializeDatabase(restartData=False):
         print("Initializing database and adding data")
         registerDefaultUsers()
         registerDefaultDocuments()
+        createInitialUserAdminCollection()
 
     elif restartData:
         print("Restarting data")
         dropDefaultCollections()
         registerDefaultUsers()
         registerDefaultDocuments()
+        createInitialUserAdminCollection()
 
     conn = MongoConnection.PyMongoConnection()
     conn.update("folconn", "databaseStatus", {"statusName": "isInitialized", "statusValue": True},
