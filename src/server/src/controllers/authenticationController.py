@@ -1,6 +1,10 @@
 from flask import Blueprint
 from flask import request
+from flask_cors import cross_origin
 from models.services.userService import userLogin
+
+from models.services.userService import adminLogin
+from models.services.userService import isValidUser
 
 authRoutes = Blueprint("authRoutes", __name__)
 
@@ -15,35 +19,23 @@ def login():
 
     return userId
 
+
 @authRoutes.route("/authentication/admin/login", methods=["POST"])
 @cross_origin()
-def adminLogin():
-    conn = PyMongoConnection()
-
-    print(request.json)
+def administratorLogin():
     userLogin = request.json["login"].strip()
     password = request.json["password"].strip()
 
-    condition = {
-        "login": userLogin
-    }
+    response = adminLogin(userLogin, password)
 
-    document = conn.getDocument("folconn", "adminUsers", condition)
+    return response
 
-    if document is None:
-        abort(404, "User not found with the given credentials")
 
-    userStoredPassword = document["password"]
+@authRoutes.route("/authentication/checkSession", methods=["POST"])
+@cross_origin()
+def checkSession():
+    userId = request.json["userId"]
 
-    if not bcrypt.checkpw(password.encode("utf-8"), userStoredPassword):
-        abort(404, "User not found with the given credentials")
-
-    user_id = str(document["_id"])
-
-    data = {
-        "id": user_id
-    }
-
-    response = make_response(data)
+    response = isValidUser(userId)
 
     return response

@@ -20,8 +20,8 @@
     <header class="headerContainer">
         <img src="./assets/images/header.png" class="headerImage">
         <div class="headerContent">
-            <div class="menuButton" onmouseleave="ts.closeMenu()">
-                <span class="material-symbols-outlined icon" onclick="ts.openMenu()">menu</span>
+            <div class="menuButton" onmouseleave="global.closeMenu()">
+                <span class="material-symbols-outlined icon" onclick="global.openMenu()">menu</span>
                 <div class="menuOptions" id="menuOptions">
                     <div class="menuOption">
                         <span class="material-symbols-outlined">cottage</span>
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <label>FolConn</label>
-            <div class="exitButton">
+            <div class="exitButton" onclick="global.performLogout()">
                 <span class="material-symbols-outlined icon">logout</span>
                 <label>Log out</label>
             </div>

@@ -19,13 +19,13 @@ def registerLoginAttempt(user):
     conn.insert("folconn", "loginAttempts", loginAttempt)
 
 
-def userLogin(userLogin, password):
+def userLogin(login, password):
     conn = PyMongoConnection()
     if not password.isnumeric():
         abort(404, "User not found with the given credentials")
 
     condition = {
-        "Login": userLogin
+        "Login": login
     }
 
     document = conn.getDocument("folconn", "users", condition)
@@ -58,3 +58,52 @@ def getUserCarsList(userId):
     userEquipments = document["Equipment"]
 
     return userEquipments
+
+
+def isValidUser(userId):
+    conn = PyMongoConnection()
+
+    condition = {
+        "_id": ObjectId(userId)
+    }
+
+    document = conn.getDocument("folconn", "adminUsers", condition)
+
+    responseBody = {}
+
+    if document is None:
+        responseBody["isValid"] = False
+    else:
+        responseBody["isValid"] = True
+
+    response = make_response(responseBody)
+
+    return response
+
+
+def adminLogin(login, password):
+    conn = PyMongoConnection()
+
+    condition = {
+        "login": login
+    }
+
+    document = conn.getDocument("folconn", "adminUsers", condition)
+
+    if document is None:
+        abort(404, "User not found with the given credentials")
+
+    userStoredPassword = document["password"]
+
+    if not bcrypt.checkpw(password.encode("utf-8"), userStoredPassword):
+        abort(404, "User not found with the given credentials")
+
+    user_id = str(document["_id"])
+
+    data = {
+        "id": user_id
+    }
+
+    response = make_response(data)
+
+    return response
