@@ -23,7 +23,7 @@
             <div class="menuButton" onmouseleave="global.closeMenu()">
                 <span class="material-symbols-outlined icon" onclick="global.openMenu()">menu</span>
                 <div class="menuOptions" id="menuOptions">
-                    <div class="menuOption">
+                    <div class="menuOption" onclick="global.goToHome()">
                         <span class="material-symbols-outlined">cottage</span>
                         <label>Home</label>
                     </div>
@@ -48,8 +48,8 @@
         <img src="./assets/images/phoneUser.jpg" class="homeBackground">
         <div class="homeOptions">
             <label>What do you wish to see first</label>
-            <button class="folconnButton">Logins by regions</button>
-            <button class="folconnButton">FOLs access</button>
+            <button class="folconnButton" onclick="home.goToApplicationAccesses()">Logins by regions</button>
+            <button class="folconnButton" onclick="home.goToFolsAccesses()">FOLs access</button>
         </div>
     </main>
 </body>

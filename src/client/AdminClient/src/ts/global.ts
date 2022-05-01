@@ -34,3 +34,7 @@ export function closeMenu() {
 export function performLogout() {
     UserService.performLogout();
 }
+
+export function goToHome(){
+    window.location.href = window.location.origin + "/home";
+}
