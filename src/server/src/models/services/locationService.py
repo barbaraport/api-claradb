@@ -8,15 +8,15 @@ def getCoordinatePlace(position):
 
     stringToGetGeolocation = f"{latitude}, {longitude}";
 
-    location = geolocator.reverse(stringToGetGeolocation).raw
+    location = geolocator.reverse(stringToGetGeolocation).raw["address"]
 
     usefulLocation = {
-        "suburb": location["address"]["suburb"],
-        "city_district": location["address"]["city_district"],
-        "town": location["address"]["town"],
-        "state": location["address"]["state"],
-        "country": location["address"]["country"],
-        "country_code": location["address"]["country_code"]
+        "suburb": location["suburb"],
+        "city_district": location["city_district"],
+        "town": location["town"],
+        "state": location["state"],
+        "country": location["country"],
+        "country_code": location["country_code"]
     }
 
     return usefulLocation
