@@ -6,7 +6,7 @@ from flask import abort, make_response
 from models.database.MongoConnection import PyMongoConnection
 
 
-def registerLoginAttempt(user):
+def registerLoginAttempt(user, position):
     loginAttempt = {
         "userId": None,
         "userName": user["Username"],
@@ -22,7 +22,7 @@ def registerLoginAttempt(user):
     conn.insert("folconn", "loginAttempts", loginAttempt)
 
 
-def userLogin(login, password):
+def userLogin(login, password, position):
     conn = PyMongoConnection()
     if not password.isnumeric():
         abort(404, "User not found with the given credentials")
@@ -45,7 +45,7 @@ def userLogin(login, password):
 
     data = {"id": user_id}
 
-    registerLoginAttempt(document)
+    registerLoginAttempt(document, position)
 
     return make_response(data)
 

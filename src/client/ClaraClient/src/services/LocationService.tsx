@@ -4,20 +4,6 @@ import { ApiAccess } from "../enumerations/ApiAccess";
 
 export class LocationService {
 
-     public async saveUserLocation(position: any) {
-
-          let request = {
-               method: "POST",
-               body: JSON.stringify(position),
-               headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-               }
-          }
-
-          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/authentication/login", request);
-     }
-
      public async getUserPosition() {
 
           let position = null;
@@ -26,11 +12,11 @@ export class LocationService {
                const granted = await this.checkPermissionToGetLocation();
 
                if (granted) {
-                    position = this.getCurrentPosition();
+                    position = await this.getCurrentPosition();
                }
           }
           else {
-               position = this.getCurrentPosition();
+               position = await this.getCurrentPosition();
           }
 
           return position;
@@ -47,9 +33,15 @@ export class LocationService {
           }
      }
 
-     private getCurrentPosition() {
-          Geolocation.getCurrentPosition((position) => {
-               return position;
+     private async getCurrentPosition() {
+          return new Promise((res, rej) => {
+               Geolocation.getCurrentPosition(
+                    (position) => {
+                         res({ lat: position.coords.latitude, long: position.coords.longitude })
+                    },
+                    (error) => rej(error),
+                    { enableHighAccuracy: false }
+               );
           });
      }
 
