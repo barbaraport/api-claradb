@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Alert, Text, View } from "react-native";
 import { User } from "../../../model/User";
+import { LocationService } from "../../../services/LocationService";
 import { UserService } from "../../../services/UserService";
 import { Styles } from "../../assets/styles/Styles";
 import { FolconnButton } from "../button/FolconnButton";
@@ -19,6 +20,7 @@ interface LoginFormState {
 export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
 	private userService = new UserService();
+	private locationService = new LocationService();
 
 	constructor(props: LoginFormProps) {
 		super(props);
@@ -63,6 +65,9 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
 				this.props.setUserIDFunction(credentialCode);
 				this.props.redirectPageFunction("Home");
+
+				//ask locale here
+				this.locationService.getCurrentLocation();
 
 			}else {
 				Alert.alert("Wrong Credentials", "No user found. Verify your credentials.");
