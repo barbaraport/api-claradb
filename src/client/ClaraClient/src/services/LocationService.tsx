@@ -1,6 +1,5 @@
 import Geolocation from "@react-native-community/geolocation";
 import { PermissionsAndroid, Platform } from "react-native";
-import { ApiAccess } from "../enumerations/ApiAccess";
 
 export class LocationService {
 
