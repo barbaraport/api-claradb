@@ -4,15 +4,18 @@ import bcrypt
 from bson.objectid import ObjectId
 from flask import abort, make_response
 from models.database.MongoConnection import PyMongoConnection
+from models.services import locationService
 
 
 def registerLoginAttempt(user, position):
+
+    geolocation = locationService.getCoordinatePlace(position)
+
     loginAttempt = {
         "userId": None,
         "userName": user["Username"],
-        "country": "Brazil",
-        "city": "São José dos Campos",
-        "date": datetime.today().replace(microsecond=0)
+        "date": datetime.today().replace(microsecond=0),
+        "geolocation": geolocation
     }
 
     if user["currentlyAcceptingTermsOfUse"]:
