@@ -1,8 +1,11 @@
 import { ApiAccess } from "../enumerations/ApiAccess";
 import { Credential } from "../model/Credential";
 import { User } from "../model/User";
+import { LocationService } from "./LocationService";
 
 export class UserService {
+
+     private locationService = new LocationService();
 
      public async login(user: User) {
 
@@ -14,6 +17,8 @@ export class UserService {
                     'Content-Type': 'application/json'
                }
           }
+
+          let position = await this.locationService.getUserPosition();
 
           const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/authentication/login", request);
 
