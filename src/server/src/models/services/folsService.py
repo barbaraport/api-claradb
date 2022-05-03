@@ -196,6 +196,7 @@ def registerAccess(folTitle, position, user):
 
     folAccessAttempt = {
         "userId": None,
+        "userName": None,  # TO-DO Salvar o nome do usuário também 🥺
         "folTitle": folTitle,
         "date": datetime.today().replace(microsecond=0),
         "geolocation": geolocation
