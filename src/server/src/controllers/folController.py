@@ -96,7 +96,8 @@ def registerFolAccess():
 
     folTitle = request.json["folTitle"]
     position = request.json["position"]
+    user = request.json["user"]
 
-    registerAccess(folTitle, position)
+    registerAccess(folTitle, position, user)
 
     return '', 204

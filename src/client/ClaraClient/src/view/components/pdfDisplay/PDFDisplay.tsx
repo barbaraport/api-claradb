@@ -8,6 +8,7 @@ import { Styles } from "../../assets/styles/Styles";
 interface PDFDisplayProps {
     folTitle: string;
     closePdfDisplay: Function;
+    userID: string;
 }
 
 interface PDFDisplayState {
@@ -45,7 +46,7 @@ export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
 
     private async registerLocation () {
         let position = await this.locationService.getUserPosition();
-        await this.folService.registerFolAccess(this.props.folTitle, position);
+        await this.folService.registerFolAccess(this.props.folTitle, this.props.userID, position);
     }
 
     private closePdfDisplay() {
