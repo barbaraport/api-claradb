@@ -30,6 +30,9 @@ def registerDefaultUsers():
     for value in dataFrame.values:
         document = {}
 
+        if not isValidDocument(value):
+            continue
+
         for i in range(len(value)):
             column = columns[i]
 
@@ -70,6 +73,9 @@ def registerDefaultDocuments():
 
     for value in dataFrame.values:
         document = {}
+
+        if not isValidDocument(value):
+            continue
 
         for i in range(len(value)):
             column = columns[i]
@@ -115,6 +121,78 @@ def dropDefaultCollections():
     conn = MongoConnection.PyMongoConnection()
 
     conn.dropCollections("folconn", ["users", "documents", "adminUsers", "loginAttempts", "folAccessAttempts"])
+
+
+def isValidDocument(document):
+    if isinstance(document[1], int):
+        return False
+    return True
+
+
+def synchronizeUsersData():
+    conn = MongoConnection.PyMongoConnection()
+
+    usersList = getUsersList(list(conn.getDocuments("folconn", "users", {}, {"Login": 1})))
+
+    print(usersList)
+
+    dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
+    dataFrame = dataFrame.fillna(-1)
+
+    termsOfUseColumn = "currentlyAcceptingTermsOfUse"
+    dataFrame.insert(0, termsOfUseColumn, False)
+
+    columns = dataFrame.columns.values
+
+    updatedUsersList = []
+
+    for value in dataFrame.values:
+        document = {}
+
+        if not isValidDocument(value):
+            continue
+
+        for i in range(len(value)):
+            column = columns[i]
+
+            if column == "Equipment":
+                equipments = value[i].split(",")
+                equipmentsList = []
+
+                for equipment in equipments:
+                    equipmentsList.append(equipment.strip())
+
+                document[column] = equipmentsList
+
+            elif column == termsOfUseColumn:
+                document[column] = False
+
+            else:
+                columnValue = value[i]
+
+                if column == "Password":
+                    columnValue = bcrypt.hashpw(str(columnValue).encode("utf-8"), bcrypt.gensalt(8))
+
+                document[column] = columnValue
+
+        updatedUsersList.append(document["Login"])
+
+        conn.update("folconn", "users", document, {"Login": document["Login"]}, True)
+
+    for user in usersList:
+        if user not in updatedUsersList:
+            conn.delete("folconn", "users", {"Login": user})
+
+
+def getUsersList(usersDocuments):
+    usersList = []
+
+    for document in usersDocuments:
+        userName = document["Login"]
+
+        usersList.append(userName)
+
+    return usersList
 
 
 def initializeDatabase(restartData=False):

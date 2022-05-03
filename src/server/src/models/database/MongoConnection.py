@@ -69,3 +69,10 @@ class PyMongoConnection:
             collection.insert_many(document)
         else:
             collection.insert_one(document)
+
+    def delete(self, databaseName, collectionName, condition):
+        database = self.__mongoClient[databaseName]
+
+        collection = database[collectionName]
+
+        collection.delete_one(condition)
