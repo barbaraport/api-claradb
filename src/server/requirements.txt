@@ -9,7 +9,6 @@ click==8.0.4
 colorama==0.4.4
 et-xmlfile==1.1.0
 filelock==3.6.0
-Flask==2.0.3
 Flask-Cors==3.0.10
 future==0.18.2
 gevent==21.12.0
@@ -19,10 +18,7 @@ itsdangerous==2.1.2
 Jinja2==3.1.1
 MarkupSafe==2.1.1
 numpy==1.22.3
-openpyxl==3.0.9
-pandas==1.4.1
 pycparser==2.21
-pymongo==4.0.2
 PySocks==1.7.1
 python-dateutil==2.8.2
 pytz==2022.1
@@ -37,3 +33,4 @@ zope.interface==5.4.0
 bcrypt==3.2.0
 PyPDF2==1.27.9
 geopy==2.2.0
+watchdog==2.1.7

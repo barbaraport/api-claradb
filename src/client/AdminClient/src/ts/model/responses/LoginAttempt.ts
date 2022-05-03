@@ -1,7 +1,8 @@
+import { GeoLocation } from "./GeoLocation"
+
 export type LoginAttempt = {
-    city: string,
-    country: string,
+    geolocation: GeoLocation,
     date: string,
     userId: string | null,
-    userName: string
+    userName: string | null
 }

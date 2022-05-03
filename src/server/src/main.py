@@ -6,6 +6,7 @@ from controllers.authenticationController import authRoutes
 from controllers.folController import folRoutes
 from controllers.carController import carRoutes
 from controllers.adminController import adminRoutes
+from models.observers.ResourceFileChangeObserver import ResourceFileChangeObserver
 
 app = Flask(__name__)
 app.register_blueprint(authRoutes)
@@ -17,5 +18,12 @@ CORS(app)
 
 restartDatabaseDefaultData = True
 initializeDatabase(restartDatabaseDefaultData)
+
+
+def log():
+    print("Vi a modificação")
+
+
+ResourceFileChangeObserver("/startUpFiles", "usersMock.xlsx", log)
 
 app.run(host='0.0.0.0', port=5000, debug=True)

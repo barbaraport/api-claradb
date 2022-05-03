@@ -43,8 +43,10 @@ export function searchFols() {
 
         for (let i = 0; i < attemptsData.length; i++) {
             const loginAttempt = attemptsData[i];
+
+            const loginLocation = loginAttempt["geolocation"];
             
-            if(loginAttempt['country'].toLowerCase().includes(searchValue)){
+            if(loginLocation['country'].toLowerCase().includes(searchValue)){
                 searchResults.push(loginAttempt);
 
             }
@@ -58,7 +60,9 @@ export function searchFols() {
     for (let i = 0; i < searchResults.length; i++) {
         const result = searchResults[i];
 
-        const country = result['country'];
+        const location = result["geolocation"];
+
+        const country = location['country'];
 
         if(country in effectiveResults){
             effectiveResults[country] += 1;
@@ -117,16 +121,25 @@ function showCountryAccesses(country: string) {
 
         for (let i = 0; i < attemptsData.length; i++) {
             const loginAttempt = attemptsData[i];
+
+            const loginLocation = loginAttempt["geolocation"];
             
-            if(loginAttempt['country'] === country){
+            if(loginLocation['country'] === country){
                 const resultContainer = document.createElement("tr");
                 resultContainer.classList.add("accessResult");
 
                 const userNameLabel = document.createElement("td");
-                userNameLabel.innerText = loginAttempt['userName'];
+
+                if (loginAttempt['userName']) {
+                    userNameLabel.innerText = loginAttempt['userName'];
+                    
+                }else {
+                    userNameLabel.innerText = "Unknown";
+
+                }
 
                 const userLocationLabel = document.createElement("td");
-                userLocationLabel.innerText = loginAttempt['city'] + ", " + loginAttempt['country'];
+                userLocationLabel.innerText = loginLocation['city'] + ", " + loginLocation['country'];
 
                 const userAccessDateLabel = document.createElement("td");
                 userAccessDateLabel.innerText = loginAttempt['date'];
@@ -143,12 +156,4 @@ function showCountryAccesses(country: string) {
 
     }
 
-
-    /*
-    <div class="accessResult">
-        <label>User X</label>
-        <label>São José dos Campos, São Paulo</label>
-        <label>16/09/1997 10:00:00</label>
-    </div>
-    */
 }
