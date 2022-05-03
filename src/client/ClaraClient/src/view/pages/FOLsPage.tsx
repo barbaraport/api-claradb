@@ -153,7 +153,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 				}
 
 				{
-					this.state.showPdf && <PDFDisplay folTitle={this.state.folTitle} closePdfDisplay={this.closeFolPdf}/>
+					this.state.showPdf && <PDFDisplay folTitle={this.state.folTitle} closePdfDisplay={this.closeFolPdf} userID={this.props.userID}/>
 				}
 
 				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />

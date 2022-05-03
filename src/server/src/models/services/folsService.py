@@ -2,6 +2,7 @@ import base64
 import re
 
 import PyPDF2
+from bson import ObjectId
 from flask import jsonify, make_response, abort
 from models.database.MongoConnection import PyMongoConnection
 
@@ -189,7 +190,7 @@ def getOpenedFolFile():
     return make_response(jsonify({"data": str(fol_base_64)}))
 
 
-def registerAccess(folTitle, position):
+def registerAccess(folTitle, position, user):
 
     geolocation = locationService.getCoordinatePlace(position)
 
@@ -201,4 +202,14 @@ def registerAccess(folTitle, position):
     }
 
     conn = PyMongoConnection()
+
+    condition = {
+        "_id": ObjectId(user)
+    }
+
+    user = conn.getDocument("folconn", "users", condition)
+
+    if user["currentlyAcceptingTermsOfUse"]:
+        folAccessAttempt["userId"] = user["_id"]
+
     conn.insert("folconn", "folAccessAttempts", folAccessAttempt)

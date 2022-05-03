@@ -3,11 +3,11 @@ import { FOLSearchResult } from "../interfaces/FOLSearchResult";
 
 export class FOLService {
 
-     public async registerFolAccess (folTitle: string, position: any) {
+     public async registerFolAccess (folTitle: string, userID: string, position: any) {
 
           let request = {
                method: "POST",
-               body: JSON.stringify({ folTitle: folTitle, position: position }),
+               body: JSON.stringify({ folTitle: folTitle, user: userID, position: position }),
                headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
