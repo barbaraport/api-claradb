@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Modal, TouchableOpacity, View } from "react-native";
 import Pdf from "react-native-pdf";
 import { FOLService } from "../../../services/FOLService";
+import { LocationService } from "../../../services/LocationService";
 import { Styles } from "../../assets/styles/Styles";
 
 interface PDFDisplayProps {
@@ -18,6 +19,7 @@ interface PDFDisplayState {
 export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
 
     private folService = new FOLService();
+    private locationService = new LocationService();
 
     constructor(props: PDFDisplayProps) {
         super(props);
@@ -37,6 +39,13 @@ export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
 
         let folFirstPageNumber = await this.getFolFirstPage();
         this.setState({ folFirstPage: folFirstPageNumber });
+
+        this.registerLocation();
+    }
+
+    private async registerLocation () {
+        let position = await this.locationService.getUserPosition();
+        await this.folService.registerFolAccess(this.props.folTitle, position);
     }
 
     private closePdfDisplay() {

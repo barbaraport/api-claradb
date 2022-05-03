@@ -60,11 +60,11 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
 			if (credential != null) {
 				const credentialCode = credential.getCode();
-
+				
 				this.props.setUserIDFunction(credentialCode);
 				this.props.redirectPageFunction("Home");
-
-			}else {
+			}
+			else {
 				Alert.alert("Wrong Credentials", "No user found. Verify your credentials.");
 
 			}

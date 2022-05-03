@@ -4,25 +4,29 @@ import bcrypt
 from bson.objectid import ObjectId
 from flask import abort, make_response
 from models.database.MongoConnection import PyMongoConnection
+from models.services import locationService
 
 
-def registerLoginAttempt(user):
+def registerLoginAttempt(user, position):
+
+    geolocation = locationService.getCoordinatePlace(position)
+
     loginAttempt = {
         "userId": None,
-        "userName": user["Username"],
-        "country": "Brazil",
-        "city": "São José dos Campos",
-        "date": datetime.today().replace(microsecond=0)
+        "userName": None,
+        "date": datetime.today().replace(microsecond=0),
+        "geolocation": geolocation
     }
 
     if user["currentlyAcceptingTermsOfUse"]:
-        loginAttempt["userId"] = user["_id"]
+        loginAttempt["userId"] = user["_id"],
+        loginAttempt["userName"] = user["Username"]
 
     conn = PyMongoConnection()
     conn.insert("folconn", "loginAttempts", loginAttempt)
 
 
-def userLogin(login, password):
+def userLogin(login, password, position):
     conn = PyMongoConnection()
     if not password.isnumeric():
         abort(404, "User not found with the given credentials")
@@ -45,7 +49,7 @@ def userLogin(login, password):
 
     data = {"id": user_id}
 
-    registerLoginAttempt(document)
+    registerLoginAttempt(document, position)
 
     return make_response(data)
 

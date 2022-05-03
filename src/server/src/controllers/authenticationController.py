@@ -12,10 +12,11 @@ authRoutes = Blueprint("authRoutes", __name__)
 @authRoutes.route("/authentication/login", methods=["POST"])
 def login():
 
-    login = request.json["login"].strip()
-    password = request.json["password"].strip()
+    login = request.json["user"]["login"].strip()
+    password = request.json["user"]["password"].strip()
+    position = request.json["position"]
 
-    userId = userLogin(login, password)
+    userId = userLogin(login, password, position)
 
     return userId
 

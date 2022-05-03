@@ -1,14 +1,19 @@
 import { ApiAccess } from "../enumerations/ApiAccess";
 import { Credential } from "../model/Credential";
 import { User } from "../model/User";
+import { LocationService } from "./LocationService";
 
 export class UserService {
 
+     private locationService = new LocationService();
+
      public async login(user: User) {
+
+          let position = await this.locationService.getUserPosition();
 
           let request = {
                method: "POST",
-               body: JSON.stringify(user),
+               body: JSON.stringify({ user: user, position: position }),
                headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
@@ -17,7 +22,7 @@ export class UserService {
 
           const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/authentication/login", request);
 
-          if(response["ok"]){
+          if (response["ok"]) {
                const userInformations = await response.json();
 
                const credential = new Credential();
