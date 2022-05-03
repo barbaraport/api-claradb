@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 
-from models.database.databaseScripts import initializeDatabase
+from models.database.databaseScripts import initializeDatabase, synchronizeUsersData
 from controllers.authenticationController import authRoutes
 from controllers.folController import folRoutes
 from controllers.carController import carRoutes
@@ -19,11 +19,6 @@ CORS(app)
 restartDatabaseDefaultData = True
 initializeDatabase(restartDatabaseDefaultData)
 
-
-def log():
-    print("Vi a modificação")
-
-
-ResourceFileChangeObserver("/startUpFiles", "usersMock.xlsx", log)
+ResourceFileChangeObserver("/startUpFiles", "usersMock.xlsx", synchronizeUsersData)
 
 app.run(host='0.0.0.0', port=5000, debug=True)
