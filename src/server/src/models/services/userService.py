@@ -13,13 +13,14 @@ def registerLoginAttempt(user, position):
 
     loginAttempt = {
         "userId": None,
-        "userName": user["Username"],
+        "userName": None,
         "date": datetime.today().replace(microsecond=0),
         "geolocation": geolocation
     }
 
     if user["currentlyAcceptingTermsOfUse"]:
-        loginAttempt["userId"] = user["_id"]
+        loginAttempt["userId"] = user["_id"],
+        loginAttempt["userName"] = user["Username"]
 
     conn = PyMongoConnection()
     conn.insert("folconn", "loginAttempts", loginAttempt)
