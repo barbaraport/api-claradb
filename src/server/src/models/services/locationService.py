@@ -11,8 +11,6 @@ def getCoordinatePlace(position):
 
     location = geolocator.reverse(stringToGetGeolocation).raw["address"]
 
-    print(location)
-
     usefulLocation = {
         "suburb": location["suburb"],
         "town": location["town"],
