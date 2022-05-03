@@ -3,6 +3,20 @@ import { FOLSearchResult } from "../interfaces/FOLSearchResult";
 
 export class FOLService {
 
+     public async registerFolAccess (folTitle: string, position: any) {
+
+          let request = {
+               method: "POST",
+               body: JSON.stringify({ folTitle: folTitle, position: position }),
+               headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+               }
+          }
+
+          await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/registerAccess", request);
+     }
+
      public async getFol () {
 
           const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol");

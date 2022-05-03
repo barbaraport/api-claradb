@@ -5,6 +5,10 @@ import PyPDF2
 from flask import jsonify, make_response, abort
 from models.database.MongoConnection import PyMongoConnection
 
+from models.services import locationService
+from datetime import datetime
+
+
 
 def getFolsByEquipment(equipment):
     conn = PyMongoConnection()
@@ -175,6 +179,7 @@ def getFolFirstPage(folTitle):
 
     return jsonify({"page": page})
 
+
 def getOpenedFolFile():
     opened_pdf = open("../resources/FOL-MUS-FATEC.pdf", "rb")
     opened_pdf_read = opened_pdf.read()
@@ -182,3 +187,18 @@ def getOpenedFolFile():
     fol_base_64 = base64.b64encode(opened_pdf_read).decode()
 
     return make_response(jsonify({"data": str(fol_base_64)}))
+
+
+def registerAccess(folTitle, position):
+
+    geolocation = locationService.getCoordinatePlace(position)
+
+    folAccessAttempt = {
+        "userId": None,
+        "folTitle": folTitle,
+        "date": datetime.today().replace(microsecond=0),
+        "geolocation": geolocation
+    }
+
+    conn = PyMongoConnection()
+    conn.insert("folconn", "folAccessAttempts", folAccessAttempt)

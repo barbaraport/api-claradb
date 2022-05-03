@@ -44,8 +44,8 @@ export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
     }
 
     private async registerLocation () {
-        //let position = await this.locationService.getUserPosition();
-        console.log("registering location");
+        let position = await this.locationService.getUserPosition();
+        await this.folService.registerFolAccess(this.props.folTitle, position);
     }
 
     private closePdfDisplay() {

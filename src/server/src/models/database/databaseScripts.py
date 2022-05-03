@@ -114,7 +114,7 @@ def createInitialUserAdminCollection():
 def dropDefaultCollections():
     conn = MongoConnection.PyMongoConnection()
 
-    conn.dropCollections("folconn", ["users", "documents", "adminUsers", "loginAttempts"])
+    conn.dropCollections("folconn", ["users", "documents", "adminUsers", "loginAttempts", "folAccessAttempts"])
 
 
 def initializeDatabase(restartData=False):
