@@ -212,5 +212,6 @@ def registerAccess(folTitle, position, user):
 
     if user["currentlyAcceptingTermsOfUse"]:
         folAccessAttempt["userId"] = user["_id"]
+        folAccessAttempt["userName"] = user["Username"]
 
     conn.insert("folconn", "folAccessAttempts", folAccessAttempt)
