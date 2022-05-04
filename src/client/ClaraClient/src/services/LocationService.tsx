@@ -39,7 +39,7 @@ export class LocationService {
                          res({ lat: position.coords.latitude, long: position.coords.longitude })
                     },
                     (error) => rej(error),
-                    { enableHighAccuracy: false }
+                    { enableHighAccuracy: true }
                );
           });
      }
