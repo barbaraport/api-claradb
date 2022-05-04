@@ -19,7 +19,7 @@ def registerLoginAttempt(user, position):
     }
 
     if user["currentlyAcceptingTermsOfUse"]:
-        loginAttempt["userId"] = user["_id"],
+        loginAttempt["userId"] = str(user["_id"])
         loginAttempt["userName"] = user["Username"]
 
     conn = PyMongoConnection()
