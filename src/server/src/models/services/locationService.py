@@ -15,8 +15,7 @@ def getCoordinatePlace(position):
         "suburb": location["suburb"],
         "state": location["state"],
         "country": location["country"],
-        "city": location["city"],
-        "city_district": location["city_district"]
+        "city": location["city"]
     }
 
     return usefulLocation
