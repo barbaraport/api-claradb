@@ -15,8 +15,10 @@ export const Styles = StyleSheet.create({
      },
      textInput: {
           backgroundColor: Colors.WHITE,
+          padding: 1,
+          height: 27.5,
           borderRadius: 50,
-          paddingLeft: 5,
+          paddingLeft: 10,
           width: '80%'
      },
      search: {
