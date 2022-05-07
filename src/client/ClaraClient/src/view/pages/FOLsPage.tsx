@@ -158,8 +158,8 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />
 				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Status" radioData={this.status} performsSearchFunction={this.setStatus} />
-				<TextInputCollapsible userID={this.props["userID"]} title="FOL Keywords" performsSearchFunction={this.setKeyword} />
-				<TextInputCollapsible userID={this.props["userID"]} title="FOL Title" performsSearchFunction={this.setTitle} />
+				<TextInputCollapsible userID={this.props["userID"]} title="FOL Keywords" placeholder="Clutch, hydraulic..." performsSearchFunction={this.setKeyword} />
+				<TextInputCollapsible userID={this.props["userID"]} title="FOL Title" placeholder="MRC-002/09" performsSearchFunction={this.setTitle} />
 				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Category" radioData={this.state["categories"]} performsSearchFunction={this.setCategory} />
 			</ScrollView>
 		);

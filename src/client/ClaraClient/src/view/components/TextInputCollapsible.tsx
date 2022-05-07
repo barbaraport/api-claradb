@@ -7,6 +7,7 @@ interface CollapsibleProps {
     title: string,
     performsSearchFunction: Function;
     userID: string;
+    placeholder: string;
 }
 
 interface CollapsibleState {
@@ -42,7 +43,7 @@ export class TextInputCollapsible extends React.Component<CollapsibleProps, Coll
         const textInput: JSX.Element = (
             <View>
                 <View style={Styles.textInputCollapsible}>
-                    <TextInput placeholder="Clutch, hydraulic, etc..." style={Styles.textInput} onChangeText={(value) => this.changeInputText(value)}></TextInput>
+                    <TextInput placeholder={this.props.placeholder} style={Styles.textInput} onChangeText={(value) => this.changeInputText(value)}></TextInput>
                     <TouchableOpacity style={[Styles.search, { marginLeft: 3 }]} activeOpacity={0.5} onPress={this.performsSearch}>
                         <Text>Search</Text>
                     </TouchableOpacity>
