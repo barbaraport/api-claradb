@@ -11,11 +11,16 @@ def getCoordinatePlace(position):
 
     location = geolocator.reverse(stringToGetGeolocation).raw["address"]
 
+    if "city" in location:
+        city = location["city"]
+    else:
+        city = location["city_district"]
+
     usefulLocation = {
         "suburb": location["suburb"],
         "state": location["state"],
         "country": location["country"],
-        "city": location["city"]
+        "city": city
     }
 
     return usefulLocation
