@@ -22,6 +22,4 @@ class ResourceFileChangeObserver(FileSystemEventHandler):
             if (modificationTime - self.lastModification) > 1:
                 self.lastModification = modificationTime
 
-                print(self.lastModification)
-
                 self.onChangeCallback()

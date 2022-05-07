@@ -134,8 +134,6 @@ def synchronizeUsersData():
 
     usersList = getUsersList(list(conn.getDocuments("folconn", "users", {}, {"Login": 1})))
 
-    print(usersList)
-
     dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
