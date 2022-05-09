@@ -1,24 +1,32 @@
 import Geolocation from "@react-native-community/geolocation";
 import { PermissionsAndroid, Platform } from "react-native";
+import RNAndroidLocationEnabler from "react-native-android-location-enabler";
 
 export class LocationService {
 
+
      public async getUserPosition() {
+          if (Platform.OS === "android") {
 
-          let position = null;
+               let isGPSEnabled = await this.verifyGPS();
 
-          if (Platform.OS == "android") {
-               const granted = await this.checkPermissionToGetLocation();
+               if (isGPSEnabled) {
+                    const granted = await this.checkPermissionToGetLocation();
 
-               if (granted) {
-                    position = await this.getCurrentPosition();
+                    if (granted) {
+                         let position = this.getCurrentPosition();
+                         return position;
+                    }
+                    else {
+                         return null;
+                    }
+               }
+               else {
+                    return null;
                }
           }
-          else {
-               position = await this.getCurrentPosition();
-          }
 
-          return position;
+          return await this.getCurrentPosition();
      }
 
      private async checkPermissionToGetLocation() {
@@ -32,16 +40,34 @@ export class LocationService {
           }
      }
 
+     private async verifyGPS(): Promise<boolean> {
+
+          let verification: boolean = await new Promise((res, rej) => {
+               RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({ fastInterval: 10000, interval: 5000 })
+                    .then((data) => {
+                         res(true);
+                    })
+                    .catch((error) => {
+                         rej(false);
+                    });
+
+          });
+
+          return verification;
+     }
+
      private async getCurrentPosition() {
-          return new Promise((res, rej) => {
+          let position = await new Promise((res, rej) => {
                Geolocation.getCurrentPosition(
                     (position) => {
                          res({ lat: position.coords.latitude, long: position.coords.longitude })
                     },
                     (error) => rej(error),
-                    { enableHighAccuracy: true }
+                    { enableHighAccuracy: false, timeout: 2000, maximumAge: 3600000 }
                );
           });
+
+          return position;
      }
 
 }
