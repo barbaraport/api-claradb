@@ -9,7 +9,7 @@ def getCoordinatePlace(position):
 
     stringToGetGeolocation = f"{latitude}, {longitude}";
 
-    location = geolocator.reverse(stringToGetGeolocation).raw["address"]
+    location = geolocator.reverse(stringToGetGeolocation, language='en').raw["address"]
 
     if "city" in location:
         city = location["city"]
