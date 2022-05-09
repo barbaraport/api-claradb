@@ -62,7 +62,21 @@ export function searchFolsAccesses() {
 
     }
 
-    const keys = Object.keys(searchResults);
+    const items = Object.entries(searchResults);
+
+    const orderedItems = items.sort((a: Array<string | number>, b: Array<string | number>) => {
+        const result = (a[1] as number) - (b[1] as number);
+
+        return result
+    }).reverse();
+
+    const keys: Array<string> = [];
+
+    for (let i = 0; i < orderedItems.length; i++) {
+        const item = orderedItems[i];
+        
+        keys.push(item[0]);
+    }
 
     for (let i = 0; i < keys.length; i++) {
         const folTitle = keys[i];

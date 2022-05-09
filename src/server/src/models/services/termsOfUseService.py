@@ -13,3 +13,13 @@ def changeTermsOfUse(newStatus, userId):
     conn = PyMongoConnection()
 
     conn.update("folconn", "users", {"currentlyAcceptingTermsOfUse": newStatus}, {"_id": ObjectId(userId)})
+
+    if not newStatus:
+        disassociateUserData(userId)
+
+
+def disassociateUserData(userId):
+    conn = PyMongoConnection()
+
+    conn.update("folconn", "loginAttempts", {"userId": userId}, {"userId": None, "userName": None})
+    conn.update("folconn", "folAccessAttempts", {"userId": userId}, {"userId": None, "userName": None})
