@@ -87,7 +87,7 @@ def registerDefaultDocuments():
 
                 for keyword in keywords:
                     if keyword != " ":
-                        keywordsList.append(keyword.strip())
+                        keywordsList.append(keyword.strip().lower())
 
                 document[column] = keywordsList
 
