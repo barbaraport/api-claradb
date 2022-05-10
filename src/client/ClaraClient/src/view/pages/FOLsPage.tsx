@@ -113,7 +113,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 	}
 
 	private setKeyword(filter: string) {
-		this.setState({ searchFilter: filter, searchType: SearchType.FOL_KEYWORD, inSearch: true });
+		this.setState({ searchFilter: filter.toLowerCase(), searchType: SearchType.FOL_KEYWORD, inSearch: true });
 
 	}
 
