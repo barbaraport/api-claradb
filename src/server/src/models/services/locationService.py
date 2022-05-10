@@ -4,24 +4,26 @@ geolocator = Nominatim(user_agent="claraDBFolconnApp")
 
 
 def getCoordinatePlace(position):
-    latitude = position["lat"]
-    longitude = position["long"]
+    usefulLocation = None
 
-    stringToGetGeolocation = f"{latitude}, {longitude}";
+    if position is not None:
+        latitude = position["lat"]
+        longitude = position["long"]
 
-    location = geolocator.reverse(stringToGetGeolocation).raw["address"]
+        stringToGetGeolocation = f"{latitude}, {longitude}";
 
-    if "city" in location:
-        city = location["city"]
-    else:
-        city = location["city_district"]
+        location = geolocator.reverse(stringToGetGeolocation, language='en').raw["address"]
 
-    usefulLocation = {
-        "suburb": location["suburb"],
-        "state": location["state"],
-        "country": location["country"],
-        "city": city
-    }
+        if "city" in location:
+            city = location["city"]
+        else:
+            city = location["city_district"]
+
+        usefulLocation = {
+            "suburb": location["suburb"],
+            "state": location["state"],
+            "country": location["country"],
+            "city": city
+        }
 
     return usefulLocation
-

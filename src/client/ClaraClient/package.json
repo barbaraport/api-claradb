@@ -22,6 +22,7 @@
     "react": "17.0.2",
     "react-dom": "^18.0.0",
     "react-native": "0.64.3",
+    "react-native-android-location-enabler": "^1.2.2",
     "react-native-blob-util": "^0.15.0",
     "react-native-collapsible": "^1.6.0",
     "react-native-pdf": "^6.5.0",
