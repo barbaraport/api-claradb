@@ -18,7 +18,7 @@ app.register_blueprint(termsOfUseRoutes)
 
 CORS(app)
 
-restartDatabaseDefaultData = False
+restartDatabaseDefaultData = True
 initializeDatabase(restartDatabaseDefaultData)
 
 ResourceFileChangeObserver("/startUpFiles", "usersMock.xlsx", synchronizeUsersData)
