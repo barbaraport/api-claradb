@@ -1,6 +1,6 @@
 import Geolocation from "@react-native-community/geolocation";
 import { PermissionsAndroid, Platform } from "react-native";
-import RNAndroidLocationEnabler from "react-native-android-location-enabler";
+import RNAndroidLocationEnabler, { PromptFuncResponse } from "react-native-android-location-enabler";
 
 export class LocationService {
 
@@ -10,7 +10,7 @@ export class LocationService {
 
                let isGPSEnabled = await this.verifyGPS();
 
-               if (isGPSEnabled) {
+               if (isGPSEnabled === "already-enabled" || isGPSEnabled === "enabled") {
                     const granted = await this.checkPermissionToGetLocation();
 
                     if (granted) {
@@ -40,18 +40,20 @@ export class LocationService {
           }
      }
 
-     private async verifyGPS(): Promise<boolean> {
+     private async verifyGPS(): Promise<PromptFuncResponse > {
 
-          let verification: boolean = await new Promise((res, rej) => {
-               RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({ fastInterval: 10000, interval: 5000 })
-                    .then((data) => {
-                         res(true);
-                    })
-                    .catch((error) => {
-                         rej(false);
-                    });
+          let verification: PromptFuncResponse = await RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({ fastInterval: 10000, interval: 5000 });
 
-          });
+          // let verification: boolean = await new Promise((res, rej) => {
+          //      RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({ fastInterval: 10000, interval: 5000 })
+          //           .then((data) => {
+          //                res(true);
+          //           })
+          //           .catch((error) => {
+          //                rej(false);
+          //           });
+
+          // });
 
           return verification;
      }
@@ -63,7 +65,7 @@ export class LocationService {
                          res({ lat: position.coords.latitude, long: position.coords.longitude })
                     },
                     (error) => rej(error),
-                    { enableHighAccuracy: false, timeout: 2000, maximumAge: 3600000 }
+                    { enableHighAccuracy: false, timeout: 20000, maximumAge: 3600000 }
                );
           });
 
