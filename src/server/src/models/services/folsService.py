@@ -9,6 +9,7 @@ from models.database.MongoConnection import PyMongoConnection
 from models.services import locationService
 from datetime import datetime
 
+from models.enumerations.FOLsStatuses import FOLsStatuses
 
 
 def getFolsByEquipment(equipment):
@@ -159,26 +160,35 @@ def getFolsByTitle(carsList, title):
 
 
 def getFolFirstPage(folTitle):
-    opened_pdf = PyPDF2.PdfFileReader("../resources/FOL-MUS-FATEC.pdf")
-    total_pages_pdf = opened_pdf.getNumPages()
+    conn = PyMongoConnection()
 
-    page = 0
-    total_matches = 0
+    condition = {"Title": folTitle}
+    fol = conn.getDocument("folconn", "documents", condition)
 
-    for page_number in range(0, total_pages_pdf):
+    if fol is not None and fol["Status"] == FOLsStatuses.IN_EFFECT:
 
-        opened_page = opened_pdf.getPage(page_number)
-        page_text = opened_page.extractText()
+        opened_pdf = PyPDF2.PdfFileReader("../resources/FOL-MUS-FATEC.pdf")
+        total_pages_pdf = opened_pdf.getNumPages()
 
-        result_search = re.search(folTitle, page_text)
-        if result_search is not None:
-            total_matches += 1
+        page = 0
+        total_matches = 0
 
-            if total_matches > 1:
-                page = page_number + 1
-                break
+        for page_number in range(0, total_pages_pdf):
 
-    return jsonify({"page": page})
+            opened_page = opened_pdf.getPage(page_number)
+            page_text = opened_page.extractText()
+
+            result_search = re.search(folTitle, page_text)
+            if result_search is not None:
+                total_matches += 1
+
+                if total_matches > 1:
+                    page = page_number + 1
+                    break
+
+        return jsonify({"page": page})
+
+    return jsonify({"page": ""})
 
 
 def getOpenedFolFile():
@@ -191,7 +201,6 @@ def getOpenedFolFile():
 
 
 def registerAccess(folTitle, position, userId):
-
     geolocation = locationService.getCoordinatePlace(position)
 
     folAccessAttempt = {
