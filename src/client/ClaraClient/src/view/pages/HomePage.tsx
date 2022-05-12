@@ -15,11 +15,6 @@ export class HomePage extends Component<HomePageProps, any> {
 		super(props);
 
 		this.openFolsScreen = this.openFolsScreen.bind(this);
-		this.openCarDetailsScreen = this.openCarDetailsScreen.bind(this);
-	}
-
-	private openCarDetailsScreen(){
-		Alert.alert("Oops!", "The car details screen is under development!", [{text: 'Ok!'}]);
 	}
 
 	private openFolsScreen(){
@@ -35,10 +30,9 @@ export class HomePage extends Component<HomePageProps, any> {
 					resizeMode="cover" imageStyle={{opacity: 0.8}}
 				/>
 				<View style={{marginTop: 150}}>
-					<Text style={{fontSize: 24, color: Colors.WHITE}}>What do you wish to see first?</Text>
+					<Text style={{fontSize: 24, color: Colors.WHITE, textAlign: "center"}}>Get notified and read FOLs instantly!</Text>
 				</View>
 				<View style={{marginTop: 50, height: 200, display: "flex", flexDirection: "column", justifyContent: "space-evenly"}}>
-					<FolconnButton size="large" text="Car details" onClick={this.openCarDetailsScreen}></FolconnButton>
 					<FolconnButton size="large" text="FOLs" onClick={this.openFolsScreen}></FolconnButton>
 				</View>
 			</View>
