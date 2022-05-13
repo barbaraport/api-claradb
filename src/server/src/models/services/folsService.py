@@ -167,7 +167,7 @@ def getFolFirstPage(folTitle):
 
     if fol_file is not None and fol is not None and fol["Status"] == FOLsStatuses.IN_EFFECT:
 
-        opened_pdf = PyPDF2.PdfFileReader("../resources/FOL-MUS-FATEC.pdf")
+        opened_pdf = PyPDF2.PdfFileReader("../resources/" + fol_file["fileName"])
         total_pages_pdf = opened_pdf.getNumPages()
 
         page = 0
@@ -191,13 +191,22 @@ def getFolFirstPage(folTitle):
     return jsonify({"page": 0})
 
 
-def getOpenedFolFile():
-    opened_pdf = open("../resources/FOL-MUS-FATEC.pdf", "rb")
-    opened_pdf_read = opened_pdf.read()
+def getOpenedFolFile(folTitle):
 
-    fol_base_64 = base64.b64encode(opened_pdf_read).decode()
+    conn = PyMongoConnection()
 
-    return make_response(jsonify({"data": str(fol_base_64)}))
+    fol = conn.getDocument("folconn", "documents", {"Title": folTitle})
+    fol_file = conn.getDocument("folconn", "FOLsFiles", {"Equipment": fol["Equipment"]})
+
+    if fol_file is not None:
+        opened_pdf = open("../resources/" + fol_file["fileName"], "rb")
+        opened_pdf_read = opened_pdf.read()
+
+        fol_base_64 = base64.b64encode(opened_pdf_read).decode()
+
+        return make_response(jsonify({"data": str(fol_base_64)}))
+
+    return make_response(jsonify({"data": ""}))
 
 
 def registerAccess(folTitle, position, userId):

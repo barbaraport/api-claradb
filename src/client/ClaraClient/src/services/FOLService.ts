@@ -17,9 +17,18 @@ export class FOLService {
           await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/registerAccess", request);
      }
 
-     public async getFol () {
+     public async getFol (folTitle: string) {
 
-          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol");
+          let request = {
+               method: "POST",
+               body: JSON.stringify({folTitle: folTitle}),
+               headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+               }
+          }
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol", request);
 
           if (response["ok"]) {
                const fol = await response.json();

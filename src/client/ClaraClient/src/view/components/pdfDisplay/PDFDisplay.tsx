@@ -54,7 +54,7 @@ export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
     }
 
     private async getFolFile() {
-        return await this.folService.getFol();
+        return await this.folService.getFol(this.props.folTitle);
     }
 
     private async getFolFirstPage() {
