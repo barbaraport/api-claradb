@@ -188,7 +188,7 @@ def getFolFirstPage(folTitle):
 
         return jsonify({"page": page})
 
-    return jsonify({"page": ""})
+    return jsonify({"page": 0})
 
 
 def getOpenedFolFile():
