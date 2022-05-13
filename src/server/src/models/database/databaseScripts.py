@@ -116,11 +116,23 @@ def createInitialUserAdminCollection():
 
     conn.insert("folconn", "adminUsers", admins)
 
+def createInitialFOLsFilesCollection():
+    conn = MongoConnection.PyMongoConnection()
+
+    mustangFOL = {
+        "Equipment": "Mustang",
+        "fileName": "FOL-MUS-FATEC.pdf"
+    }
+
+    fols = [mustangFOL]
+
+    conn.insert("folconn", "FOLsFiles", fols)
+
 
 def dropDefaultCollections():
     conn = MongoConnection.PyMongoConnection()
 
-    conn.dropCollections("folconn", ["users", "documents", "adminUsers", "loginAttempts", "folAccessAttempts"])
+    conn.dropCollections("folconn", ["users", "documents", "adminUsers", "loginAttempts", "folAccessAttempts", "FOLsFiles"])
 
 
 def isValidDocument(document):
@@ -202,6 +214,7 @@ def initializeDatabase(restartData=False):
         registerDefaultUsers()
         registerDefaultDocuments()
         createInitialUserAdminCollection()
+        createInitialFOLsFilesCollection()
 
     elif restartData:
         print("Restarting data")
@@ -209,6 +222,7 @@ def initializeDatabase(restartData=False):
         registerDefaultUsers()
         registerDefaultDocuments()
         createInitialUserAdminCollection()
+        createInitialFOLsFilesCollection()
 
     conn = MongoConnection.PyMongoConnection()
     conn.update("folconn", "databaseStatus", {"statusName": "isInitialized", "statusValue": True},
