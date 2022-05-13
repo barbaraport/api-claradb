@@ -17,9 +17,18 @@ export class FOLService {
           await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/registerAccess", request);
      }
 
-     public async getFol () {
+     public async getFol (folTitle: string) {
 
-          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol");
+          let request = {
+               method: "POST",
+               body: JSON.stringify({folTitle: folTitle}),
+               headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+               }
+          }
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol", request);
 
           if (response["ok"]) {
                const fol = await response.json();
@@ -42,8 +51,9 @@ export class FOLService {
           const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/getFirstPage?folTitle=" + folTitle, request);
 
           if (response["ok"]) {
-               const folFirstPage = await response.json();
-               return folFirstPage.page as number;
+               const folFirstPageResponse = await response.json();
+               
+               return folFirstPageResponse.page as number;
           }
 
           throw new Error(`There was an error to get the first page from ${folTitle} FOL`);

@@ -6,7 +6,7 @@
 .headerImage {
     width: 100%;
     height: var(--headerHeigth);
-    position: absolute
+    position: absolute;
 }
 
 .headerContent {
@@ -14,6 +14,7 @@
     flex-direction: row;
     position: relative;
     justify-content: space-between;
+    margin: 5px;
 }
 
 .headerContent > label {
@@ -70,7 +71,7 @@
     flex-direction: row;
     cursor: pointer;
     margin-top: 15px;
-    margin-right: 10px;
+    margin-right: 40px;
     height: 25px;
     align-items: center;
 }

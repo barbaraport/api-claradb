@@ -1,0 +1,31 @@
+.footer-image {
+  position: absolute;
+  width: 100%;
+}
+
+footer {
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.footer-content {
+  margin-left: 5%;
+  margin-right: 5%;
+  font-size: 12px;
+
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.folcoon-footer {
+  margin-top: 4%;
+}
+
+.copyright-footer {
+  margin-top: 4%;
+}

@@ -76,9 +76,11 @@ def getByTitle():
     return folsList
 
 
-@folRoutes.route("/fol", methods=["GET"])
+@folRoutes.route("/fol", methods=["POST"])
 def getFolFile():
-    fol_file = getOpenedFolFile()
+
+    folTitle = request.json["folTitle"]
+    fol_file = getOpenedFolFile(folTitle)
     return fol_file
 
 

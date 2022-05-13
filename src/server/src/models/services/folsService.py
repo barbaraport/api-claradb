@@ -9,6 +9,7 @@ from models.database.MongoConnection import PyMongoConnection
 from models.services import locationService
 from datetime import datetime
 
+from models.enumerations.FOLsStatuses import FOLsStatuses
 
 
 def getFolsByEquipment(equipment):
@@ -159,39 +160,56 @@ def getFolsByTitle(carsList, title):
 
 
 def getFolFirstPage(folTitle):
-    opened_pdf = PyPDF2.PdfFileReader("../resources/FOL-MUS-FATEC.pdf")
-    total_pages_pdf = opened_pdf.getNumPages()
+    conn = PyMongoConnection()
 
-    page = 0
-    total_matches = 0
+    fol = conn.getDocument("folconn", "documents", {"Title": folTitle})
+    fol_file = conn.getDocument("folconn", "FOLsFiles", {"Equipment": fol["Equipment"]})
 
-    for page_number in range(0, total_pages_pdf):
+    if fol_file is not None and fol is not None and fol["Status"] == FOLsStatuses.IN_EFFECT:
 
-        opened_page = opened_pdf.getPage(page_number)
-        page_text = opened_page.extractText()
+        opened_pdf = PyPDF2.PdfFileReader("../resources/" + fol_file["fileName"])
+        total_pages_pdf = opened_pdf.getNumPages()
 
-        result_search = re.search(folTitle, page_text)
-        if result_search is not None:
-            total_matches += 1
+        page = 0
+        total_matches = 0
 
-            if total_matches > 1:
-                page = page_number + 1
-                break
+        for page_number in range(0, total_pages_pdf):
 
-    return jsonify({"page": page})
+            opened_page = opened_pdf.getPage(page_number)
+            page_text = opened_page.extractText()
+
+            result_search = re.search(folTitle, page_text)
+            if result_search is not None:
+                total_matches += 1
+
+                if total_matches > 1:
+                    page = page_number + 1
+                    break
+
+        return jsonify({"page": page})
+
+    return jsonify({"page": 0})
 
 
-def getOpenedFolFile():
-    opened_pdf = open("../resources/FOL-MUS-FATEC.pdf", "rb")
-    opened_pdf_read = opened_pdf.read()
+def getOpenedFolFile(folTitle):
 
-    fol_base_64 = base64.b64encode(opened_pdf_read).decode()
+    conn = PyMongoConnection()
 
-    return make_response(jsonify({"data": str(fol_base_64)}))
+    fol = conn.getDocument("folconn", "documents", {"Title": folTitle})
+    fol_file = conn.getDocument("folconn", "FOLsFiles", {"Equipment": fol["Equipment"]})
+
+    if fol_file is not None:
+        opened_pdf = open("../resources/" + fol_file["fileName"], "rb")
+        opened_pdf_read = opened_pdf.read()
+
+        fol_base_64 = base64.b64encode(opened_pdf_read).decode()
+
+        return make_response(jsonify({"data": str(fol_base_64)}))
+
+    return make_response(jsonify({"data": ""}))
 
 
 def registerAccess(folTitle, position, userId):
-
     geolocation = locationService.getCoordinatePlace(position)
 
     folAccessAttempt = {
