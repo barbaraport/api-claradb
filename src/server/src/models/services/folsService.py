@@ -162,10 +162,10 @@ def getFolsByTitle(carsList, title):
 def getFolFirstPage(folTitle):
     conn = PyMongoConnection()
 
-    condition = {"Title": folTitle}
-    fol = conn.getDocument("folconn", "documents", condition)
+    fol = conn.getDocument("folconn", "documents", {"Title": folTitle})
+    fol_file = conn.getDocument("folconn", "FOLsFiles", {"Equipment": fol["Equipment"]})
 
-    if fol is not None and fol["Status"] == FOLsStatuses.IN_EFFECT:
+    if fol_file is not None and fol is not None and fol["Status"] == FOLsStatuses.IN_EFFECT:
 
         opened_pdf = PyPDF2.PdfFileReader("../resources/FOL-MUS-FATEC.pdf")
         total_pages_pdf = opened_pdf.getNumPages()
