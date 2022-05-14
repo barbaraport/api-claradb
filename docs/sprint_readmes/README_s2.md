@@ -140,9 +140,9 @@
 
 
   <h2 align="center"><i>Burndown</i> :date::chart_with_downwards_trend:</h3>
-  <p align="justify">Durante a nossa sprint desenvolvemos as funcionalidades que são essenciais no sistema. Tivemos que iniciar as bases tanto do back-end quando do front-end do aplicativo, o que tomou uma parte considerável do tempo. Muitas coisas que são invisíveis ou simples para o usuário podem ser complexas. As duas funcionalidades planejadas para serem entregues foram concluídas e de agora em diante o essencial é melhorá-las e implementar novos requisitos.</p>
+                    <p align="justify">Durante essa sprint desenvolvemos a parte essencial do FolConn <i>web</i>. Sendo assim, as funcionalidades básicas de ambos os sistemas já se encontram com uma ótima usabilidade. Tivemos pouco tempo hábil durante a sprint, porém trabalhamos em equipe de maneira a conseguir resolver nossos problemas e implementar todas as funcionalidades, da melhor forma, com sucesso, pois nos preocupamos com a satisfação do nosso cliente.</p>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/burndown/Burndown%20Sprint%201.png"/>
+    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/burndown/Burndown%20Sprint%202.png"/>
   </p>
   
   <h2>:girl: Integrantes da equipe :boy:</h2>
