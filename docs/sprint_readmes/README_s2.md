@@ -11,13 +11,13 @@
   
   <h2 align="center">:rainbow::spiral_calendar: Segunda Entrega :stars:</h2>
   <h3>:question: O que fizemos?</h3>
-  <p align="justify">Na sprint 2 decidimos realizar melhorias no <i>app</i> e, também, dar início ao desenvolvimento do sistema <i>web</i>. Nosso aplicativo conta com o cadastro do acesso a um documento e com o cadastro de acessos ao app. O usuário deve aceitar os termos de uso para que seu nome possa ser exibido juntamente aos dados, no FolConn <i>web</i>. No FolConn <i>web</i> é possível visualizar todos os acessos realizados pelos usuários, bem como a localização do acesso. Da mesma forma, é possível visualizar os acessos às FOLs e de onde elas foram acessadas. Os dados são exibidos em uma lista, de forma decrescente. Sendo assim, os países que aparecem primeiro são os mais acessados. Equitativamente, as FOLs mais acessadas também são exibidas no topo.
+  <p align="justify">Na <i>sprint</i> 2 decidimos realizar melhorias no <i>app</i> e, também, dar início ao desenvolvimento do FolConn <i>web</i>. Nosso aplicativo conta com o cadastro do acesso aos documentos e aos acessos ao app. O usuário deve aceitar os termos de uso para que seu nome possa ser exibido no FolConn <i>web</i> juntamente aos seus dados. No FolConn <i>web</i> é possível visualizar todos os acessos realizados pelos usuários, bem como a localização destes. Da mesma forma, é possível visualizar os acessos às FOLs e de onde elas foram acessadas. Os dados são exibidos em uma lista, de forma decrescente. Sendo assim, os países que aparecem primeiro são os mais acessados. Equitativamente, as FOLs mais acessadas também são exibidas no topo.
   </p>
   <p align="center">
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/media/imgs/user_stories/s2.png" width="348px"/>
   </p>
   <h3>:grey_question: Por quê?</h3>
-  <p align="justify">Como a empresa parceira preza por ter um bom relacionamento com os seus clientes, é necessário que eles possam ter acesso a dados estatísticos para conhecer melhors seus clientes e para ajudá-los de forma efetiva. Consequentemente os dados são registrados a partir da autorização do usuário e eles são exibidos no FolConn <i>web</i>.</p>
+  <p align="justify">Como a empresa parceira preza por ter um bom relacionamento com os seus clientes, é necessário que ela tenha acesso a dados estatísticos para conhecer melhor seus clientes e ajudá-los de forma efetiva. Consequentemente os dados são anonimizados ou não a partir da autorização do usuário. Os dados de acesso, localização etc. são exibidos juntamente ao seus nomes somente se os usuários do <i>app</i> permitirem.</p>
   
   <h2>:running_woman: FolConn em funcionamento :computer::computer_mouse:</h2>
   <p align="center">
@@ -26,9 +26,8 @@
   <p align="center">Caso queira executar nosso projeto, clique <a href="https://github.com/barbaraport/api-claradb/tree/main/docs/running_project">aqui</a>.</p>
 
   <h2 align="center">:bookmark_tabs: <i>Mockups</i> :memo:</h3>
-  <p align="justify">Nessa entrega planejamos a interface do FolConn <i>web</i> e o resultado se encontra nas imagens abaixo. </p>
-<p align="justify">O usuário entrará primeiramente na tela de login e se ele estiver cadastrado, pode acessar o app. Da página home é possível acessar o menu de forma a navegar para as outras páginas do app. Na página de pesquisa das FOLs, ao buscar algum documento de acordo com o filtro escolhido, uma caixa se abrirá com os resultados. Ao selecionar uma opção, caso o documento selecionado exista na nossa base de dados, o PDF é exibido diretamente na página inicial do documento selecionado.</p>
-<p align="justify">Ao logar no FolConn <i>web</i> é possível escolher os acessos ao app e, também, o acesso às FOLs. Ambos apresentam a localização do usuário, data, hora, e caso ele esteja de acordo, o seu nome.</p>
+<p align="justify">O usuário entrará primeiramente na tela de login e se ele estiver cadastrado, pode acessar o app. Da página <i>home</i> é possível navegar para as outras páginas do app. Na página de pesquisa das FOLs, ao buscar algum documento de acordo com o filtro escolhido, uma caixa se abrirá com os resultados. Ao selecionar uma opção, caso o documento selecionado exista na nossa base de dados, o PDF é exibido diretamente na página inicial do documento selecionado. Caso o documento não exista, é exibido ao usuário que o documento escolhido não está disponível.</p>
+<p align="justify">Ao logar no FolConn <i>web</i> é possível visualizar os acessos ao app e, também, o acesso às FOLs. Ambos apresentam a localização do usuário, data, hora e, caso ele esteja de acordo, o seu nome.</p>
   <p align="center">
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/web/login_admin.png" width="700"/>
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/web/landing_page.png" width="700"/>
@@ -139,7 +138,7 @@
 
 
   <h2 align="center"><i>Burndown</i> :date::chart_with_downwards_trend:</h3>
-                    <p align="justify">Durante essa sprint desenvolvemos a parte essencial do FolConn <i>web</i>. Sendo assim, as funcionalidades básicas de ambos os sistemas já se encontram com uma ótima usabilidade. Tivemos pouco tempo hábil durante a sprint, porém trabalhamos em equipe de maneira a conseguir resolver nossos problemas e implementar todas as funcionalidades, da melhor forma, com sucesso, pois nos preocupamos com a satisfação do nosso cliente.</p>
+                    <p align="justify">Durante essa <i>sprint</i> desenvolvemos a parte essencial do FolConn <i>web</i>. Sendo assim, as funcionalidades básicas de ambos os sistemas já se encontram com uma ótima usabilidade. Tivemos pouco tempo hábil durante a <i>sprint</i>, porém trabalhamos em equipe de maneira a conseguir resolver nossos problemas e implementar todas as funcionalidades, da melhor forma, pois nos preocupamos com a satisfação do nosso cliente.</p>
   <p align="center">
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/burndown/Burndown%20Sprint%202.png"/>
   </p>
