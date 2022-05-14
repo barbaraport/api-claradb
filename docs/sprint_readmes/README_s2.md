@@ -28,13 +28,12 @@
   <h2 align="center">:bookmark_tabs: <i>Mockups</i> :memo:</h3>
   <p align="justify">Nessa entrega planejamos a interface do FolConn <i>web</i> e o resultado se encontra nas imagens abaixo. </p>
 <p align="justify">O usuário entrará primeiramente na tela de login e se ele estiver cadastrado, pode acessar o app. Da página home é possível acessar o menu de forma a navegar para as outras páginas do app. Na página de pesquisa das FOLs, ao buscar algum documento de acordo com o filtro escolhido, uma caixa se abrirá com os resultados. Ao selecionar uma opção, caso o documento selecionado exista na nossa base de dados, o PDF é exibido diretamente na página inicial do documento selecionado.</p>
-<p align="justify>Ao logar no FolConn <i>web</i> é possível escolher os acessos ao app e, também, o acesso às FOLs. Ambos apresentam a localização do usuário, data, hora, e caso ele esteja de acordo, o seu nome.</p>
+<p align="justify">Ao logar no FolConn <i>web</i> é possível escolher os acessos ao app e, também, o acesso às FOLs. Ambos apresentam a localização do usuário, data, hora, e caso ele esteja de acordo, o seu nome.</p>
   <p align="center">
-    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/app/1_login.png" width="264"/>
-    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/app/2_home.png" width="264"/>
-    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/app/3_menu.png" width="264"/>
-    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/app/4_filter_fols.png" width="618"/>
-    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/app/5_see_fols.png" width="618"/>
+    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/web/login_admin.png" width="700"/>
+    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/web/landing_page.png" width="700"/>
+    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/web/user_activity.png" width="700"/>
+    <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/web/user_fol.png" width="700"/>
   </p>
   
   <h2 align="center">Banco de Dados :open_file_folder:</h2>
