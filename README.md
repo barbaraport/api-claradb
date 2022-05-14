@@ -34,7 +34,7 @@
                                    <td><p align="justify">O acesso no FolConn <i>web</i> será liberado e será possível ver os acessos ao app e às FOLs!</p></td>
                                    <td><p align="center">15/05</p></td>
                                    <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/blob/main/docs/sprint_readmes/README_s2.md">Visualizar</a></p></td>
-                                   <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/releases/tag/v0.1">Baixar</a></p></td>
+                                   <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/releases/tag/v0.2">Baixar</a></p></td>
                             </tr>
                             <tr>
                                    <td><p align="center">Entrega 3</p></td>
