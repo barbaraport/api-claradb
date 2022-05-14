@@ -31,7 +31,7 @@
                             </tr>
                             <tr>
                                    <td><p align="center">Entrega 2</p></td>
-                                   <td><p align="justify">O acesso no FolConn <i>web</i> será liberado e será possível ver os acessos ao app às FOLs!</p></td>
+                                   <td><p align="justify">O acesso no FolConn <i>web</i> será liberado e será possível ver os acessos ao app e às FOLs!</p></td>
                                    <td><p align="center">15/05</p></td>
                                    <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/blob/main/docs/sprint_readmes/README_s2.md">Visualizar</a></p></td>
                                    <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/releases/tag/v0.1">Baixar</a></p></td>
