@@ -11,13 +11,13 @@
   
   <h2 align="center">:rainbow::spiral_calendar: Segunda Entrega :stars:</h2>
   <h3>:question: O que fizemos?</h3>
-  <p align="justify">Na sprint 2 decidimos realizar melhorias no <i>app</i> e, também, dar início ao desenvolvimento do sistema <i>web</i>. Nosso aplicativo conta com o cadastro do acesso a um documento e com o cadastro de acessos ao app. O usuário deve aceitar os termos de uso para que seu nome possa ser exibido juntamente aos dados, no FolConn <i>web<i/>. No FolConn <i>web</i> é possível visualizar todos os acessos realizados pelos usuários, bem como a localização do acesso. Da mesma forma, é possível visualizar os acessos às FOLs e de onde elas foram acessadas. Os dados são exibidos em uma lista, de forma decrescente. Sendo assim, os países que aparecem primeiro são os mais acessados. Equitativamente, as FOLs mais acessadas também são exibidas no topo.
+  <p align="justify">Na sprint 2 decidimos realizar melhorias no <i>app</i> e, também, dar início ao desenvolvimento do sistema <i>web</i>. Nosso aplicativo conta com o cadastro do acesso a um documento e com o cadastro de acessos ao app. O usuário deve aceitar os termos de uso para que seu nome possa ser exibido juntamente aos dados, no FolConn <i>web</i>. No FolConn <i>web</i> é possível visualizar todos os acessos realizados pelos usuários, bem como a localização do acesso. Da mesma forma, é possível visualizar os acessos às FOLs e de onde elas foram acessadas. Os dados são exibidos em uma lista, de forma decrescente. Sendo assim, os países que aparecem primeiro são os mais acessados. Equitativamente, as FOLs mais acessadas também são exibidas no topo.
   </p>
   <p align="center">
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/media/imgs/user_stories/s2.png" width="348px"/>
   </p>
   <h3>:grey_question: Por quê?</h3>
-  <p align="justify">Como a empresa parceira preza por ter um bom relacionamento com os seus clientes, é necessário que eles possam ter acesso a dados estatísticos para conhecer melhors seus clientes e para ajudá-los de forma efetiva. Consequentemente os dados são registrados a partir da autorização do usuário e eles são exibidos no FolConn <i>web</i>./p>
+  <p align="justify">Como a empresa parceira preza por ter um bom relacionamento com os seus clientes, é necessário que eles possam ter acesso a dados estatísticos para conhecer melhors seus clientes e para ajudá-los de forma efetiva. Consequentemente os dados são registrados a partir da autorização do usuário e eles são exibidos no FolConn <i>web</i>.</p>
   
   <h2>:running_woman: FolConn em funcionamento :computer::computer_mouse:</h2>
   <p align="center">
@@ -39,16 +39,25 @@
   
   <h2 align="center">Banco de Dados :open_file_folder:</h2>
   <p align="justify">Utilizamos o MongoDB como o nosso banco de dados. Ele é um SGBD NoSQL e muito utilizado para acesso rápido aos dados. Como o aplicativo é <i>read-only</i>, trará benefícios e não há necessidade de um banco normalizado, que é mais custoso e pode demorar mais para obter os dados desejados.</p>
-<h3><i>Users Collection</i> 👩‍👦‍👦</h3>
+<h3><i>AdminUsers Collection</i> 👩‍👦‍👦</h3>
 
 
 ```javascript
 {
      "_id": ObjectId,
-     "Username": String,
+     "Name": String,
      "Login": String,
      "Password": Binary,
-     "Equipment": Array
+}
+```
+<h3><i>:gear:	DatabaseStatus Collection</i></h3>
+
+
+```javascript
+{
+     "_id": ObjectId,
+     "statusName": String,
+     "statusValue": Boolean
 }
 ```
 <h3><i>:file_cabinet: Documents Collection :card_index:</i></h3>
@@ -70,14 +79,62 @@
      "Keywords": Array
 }
 ```
-<h3><i>:gear:	DatabaseStatus Collection</i></h3>
+<h3><i>:chart: FOLAccessAttempts Collection :card_index:</i></h3>
 
 
 ```javascript
 {
      "_id": ObjectId,
-     "statusName": String,
-     "statusValue": Boolean
+     "Title": String,
+     "UserId": ObjectId,
+     "Username": String,
+     "FOLTitle": String,
+     "Date": Date,
+     "Geolocation": {
+         "Suburb": String,
+         "State": String,
+         "Country": String,
+         "City": String
+     }
+}
+```
+<h3><i>:file_cabinet: FOLsFiles Collection</i></h3>
+
+
+```javascript
+{
+     "_id": ObjectId,
+     "Equipment": String,
+     "FileName": String
+}
+```
+<h3><i>:chart: LoginAttempts Collection :card_index:</i></h3>
+
+
+```javascript
+{
+     "_id": ObjectId,
+     "UserId": ObjectId,
+     "Username": String,
+     "Date": Date,
+     "Geolocation": {
+         "Suburb": String,
+         "State": String,
+         "Country": String,
+         "City": String
+     }
+}
+```
+<h3><i>Users Collection</i> 👩‍👦‍👦</h3>
+
+
+```javascript
+{
+     "_id": ObjectId,
+     "Username": String,
+     "Login": String,
+     "Password": Binary,
+     "Equipment": Array
 }
 ```
 
