@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"/>
     <img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white"/>
   </p>
-  <p align="justify">A empresa parceira fabrica diversos veículos, que são utilizados ao redor do mundo por todos os seus clientes. Algumas vezes, eles são fabricados e possuem algum problema generalizado e os compradores precisam ser informados para que não ocorram acidentes ao utilizá-los. Atualmente, a empresa parceira não possui nenhuma plataforma que centraliza todas as informações e notifica os usuários sobre <i>recalls</i> e avisos sobre possíveis avarias nos veículos fabricados. Sendo assim, nós, da equipe ClaraDB, fomos desafiados a desenvolver um aplicativo que comunica, através de notificações, os usuários sobre atualizações de possíveis transtornos nos veículos e automatiza a visualização do novo aviso.</p>
+  <p align="justify">A empresa parceira fabrica diversos veículos, que são utilizados ao redor do mundo todo por todos os seus clientes. Algumas vezes, eles são fabricados e possuem algum problema, portanto, os compradores precisam ser informados para que não ocorra risco de vida ao utilizá-los. Atualmente a empresa parceira não possui nenhuma plataforma que centraliza todas as informações e notifica os usuários sobre recalls e avisos sobre possíveis avarias nos veículos fabricados. Sendo assim, nós, da equipe ClaraDB, fomos desafiados a desenvolver um aplicativo que comunica, através de notificações, os usuário sobre atualizações de possíveis transtornos nos veículos e automatiza a visualização do novo aviso.</p>
   
   <h2><i>Product Backlog</i>:pushpin:</h2>
   <p>Temos três <i>sprints</i> para o desenvolvimento de uma solução para o problema do nosso cliente. Sendo assim, priorizamos as funcionalidades desejadas de acordo com a imagem abaixo, de forma que cada entrega evolua em relação à última.</p>
@@ -31,10 +31,10 @@
                             </tr>
                             <tr>
                                    <td><p align="center">Entrega 2</p></td>
-                                   <td><p align="justify">Em desenvolvimento!</p></td>
+                                   <td><p align="justify">O acesso no FolConn <i>web</i> será liberado e será possível ver os acessos ao app às FOLs!</p></td>
                                    <td><p align="center">15/05</p></td>
-                                   <td><p align="center"><a href="">Visualizar</a></p></td>
-                                   <td><p align="center"><a href="">Baixar</a></p></td>
+                                   <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/blob/main/docs/sprint_readmes/README_s2.md">Visualizar</a></p></td>
+                                   <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/releases/tag/v0.1">Baixar</a></p></td>
                             </tr>
                             <tr>
                                    <td><p align="center">Entrega 3</p></td>
