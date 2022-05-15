@@ -47,7 +47,8 @@
   
   <h2>:running_woman: FolConn em funcionamento :computer::computer_mouse:</h2>
   <p align="center">
-    <img src="https://github.com/barbaraport/api-claradb/blob/main/docs/media/gifs/Sprint%201%20-%20FOL%20Filters.gif"/>
+    <img src="https://github.com/barbaraport/api-claradb/blob/main/docs/media/gifs/Sprint-2-Mobile.gif" height="500"/>
+    <img src="https://github.com/barbaraport/api-claradb/blob/main/docs/media/gifs/Sprint2-Web.gif"/>
   </p>
   <p align="center">Caso queira executar nosso projeto, clique <a href="https://github.com/barbaraport/api-claradb/tree/main/docs/running_project">aqui</a>.</p>
  
