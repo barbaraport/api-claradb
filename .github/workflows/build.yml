@@ -22,7 +22,7 @@ jobs:
         cd src
         cd server
         cd tests
-        python -m src.tests.getFOLTest
+        python -m unittest src.tests.getFOLTest
   buildServer:
     runs-on: windows-latest
     steps:
