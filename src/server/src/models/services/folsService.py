@@ -1,15 +1,14 @@
 import base64
 import re
+from datetime import datetime
 
 import PyPDF2
 from bson import ObjectId
-from flask import jsonify, make_response, abort
-from models.database.MongoConnection import PyMongoConnection
+from flask import jsonify, abort
 
-from models.services import locationService
-from datetime import datetime
-
-from models.enumerations.FOLsStatuses import FOLsStatuses
+from src.models.database.MongoConnection import PyMongoConnection
+from src.models.enumerations.FOLsStatuses import FOLsStatuses
+from src.models.services import locationService
 
 
 def getFolsByEquipment(equipment):
@@ -167,7 +166,7 @@ def getFolFirstPage(folTitle):
 
     if fol_file is not None and fol is not None and fol["Status"] == FOLsStatuses.IN_EFFECT:
 
-        opened_pdf = PyPDF2.PdfFileReader("../resources/" + fol_file["fileName"])
+        opened_pdf = PyPDF2.PdfFileReader("./resources/" + fol_file["fileName"])
         total_pages_pdf = opened_pdf.getNumPages()
 
         page = 0
@@ -199,14 +198,14 @@ def getOpenedFolFile(folTitle):
     fol_file = conn.getDocument("folconn", "FOLsFiles", {"Equipment": fol["Equipment"]})
 
     if fol_file is not None:
-        opened_pdf = open("../resources/" + fol_file["fileName"], "rb")
+        opened_pdf = open("./resources/" + fol_file["fileName"], "rb")
         opened_pdf_read = opened_pdf.read()
 
         fol_base_64 = base64.b64encode(opened_pdf_read).decode()
 
-        return make_response(jsonify({"data": str(fol_base_64)}))
+        return {"data": str(fol_base_64)}
 
-    return make_response(jsonify({"data": ""}))
+    return {"data": ""}
 
 
 def registerAccess(folTitle, position, userId):

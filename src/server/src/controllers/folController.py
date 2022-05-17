@@ -1,7 +1,7 @@
-from flask import Blueprint, abort, request, make_response
-from models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
+from flask import Blueprint, abort, request, make_response, jsonify
+from src.models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
     getFolsByTitle, getFolFirstPage, getOpenedFolFile, getFolsByEquipment, registerAccess
-from models.services.userService import getUserCarsList
+from src.models.services.userService import getUserCarsList
 
 folRoutes = Blueprint("folRoutes", __name__)
 
@@ -81,7 +81,7 @@ def getFolFile():
 
     folTitle = request.json["folTitle"]
     fol_file = getOpenedFolFile(folTitle)
-    return fol_file
+    return make_response(jsonify(fol_file))
 
 
 @folRoutes.route("/fol/getFirstPage", methods=["GET"])

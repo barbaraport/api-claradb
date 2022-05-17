@@ -1,10 +1,7 @@
 from flask import Blueprint
-from flask import request
-from flask_cors import cross_origin
 
-from models.services.adminService import getAppLoginAttempts
-
-from models.services.adminService import getFolAccesses
+from src.models.services.adminService import getAppLoginAttempts
+from src.models.services.adminService import getFolAccesses
 
 adminRoutes = Blueprint("adminRoutes", __name__)
 

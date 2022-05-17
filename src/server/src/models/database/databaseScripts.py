@@ -1,6 +1,6 @@
 import bcrypt
 import pandas
-from models.database import MongoConnection
+from src.models.database import MongoConnection
 
 
 def checkInitialization():
@@ -17,7 +17,7 @@ def checkInitialization():
 
 
 def registerDefaultUsers():
-    dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
+    dataFrame = pandas.read_excel("./resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
     termsOfUseColumn = "currentlyAcceptingTermsOfUse"
@@ -64,7 +64,7 @@ def registerDefaultUsers():
 
 
 def registerDefaultDocuments():
-    dataFrame = pandas.read_excel("../resources/startUpFiles/documentsMock.xlsx", sheet_name="query")
+    dataFrame = pandas.read_excel("./resources/startUpFiles/documentsMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
     columns = dataFrame.columns.values
@@ -146,7 +146,7 @@ def synchronizeUsersData():
 
     usersList = getUsersList(list(conn.getDocuments("folconn", "users", {}, {"Login": 1})))
 
-    dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
+    dataFrame = pandas.read_excel("./resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
     termsOfUseColumn = "currentlyAcceptingTermsOfUse"

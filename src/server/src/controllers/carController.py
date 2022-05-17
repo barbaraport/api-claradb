@@ -2,7 +2,7 @@ from flask import Blueprint, request, abort
 
 carRoutes = Blueprint("carRoutes", __name__)
 
-from models.services.carService import getCarsByUser
+from src.models.services.carService import getCarsByUser
 
 @carRoutes.route("/car/carsByUser", methods=["POST"])
 def getUserCars():

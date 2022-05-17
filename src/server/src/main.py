@@ -1,13 +1,14 @@
 from flask import Flask
 from flask_cors import CORS
 
-from models.database.databaseScripts import initializeDatabase, synchronizeUsersData
-from controllers.authenticationController import authRoutes
-from controllers.folController import folRoutes
-from controllers.carController import carRoutes
-from controllers.adminController import adminRoutes
-from controllers.termsOfUseController import termsOfUseRoutes
-from models.observers.ResourceFileChangeObserver import ResourceFileChangeObserver
+from src.models.database.databaseScripts import initializeDatabase, synchronizeUsersData
+from src.controllers.authenticationController import authRoutes
+from src.controllers.folController import folRoutes
+from src.controllers.carController import carRoutes
+from src.controllers.adminController import adminRoutes
+from src.controllers.termsOfUseController import termsOfUseRoutes
+from src.models.observers.ResourceFileChangeObserver import ResourceFileChangeObserver
+
 
 app = Flask(__name__)
 app.register_blueprint(authRoutes)
@@ -18,7 +19,7 @@ app.register_blueprint(termsOfUseRoutes)
 
 CORS(app)
 
-restartDatabaseDefaultData = True
+restartDatabaseDefaultData = False
 initializeDatabase(restartDatabaseDefaultData)
 
 ResourceFileChangeObserver("/startUpFiles", "usersMock.xlsx", synchronizeUsersData)

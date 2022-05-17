@@ -1,6 +1,6 @@
 from flask import make_response, jsonify
 
-from models.database.MongoConnection import PyMongoConnection
+from src.models.database.MongoConnection import PyMongoConnection
 
 
 def getAppLoginAttempts():

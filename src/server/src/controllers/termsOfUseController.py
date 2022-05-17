@@ -1,7 +1,6 @@
 from flask import Blueprint, make_response, request
-from models.services.termsOfUseService import getTermsOfUseText
-
-from models.services.termsOfUseService import changeTermsOfUse
+from src.models.services.termsOfUseService import changeTermsOfUse
+from src.models.services.termsOfUseService import getTermsOfUseText
 
 termsOfUseRoutes = Blueprint("termsOfUseRoutes", __name__)
 
