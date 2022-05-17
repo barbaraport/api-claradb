@@ -9,6 +9,20 @@ on:
       - 'main'
 
 jobs:
+  tests:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Dependencies install
+      run: |
+        cd src
+        cd server
+        cd tests
+        python -m src.tests.getFOLTest
   buildServer:
     runs-on: windows-latest
     steps:
