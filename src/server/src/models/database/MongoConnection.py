@@ -3,7 +3,7 @@ import pymongo
 
 class PyMongoConnection:
     def __init__(self):
-        self.__databaseUrl = "mongodb://localhost:27017/"
+        self.__databaseUrl = "mongodb+srv://github_actions:Gu1ebSj9pGWUtla6@folconn.n80k3.mongodb.net/?retryWrites=true&w=majority"
         self.__mongoClient = pymongo.MongoClient(self.__databaseUrl)
 
     def getDatabaseNamesList(self):

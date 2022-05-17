@@ -34,3 +34,4 @@ bcrypt==3.2.0
 PyPDF2==1.27.9
 geopy==2.2.0
 watchdog==2.1.7
+dnspython==2.2.1
