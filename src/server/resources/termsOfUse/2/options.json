@@ -1,0 +1,12 @@
+{
+  "options": [
+    {
+      "option": "allowLocalizationToStatistics",
+      "text": "Allow to use your location statistics report"
+    },
+    {
+      "option": "allowToBeIdentifiedInStatistics",
+      "text": "Allow to be identified in statistics report"
+    }
+  ]
+}

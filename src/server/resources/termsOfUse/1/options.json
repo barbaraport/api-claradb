@@ -1,0 +1,8 @@
+{
+  "options": [
+    {
+      "option": "allowLocalizationToStatistics",
+      "text": "Allow to use your location statistics"
+    }
+  ]
+}

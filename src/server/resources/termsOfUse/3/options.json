@@ -1,0 +1,16 @@
+{
+  "options": [
+    {
+      "option": "allowLocalizationToStatistics",
+      "text": "Allow to use your location statistics report"
+    },
+    {
+      "option": "allowToBeIdentifiedInStatistics",
+      "text": "Allow to be identified in statistics report"
+    },
+    {
+      "option": "allowToSendEmail",
+      "text": "Allow to be sent e-mails to enter in contact"
+    }
+  ]
+}

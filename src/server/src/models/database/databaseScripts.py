@@ -1,6 +1,10 @@
+import os
+
 import bcrypt
 import pandas
-from models.database import MongoConnection
+import json
+
+from src.models.database import MongoConnection
 
 
 def checkInitialization():
@@ -20,8 +24,9 @@ def registerDefaultUsers():
     dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
-    termsOfUseColumn = "currentlyAcceptingTermsOfUse"
-    dataFrame.insert(0, termsOfUseColumn, False)
+    termsOfUseColumn = "termsOfUseStatus"
+
+    dataFrame.insert(0, termsOfUseColumn, None)
 
     columns = dataFrame.columns.values
 
@@ -46,7 +51,10 @@ def registerDefaultUsers():
                 document[column] = equipmentsList
 
             elif column == termsOfUseColumn:
-                document[column] = False
+                document[column] = {
+                    "acceptedVersion": 0,
+                    "acceptedOptions": []
+                }
 
             else:
                 columnValue = value[i]
@@ -115,6 +123,7 @@ def createInitialUserAdminCollection():
     admins = [initialAdminUser]
 
     conn.insert("folconn", "adminUsers", admins)
+
 
 def createInitialFOLsFilesCollection():
     conn = MongoConnection.PyMongoConnection()
@@ -205,6 +214,29 @@ def getUsersList(usersDocuments):
     return usersList
 
 
+def registerMostCurrentTermsOfUse():
+    conn = MongoConnection.PyMongoConnection()
+
+    versions = os.listdir("../resources/termsOfUse")
+
+    lastVersion = versions[-1]
+
+    options = open("../resources/termsOfUse/" + lastVersion + "/options.json")
+
+    parsedDictionary = json.loads(options.read())
+
+    options.close()
+
+    document = {
+        "currentVersion": lastVersion,
+        "options": parsedDictionary["options"]
+    }
+
+    conn.dropCollections("folconn", ["currentTermsOfUse"])
+
+    conn.insert("folconn", "currentTermsOfUse", document)
+
+
 def initializeDatabase(restartData=False):
     print("Checking if is needed to initialize the database")
     initialized = checkInitialization()
@@ -223,6 +255,8 @@ def initializeDatabase(restartData=False):
         registerDefaultDocuments()
         createInitialUserAdminCollection()
         createInitialFOLsFilesCollection()
+
+    registerMostCurrentTermsOfUse()
 
     conn = MongoConnection.PyMongoConnection()
     conn.update("folconn", "databaseStatus", {"statusName": "isInitialized", "statusValue": True},
