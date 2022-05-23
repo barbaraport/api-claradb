@@ -87,4 +87,25 @@ export class TermsOfUseService {
           Alert.alert("Your acceptance of the terms was updated");
           
      }
+
+     public async isAcceptingLastVersion(userId: string) {
+
+          let request = {
+               method: "GET",
+               headers: {
+                    Accept: 'application/json',
+               }
+          }
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + 
+               "/termsOfUse/acceptingLastVersion?userId=" + userId, request);
+
+          if (response["ok"]) {
+               const acceptingLastVersion = await response.json() as boolean;
+
+               return acceptingLastVersion
+          }
+
+          throw new Error(`There was an error to check the current accepting version of the terms of use`);
+     }
 }

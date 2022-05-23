@@ -1,16 +1,16 @@
 {
   "options": [
     {
-      "option": "allowLocalizationToStatistics",
-      "text": "Allow to use your location statistics report"
+      "option": "associateLocalizationWithName",
+      "text": "Allow us to associate your location with your name"
     },
     {
-      "option": "allowToBeIdentifiedInStatistics",
-      "text": "Allow to be identified in statistics report"
+      "option": "enterInContactViaPhone",
+      "text": "Allow us to enter in contact with you, via phone, about your problems"
     },
     {
-      "option": "allowToSendEmail",
-      "text": "Allow to be sent e-mails to enter in contact"
+      "option": "enterInContactViaEmail",
+      "text": "Allow us to enter in contact with you, via e-mail, about your problems"
     }
   ]
 }

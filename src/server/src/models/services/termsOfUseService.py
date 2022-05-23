@@ -52,3 +52,15 @@ def getUserSelectedOptions(userId):
     selectedOptions = document["termsOfUseStatus"]["acceptedOptions"]
 
     return selectedOptions
+
+
+def isAcceptingLastVersion(userId):
+    conn = PyMongoConnection()
+
+    userDocument = conn.getDocument("folconn", "users", {"_id": ObjectId(userId)})
+    termsDocument = conn.getDocument("folconn", "currentTermsOfUse", {})
+
+    if str(userDocument["termsOfUseStatus"]["acceptedVersion"]) == termsDocument["currentVersion"]:
+        return True
+
+    return False

@@ -1,8 +1,8 @@
 {
   "options": [
     {
-      "option": "allowLocalizationToStatistics",
-      "text": "Allow to use your location statistics"
+      "option": "associateLocalizationWithName",
+      "text": "Allow us to associate your location with your name"
     }
   ]
 }

@@ -1,10 +1,12 @@
+This Agreement includes access to all the FOL documents in effect and information related to the user's vehicles models.
+FolConn's mission is to provide the users with important content about common issues organized in FOL documents.
+The current terms of use includes the usage of the following data about you and your device:
 
-This Agreement includes access to all the FOL documents in effect and informations related to the user's vehicles's models. FolConn's mission is to provide the users with important content about common issues organized in FOL documents. The Service is made up of the following aspects:
+1. Allow us to identify you in statistics reports. We will associate your name with your location in the statistics
+reports, so we can know who has more problems with our vehicles
+2. Allow us to enter in contact with you, via phone, about your problems. We may enter in contact with you, via phone,
+if you accepted the condition 1) of this term, to talk about the problems that you are having with your vehicle
+2. Allow us to enter in contact with you, via e-mail, about your problems. We may enter in contact with you, via e-mail,
+if you accepted the condition 1) of this term, to talk about the problems that you are having with your vehicle
 
-1. Authorization for FolConn to use, collect and store user data to provide a better experience.
-2. Acceptance of use of location data for internal statistical purposes.
-3. The user guarantees that all information provided by them are valid and recent.
-4. Transfering or sharing login information with a third part ins unallowed. The account contains personal and specific data.
-5. It is not allowed share contents of this this app
-6. The user is responsable for their activities in the plataform 
-7. The disagreement of this term determines the deletion of the user's data from FolConn's system within 30 days. This action can be reversed by agreeing with the terms anytime before the final date.
+Version 2.0

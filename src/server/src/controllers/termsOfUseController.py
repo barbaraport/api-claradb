@@ -3,7 +3,8 @@ from models.services.termsOfUseService import getTermsOfUseText
 
 from models.services.termsOfUseService import changeTermsOfUse
 
-from src.models.services.termsOfUseService import getTermsOfUseOptions, getUserSelectedOptions
+from src.models.services.termsOfUseService import getTermsOfUseOptions, getUserSelectedOptions, \
+    isAcceptingLastVersion
 
 termsOfUseRoutes = Blueprint("termsOfUseRoutes", __name__)
 
@@ -39,3 +40,13 @@ def getSelectedOptions():
     selectedOptions = make_response(jsonify(getUserSelectedOptions(userId)))
 
     return selectedOptions
+
+
+@termsOfUseRoutes.route("/termsOfUse/acceptingLastVersion", methods=["GET"])
+def getAcceptingVersion():
+    userId = request.args.get("userId")
+
+    selectedOptions = make_response(jsonify(isAcceptingLastVersion(userId)))
+
+    return selectedOptions
+
