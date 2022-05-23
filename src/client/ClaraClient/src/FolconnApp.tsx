@@ -1,3 +1,4 @@
+import messaging from "@react-native-firebase/messaging";
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
 import { SafeAreaView, StatusBar, View } from "react-native";
@@ -13,6 +14,9 @@ interface FolconnAppState {
 	currentPage: PageAliases;
 	pageHistory: Array<PageAliases>;
 	userID: string;
+
+	notificationToken: any;
+	notificationMessage: any;
 }
 
 export class FolconnApp extends Component<any, FolconnAppState> {
@@ -22,7 +26,10 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		this.state = {
 			currentPage: PageAliases.LOGIN,
 			pageHistory: [PageAliases.LOGIN],
-			userID: ""
+			userID: "",
+
+			notificationToken: "",
+			notificationMessage: ""
 		};
 
 		this.goBack = this.goBack.bind(this);
@@ -30,6 +37,16 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		this.getPageToRender = this.getPageToRender.bind(this);
 		this.changeCurrentPage = this.changeCurrentPage.bind(this);
 
+	}
+
+	private getToken (token: string) {
+		this.setState({notificationToken: token});
+		console.log(this.state.notificationToken);
+	}
+
+	private getMessage(message: any) {
+		this.setState({notificationMessage: message});
+		console.log(this.state.notificationMessage);
 	}
 
 	private setUserId(userID: string) {
