@@ -39,6 +39,10 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 
 	}
 
+	componentDidMount() {
+		this.verifiyNotifications();
+	}
+
 	private getToken (token: string) {
 		this.setState({notificationToken: token});
 		console.log(this.state.notificationToken);
@@ -47,6 +51,14 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 	private getMessage(message: any) {
 		this.setState({notificationMessage: message});
 		console.log(this.state.notificationMessage);
+	}
+
+	private verifiyNotifications() {
+		messaging().getToken().then(this.getToken);
+
+		messaging().onTokenRefresh(this.getToken);
+
+		messaging().onMessage(this.getMessage);
 	}
 
 	private setUserId(userID: string) {
