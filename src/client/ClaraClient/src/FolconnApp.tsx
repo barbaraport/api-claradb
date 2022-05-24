@@ -1,7 +1,7 @@
 import messaging, { FirebaseMessagingTypes } from "@react-native-firebase/messaging";
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { Alert, SafeAreaView, StatusBar, TouchableHighlightBase, View } from "react-native";
+import { Alert, SafeAreaView, StatusBar, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
 import { Styles } from "./view/assets/styles/Styles";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
@@ -15,7 +15,6 @@ interface FolconnAppState {
 	pageHistory: Array<PageAliases>;
 	userID: string;
 
-	notificationToken: string;
 	notificationMessage: FirebaseMessagingTypes.RemoteMessage;
 }
 
@@ -28,7 +27,6 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 			pageHistory: [PageAliases.LOGIN],
 			userID: "",
 
-			notificationToken: "",
 			notificationMessage: {}
 		};
 
@@ -45,9 +43,9 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		this.verifyNotifications();
 	}
 
-	private saveToken (token: string) {
-		this.setState({notificationToken: token});
-		console.log("Saving: " + this.state.notificationToken);
+	private saveToken (token: string, userId: string) {
+		console.log("Saving: " + token);
+		console.log("User ID: " + userId);
 	}
 
 	private getMessage(message: FirebaseMessagingTypes.RemoteMessage) {
@@ -56,8 +54,6 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 	}
 
 	private verifyNotifications() {
-		messaging().getToken().then(this.saveToken);
-		messaging().onTokenRefresh(this.saveToken);
 		messaging().onMessage(this.getMessage);
 	}
 
@@ -83,7 +79,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		);
 
 		const loginPage: JSX.Element = (
-			<LoginPage pageRedirectFunction={this.changeCurrentPage} setUserIDFunction={this.setUserId} />
+			<LoginPage pageRedirectFunction={this.changeCurrentPage} setUserIDFunction={this.setUserId} setPhoneTokenFunction={this.saveToken} />
 		);
 
 		const folsPage: JSX.Element = (

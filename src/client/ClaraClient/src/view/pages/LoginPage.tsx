@@ -1,13 +1,14 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React, { Component } from "react";
 import { Text } from "react-native";
-import { LoginForm } from "../components/loginForm/LoginForm";
-import { Styles } from "../assets/styles/Styles";
 import { Colors } from "../../enumerations/Colors";
+import { Styles } from "../assets/styles/Styles";
+import { LoginForm } from "../components/loginForm/LoginForm";
 
 interface LoginPageProps {
 	pageRedirectFunction: Function,
-	setUserIDFunction: Function;
+	setUserIDFunction: Function,
+	setPhoneTokenFunction: Function,
 }
 
 export class LoginPage extends Component<LoginPageProps, any> {
@@ -23,7 +24,7 @@ export class LoginPage extends Component<LoginPageProps, any> {
 					<Text style={Styles.label}>
 						Get notified and read FOLs instantly!
 					</Text>
-					<LoginForm redirectPageFunction={this.props.pageRedirectFunction} setUserIDFunction={this.props.setUserIDFunction} />
+					<LoginForm redirectPageFunction={this.props.pageRedirectFunction} setPhoneTokenFunction={this.props.setPhoneTokenFunction} setUserIDFunction={this.props.setUserIDFunction} />
 				</LinearGradient>
 			</>
 		);
