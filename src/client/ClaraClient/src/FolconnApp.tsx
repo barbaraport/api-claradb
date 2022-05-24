@@ -1,4 +1,4 @@
-import messaging from "@react-native-firebase/messaging";
+import messaging, { FirebaseMessagingTypes } from "@react-native-firebase/messaging";
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
 import { Alert, SafeAreaView, StatusBar, TouchableHighlightBase, View } from "react-native";
@@ -15,8 +15,8 @@ interface FolconnAppState {
 	pageHistory: Array<PageAliases>;
 	userID: string;
 
-	notificationToken: any;
-	notificationMessage: any;
+	notificationToken: string;
+	notificationMessage: FirebaseMessagingTypes.RemoteMessage;
 }
 
 export class FolconnApp extends Component<any, FolconnAppState> {
@@ -29,13 +29,14 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 			userID: "",
 
 			notificationToken: "",
-			notificationMessage: ""
+			notificationMessage: {}
 		};
 
 		this.goBack = this.goBack.bind(this);
 		this.setUserId = this.setUserId.bind(this);
 		this.getPageToRender = this.getPageToRender.bind(this);
 		this.changeCurrentPage = this.changeCurrentPage.bind(this);
+		this.saveToken = this.saveToken.bind(this);
 		this.getMessage = this.getMessage.bind(this);
 		this.verifyNotifications = this.verifyNotifications.bind(this);
 	}
@@ -44,26 +45,24 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		this.verifyNotifications();
 	}
 
-	private getToken (token: string) {
+	private saveToken (token: string) {
 		this.setState({notificationToken: token});
+		console.log("Saving: " + this.state.notificationToken);
 	}
 
-	private getMessage(message: any) {
+	private getMessage(message: FirebaseMessagingTypes.RemoteMessage) {
 		this.setState({notificationMessage: message});
-		Alert.alert(this.state.notificationMessage);
+		Alert.alert("New message", JSON.stringify(this.state.notificationMessage.data));
 	}
 
 	private verifyNotifications() {
-		messaging().getToken().then(this.getToken);
-
-		messaging().onTokenRefresh(this.getToken);
-
+		messaging().getToken().then(this.saveToken);
+		messaging().onTokenRefresh(this.saveToken);
 		messaging().onMessage(this.getMessage);
 	}
 
 	private setUserId(userID: string) {
 		this.setState({ userID: userID });
-
 	}
 
 	private changeCurrentPage(pageToChange: PageAliases) {
