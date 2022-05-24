@@ -1,6 +1,7 @@
+import messaging from "@react-native-firebase/messaging";
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { SafeAreaView, StatusBar, View } from "react-native";
+import { SafeAreaView, StatusBar, TouchableHighlightBase, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
 import { Styles } from "./view/assets/styles/Styles";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
@@ -13,6 +14,9 @@ interface FolconnAppState {
 	currentPage: PageAliases;
 	pageHistory: Array<PageAliases>;
 	userID: string;
+
+	notificationToken: any;
+	notificationMessage: any;
 }
 
 export class FolconnApp extends Component<any, FolconnAppState> {
@@ -22,13 +26,41 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		this.state = {
 			currentPage: PageAliases.LOGIN,
 			pageHistory: [PageAliases.LOGIN],
-			userID: ""
+			userID: "",
+
+			notificationToken: "",
+			notificationMessage: ""
 		};
 
 		this.goBack = this.goBack.bind(this);
 		this.setUserId = this.setUserId.bind(this);
 		this.getPageToRender = this.getPageToRender.bind(this);
 		this.changeCurrentPage = this.changeCurrentPage.bind(this);
+		this.printToken = this.printToken.bind(this);
+		this.getMessage = this.getMessage.bind(this);
+		this.verifyNotifications = this.verifyNotifications.bind(this);
+	}
+
+	componentDidMount() {
+		this.verifyNotifications();
+	}
+
+	private printToken (token: string) {
+		this.setState({notificationToken: token});
+		console.log(this.state.notificationToken);
+	}
+
+	private getMessage(message: any) {
+		this.setState({notificationMessage: message});
+		console.log(this.state.notificationMessage);
+	}
+
+	private verifyNotifications() {
+		messaging().getToken().then(this.printToken);
+
+		messaging().onTokenRefresh(this.printToken);
+
+		messaging().onMessage(this.getMessage);
 
 	}
 
