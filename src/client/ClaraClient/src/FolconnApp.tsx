@@ -1,7 +1,7 @@
 import messaging from "@react-native-firebase/messaging";
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { SafeAreaView, StatusBar, TouchableHighlightBase, View } from "react-native";
+import { Alert, SafeAreaView, StatusBar, TouchableHighlightBase, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
 import { Styles } from "./view/assets/styles/Styles";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
@@ -47,12 +47,11 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 
 	private getToken (token: string) {
 		this.setState({notificationToken: token});
-		console.log(this.state.notificationToken);
 	}
 
 	private getMessage(message: any) {
 		this.setState({notificationMessage: message});
-		console.log(this.state.notificationMessage);
+		Alert.alert(message);
 	}
 
 	private verifyNotifications() {
