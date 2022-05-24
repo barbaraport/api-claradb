@@ -7,8 +7,8 @@ from controllers.folController import folRoutes
 from controllers.carController import carRoutes
 from controllers.adminController import adminRoutes
 from controllers.termsOfUseController import termsOfUseRoutes
-from models.observers.ResourceFileChangeObserver import ResourceFileChangeObserver
 from controllers.notificationController import notificationRoutes
+from models.observers.ResourceFileChangeObserver import ResourceFileChangeObserver
 
 app = Flask(__name__)
 app.register_blueprint(authRoutes)

@@ -53,6 +53,11 @@ class PyMongoConnection:
         for collectionName in collectionsNames:
             database.drop_collection(collectionName)
 
+    def push(self, databaseName, collectionName, condition, subDocument, data):
+        database = self.__mongoClient[databaseName]
+        collection = database[collectionName]
+        collection.update_one(condition, {"$push": {subDocument: data}})
+
     def update(self, databaseName, collectionName, document, condition, upsert=False):
         database = self.__mongoClient[databaseName]
 
