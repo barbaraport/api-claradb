@@ -36,7 +36,6 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		this.setUserId = this.setUserId.bind(this);
 		this.getPageToRender = this.getPageToRender.bind(this);
 		this.changeCurrentPage = this.changeCurrentPage.bind(this);
-		this.getToken = this.getToken.bind(this);
 		this.getMessage = this.getMessage.bind(this);
 		this.verifyNotifications = this.verifyNotifications.bind(this);
 	}
@@ -51,7 +50,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 
 	private getMessage(message: any) {
 		this.setState({notificationMessage: message});
-		Alert.alert(message);
+		Alert.alert(this.state.notificationMessage);
 	}
 
 	private verifyNotifications() {
