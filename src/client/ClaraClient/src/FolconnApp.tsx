@@ -3,6 +3,7 @@ import { registerRootComponent } from "expo";
 import React, { Component } from "react";
 import { Alert, SafeAreaView, StatusBar, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
+import { NotificationService } from "./services/NotificationSerivce";
 import { Styles } from "./view/assets/styles/Styles";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
 import { FolPage } from "./view/pages/FOLsPage";
@@ -44,8 +45,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 	}
 
 	private saveToken (token: string, userId: string) {
-		console.log("Saving: " + token);
-		console.log("User ID: " + userId);
+		NotificationService.persistToken(token, userId);
 	}
 
 	private getMessage(message: FirebaseMessagingTypes.RemoteMessage) {
