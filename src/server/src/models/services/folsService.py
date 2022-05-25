@@ -228,7 +228,7 @@ def registerAccess(folTitle, position, userId):
 
     user = conn.getDocument("folconn", "users", condition)
 
-    if user["currentlyAcceptingTermsOfUse"]:
+    if user["CurrentlyAcceptingTermsOfUse"]:
         folAccessAttempt["userId"] = userId
         folAccessAttempt["userName"] = user["Username"]
 

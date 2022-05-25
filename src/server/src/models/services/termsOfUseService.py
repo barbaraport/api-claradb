@@ -12,7 +12,7 @@ def getTermsOfUseText():
 def changeTermsOfUse(newStatus, userId):
     conn = PyMongoConnection()
 
-    conn.update("folconn", "users", {"currentlyAcceptingTermsOfUse": newStatus}, {"_id": ObjectId(userId)})
+    conn.update("folconn", "users", {"CurrentlyAcceptingTermsOfUse": newStatus}, {"_id": ObjectId(userId)})
 
     if not newStatus:
         disassociateUserData(userId)

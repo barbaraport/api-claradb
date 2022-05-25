@@ -15,6 +15,6 @@ def persistToken(token, userID):
     equipments = user["Equipment"]
 
     for equipment in equipments:
-        condition = {"Equipment": equipment}
-        conn.insert("folconn", "equipmentUsers", condition)
-        conn.push("folconn", "equipmentUsers", condition, "Users", {"UserID": ObjectId(userID), "Token": token})
+        conn.push("folconn", "equipmentUsers", {"Equipment": equipment}, "Users", {"UserID": ObjectId(userID), "Token": token})
+        conn.update("folconn", "users", {"Token": token}, {"_id": ObjectId(userID)})
+

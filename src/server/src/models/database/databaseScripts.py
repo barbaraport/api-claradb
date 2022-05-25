@@ -20,12 +20,13 @@ def registerDefaultUsers():
     dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
-    termsOfUseColumn = "currentlyAcceptingTermsOfUse"
+    termsOfUseColumn = "CurrentlyAcceptingTermsOfUse"
     dataFrame.insert(0, termsOfUseColumn, False)
 
     columns = dataFrame.columns.values
 
     documents = []
+    existantEquipments = []
 
     for value in dataFrame.values:
         document = {}
@@ -41,7 +42,9 @@ def registerDefaultUsers():
                 equipmentsList = []
 
                 for equipment in equipments:
-                    equipmentsList.append(equipment.strip())
+                    treatedEquipment = equipment.strip()
+                    equipmentsList.append(treatedEquipment)
+                    existantEquipments.append(treatedEquipment)
 
                 document[column] = equipmentsList
 
@@ -61,6 +64,10 @@ def registerDefaultUsers():
     conn = MongoConnection.PyMongoConnection()
 
     conn.insert("folconn", "users", documents)
+
+    existantEquipments = dict.fromkeys(existantEquipments)
+    for equipment in existantEquipments:
+        conn.insert("folconn", "equipmentUsers", {"Equipment": equipment, "Users": []})
 
 
 def registerDefaultDocuments():
@@ -132,7 +139,7 @@ def createInitialFOLsFilesCollection():
 def dropDefaultCollections():
     conn = MongoConnection.PyMongoConnection()
 
-    conn.dropCollections("folconn", ["users", "documents", "adminUsers", "loginAttempts", "folAccessAttempts", "FOLsFiles"])
+    conn.dropCollections("folconn", ["users", "documents", "adminUsers", "loginAttempts", "folAccessAttempts", "FOLsFiles", "equipmentUsers"])
 
 
 def isValidDocument(document):
@@ -149,7 +156,7 @@ def synchronizeUsersData():
     dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
-    termsOfUseColumn = "currentlyAcceptingTermsOfUse"
+    termsOfUseColumn = "CurrentlyAcceptingTermsOfUse"
     dataFrame.insert(0, termsOfUseColumn, False)
 
     columns = dataFrame.columns.values
@@ -170,9 +177,11 @@ def synchronizeUsersData():
                 equipmentsList = []
 
                 for equipment in equipments:
-                    equipmentsList.append(equipment.strip())
+                    treated_equipment = equipment.strip()
+                    equipmentsList.append(treated_equipment)
 
                 document[column] = equipmentsList
+                conn.insert("folconn", "equipmentUsers", {"Equipment": equipment, "Users": []})
 
             elif column == termsOfUseColumn:
                 document[column] = False
