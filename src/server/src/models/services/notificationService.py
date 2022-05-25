@@ -24,12 +24,12 @@ def persistToken(token, userID):
 
 
 def sendNotification(title, body, tokens):
-    message = messaging.Message(
+    message = messaging.MulticastMessage(
         notification=messaging.Notification(
             title=title,
             body=body,
         ),
-        token=tokens
+        tokens=tokens
     )
-    response = messaging.send(message)
+    response = messaging.send_multicast(message)
     print('Successfully sent message:', response)
