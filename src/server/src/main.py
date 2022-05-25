@@ -1,5 +1,11 @@
+import json
+
+import firebase_admin
+from firebase_admin import credentials
 from flask import Flask
 from flask_cors import CORS
+from google.cloud import storage
+from google.oauth2 import service_account
 
 from models.database.databaseScripts import initializeDatabase, synchronizeUsersData
 from controllers.authenticationController import authRoutes
@@ -24,5 +30,8 @@ restartDatabaseDefaultData = False
 initializeDatabase(restartDatabaseDefaultData)
 
 ResourceFileChangeObserver("/startUpFiles", "usersMock.xlsx", synchronizeUsersData)
+
+credentials = credentials.Certificate('../resources/startUpFiles/serviceAccountFile.json')
+default_app = firebase_admin.initialize_app(credentials)
 
 app.run(host='0.0.0.0', port=5000, debug=True)
