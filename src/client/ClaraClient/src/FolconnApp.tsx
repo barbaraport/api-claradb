@@ -5,6 +5,7 @@ import { Alert, SafeAreaView, StatusBar, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
 import { NotificationService } from "./services/NotificationSerivce";
 import { Styles } from "./view/assets/styles/Styles";
+import { FolConnStatusBar } from "./view/components/folconnStatusBar/FolConnStatusBar";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
 import { FolPage } from "./view/pages/FOLsPage";
 import { HomePage } from "./view/pages/HomePage";
@@ -123,7 +124,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 	private buildComponent() {
 		let component = (
 			<SafeAreaView>
-				<StatusBar barStyle={"light-content"} />
+				<FolConnStatusBar/>
 				<View style={Styles.screen}>
 					{this.getPageToRender()}
 				</View>
