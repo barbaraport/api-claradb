@@ -31,5 +31,4 @@ def sendNotification(title, body, tokens):
         ),
         tokens=tokens
     )
-    response = messaging.send_multicast(message)
-    print('Successfully sent message:', response)
+    messaging.send_multicast(message)
