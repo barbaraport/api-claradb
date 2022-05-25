@@ -15,8 +15,6 @@ interface FolconnAppState {
 	currentPage: PageAliases;
 	pageHistory: Array<PageAliases>;
 	userID: string;
-
-	notificationMessage: FirebaseMessagingTypes.RemoteMessage;
 }
 
 export class FolconnApp extends Component<any, FolconnAppState> {
@@ -27,8 +25,6 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 			currentPage: PageAliases.LOGIN,
 			pageHistory: [PageAliases.LOGIN],
 			userID: "",
-
-			notificationMessage: {}
 		};
 
 		this.goBack = this.goBack.bind(this);
@@ -49,8 +45,10 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 	}
 
 	private getMessage(message: FirebaseMessagingTypes.RemoteMessage) {
-		this.setState({notificationMessage: message});
-		Alert.alert("New message", JSON.stringify(this.state.notificationMessage.data));
+		const title: string | undefined = message.notification?.title;
+		const body: string | undefined = message.notification?.body;
+
+		Alert.alert(title!, body!);
 	}
 
 	private verifyNotifications() {
