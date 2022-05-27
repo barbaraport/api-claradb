@@ -32,6 +32,6 @@ initializeDatabase(restartDatabaseDefaultData)
 ResourceFileChangeObserver("/startUpFiles", "usersMock.xlsx", synchronizeUsersData)
 
 credentials = credentials.Certificate('../resources/startUpFiles/messaging.json')
-default_app = firebase_admin.initialize_app(credentials)
+firebase_app = firebase_admin.initialize_app(credentials)
 
 app.run(host='0.0.0.0', port=5000, debug=True)
