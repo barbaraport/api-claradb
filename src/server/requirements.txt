@@ -35,3 +35,4 @@ PyPDF2==1.27.9
 geopy==2.2.0
 watchdog==2.1.7
 firebase-admin==5.2.0
+sheet2dict==0.1.4.2

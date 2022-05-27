@@ -9,7 +9,7 @@ from controllers.carController import carRoutes
 from controllers.folController import folRoutes
 from controllers.notificationController import notificationRoutes
 from controllers.termsOfUseController import termsOfUseRoutes
-from models.database.databaseScripts import initializeDatabase, synchronizeUsersData
+from models.database.databaseScripts import initializeDatabase, synchronizeUsersData, synchronizeDocumentsData
 from models.observers.ResourceFileChangeObserver import ResourceFileChangeObserver
 
 app = Flask(__name__)
@@ -26,6 +26,7 @@ restartDatabaseDefaultData = False
 initializeDatabase(restartDatabaseDefaultData)
 
 ResourceFileChangeObserver("/startUpFiles", "usersMock.xlsx", synchronizeUsersData)
+ResourceFileChangeObserver("/startUpFiles", "documentsMock.xlsx", synchronizeDocumentsData)
 
 credentials = credentials.Certificate('../resources/startUpFiles/messaging.json')
 firebase_app = firebase_admin.initialize_app(credentials)

@@ -1,6 +1,7 @@
 import bcrypt
 import pandas
 from models.database import MongoConnection
+from sheet2dict import Worksheet
 
 
 def checkInitialization():
@@ -123,6 +124,7 @@ def createInitialUserAdminCollection():
 
     conn.insert("folconn", "adminUsers", admins)
 
+
 def createInitialFOLsFilesCollection():
     conn = MongoConnection.PyMongoConnection()
 
@@ -139,13 +141,26 @@ def createInitialFOLsFilesCollection():
 def dropDefaultCollections():
     conn = MongoConnection.PyMongoConnection()
 
-    conn.dropCollections("folconn", ["users", "documents", "adminUsers", "loginAttempts", "folAccessAttempts", "FOLsFiles", "equipmentUsers"])
+    conn.dropCollections("folconn",
+                         ["users", "documents", "adminUsers", "loginAttempts", "folAccessAttempts", "FOLsFiles",
+                          "equipmentUsers"])
 
 
 def isValidDocument(document):
     if isinstance(document[1], int):
         return False
     return True
+
+
+def synchronizeDocumentsData():
+    conn = MongoConnection.PyMongoConnection()
+
+    storedDocuments = list(conn.getDocuments("folconn", "documents", {}))
+
+    ws = Worksheet()
+    documentsFileAsDict = ws.xlsx_to_dict(path="../resources/startUpFiles/documentsMock.xlsx")
+
+    print("testing the listener")
 
 
 def synchronizeUsersData():
@@ -201,6 +216,15 @@ def synchronizeUsersData():
     for user in usersList:
         if user not in updatedUsersList:
             conn.delete("folconn", "users", {"Login": user})
+
+
+def getDocumentsList(documents):
+    documentsList = []
+
+    for document in documents:
+        documentsList.append(document)
+
+    return documentsList
 
 
 def getUsersList(usersDocuments):
