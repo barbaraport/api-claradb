@@ -1,5 +1,6 @@
 import bcrypt
 import pandas
+from bson import ObjectId
 from models.database import MongoConnection
 from sheet2dict import Worksheet
 
@@ -198,6 +199,8 @@ def synchronizeDocumentsData():
                                                              text)
 
     # for fileDocument in documentsFileAsDict:
+    for updatedDocument in updatedDocumentsList:
+        conn.update("folconn", "documents", updatedDocument, {"_id": ObjectId(updatedDocument["id"])})
 
 
 def getKeywordsArray(value):
