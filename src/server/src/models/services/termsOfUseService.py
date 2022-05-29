@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from bson import ObjectId
 from src.models.database.MongoConnection import PyMongoConnection
 
@@ -25,9 +27,31 @@ def changeTermsOfUse(acceptedOptions, userId):
     conn = PyMongoConnection()
 
     termsOfUse = getCurrentTermsOfUse()
+    availableOptions = termsOfUse["options"]
+    userCurrentSelectedOptions = getUserSelectedOptions(userId)
 
     conn.put("folconn", "users", {"_id": ObjectId(userId)}, "termsOfUse." + termsOfUse["currentVersion"],
              acceptedOptions)
+
+    currentDatetime = datetime.now()
+
+    for option in availableOptions:
+        modifiedTo = False
+
+        optionKey = option["option"]
+
+        if optionKey in acceptedOptions:
+            modifiedTo = True
+
+        historyUpdate = {
+            "option": optionKey,
+            "modifiedTo": modifiedTo,
+            "datetime": currentDatetime
+        }
+
+        if optionKey not in userCurrentSelectedOptions or (not modifiedTo and optionKey in userCurrentSelectedOptions):
+            conn.push("folconn", "users", {"_id": ObjectId(userId)},
+                      "termsOfUse.history." + termsOfUse["currentVersion"], historyUpdate)
 
 
 def getCurrentTermsOfUse():
@@ -42,6 +66,8 @@ def getUserSelectedOptions(userId):
     conn = PyMongoConnection()
 
     document = conn.getDocument("folconn", "users", {"_id": ObjectId(userId)})
+
+    del document["termsOfUse"]["history"]
 
     versionsList = sorted(list(map(int, document["termsOfUse"].keys())))
     lastVersion = str(versionsList.pop())

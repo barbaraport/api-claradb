@@ -52,6 +52,9 @@ def registerDefaultUsers():
 
             elif column == termsOfUseColumn:
                 document[column] = {
+                    "history": {
+                        "0": []
+                    },
                     "0": []
                 }
 
