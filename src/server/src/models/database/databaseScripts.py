@@ -155,20 +155,22 @@ def synchronizeDocumentsData():
     documentsFileAsDict = ws.xlsx_to_dict(path="../resources/startUpFiles/documentsMock.xlsx")
 
     updatedDocumentsList = []
-    deletedDocumentsList = []
-    createdDocumentsList = []
+
+    storedDocumentsTitles = getSpecificKey(storedDocuments, "Title")
+    documentsFileTitles = getSpecificKey(documentsFileAsDict.sheet_items, "Title")
 
     for storedDocument in storedDocuments:
         for fileDocument in documentsFileAsDict.sheet_items:
             storedEquipmentTitle = storedDocument["Title"]
             fileEquipmentTitle = fileDocument["Title"]
 
+            storedEquipmentRevision = storedDocument["Revision number"]
+            fileEquipmentRevision = fileDocument["Revision number"]
+
+            # already exists and was updated
             if storedEquipmentTitle == fileEquipmentTitle:
 
                 updatedDocument = {}
-
-                storedEquipmentRevision = storedDocument["Revision number"]
-                fileEquipmentRevision = fileDocument["Revision number"]
 
                 if fileEquipmentRevision == 'None':
                     fileEquipmentRevision = None
@@ -191,16 +193,49 @@ def synchronizeDocumentsData():
                             equipment = updatedDocument["Equipment"]
                             fol = updatedDocument["Title"]
                             title = "Updated document!"
-                            text = "The equipment " + equipment + " has an updated document!\nFOL Title: " + fol + "\nActual FOL Status: IN EFFECT";
+                            text = "The equipment " + equipment + " has an updated document!\nFOL Title: " + fol + "\nActual FOL Status: IN EFFECT"
 
                             sendNotificationToEquipmentUsers(equipment,
                                                              fol,
                                                              title,
                                                              text)
 
-    # for fileDocument in documentsFileAsDict:
+            # was created
+            elif fileEquipmentTitle not in storedDocumentsTitles:
+                conn.insert("folconn", "documents", fileDocument)
+                storedDocuments.append(fileDocument)
+                storedDocumentsTitles.append(fileEquipmentTitle)
+
+                if fileDocument["Status"] == "IN EFFECT":
+                    equipment = fileDocument["Equipment"]
+                    fol = fileDocument["Title"]
+                    title = "New document!"
+                    text = "The equipment " + equipment + " has a new document!\nFOL Title: " + fol + "\nActual FOL Status: IN EFFECT"
+
+                    sendNotificationToEquipmentUsers(equipment,
+                                                     fol,
+                                                     title,
+                                                     text)
+            # was deleted
+            elif storedEquipmentTitle not in documentsFileTitles:
+                conn.delete("folconn", "documents", {"_id": ObjectId(storedDocument["id"])})
+
+                documentsFileAsDict.sheet_items.remove(fileDocument)
+                documentsFileTitles.remove(fileEquipmentTitle)
+
     for updatedDocument in updatedDocumentsList:
-        conn.update("folconn", "documents", updatedDocument, {"_id": ObjectId(updatedDocument["id"])})
+        id = ObjectId(updatedDocument["id"])
+        updatedDocument.pop("id")
+        conn.update("folconn", "documents", updatedDocument, {"_id": id})
+
+
+def getSpecificKey(list_of_dicts, key):
+    keys = []
+
+    for item in list_of_dicts:
+        keys.append(item[key])
+
+    return keys
 
 
 def getKeywordsArray(value):
