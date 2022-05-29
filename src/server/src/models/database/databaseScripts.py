@@ -202,6 +202,8 @@ def synchronizeDocumentsData():
 
             # was created
             elif fileEquipmentTitle not in storedDocumentsTitles:
+                fileDocument["Keywords"] = getKeywordsArray(fileDocument["Keywords"])
+
                 conn.insert("folconn", "documents", fileDocument)
                 storedDocuments.append(fileDocument)
                 storedDocumentsTitles.append(fileEquipmentTitle)
