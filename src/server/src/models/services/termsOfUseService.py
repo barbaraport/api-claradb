@@ -26,14 +26,8 @@ def changeTermsOfUse(acceptedOptions, userId):
 
     termsOfUse = getCurrentTermsOfUse()
 
-    newStatus = {
-        "termsOfUseStatus": {
-            "acceptedVersion": termsOfUse["currentVersion"],
-            "acceptedOptions": acceptedOptions
-        }
-    }
-
-    conn.update("folconn", "users", newStatus, {"_id": ObjectId(userId)})
+    conn.put("folconn", "users", {"_id": ObjectId(userId)}, "termsOfUse." + termsOfUse["currentVersion"],
+             acceptedOptions)
 
 
 def getCurrentTermsOfUse():
@@ -49,7 +43,10 @@ def getUserSelectedOptions(userId):
 
     document = conn.getDocument("folconn", "users", {"_id": ObjectId(userId)})
 
-    selectedOptions = document["termsOfUseStatus"]["acceptedOptions"]
+    versionsList = sorted(list(map(int, document["termsOfUse"].keys())))
+    lastVersion = str(versionsList.pop())
+
+    selectedOptions = document["termsOfUse"][lastVersion]
 
     return selectedOptions
 
@@ -60,7 +57,11 @@ def isAcceptingLastVersion(userId):
     userDocument = conn.getDocument("folconn", "users", {"_id": ObjectId(userId)})
     termsDocument = conn.getDocument("folconn", "currentTermsOfUse", {})
 
-    if str(userDocument["termsOfUseStatus"]["acceptedVersion"]) == termsDocument["currentVersion"]:
+    versionsList = sorted(list(map(int, userDocument["termsOfUse"].keys())))
+
+    lastVersion = versionsList.pop()
+
+    if lastVersion == int(termsDocument["currentVersion"]):
         return True
 
     return False

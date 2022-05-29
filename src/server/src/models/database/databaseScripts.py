@@ -24,7 +24,7 @@ def registerDefaultUsers():
     dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
-    termsOfUseColumn = "termsOfUseStatus"
+    termsOfUseColumn = "termsOfUse"
 
     dataFrame.insert(0, termsOfUseColumn, None)
 
@@ -52,8 +52,7 @@ def registerDefaultUsers():
 
             elif column == termsOfUseColumn:
                 document[column] = {
-                    "acceptedVersion": 0,
-                    "acceptedOptions": []
+                    "0": []
                 }
 
             else:

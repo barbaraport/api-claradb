@@ -49,4 +49,3 @@ def getAcceptingVersion():
     selectedOptions = make_response(jsonify(isAcceptingLastVersion(userId)))
 
     return selectedOptions
-
