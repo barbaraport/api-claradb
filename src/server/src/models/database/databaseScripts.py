@@ -3,6 +3,8 @@ import pandas
 from models.database import MongoConnection
 from sheet2dict import Worksheet
 
+from models.services.notificationService import sendNotification
+
 
 def checkInitialization():
     conn = MongoConnection.PyMongoConnection()
@@ -89,16 +91,7 @@ def registerDefaultDocuments():
             column = columns[i]
 
             if column == "Keywords":
-                keywords = value[i].split(",")
-
-                keywordsList = []
-
-                for keyword in keywords:
-                    if keyword != " ":
-                        keywordsList.append(keyword.strip().lower())
-
-                document[column] = keywordsList
-
+                document[column] = getKeywordsArray(value[i])
             else:
                 document[column] = value[i]
 
@@ -160,7 +153,77 @@ def synchronizeDocumentsData():
     ws = Worksheet()
     documentsFileAsDict = ws.xlsx_to_dict(path="../resources/startUpFiles/documentsMock.xlsx")
 
-    print("testing the listener")
+    updatedDocumentsList = []
+    deletedDocumentsList = []
+    createdDocumentsList = []
+
+    for storedDocument in storedDocuments:
+        for fileDocument in documentsFileAsDict.sheet_items:
+            storedEquipmentTitle = storedDocument["Title"]
+            fileEquipmentTitle = fileDocument["Title"]
+
+            if storedEquipmentTitle == fileEquipmentTitle:
+
+                updatedDocument = {}
+
+                storedEquipmentRevision = storedDocument["Revision number"]
+                fileEquipmentRevision = fileDocument["Revision number"]
+
+                if fileEquipmentRevision == 'None':
+                    fileEquipmentRevision = None
+
+                if storedEquipmentRevision is not None and fileEquipmentRevision is not None:
+
+                    if int(fileEquipmentRevision) > int(storedEquipmentRevision):
+
+                        for key in storedDocument:
+                            if key == 'id':
+                                updatedDocument[key] = storedDocument[key]
+                            elif key == 'Keywords':
+                                updatedDocument[key] = getKeywordsArray(fileDocument[key])
+                            else:
+                                updatedDocument[key] = fileDocument[key]
+
+                        updatedDocumentsList.append(updatedDocument)
+
+                        if updatedDocument["Status"] == "IN EFFECT":
+                            equipment = updatedDocument["Equipment"]
+                            fol = updatedDocument["Title"]
+                            title = "Updated document!"
+                            text = "The equipment " + equipment + " has an updated document.\nFOL Title: " + fol + "\nActual FOL Status: IN EFFECT";
+
+                            sendNotificationToEquipmentUsers(equipment,
+                                                             fol,
+                                                             title,
+                                                             text)
+
+    # for fileDocument in documentsFileAsDict:
+
+
+def getKeywordsArray(value):
+    keywords = value.split(",")
+
+    keywordsList = []
+
+    for keyword in keywords:
+        if keyword != " ":
+            keywordsList.append(keyword.strip().lower())
+
+    return keywordsList
+
+
+def sendNotificationToEquipmentUsers(equipment, fol, title, text):
+    conn = MongoConnection.PyMongoConnection()
+
+    usersFromEquipment = conn.getDocument("folconn", "equipmentUsers", {"Equipment": equipment})
+
+    tokens = []
+
+    for user in usersFromEquipment["Users"]:
+        tokens.append(user["Token"])
+
+    if len(tokens) > 0:
+        sendNotification(title, text, tokens)
 
 
 def synchronizeUsersData():
