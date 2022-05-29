@@ -190,7 +190,7 @@ def synchronizeDocumentsData():
                             equipment = updatedDocument["Equipment"]
                             fol = updatedDocument["Title"]
                             title = "Updated document!"
-                            text = "The equipment " + equipment + " has an updated document.\nFOL Title: " + fol + "\nActual FOL Status: IN EFFECT";
+                            text = "The equipment " + equipment + " has an updated document!\nFOL Title: " + fol + "\nActual FOL Status: IN EFFECT";
 
                             sendNotificationToEquipmentUsers(equipment,
                                                              fol,
