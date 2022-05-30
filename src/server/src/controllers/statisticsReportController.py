@@ -1,6 +1,6 @@
 from flask import Blueprint, make_response, request, jsonify
 
-from src.models.services.statisticsReportService import getUsersWithAcceptedTerms
+from src.models.services.statisticsReportService import getUsersWithAcceptedTerms, getUserAcceptanceHistory
 
 statisticsReportRoutes = Blueprint("statisticsReportController", __name__)
 
@@ -16,3 +16,13 @@ def getUsersWithTerms():
 
     return response
 
+
+@statisticsReportRoutes.route("/statisticsReport/getUserHistory", methods=["GET"])
+def getUserHistory():
+    userId = request.args.get("userId")
+
+    userHistory = getUserAcceptanceHistory(userId)
+
+    response = make_response(jsonify(userHistory))
+
+    return response
