@@ -25,7 +25,7 @@ app.register_blueprint(notificationRoutes)
 CORS(app)
 
 reload = False
-restartDatabaseDefaultData = False
+restartDatabaseDefaultData = True
 initializeDatabase(restartDatabaseDefaultData)
 
 ResourceFileChangeObserver("/startUpFiles", "usersMock.xlsx", synchronizeUsersData)

@@ -1,5 +1,4 @@
 from flask import Blueprint, make_response, request, jsonify
-from models.services.termsOfUseService import getTermsOfUseText
 
 from models.services.termsOfUseService import changeTermsOfUse
 from models.services.termsOfUseService import getTermsOfUseText

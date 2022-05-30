@@ -83,6 +83,8 @@ def isAcceptingLastVersion(userId):
     userDocument = conn.getDocument("folconn", "users", {"_id": ObjectId(userId)})
     termsDocument = conn.getDocument("folconn", "currentTermsOfUse", {})
 
+    del userDocument["termsOfUse"]["history"]
+
     versionsList = sorted(list(map(int, userDocument["termsOfUse"].keys())))
 
     lastVersion = versionsList.pop()
