@@ -61,22 +61,16 @@ export class AdminService {
 	public static async getFolAccessesByUser(user:string) {
 		let request: RequestInit = {
 			method: "GET",
-			body: JSON.stringify(user),
 			headers: {
 				Accept: "application/json",
 			},
 		};
 
-		const url =
-			"http://" +
-			ServerAccess.SERVER_IP +
-			":" +
-			ServerAccess.SERVER_PORT +
-			ServerRoutes.USER_FOL_ACCESSES;
-		const response = await fetch(url, request);
+		const url = `http://${ServerAccess.SERVER_IP}:${ServerAccess.SERVER_PORT}${ServerRoutes.USER_FOL_ACCESSES}?user=${user}`
+		const response = await fetch(url, request)
 
 		if (response["ok"]) {
-			const responseBody = (await response.json()) as Array<FOLAccess>;
+			const responseBody = (await response.json()) as Array<any>;
 
 			return responseBody;
 		} else {

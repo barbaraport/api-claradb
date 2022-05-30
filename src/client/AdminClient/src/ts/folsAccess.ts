@@ -21,7 +21,6 @@ async function getFolsAccessesData() {
     sessionStorage.setItem(StorageKeys.FOLS_ACCESS_DATA, stringfiedData);
 
     searchFolsAccesses();
-
 }
 
 getFolsAccessesData();
@@ -119,7 +118,6 @@ async function getFolAccessesByUser(user:string){
     }else{
         return userAccessDataDict[user]
     }
-
 }
 
 function showFolAccesses(folTitle: string) {

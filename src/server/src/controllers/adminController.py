@@ -25,7 +25,7 @@ def getFolAccess():
 
 @adminRoutes.route("/admin/getAccessByUser", methods=["GET"])
 def getAccessByUser():
-    user = request.json["user"]
+    user = request.args["user"]
 
     response = getFolAcessesByUserName(user)
 
