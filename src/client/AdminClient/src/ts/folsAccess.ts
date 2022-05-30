@@ -50,10 +50,10 @@ export function searchFolsAccesses() {
 
                 if(folAccessTitle in searchResults){
                     searchResults[folAccessTitle] += 1;
-                    
+
                 }else {
                     searchResults[folAccessTitle] = 1;
-                    
+
                 }
 
             }
@@ -74,7 +74,7 @@ export function searchFolsAccesses() {
 
     for (let i = 0; i < orderedItems.length; i++) {
         const item = orderedItems[i];
-        
+
         keys.push(item[0]);
     }
 
@@ -95,7 +95,7 @@ export function searchFolsAccesses() {
         textElement.classList.add("folSearchResult");
 
         searchResultOutput.appendChild(textElement);
-        
+
         textElement.onclick = function(this) {
             const targetLabel = this as HTMLLabelElement;
 
@@ -107,6 +107,12 @@ export function searchFolsAccesses() {
 
         }
     }
+
+}
+
+async function getFolAccessesByUser(user:string){
+    const userAccessesData = await AdminService.getFolAccessesByUser(user);
+    const quantity = userAccessesData.length;
 
 }
 
@@ -124,7 +130,7 @@ function showFolAccesses(folTitle: string) {
             const accessData = attemptsData[i];
 
             const loginLocation = accessData["geolocation"];
-            
+
             if(accessData['folTitle'] === folTitle){
                 const resultContainer = document.createElement("tr");
                 resultContainer.classList.add("accessResult");
@@ -133,7 +139,7 @@ function showFolAccesses(folTitle: string) {
 
                 if (accessData['userName']) {
                     userNameLabel.innerText = accessData['userName'];
-                    
+
                 }else {
                     userNameLabel.innerText = "Unknown";
 

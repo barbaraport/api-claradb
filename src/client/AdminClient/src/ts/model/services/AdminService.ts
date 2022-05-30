@@ -58,9 +58,10 @@ export class AdminService {
 		}
 	}
 
-	public static async getFolAccessesByUser() {
+	public static async getFolAccessesByUser(user:string) {
 		let request: RequestInit = {
 			method: "GET",
+			body: JSON.stringify(user),
 			headers: {
 				Accept: "application/json",
 			},
