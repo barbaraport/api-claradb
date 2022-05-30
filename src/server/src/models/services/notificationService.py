@@ -20,7 +20,7 @@ def persistToken(token, userID):
                   {"UserID": ObjectId(userID), "Token": token})
         conn.update("folconn", "users", {"Token": token}, {"_id": ObjectId(userID)})
 
-    #sendNotification("Welcome to FolConn!", "FolConn helps people to read your equipment documents instantly!", [token])
+    sendNotification("Welcome to FolConn!", "FolConn helps people to read your equipment documents instantly!", [token])
 
 
 def sendNotification(title, body, tokens):
