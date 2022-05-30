@@ -22,6 +22,7 @@ app.register_blueprint(notificationRoutes)
 
 CORS(app)
 
+reload = False
 restartDatabaseDefaultData = False
 initializeDatabase(restartDatabaseDefaultData)
 
@@ -31,4 +32,4 @@ ResourceFileChangeObserver("/startUpFiles", "documentsMock.xlsx", synchronizeDoc
 credentials = credentials.Certificate('../resources/startUpFiles/messaging.json')
 firebase_app = firebase_admin.initialize_app(credentials)
 
-app.run(host='0.0.0.0', port=5000, debug=True)
+app.run(host='0.0.0.0', port=5000, debug=reload)
