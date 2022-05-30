@@ -25,8 +25,10 @@ def getFolAccesses():
 
 def getFolAcessesByUserName(user):
     conn = PyMongoConnection()
-    documents = jsonify(list(conn.getDocuments("folconn", "folAccessAttempts", {"userName":user}, {"_id": 0, "id": 0})))
+    documents =jsonify(list(conn.getDocuments("folconn", "folAccessAttempts", {"userName":user}, {"_id": 0, "id": 0})))
+    count = len(documents.json)
+    treatedResponse=({"count":count,"accesses":documents.json})
 
-    response = make_response(documents)
+    response = make_response(treatedResponse,200)
 
     return response

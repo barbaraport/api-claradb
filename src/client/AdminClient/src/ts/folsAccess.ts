@@ -112,7 +112,6 @@ export function searchFolsAccesses() {
 
 async function getFolAccessesByUser(user:string){
     const userAccessesData = await AdminService.getFolAccessesByUser(user);
-    const quantity = userAccessesData.length;
 
 }
 
