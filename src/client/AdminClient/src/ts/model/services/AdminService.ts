@@ -17,7 +17,7 @@ export class AdminService {
 			ServerAccess.SERVER_IP +
 			":" +
 			ServerAccess.SERVER_PORT +
-			ServerRoutes.USER_FOL_ACCESSES;
+			ServerRoutes.LOGIN_ATTEMPT;
 		const response = await fetch(url, request);
 
 		if (response["ok"]) {
@@ -71,7 +71,7 @@ export class AdminService {
 			ServerAccess.SERVER_IP +
 			":" +
 			ServerAccess.SERVER_PORT +
-			ServerRoutes.FOL_ACCESSES;
+			ServerRoutes.USER_FOL_ACCESSES;
 		const response = await fetch(url, request);
 
 		if (response["ok"]) {
