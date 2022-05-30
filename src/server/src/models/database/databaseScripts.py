@@ -172,8 +172,11 @@ def synchronizeDocumentsData():
 
                 updatedDocument = {}
 
-                if fileEquipmentRevision == 'None':
-                    fileEquipmentRevision = None
+                if fileEquipmentRevision == 'None' or fileEquipmentRevision is None:
+                    fileEquipmentRevision = 0
+
+                if storedEquipmentRevision is None or storedEquipmentRevision == 'None':
+                    storedEquipmentRevision = 0
 
                 if storedEquipmentRevision is not None and fileEquipmentRevision is not None:
 
