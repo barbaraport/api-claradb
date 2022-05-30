@@ -1,3 +1,4 @@
+import messaging from "@react-native-firebase/messaging";
 import React, { Component } from "react";
 import { Alert, Text, View } from "react-native";
 import { User } from "../../../model/User";
@@ -8,12 +9,14 @@ import { FolconnInput } from "../input/FolconnInput";
 
 interface LoginFormProps {
 	redirectPageFunction: Function,
-	setUserIDFunction: Function;
+	setUserIDFunction: Function,
+	setPhoneTokenFunction: Function;
 }
 
 interface LoginFormState {
 	typedUserName: string;
 	typedPassword: string;
+	token: string;
 }
 
 export class LoginForm extends Component<LoginFormProps, LoginFormState> {
@@ -26,11 +29,17 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 		this.state = {
 			typedUserName: "",
 			typedPassword: "",
+			token: "",
 		};
 
 		this.submitLoginForm = this.submitLoginForm.bind(this);
 		this.receiveTypedPassword = this.receiveTypedPassword.bind(this);
 		this.receiveTypedUserName = this.receiveTypedUserName.bind(this);
+	}
+
+	componentDidMount() {
+		messaging().getToken().then((token: string) => { this.setState({token: token}) });
+		messaging().onTokenRefresh((token: string) => { this.setState({token: token}) });
 	}
 
 	private receiveTypedUserName(typedUserName: string) {
@@ -62,6 +71,7 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 				const credentialCode = credential.getCode();
 				
 				this.props.setUserIDFunction(credentialCode);
+				this.props.setPhoneTokenFunction(this.state.token, credentialCode);
 				this.props.redirectPageFunction("Home");
 			}
 			else {

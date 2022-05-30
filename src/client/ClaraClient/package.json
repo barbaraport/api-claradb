@@ -7,13 +7,15 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res && android/gradlew assembleDebug "
+    "build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res"
   },
   "dependencies": {
     "@config-plugins/react-native-blob-util": "^1.0.3",
     "@config-plugins/react-native-pdf": "^1.0.2",
     "@expo/ngrok": "^4.1.0",
     "@react-native-community/geolocation": "^2.0.2",
+    "@react-native-firebase/app": "^14.9.4",
+    "@react-native-firebase/messaging": "^14.9.4",
     "@types/react": "^17.0.43",
     "expo": ">=44.0.0-0 <45.0.0",
     "expo-cli": "^5.3.0",
@@ -26,6 +28,7 @@
     "react-native-blob-util": "^0.15.0",
     "react-native-collapsible": "^1.6.0",
     "react-native-pdf": "^6.5.0",
+    "react-native-push-notification": "^8.1.1",
     "react-native-radio-buttons": "^1.0.0",
     "react-native-radio-buttons-group": "^2.2.10"
   },

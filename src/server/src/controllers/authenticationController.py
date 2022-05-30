@@ -1,10 +1,9 @@
 from flask import Blueprint
 from flask import request
 from flask_cors import cross_origin
-from models.services.userService import userLogin
-
 from models.services.userService import adminLogin
 from models.services.userService import isValidUser
+from models.services.userService import userLogin
 
 authRoutes = Blueprint("authRoutes", __name__)
 

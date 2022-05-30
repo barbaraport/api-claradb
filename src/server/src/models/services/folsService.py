@@ -1,15 +1,13 @@
 import base64
 import re
+from datetime import datetime
 
 import PyPDF2
 from bson import ObjectId
 from flask import jsonify, make_response, abort
 from models.database.MongoConnection import PyMongoConnection
-
-from models.services import locationService
-from datetime import datetime
-
 from models.enumerations.FOLsStatuses import FOLsStatuses
+from models.services import locationService
 
 
 def getFolsByEquipment(equipment):
@@ -228,7 +226,7 @@ def registerAccess(folTitle, position, userId):
 
     user = conn.getDocument("folconn", "users", condition)
 
-    if user["currentlyAcceptingTermsOfUse"]:
+    if user["CurrentlyAcceptingTermsOfUse"]:
         folAccessAttempt["userId"] = userId
         folAccessAttempt["userName"] = user["Username"]
 

@@ -18,7 +18,7 @@ def registerLoginAttempt(user, position):
         "geolocation": geolocation
     }
 
-    if user["currentlyAcceptingTermsOfUse"]:
+    if user["CurrentlyAcceptingTermsOfUse"]:
         loginAttempt["userId"] = str(user["_id"])
         loginAttempt["userName"] = user["Username"]
 

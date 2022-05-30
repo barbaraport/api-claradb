@@ -43,18 +43,6 @@ export class LocationService {
      private async verifyGPS(): Promise<PromptFuncResponse > {
 
           let verification: PromptFuncResponse = await RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({ fastInterval: 10000, interval: 5000 });
-
-          // let verification: boolean = await new Promise((res, rej) => {
-          //      RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({ fastInterval: 10000, interval: 5000 })
-          //           .then((data) => {
-          //                res(true);
-          //           })
-          //           .catch((error) => {
-          //                rej(false);
-          //           });
-
-          // });
-
           return verification;
      }
 
