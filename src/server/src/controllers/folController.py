@@ -105,7 +105,7 @@ def registerFolAccess():
     return '', 204
 
 @folRoutes.route("/fol/getAccessByUser", methods=["GET"])
-def registerFolAccess():
+def getAccessByUser():
 
     user = request.json["user"]
 
