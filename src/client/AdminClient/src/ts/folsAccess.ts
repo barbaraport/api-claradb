@@ -110,8 +110,15 @@ export function searchFolsAccesses() {
 
 }
 
+let userAccessDataDict:{[user:string] : any} =[]
 async function getFolAccessesByUser(user:string){
-    const userAccessesData = await AdminService.getFolAccessesByUser(user);
+    if(!userAccessDataDict[user]){
+        const userAccessessData = await AdminService.getFolAccessesByUser(user);
+        userAccessDataDict[user]=userAccessessData;
+        return userAccessessData
+    }else{
+        return userAccessDataDict[user]
+    }
 
 }
 
