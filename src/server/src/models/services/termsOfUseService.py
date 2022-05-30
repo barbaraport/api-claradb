@@ -1,25 +1,95 @@
+from datetime import datetime
+
 from bson import ObjectId
-from models.database.MongoConnection import PyMongoConnection
+from src.models.database.MongoConnection import PyMongoConnection
 
 
 def getTermsOfUseText():
-    with open('../resources/startUpFiles/termsOfUse.txt', encoding='utf8') as file:
+    termsOfUse = getCurrentTermsOfUse()
+
+    version = termsOfUse["currentVersion"]
+
+    with open('../resources/termsOfUse/' + version + '/termsOfUse.txt', encoding='utf8') as file:
         text = file.read()
 
     return text
 
 
-def changeTermsOfUse(newStatus, userId):
+def getTermsOfUseOptions():
+    termsOfUse = getCurrentTermsOfUse()
+
+    options = termsOfUse["options"]
+
+    return options
+
+
+def changeTermsOfUse(acceptedOptions, userId):
     conn = PyMongoConnection()
 
-    conn.update("folconn", "users", {"CurrentlyAcceptingTermsOfUse": newStatus}, {"_id": ObjectId(userId)})
+    termsOfUse = getCurrentTermsOfUse()
+    availableOptions = termsOfUse["options"]
+    userCurrentSelectedOptions = getUserSelectedOptions(userId)
 
-    if not newStatus:
-        disassociateUserData(userId)
+    conn.put("folconn", "users", {"_id": ObjectId(userId)}, "termsOfUse." + termsOfUse["currentVersion"],
+             acceptedOptions)
+
+    currentDatetime = datetime.now()
+
+    for option in availableOptions:
+        modifiedTo = False
+
+        optionKey = option["option"]
+
+        if optionKey in acceptedOptions:
+            modifiedTo = True
+
+        historyUpdate = {
+            "option": optionKey,
+            "modifiedTo": modifiedTo,
+            "datetime": currentDatetime
+        }
+
+        if optionKey not in userCurrentSelectedOptions or (not modifiedTo and optionKey in userCurrentSelectedOptions):
+            conn.push("folconn", "users", {"_id": ObjectId(userId)},
+                      "termsOfUse.history." + termsOfUse["currentVersion"], historyUpdate)
 
 
-def disassociateUserData(userId):
+def getCurrentTermsOfUse():
     conn = PyMongoConnection()
 
-    conn.update("folconn", "loginAttempts", {"userId": userId}, {"userId": None, "userName": None})
-    conn.update("folconn", "folAccessAttempts", {"userId": userId}, {"userId": None, "userName": None})
+    document = conn.getDocument("folconn", "currentTermsOfUse", {})
+
+    return document
+
+
+def getUserSelectedOptions(userId):
+    conn = PyMongoConnection()
+
+    document = conn.getDocument("folconn", "users", {"_id": ObjectId(userId)})
+
+    del document["termsOfUse"]["history"]
+
+    versionsList = sorted(list(map(int, document["termsOfUse"].keys())))
+    lastVersion = str(versionsList.pop())
+
+    selectedOptions = document["termsOfUse"][lastVersion]
+
+    return selectedOptions
+
+
+def isAcceptingLastVersion(userId):
+    conn = PyMongoConnection()
+
+    userDocument = conn.getDocument("folconn", "users", {"_id": ObjectId(userId)})
+    termsDocument = conn.getDocument("folconn", "currentTermsOfUse", {})
+
+    del userDocument["termsOfUse"]["history"]
+
+    versionsList = sorted(list(map(int, userDocument["termsOfUse"].keys())))
+
+    lastVersion = versionsList.pop()
+
+    if lastVersion == int(termsDocument["currentVersion"]):
+        return True
+
+    return False

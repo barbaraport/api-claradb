@@ -11,6 +11,7 @@ from controllers.notificationController import notificationRoutes
 from controllers.termsOfUseController import termsOfUseRoutes
 from models.database.databaseScripts import initializeDatabase, synchronizeUsersData, synchronizeDocumentsData
 from models.observers.ResourceFileChangeObserver import ResourceFileChangeObserver
+from src.controllers.statisticsReportController import statisticsReportRoutes
 
 app = Flask(__name__)
 app.register_blueprint(authRoutes)
@@ -18,12 +19,13 @@ app.register_blueprint(folRoutes)
 app.register_blueprint(carRoutes)
 app.register_blueprint(adminRoutes)
 app.register_blueprint(termsOfUseRoutes)
+app.register_blueprint(statisticsReportRoutes)
 app.register_blueprint(notificationRoutes)
 
 CORS(app)
 
 reload = False
-restartDatabaseDefaultData = False
+restartDatabaseDefaultData = True
 initializeDatabase(restartDatabaseDefaultData)
 
 ResourceFileChangeObserver("/startUpFiles", "usersMock.xlsx", synchronizeUsersData)

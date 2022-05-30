@@ -2,6 +2,7 @@ import messaging from "@react-native-firebase/messaging";
 import React, { Component } from "react";
 import { Alert, Text, View } from "react-native";
 import { User } from "../../../model/User";
+import { TermsOfUseService } from "../../../services/TermsOfUseService";
 import { UserService } from "../../../services/UserService";
 import { Styles } from "../../assets/styles/Styles";
 import { FolconnButton } from "../button/FolconnButton";
@@ -69,12 +70,23 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
 			if (credential != null) {
 				const credentialCode = credential.getCode();
-				
+
+				const termsService = new TermsOfUseService();
+
+				const isAcceptingLastVersion = await termsService.isAcceptingLastVersion(credentialCode);
+
 				this.props.setUserIDFunction(credentialCode);
-				this.props.setPhoneTokenFunction(this.state.token, credentialCode);
-				this.props.redirectPageFunction("Home");
-			}
-			else {
+
+				if (isAcceptingLastVersion === true) {
+					this.props.setPhoneTokenFunction(this.state.token, credentialCode);
+					this.props.redirectPageFunction("Home");
+
+				} else {
+					this.props.redirectPageFunction("TermsOfUse");
+
+				}
+				
+			} else {
 				Alert.alert("Wrong Credentials", "No user found. Verify your credentials.");
 
 			}

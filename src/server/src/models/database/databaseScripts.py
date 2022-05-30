@@ -1,5 +1,9 @@
+import os
+
 import bcrypt
 import pandas
+import json
+
 from bson import ObjectId
 from models.database import MongoConnection
 from models.services.notificationService import sendNotification
@@ -23,8 +27,9 @@ def registerDefaultUsers():
     dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
-    termsOfUseColumn = "CurrentlyAcceptingTermsOfUse"
-    dataFrame.insert(0, termsOfUseColumn, False)
+    termsOfUseColumn = "termsOfUse"
+
+    dataFrame.insert(0, termsOfUseColumn, None)
 
     columns = dataFrame.columns.values
 
@@ -52,7 +57,12 @@ def registerDefaultUsers():
                 document[column] = equipmentsList
 
             elif column == termsOfUseColumn:
-                document[column] = False
+                document[column] = {
+                    "history": {
+                        "0": []
+                    },
+                    "0": []
+                }
 
             else:
                 columnValue = value[i]
@@ -343,6 +353,29 @@ def getUsersList(usersDocuments):
     return usersList
 
 
+def registerMostCurrentTermsOfUse():
+    conn = MongoConnection.PyMongoConnection()
+
+    versions = os.listdir("../resources/termsOfUse")
+
+    lastVersion = versions[-1]
+
+    options = open("../resources/termsOfUse/" + lastVersion + "/options.json")
+
+    parsedDictionary = json.loads(options.read())
+
+    options.close()
+
+    document = {
+        "currentVersion": lastVersion,
+        "options": parsedDictionary["options"]
+    }
+
+    conn.dropCollections("folconn", ["currentTermsOfUse"])
+
+    conn.insert("folconn", "currentTermsOfUse", document)
+
+
 def initializeDatabase(restartData=False):
     print("Checking if is needed to initialize the database")
     initialized = checkInitialization()
@@ -361,6 +394,8 @@ def initializeDatabase(restartData=False):
         registerDefaultDocuments()
         createInitialUserAdminCollection()
         createInitialFOLsFilesCollection()
+
+    registerMostCurrentTermsOfUse()
 
     conn = MongoConnection.PyMongoConnection()
     conn.update("folconn", "databaseStatus", {"statusName": "isInitialized", "statusValue": True},

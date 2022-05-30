@@ -81,3 +81,10 @@ class PyMongoConnection:
         collection = database[collectionName]
 
         collection.delete_one(condition)
+
+    def put(self, databaseName, collectionName, condition, fieldToPush, dataToPush):
+        database = self.__mongoClient[databaseName]
+
+        collection = database[collectionName]
+
+        collection.update_one(condition, {"$set": {fieldToPush: dataToPush}})
