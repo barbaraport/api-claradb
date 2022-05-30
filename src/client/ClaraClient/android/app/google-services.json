@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "48406848437",
+    "project_id": "folconn-4a1a4",
+    "storage_bucket": "folconn-4a1a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:48406848437:android:d92422b4e016850a996ffc",
+        "android_client_info": {
+          "package_name": "com.claraclient"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "48406848437-vai9i8jh19hp41cvglm49cb7m52jhuri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpThhYsLUknP9hFjU-9a775JdthMWYZOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "48406848437-vai9i8jh19hp41cvglm49cb7m52jhuri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

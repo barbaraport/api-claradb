@@ -138,3 +138,4 @@ src/client/ClaraClient/package-lock.json
 
 # Expo
 /.expo
+src/server/resources/startUpFiles/messaging.json

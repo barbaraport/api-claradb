@@ -1,8 +1,11 @@
+import messaging, { FirebaseMessagingTypes } from "@react-native-firebase/messaging";
 import { registerRootComponent } from "expo";
 import React, { Component } from "react";
-import { SafeAreaView, StatusBar, View } from "react-native";
+import { Alert, SafeAreaView, StatusBar, View } from "react-native";
 import { PageAliases } from "./enumerations/PageAliases";
+import { NotificationService } from "./services/NotificationSerivce";
 import { Styles } from "./view/assets/styles/Styles";
+import { FolConnStatusBar } from "./view/components/folconnStatusBar/FolConnStatusBar";
 import { FolconnHeader } from "./view/components/menu/FolconnHeader";
 import { FolPage } from "./view/pages/FOLsPage";
 import { HomePage } from "./view/pages/HomePage";
@@ -22,19 +25,39 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		this.state = {
 			currentPage: PageAliases.LOGIN,
 			pageHistory: [PageAliases.LOGIN],
-			userID: ""
+			userID: "",
 		};
 
 		this.goBack = this.goBack.bind(this);
 		this.setUserId = this.setUserId.bind(this);
 		this.getPageToRender = this.getPageToRender.bind(this);
 		this.changeCurrentPage = this.changeCurrentPage.bind(this);
+		this.saveToken = this.saveToken.bind(this);
+		this.getMessage = this.getMessage.bind(this);
+		this.verifyNotifications = this.verifyNotifications.bind(this);
+	}
 
+	componentDidMount() {
+		this.verifyNotifications();
+	}
+
+	private saveToken (token: string, userId: string) {
+		NotificationService.persistToken(token, userId);
+	}
+
+	private getMessage(message: FirebaseMessagingTypes.RemoteMessage) {
+		const title: string | undefined = message.notification?.title;
+		const body: string | undefined = message.notification?.body;
+
+		Alert.alert(title!, body!);
+	}
+
+	private verifyNotifications() {
+		messaging().onMessage(this.getMessage);
 	}
 
 	private setUserId(userID: string) {
 		this.setState({ userID: userID });
-
 	}
 
 	private changeCurrentPage(pageToChange: PageAliases) {
@@ -55,7 +78,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 		);
 
 		const loginPage: JSX.Element = (
-			<LoginPage pageRedirectFunction={this.changeCurrentPage} setUserIDFunction={this.setUserId} />
+			<LoginPage pageRedirectFunction={this.changeCurrentPage} setUserIDFunction={this.setUserId} setPhoneTokenFunction={this.saveToken} />
 		);
 
 		const folsPage: JSX.Element = (
@@ -101,7 +124,7 @@ export class FolconnApp extends Component<any, FolconnAppState> {
 	private buildComponent() {
 		let component = (
 			<SafeAreaView>
-				<StatusBar barStyle={"light-content"} />
+				<FolConnStatusBar/>
 				<View style={Styles.screen}>
 					{this.getPageToRender()}
 				</View>

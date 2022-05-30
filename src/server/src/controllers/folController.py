@@ -1,4 +1,4 @@
-from flask import Blueprint, abort, request, make_response
+from flask import Blueprint, abort, request
 from models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
     getFolsByTitle, getFolFirstPage, getOpenedFolFile, getFolsByEquipment, registerAccess
 from models.services.userService import getUserCarsList
