@@ -8,7 +8,6 @@ export function setFocusToInput(inputIdToFocus: string) {
 
     if (targetInput) {
         targetInput.focus();
-
     }
 
 }
@@ -107,17 +106,6 @@ export function searchFolsAccesses() {
         }
     }
 
-}
-
-let userAccessDataDict:{[user:string] : any} =[]
-async function getFolAccessesByUser(user:string){
-    if(!userAccessDataDict[user]){
-        const userAccessessData = await AdminService.getFolAccessesByUser(user);
-        userAccessDataDict[user]=userAccessessData;
-        return userAccessessData
-    }else{
-        return userAccessDataDict[user]
-    }
 }
 
 function showFolAccesses(folTitle: string) {
