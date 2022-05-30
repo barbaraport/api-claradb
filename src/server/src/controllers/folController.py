@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, request, make_response
 from models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
-    getFolsByTitle, getFolFirstPage, getOpenedFolFile, getFolsByEquipment, registerAccess,getFolAcessesByUserName
+    getFolsByTitle, getFolFirstPage, getOpenedFolFile, getFolsByEquipment, registerAccess
 from models.services.userService import getUserCarsList
 
 folRoutes = Blueprint("folRoutes", __name__)
@@ -101,14 +101,5 @@ def registerFolAccess():
     user = request.json["user"]
 
     registerAccess(folTitle, position, user)
-
-    return '', 204
-
-@folRoutes.route("/fol/getAccessByUser", methods=["GET"])
-def getAccessByUser():
-
-    user = request.json["user"]
-
-    getFolAcessesByUserName(user)
 
     return '', 204
