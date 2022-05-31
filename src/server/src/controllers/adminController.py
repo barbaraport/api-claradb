@@ -4,7 +4,7 @@ from flask_cors import cross_origin
 
 from models.services.adminService import getAppLoginAttempts
 
-from models.services.adminService import getFolAccesses, getFolAcessesByUserName
+from models.services.adminService import getFolAccesses, getFolAcessesByUserName,getUsers
 
 adminRoutes = Blueprint("adminRoutes", __name__)
 
@@ -26,7 +26,10 @@ def getFolAccess():
 @adminRoutes.route("/admin/getAccessByUser", methods=["GET"])
 def getAccessByUser():
     user = request.args["user"]
-
     response = getFolAcessesByUserName(user)
+    return response
 
+@adminRoutes.route("/admin/getUsers", methods=["GET"])
+def getAllUsers():
+    response = getUsers()
     return response
