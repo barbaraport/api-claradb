@@ -41,11 +41,23 @@ export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
         let folBase64 = await this.getFolFile();
         this.setState({ fol: folBase64 });
 
-        let folFirstPageNumber = await this.getFolFirstPage();
+        let folFirstPage = await this.getFolFirstPage();
+        let folFirstPageNumber = folFirstPage.page as number
+
         this.setState({ folFirstPage: folFirstPageNumber });
         
         if (folBase64 === "data:application/pdf;base64," || folFirstPageNumber === 0) {
-            this.setState({ message: "Document not available :(" });
+            if (folFirstPage.hasOwnProperty("status") && folFirstPage.hasOwnProperty("remarks")) {
+                this.setState({message: 
+                    this.props.folTitle +
+                    "\n\nSorry! This FOL is not available anymore.\n" +
+                    "\nActual Status: " + folFirstPage.status +
+                    "\nRemarks: " + folFirstPage.remarks
+                });
+            }
+            else {
+                this.setState({ message: "Document not available :(" });
+            }
         }
         this.registerLocation();
     }
@@ -86,7 +98,7 @@ export class PDFDisplay extends Component<PDFDisplayProps, PDFDisplayState> {
                             <Modal transparent={true}>
                                 <TouchableOpacity style={{ height: "100%" }} activeOpacity={1} onPress={this.closePdfDisplay}>
                                     <View style={{ alignSelf: "center", justifyContent: "center", alignItems: "center", marginTop: 120, height: "80%", width: "90%", backgroundColor: Colors.WHITE, borderRadius: 8, shadowColor: "#000", shadowOffset: { width: 0, height: 0, }, shadowOpacity: 0.50, shadowRadius: 4.22, elevation: 5 }}>
-                                        <Text style={{ fontSize: 14, fontWeight: "bold", marginTop: 20, marginBottom: 20, alignSelf: "center" }}>{this.state.message}</Text>
+                                        <Text style={{ fontSize: 14, fontWeight: "bold", margin: 20, alignSelf: "center", textAlign: "center" }}>{this.state.message}</Text>
                                     </View>
                                 </TouchableOpacity>
                             </Modal>

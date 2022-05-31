@@ -53,7 +53,7 @@ export class FOLService {
           if (response["ok"]) {
                const folFirstPageResponse = await response.json();
                
-               return folFirstPageResponse.page as number;
+               return folFirstPageResponse;
           }
 
           throw new Error(`There was an error to get the first page from ${folTitle} FOL`);

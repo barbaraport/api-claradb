@@ -163,7 +163,13 @@ def getFolFirstPage(folTitle):
     fol = conn.getDocument("folconn", "documents", {"Title": folTitle})
     fol_file = conn.getDocument("folconn", "FOLsFiles", {"Equipment": fol["Equipment"]})
 
-    if fol_file is not None and fol is not None and fol["Status"] == FOLsStatuses.IN_EFFECT:
+    if fol is None:
+        return jsonify({"page": 0})
+    elif fol_file is None:
+        return jsonify({"page": 0})
+    elif fol["Status"] == FOLsStatuses.INCORPORATED or fol["Status"] == FOLsStatuses.CANCELLED:
+        return jsonify({"page": 0, "status": fol["Status"], "remarks": fol["Remarks"]})
+    elif fol["Status"] == FOLsStatuses.IN_EFFECT:
 
         opened_pdf = PyPDF2.PdfFileReader("../resources/" + fol_file["fileName"])
         total_pages_pdf = opened_pdf.getNumPages()
