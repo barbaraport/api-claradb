@@ -4,4 +4,5 @@ export enum ServerRoutes {
 	LOGIN_ATTEMPT = "/admin/getLoginAttempts",
 	FOL_ACCESSES = "/admin/getFolAccesses",
 	USER_FOL_ACCESSES = "/admin/getAccessByUser",
+	USERS = "/admin/getUsers"
 }
