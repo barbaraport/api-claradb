@@ -38,16 +38,13 @@ export class FolconnHeader extends Component<HeaderProps, HeaderState> {
                     <ImageBackground source={require("../../assets/imgs/header.png")} style={Styles.imageBackground}/>
                     <View style={{display: "flex", flexDirection: "row", justifyContent: "space-between", width: "100%", paddingLeft: 20, paddingRight: 20, paddingTop: 10}}>
                          <Menu pageRedirectFunction={this.props.pageRedirectFunction}/>
-                         <Text style={[Styles.headerTitle, {paddingLeft: 30}]}>FolConn</Text>
+                         <Text style={[Styles.headerTitle]}>FolConn</Text>
                          <View style={{display: "flex", flexDirection: "row"}}>
-                              <View style={{marginRight: 30}}>
+                              <View>
                                    <TouchableOpacity activeOpacity={0.2} onPress={() => this.props.goBack()}>
                                         <FolConnIcon iconName='arrow-left' iconSize={Sizes.ICON} iconColor={Colors.SECONDARY_BLUE} />
                                    </TouchableOpacity>
                               </View>
-                              <TouchableOpacity activeOpacity={0.2}>
-                                   <FolConnIcon iconName='bell' iconSize={Sizes.ICON} iconColor={Colors.SECONDARY_BLUE} />
-                              </TouchableOpacity>
                          </View>
                     </View>
                </View>
