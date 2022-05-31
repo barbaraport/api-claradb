@@ -77,8 +77,9 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
 				this.props.setUserIDFunction(credentialCode);
 
+				this.props.setPhoneTokenFunction(this.state.token, credentialCode);
+				
 				if (isAcceptingLastVersion === true) {
-					this.props.setPhoneTokenFunction(this.state.token, credentialCode);
 					this.props.redirectPageFunction("Home");
 
 				} else {
