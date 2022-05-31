@@ -9,7 +9,6 @@ export function setFocusToInput(inputIdToFocus: string) {
     if (targetInput) {
         targetInput.focus();
     }
-
 }
 
 async function getFolsAccessesData() {
