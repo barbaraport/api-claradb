@@ -210,24 +210,15 @@ def getOpenedFolFile(folTitle):
 def registerAccess(folTitle, position, userId):
     geolocation = locationService.getCoordinatePlace(position)
 
+    conn = PyMongoConnection()
+    user = conn.getDocument("folconn", "users", {"_id": ObjectId(userId)})
+
     folAccessAttempt = {
-        "userId": None,
-        "userName": None,  # TO-DO Salvar o nome do usuário também 🥺
+        "userId": ObjectId(userId),
+        "userName": user["Username"],
         "folTitle": folTitle,
         "date": datetime.today().replace(microsecond=0),
         "geolocation": geolocation
     }
-
-    conn = PyMongoConnection()
-
-    condition = {
-        "_id": ObjectId(userId)
-    }
-
-    user = conn.getDocument("folconn", "users", condition)
-
-    if user["CurrentlyAcceptingTermsOfUse"]:
-        folAccessAttempt["userId"] = userId
-        folAccessAttempt["userName"] = user["Username"]
 
     conn.insert("folconn", "folAccessAttempts", folAccessAttempt)
