@@ -1,0 +1,12 @@
+{
+  "options": [
+    {
+      "option": "associateLocalizationWithName",
+      "text": "Allow us to associate your location with your name"
+    },
+    {
+      "option": "enterInContact",
+      "text": "Allow us to enter in contact with you about your problems"
+    }
+  ]
+}

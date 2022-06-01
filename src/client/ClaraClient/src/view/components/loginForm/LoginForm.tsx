@@ -1,6 +1,8 @@
+import messaging from "@react-native-firebase/messaging";
 import React, { Component } from "react";
 import { Alert, Text, View } from "react-native";
 import { User } from "../../../model/User";
+import { TermsOfUseService } from "../../../services/TermsOfUseService";
 import { UserService } from "../../../services/UserService";
 import { Styles } from "../../assets/styles/Styles";
 import { FolconnButton } from "../button/FolconnButton";
@@ -8,12 +10,14 @@ import { FolconnInput } from "../input/FolconnInput";
 
 interface LoginFormProps {
 	redirectPageFunction: Function,
-	setUserIDFunction: Function;
+	setUserIDFunction: Function,
+	setPhoneTokenFunction: Function;
 }
 
 interface LoginFormState {
 	typedUserName: string;
 	typedPassword: string;
+	token: string;
 }
 
 export class LoginForm extends Component<LoginFormProps, LoginFormState> {
@@ -26,11 +30,17 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 		this.state = {
 			typedUserName: "",
 			typedPassword: "",
+			token: "",
 		};
 
 		this.submitLoginForm = this.submitLoginForm.bind(this);
 		this.receiveTypedPassword = this.receiveTypedPassword.bind(this);
 		this.receiveTypedUserName = this.receiveTypedUserName.bind(this);
+	}
+
+	componentDidMount() {
+		messaging().getToken().then((token: string) => { this.setState({token: token}) });
+		messaging().onTokenRefresh((token: string) => { this.setState({token: token}) });
 	}
 
 	private receiveTypedUserName(typedUserName: string) {
@@ -60,11 +70,24 @@ export class LoginForm extends Component<LoginFormProps, LoginFormState> {
 
 			if (credential != null) {
 				const credentialCode = credential.getCode();
-				
+
+				const termsService = new TermsOfUseService();
+
+				const isAcceptingLastVersion = await termsService.isAcceptingLastVersion(credentialCode);
+
 				this.props.setUserIDFunction(credentialCode);
-				this.props.redirectPageFunction("Home");
-			}
-			else {
+
+				this.props.setPhoneTokenFunction(this.state.token, credentialCode);
+				
+				if (isAcceptingLastVersion === true) {
+					this.props.redirectPageFunction("Home");
+
+				} else {
+					this.props.redirectPageFunction("TermsOfUse");
+
+				}
+				
+			} else {
 				Alert.alert("Wrong Credentials", "No user found. Verify your credentials.");
 
 			}

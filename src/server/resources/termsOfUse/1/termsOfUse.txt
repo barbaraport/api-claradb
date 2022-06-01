@@ -1,0 +1,8 @@
+This Agreement includes access to all the FOL documents in effect and information related to the user's vehicles models.
+FolConn's mission is to provide the users with important content about common issues organized in FOL documents.
+The current terms of use includes the usage of the following data about you and your device:
+
+1. Allow us to identify you in statistics reports. We will associate your name with your location in the statistics
+reports, so we can know who has more problems with our vehicles
+
+Version 1.0

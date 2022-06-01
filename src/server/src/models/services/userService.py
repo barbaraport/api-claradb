@@ -3,8 +3,8 @@ from datetime import datetime
 import bcrypt
 from bson.objectid import ObjectId
 from flask import abort, make_response
-from models.database.MongoConnection import PyMongoConnection
-from models.services import locationService
+from src.models.database.MongoConnection import PyMongoConnection
+from src.models.services import locationService
 
 
 def registerLoginAttempt(user, position):
@@ -12,15 +12,11 @@ def registerLoginAttempt(user, position):
     geolocation = locationService.getCoordinatePlace(position)
 
     loginAttempt = {
-        "userId": None,
-        "userName": None,
+        "userId": str(user["_id"]),
+        "userName": user["Username"],
         "date": datetime.today().replace(microsecond=0),
         "geolocation": geolocation
     }
-
-    if user["currentlyAcceptingTermsOfUse"]:
-        loginAttempt["userId"] = str(user["_id"])
-        loginAttempt["userName"] = user["Username"]
 
     conn = PyMongoConnection()
     conn.insert("folconn", "loginAttempts", loginAttempt)

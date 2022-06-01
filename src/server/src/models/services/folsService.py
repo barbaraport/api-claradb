@@ -1,15 +1,13 @@
 import base64
 import re
+from datetime import datetime
 
 import PyPDF2
 from bson import ObjectId
 from flask import jsonify, make_response, abort
-from models.database.MongoConnection import PyMongoConnection
-
-from models.services import locationService
-from datetime import datetime
-
-from models.enumerations.FOLsStatuses import FOLsStatuses
+from src.models.database.MongoConnection import PyMongoConnection
+from src.models.enumerations.FOLsStatuses import FOLsStatuses
+from src.models.services import locationService
 
 
 def getFolsByEquipment(equipment):
@@ -165,7 +163,13 @@ def getFolFirstPage(folTitle):
     fol = conn.getDocument("folconn", "documents", {"Title": folTitle})
     fol_file = conn.getDocument("folconn", "FOLsFiles", {"Equipment": fol["Equipment"]})
 
-    if fol_file is not None and fol is not None and fol["Status"] == FOLsStatuses.IN_EFFECT:
+    if fol is None:
+        return jsonify({"page": 0})
+    elif fol_file is None:
+        return jsonify({"page": 0})
+    elif fol["Status"] == FOLsStatuses.INCORPORATED or fol["Status"] == FOLsStatuses.CANCELLED:
+        return jsonify({"page": 0, "status": fol["Status"], "remarks": fol["Remarks"]})
+    elif fol["Status"] == FOLsStatuses.IN_EFFECT:
 
         opened_pdf = PyPDF2.PdfFileReader("../resources/" + fol_file["fileName"])
         total_pages_pdf = opened_pdf.getNumPages()
@@ -212,24 +216,15 @@ def getOpenedFolFile(folTitle):
 def registerAccess(folTitle, position, userId):
     geolocation = locationService.getCoordinatePlace(position)
 
+    conn = PyMongoConnection()
+    user = conn.getDocument("folconn", "users", {"_id": ObjectId(userId)})
+
     folAccessAttempt = {
-        "userId": None,
-        "userName": None,  # TO-DO Salvar o nome do usuário também 🥺
+        "userId": userId,
+        "userName": user["Username"],
         "folTitle": folTitle,
         "date": datetime.today().replace(microsecond=0),
         "geolocation": geolocation
     }
-
-    conn = PyMongoConnection()
-
-    condition = {
-        "_id": ObjectId(userId)
-    }
-
-    user = conn.getDocument("folconn", "users", condition)
-
-    if user["currentlyAcceptingTermsOfUse"]:
-        folAccessAttempt["userId"] = userId
-        folAccessAttempt["userName"] = user["Username"]
 
     conn.insert("folconn", "folAccessAttempts", folAccessAttempt)

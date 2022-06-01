@@ -1,7 +1,7 @@
-from flask import Blueprint, abort, request, make_response
-from models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
+from flask import Blueprint, abort, request
+from src.models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
     getFolsByTitle, getFolFirstPage, getOpenedFolFile, getFolsByEquipment, registerAccess
-from models.services.userService import getUserCarsList
+from src.models.services.userService import getUserCarsList
 
 folRoutes = Blueprint("folRoutes", __name__)
 
