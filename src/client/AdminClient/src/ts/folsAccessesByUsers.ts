@@ -12,19 +12,19 @@ export function setFocusToInput(inputIdToFocus: string) {
     }
 }
 
-let userAccessDataDict:{[user:string] : any} =[]
-async function getFolAccessesByUser(user:string){
-    if(!userAccessDataDict[user]){
+let userAccessDataDict: { [user: string]: any } = []
+async function getFolAccessesByUser(user: string) {
+    if (!userAccessDataDict[user]) {
         const userAccessessData = await AdminService.getFolAccessesByUser(user);
-        userAccessDataDict[user]=userAccessessData;
+        userAccessDataDict[user] = userAccessessData;
         return userAccessessData
-    }else{
+    } else {
         return userAccessDataDict[user]
     }
 }
 
-let users:Users[]=[]
-async function getUsers(){
+let users: Users[] = []
+async function getUsers() {
     users = await AdminService.getAllUsers()
     await searchUsersAccesses()
 }
@@ -40,15 +40,15 @@ export async function searchUsersAccesses() {
 
     const searchValue = searchInput.value.toLowerCase();
 
-    const searchResults:EffectiveUsersResult = {};
+    const searchResults: EffectiveUsersResult = {};
 
     if (users) {
         users.forEach(user => {
-            if(user.Username.toLowerCase().includes(searchValue)){
-                if(user.Username in searchResults){
-                    searchResults[user.Username]+=1
-                }else{
-                    searchResults[user.Username]=1
+            if (user.Username.toLowerCase().includes(searchValue)) {
+                if (user.Username in searchResults) {
+                    searchResults[user.Username] += 1
+                } else {
+                    searchResults[user.Username] = 1
                 }
             }
         });
@@ -68,15 +68,15 @@ export async function searchUsersAccesses() {
 
     keys.forEach(async user => {
         const accesses = await getFolAccessesByUser(user)
-        if(accesses.count<=0){
+        if (accesses.count <= 0) {
             return;
         };
         const textElement = document.createElement("label");
-        textElement.innerText = `${user} - ${accesses.count} fols accessed`
+        textElement.innerText = `${user} - ${accesses.count} FOLs accessed`
         textElement.classList.add("folSearchResult");
         searchResultOutput.appendChild(textElement);
 
-        textElement.onclick = function(this) {
+        textElement.onclick = function (this) {
             showFolAccesses(user);
         }
     });
@@ -88,8 +88,8 @@ async function showFolAccesses(user: string) {
 
     accessesOutputElement.innerHTML = "";
 
-    if(user) {
-        const folsAccessedByUser:FOLAccess[] = (await getFolAccessesByUser(user)).accesses;
+    if (user) {
+        const folsAccessedByUser: FOLAccess[] = (await getFolAccessesByUser(user)).accesses;
 
         folsAccessedByUser.forEach(fol => {
             const resultContainer = document.createElement("tr");
@@ -99,10 +99,10 @@ async function showFolAccesses(user: string) {
             folTitleLabel.innerText = fol.folTitle;
 
             const dateLabel = document.createElement("td");
-            dateLabel.innerText=fol.date;
+            dateLabel.innerText = fol.date;
 
             const geolocationLabel = document.createElement("td");
-            geolocationLabel.innerText = `${fol.geolocation['city']},${fol.geolocation['country']}`;
+            geolocationLabel.innerText = `${fol.geolocation['city']}, ${fol.geolocation['country']}`;
 
             resultContainer.appendChild(folTitleLabel);
             resultContainer.appendChild(dateLabel);

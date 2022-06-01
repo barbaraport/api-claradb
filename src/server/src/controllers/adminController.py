@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 
 from src.models.services.adminService import getAppLoginAttempts
 
@@ -23,7 +23,7 @@ def getFolAccess():
 
 @adminRoutes.route("/admin/getAccessByUser", methods=["GET"])
 def getAccessByUser():
-    user = request.args["user"]
+    user = request.args.get("user")
     response = getFolAcessesByUserName(user)
     return response
 
