@@ -1,6 +1,7 @@
 import { AdminService } from "./model/services/AdminService";
 import { EffectiveUsersResult } from "./model/types/EffectiveUsersResult";
 import { Users } from "../ts/model/responses/Users";
+import { FOLAccess } from "./model/responses/FOLAccess";
 
 
 export function setFocusToInput(inputIdToFocus: string) {
@@ -25,12 +26,10 @@ async function getFolAccessesByUser(user:string){
 let users:Users[]=[]
 async function getUsers(){
     users = await AdminService.getAllUsers()
-
     await searchUsersAccesses()
 }
 
 getUsers()
-
 
 export async function searchUsersAccesses() {
     const searchInput = document.getElementById("searchInput")! as HTMLInputElement;
@@ -72,14 +71,42 @@ export async function searchUsersAccesses() {
             return;
         };
         const textElement = document.createElement("label");
-        textElement.innerText = `${user} - ${accesses.count} - fols accessed`
+        textElement.innerText = `${user} - ${accesses.count} fols accessed`
         textElement.classList.add("folSearchResult");
         searchResultOutput.appendChild(textElement);
 
         textElement.onclick = function(this) {
-            const targetLabel = this as HTMLLabelElement;
-            const labelText = targetLabel.innerText;
-            // showFolAccesses(folTitle);
+            showFolAccesses(user);
         }
     });
+}
+
+
+async function showFolAccesses(user: string) {
+    const accessesOutputElement = document.getElementById("searchResult")! as HTMLDivElement;
+
+    accessesOutputElement.innerHTML = "";
+
+    if(user) {
+        const folsAccessedByUser:FOLAccess[] = (await getFolAccessesByUser(user)).accesses;
+
+        folsAccessedByUser.forEach(fol => {
+            const resultContainer = document.createElement("tr");
+            resultContainer.classList.add("accessResult");
+
+            const folTitleLabel = document.createElement("td");
+            folTitleLabel.innerText = fol.folTitle;
+
+            const dateLabel = document.createElement("td");
+            dateLabel.innerText=fol.date;
+
+            const geolocationLabel = document.createElement("td");
+            geolocationLabel.innerText = `${fol.geolocation['city']},${fol.geolocation['country']}`;
+
+            resultContainer.appendChild(folTitleLabel);
+            resultContainer.appendChild(dateLabel);
+            resultContainer.appendChild(geolocationLabel);
+            accessesOutputElement.appendChild(resultContainer);
+        });
+    }
 }
