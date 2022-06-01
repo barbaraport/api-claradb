@@ -35,6 +35,7 @@ export async function searchUsersAccesses() {
     const searchInput = document.getElementById("searchInput")! as HTMLInputElement;
     const searchResultOutput = document.getElementById("folSearchResults")! as HTMLDivElement;
 
+
     searchResultOutput.innerHTML = "";
 
     const searchValue = searchInput.value.toLowerCase();
