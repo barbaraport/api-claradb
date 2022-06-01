@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from models.services.notificationService import persistToken
+from src.models.services.notificationService import persistToken
 
 notificationRoutes = Blueprint("notificationRoutes", __name__)
 

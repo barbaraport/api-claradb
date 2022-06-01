@@ -3,14 +3,14 @@ from firebase_admin import credentials
 from flask import Flask
 from flask_cors import CORS
 
-from controllers.adminController import adminRoutes
-from controllers.authenticationController import authRoutes
-from controllers.carController import carRoutes
-from controllers.folController import folRoutes
-from controllers.notificationController import notificationRoutes
-from controllers.termsOfUseController import termsOfUseRoutes
-from models.database.databaseScripts import initializeDatabase, synchronizeUsersData, synchronizeDocumentsData
-from models.observers.ResourceFileChangeObserver import ResourceFileChangeObserver
+from src.controllers.adminController import adminRoutes
+from src.controllers.authenticationController import authRoutes
+from src.controllers.carController import carRoutes
+from src.controllers.folController import folRoutes
+from src.controllers.notificationController import notificationRoutes
+from src.controllers.termsOfUseController import termsOfUseRoutes
+from src.models.database.databaseScripts import initializeDatabase, synchronizeUsersData, synchronizeDocumentsData
+from src.models.observers.ResourceFileChangeObserver import ResourceFileChangeObserver
 from src.controllers.statisticsReportController import statisticsReportRoutes
 
 app = Flask(__name__)

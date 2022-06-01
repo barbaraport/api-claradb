@@ -1,8 +1,8 @@
 from flask import Blueprint
 
-from models.services.adminService import getAppLoginAttempts
+from src.models.services.adminService import getAppLoginAttempts
 
-from models.services.adminService import getFolAccesses
+from src.models.services.adminService import getFolAccesses
 
 adminRoutes = Blueprint("adminRoutes", __name__)
 

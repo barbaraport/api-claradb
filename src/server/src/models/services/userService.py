@@ -3,8 +3,8 @@ from datetime import datetime
 import bcrypt
 from bson.objectid import ObjectId
 from flask import abort, make_response
-from models.database.MongoConnection import PyMongoConnection
-from models.services import locationService
+from src.models.database.MongoConnection import PyMongoConnection
+from src.models.services import locationService
 
 
 def registerLoginAttempt(user, position):

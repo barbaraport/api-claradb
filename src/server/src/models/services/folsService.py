@@ -5,9 +5,9 @@ from datetime import datetime
 import PyPDF2
 from bson import ObjectId
 from flask import jsonify, make_response, abort
-from models.database.MongoConnection import PyMongoConnection
-from models.enumerations.FOLsStatuses import FOLsStatuses
-from models.services import locationService
+from src.models.database.MongoConnection import PyMongoConnection
+from src.models.enumerations.FOLsStatuses import FOLsStatuses
+from src.models.services import locationService
 
 
 def getFolsByEquipment(equipment):
