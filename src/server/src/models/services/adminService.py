@@ -16,7 +16,7 @@ def getAppLoginAttempts():
 def getFolAccesses():
     conn = PyMongoConnection()
 
-    documents = jsonify(list(conn.getDocuments("folconn", "folAccessAttempts", {}, {"_id": 0, "id": 0})))
+    documents = jsonify(list(conn.getDocuments("folconn", "folAccessAttempts", {}, {"_id": 0})))
 
     response = make_response(documents)
 

@@ -220,7 +220,7 @@ def registerAccess(folTitle, position, userId):
     user = conn.getDocument("folconn", "users", {"_id": ObjectId(userId)})
 
     folAccessAttempt = {
-        "userId": ObjectId(userId),
+        "userId": userId,
         "userName": user["Username"],
         "folTitle": folTitle,
         "date": datetime.today().replace(microsecond=0),
