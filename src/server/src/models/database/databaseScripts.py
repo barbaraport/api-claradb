@@ -286,8 +286,8 @@ def synchronizeUsersData():
     dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
-    termsOfUseColumn = "CurrentlyAcceptingTermsOfUse"
-    dataFrame.insert(0, termsOfUseColumn, False)
+    termsOfUseColumn = "termsOfUse"
+    dataFrame.insert(0, termsOfUseColumn, None)
 
     columns = dataFrame.columns.values
 
@@ -314,7 +314,12 @@ def synchronizeUsersData():
                 conn.insert("folconn", "equipmentUsers", {"Equipment": equipment, "Users": []})
 
             elif column == termsOfUseColumn:
-                document[column] = False
+                document[column] = {
+                    "history": {
+                        "0": []
+                    },
+                    "0": []
+                }
 
             else:
                 columnValue = value[i]
