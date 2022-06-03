@@ -9,7 +9,7 @@
   </p>
   <p align="justify">A empresa parceira fabrica diversos veículos, que são utilizados ao redor do mundo todo por todos os seus clientes. Algumas vezes, eles são fabricados e possuem algum problema, portanto, os compradores precisam ser informados para que não ocorra risco de vida ao utilizá-los. Atualmente a empresa parceira não possui nenhuma plataforma que centraliza todas as informações e notifica os usuários sobre recalls e avisos sobre possíveis avarias nos veículos fabricados. Sendo assim, nós, da equipe ClaraDB, fomos desafiados a desenvolver um aplicativo que comunica, através de notificações, os usuário sobre atualizações de possíveis transtornos nos veículos e automatiza a visualização do novo aviso.</p>
   
-  <h2 align="center">:rainbow::spiral_calendar: Segunda Entrega :stars:</h2>
+  <h2 align="center">:rainbow::spiral_calendar: Terceira Entrega :stars:</h2>
   <h3>:question: O que fizemos?</h3>
   <p align="justify">A <i>sprint</i> 3 representa a nossa última entrega, portanto, devemos entregar ao cliente tudo o que foi definido anteriormente. As últimas funcionalidades desejadas pelo cliente eram: o envio de notificações <i>push</i> caso um novo documento fosse criado, editado, excluído etc. e a visualização das FOLs que cada usuário acessou. Além disso, fizemos um ajuste na pesquisa das FOLs conforme o pedido do nosso cliente.
   </p>
