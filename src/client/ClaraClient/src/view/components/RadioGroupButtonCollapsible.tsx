@@ -56,7 +56,7 @@ export class RadioGroupButtonCollapsible extends Component<CollapsibleProps,Coll
                     </View>
                 ))}
                 <TouchableOpacity style={Styles.search} activeOpacity={0.5} onPress={this.performSearch}>
-                    <Text>Search</Text>
+                    <Text>Apply</Text>
                 </TouchableOpacity>
             </View>
         )

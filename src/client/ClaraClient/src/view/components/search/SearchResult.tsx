@@ -4,11 +4,11 @@ import { Colors } from "../../../enumerations/Colors";
 import { SearchType } from "../../../enumerations/SearchType";
 import { FOLSearchResult } from "../../../interfaces/FOLSearchResult";
 import { FOLService } from "../../../services/FOLService";
+import { SearchQuery } from "../../../types/SearchQuery";
 import { SearchResultItem } from "./SearchResultItem";
 
 interface SearchResultProps {
-    searchType: SearchType,
-    searchFilter: string,
+    searchFilter: SearchQuery,
     closeSearchResultFunction: Function,
     pageRedirectFunction: Function,
     getFolTitle: Function,
@@ -34,33 +34,7 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
     }
 
     async componentDidMount() {
-        let folsList: FOLSearchResult[] = [];
-
-        switch (this.props["searchType"]) {
-            case SearchType.CAR_MODEL:
-                folsList = await FOLService.getFolsByEquipment(this.props["searchFilter"]);
-
-                break;
-            case SearchType.FOL_CATEGORY:
-                folsList = await FOLService.getFolsByCategory(this.props["userID"], this.props["searchFilter"]);
-
-                break;
-            case SearchType.FOL_KEYWORD:
-                folsList = await FOLService.getFolsByKeyword(this.props["userID"], this.props["searchFilter"]);
-
-                break;
-            case SearchType.FOL_STATUS:
-                folsList = await FOLService.getFolsByStatus(this.props["userID"], this.props["searchFilter"]);
-
-                break;
-            case SearchType.FOL_TITLE:
-                folsList = await FOLService.getFolsByTitle(this.props["userID"], this.props["searchFilter"]);
-
-                break;
-            default:
-                break;
-        }
-
+        let folsList = await FOLService.getFolsByQuery(this.props["searchFilter"]);
 
         this.setState({ folsSearchResultList: folsList });
 

@@ -1,5 +1,6 @@
 import { ApiAccess } from "../enumerations/ApiAccess";
 import { FOLSearchResult } from "../interfaces/FOLSearchResult";
+import { SearchQuery } from "../types/SearchQuery";
 
 export class FOLService {
 
@@ -191,4 +192,23 @@ export class FOLService {
           throw new Error("Unable to gets the FOLs from the server");
      }
 
+     public static async getFolsByQuery(query: SearchQuery) {
+          let request: RequestInit = {
+               method: "POST",
+               body: JSON.stringify(query),
+               headers: {
+                    Accept: 'application/json',
+               }
+          }
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/getByQuery", request);
+
+          if (response["ok"]) {
+               const equipmentFols = await response.json() as Array<FOLSearchResult>;
+
+               return equipmentFols;
+          }
+
+          throw new Error("Unable to gets the FOLs from the server");
+     }
 }
