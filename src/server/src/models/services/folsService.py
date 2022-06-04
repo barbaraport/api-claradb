@@ -231,7 +231,7 @@ def getOpenedFolFile(folTitle):
     fol_file = conn.getDocument("folconn", "FOLsFiles", {"Equipment": fol["Equipment"]})
 
     if fol_file is not None:
-        opened_pdf = open("../resources/" + fol_file["fileName"], "rb")
+        opened_pdf = open("./resources/" + fol_file["fileName"], "rb")
         opened_pdf_read = opened_pdf.read()
 
         fol_base_64 = base64.b64encode(opened_pdf_read).decode()
