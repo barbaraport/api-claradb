@@ -9,33 +9,33 @@ interface FolconnButtonProps {
 }
 
 export class FolconnButton extends Component<FolconnButtonProps, any> {
-    constructor(props: FolconnButtonProps){
+    constructor(props: FolconnButtonProps) {
         super(props);
 
         this.onClick = this.onClick.bind(this);
 
     }
 
-    private onClick(){
+    private onClick() {
         this.props.onClick();
 
     }
 
-    private buildComponent(){
-        let buttonTtyle;
+    private buildComponent() {
+        let buttonStyle;
         let textStyle;
 
-        if(this.props["size"] == "small"){
-            buttonTtyle = Styles.buttonContainer;
+        if (this.props["size"] === "small") {
+            buttonStyle = Styles.buttonContainer;
             textStyle = Styles.buttonText;
 
-        }else if(this.props["size"] == "large"){
-            buttonTtyle = Styles.buttonContainerLarge;
+        } else if (this.props["size"] === "large") {
+            buttonStyle = Styles.buttonContainerLarge;
             textStyle = Styles.buttonTextLarge;
         }
 
         let component = (
-            <TouchableOpacity activeOpacity={0.6} style={buttonTtyle} onPress={this.onClick}>
+            <TouchableOpacity activeOpacity={0.6} style={buttonStyle} onPress={this.onClick}>
                 <Text style={textStyle}>{this.props["text"]}</Text>
             </TouchableOpacity>
         );

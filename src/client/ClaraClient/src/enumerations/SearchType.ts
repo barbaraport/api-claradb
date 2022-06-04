@@ -3,5 +3,6 @@ export enum SearchType {
     FOL_STATUS,
     FOL_KEYWORD,
     FOL_TITLE,
-    FOL_CATEGORY
+    FOL_CATEGORY,
+    ALL
 }

@@ -1,9 +1,10 @@
 import { ApiAccess } from "../enumerations/ApiAccess";
 import { FOLSearchResult } from "../interfaces/FOLSearchResult";
+import { SearchQuery } from "../types/SearchQuery";
 
 export class FOLService {
 
-     public async registerFolAccess (folTitle: string, userID: string, position: any) {
+     public async registerFolAccess(folTitle: string, userID: string, position: any) {
 
           let request = {
                method: "POST",
@@ -17,11 +18,11 @@ export class FOLService {
           await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/registerAccess", request);
      }
 
-     public async getFol (folTitle: string) {
+     public async getFol(folTitle: string) {
 
           let request = {
                method: "POST",
-               body: JSON.stringify({folTitle: folTitle}),
+               body: JSON.stringify({ folTitle: folTitle }),
                headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json'
@@ -39,7 +40,7 @@ export class FOLService {
 
      }
 
-     public async getFolFirstPage (folTitle: string) {
+     public async getFolFirstPage(folTitle: string) {
 
           let request = {
                method: "GET",
@@ -52,7 +53,7 @@ export class FOLService {
 
           if (response["ok"]) {
                const folFirstPageResponse = await response.json();
-               
+
                return folFirstPageResponse;
           }
 
@@ -111,14 +112,14 @@ export class FOLService {
 
           for (let i = 0; i < keywordsList.length; i++) {
                let keyword = keywordsList[i];
-               
+
                keyword = keyword.trim();
 
                normalizedKeywords += keyword + ",";
 
           }
 
-          if(normalizedKeywords.endsWith(",")){
+          if (normalizedKeywords.endsWith(",")) {
                normalizedKeywords = normalizedKeywords.substring(0, normalizedKeywords.length - 1);
 
           }
@@ -134,7 +135,7 @@ export class FOLService {
           throw new Error("Unable to gets the FOLs from the server");
      }
 
-     public static async getFolsCategories(userId: string){
+     public static async getFolsCategories(userId: string) {
           let request = {
                method: "GET",
                headers: {
@@ -153,7 +154,7 @@ export class FOLService {
           throw new Error("Unable to gets the FOLs from the server");
      }
 
-     public static async getFolsByCategory(userId: string, category: string){
+     public static async getFolsByCategory(userId: string, category: string) {
           let request = {
                method: "GET",
                headers: {
@@ -172,7 +173,7 @@ export class FOLService {
           throw new Error("Unable to gets the FOLs from the server");
      }
 
-     public static async getFolsByTitle(userId: string, title: string){
+     public static async getFolsByTitle(userId: string, title: string) {
           let request = {
                method: "GET",
                headers: {
@@ -191,4 +192,24 @@ export class FOLService {
           throw new Error("Unable to gets the FOLs from the server");
      }
 
+     public static async getFolsByQuery(query: SearchQuery) {
+          let request: RequestInit = {
+               method: "POST",
+               body: JSON.stringify({filter: query}),
+               headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+               }
+          }
+
+          const response = await fetch("http://" + ApiAccess.host + ":" + ApiAccess.port + "/fol/getByQuery", request);
+
+          if (response["ok"]) {
+               const equipmentFols = await response.json() as Array<FOLSearchResult>;
+
+               return equipmentFols;
+          }
+
+          throw new Error("Unable to gets the FOLs from the server");
+     }
 }

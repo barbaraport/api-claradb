@@ -12,7 +12,7 @@ class ResourceFileChangeObserver(FileSystemEventHandler):
 
         self.observer = Observer()
 
-        self.observer.schedule(self, "../resources" + path, recursive=False)
+        self.observer.schedule(self, "./resources" + path, recursive=False)
         self.observer.start()
 
     def on_modified(self, event):

@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { ScrollView, Text } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SearchType } from "../../enumerations/SearchType";
 import { CarService } from "../../services/CarService";
 import { FOLService } from "../../services/FOLService";
 import { RadioData } from "../../types/RadioData";
+import { SearchQuery } from "../../types/SearchQuery";
 import { Styles } from "../assets/styles/Styles";
 import { PDFDisplay } from "../components/pdfDisplay/PDFDisplay";
 import { RadioGroupButtonCollapsible } from "../components/RadioGroupButtonCollapsible";
@@ -31,6 +32,8 @@ interface FOLsPageState {
 	showPdf: boolean;
 
 	categories: Array<any>
+
+	searchQuery: SearchQuery
 }
 
 export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
@@ -53,7 +56,14 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 			searchFilter: "",
 			showPdf: false,
 			searchType: SearchType.CAR_MODEL,
-			categories: []
+			categories: [],
+			searchQuery: {
+				CAR_MODEL: '',
+				FOL_CATEGORY: '',
+				FOL_KEYWORD: '',
+				FOL_STATUS: '',
+				FOL_TITLE: ''
+			}
 		}
 
 		this.setTitle = this.setTitle.bind(this);
@@ -64,6 +74,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 		this.showPdfFile = this.showPdfFile.bind(this);
 		this.closeFolPdf = this.closeFolPdf.bind(this);
 		this.closeSearchResult = this.closeSearchResult.bind(this);
+		this.performSearch = this.performSearch.bind(this);
 	}
 
 	async componentDidMount() {
@@ -103,27 +114,47 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 	}
 
 	private setModel(filter: string) {
-		this.setState({ searchFilter: filter, searchType: SearchType.CAR_MODEL, inSearch: true });
+		const currentQuery = this.state['searchQuery'];
+
+		currentQuery['CAR_MODEL'] = filter;
+
+		this.setState({ searchQuery: currentQuery });
 
 	}
 
 	private setStatus(filter: string) {
-		this.setState({ searchFilter: filter, searchType: SearchType.FOL_STATUS, inSearch: true });
+		const currentQuery = this.state['searchQuery'];
+
+		currentQuery['FOL_STATUS'] = filter;
+
+		this.setState({ searchQuery: currentQuery });
 
 	}
 
 	private setKeyword(filter: string) {
-		this.setState({ searchFilter: filter.toLowerCase(), searchType: SearchType.FOL_KEYWORD, inSearch: true });
+		const currentQuery = this.state['searchQuery'];
+
+		currentQuery['FOL_KEYWORD'] = filter.toLowerCase();
+
+		this.setState({ searchQuery: currentQuery });
 
 	}
 
 	private setTitle(filter: string) {
-		this.setState({ searchFilter: filter, searchType: SearchType.FOL_TITLE, inSearch: true });
+		const currentQuery = this.state['searchQuery'];
+
+		currentQuery['FOL_TITLE'] = filter;
+
+		this.setState({ searchQuery: currentQuery });
 
 	}
 
 	private setCategory(filter: string) {
-		this.setState({ searchFilter: filter, searchType: SearchType.FOL_CATEGORY, inSearch: true });
+		const currentQuery = this.state['searchQuery'];
+
+		currentQuery['FOL_CATEGORY'] = filter;
+
+		this.setState({ searchQuery: currentQuery });
 
 	}
 
@@ -136,6 +167,10 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 		this.setState({ showPdf: false });
 	}
 
+	private performSearch() {
+		this.setState({ inSearch: true, showPdf: false })
+	}
+
 	private buildComponent() {
 		let component = (
 			<ScrollView style={Styles.folPageScrollViewContent}>
@@ -146,21 +181,26 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 						getFolTitle={this.showPdfFile}
 						pageRedirectFunction={this.props.pageRedirectFunction}
 						closeSearchResultFunction={this.closeSearchResult}
-						searchType={this.state["searchType"]}
-						searchFilter={this.state["searchFilter"]}
+						searchFilter={this.state["searchQuery"]}
 						userID={this.props["userID"]}
 					/>
 				}
 
 				{
-					this.state.showPdf && <PDFDisplay folTitle={this.state.folTitle} closePdfDisplay={this.closeFolPdf} userID={this.props.userID}/>
+					this.state.showPdf && <PDFDisplay folTitle={this.state.folTitle} closePdfDisplay={this.closeFolPdf} userID={this.props.userID} />
 				}
 
-				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />
-				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Status" radioData={this.status} performsSearchFunction={this.setStatus} />
-				<TextInputCollapsible userID={this.props["userID"]} title="FOL Keywords" placeholder="Clutch, hydraulic..." performsSearchFunction={this.setKeyword} />
-				<TextInputCollapsible userID={this.props["userID"]} title="FOL Title" placeholder="MRC-002/09" performsSearchFunction={this.setTitle} />
-				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Category" radioData={this.state["categories"]} performsSearchFunction={this.setCategory} />
+				<View style={{minHeight: 600, paddingBottom: 100}}>
+					<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />
+					<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Status" radioData={this.status} performsSearchFunction={this.setStatus} />
+					<TextInputCollapsible userID={this.props["userID"]} title="FOL Keywords" placeholder="Clutch, hydraulic..." performsSearchFunction={this.setKeyword} />
+					<TextInputCollapsible userID={this.props["userID"]} title="FOL Title" placeholder="ABC-123/45" performsSearchFunction={this.setTitle} />
+					<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Category" radioData={this.state["categories"]} performsSearchFunction={this.setCategory} />
+
+					<TouchableOpacity style={Styles.search} activeOpacity={0.5} onPress={this.performSearch}>
+						<Text>Search</Text>
+					</TouchableOpacity>
+				</View>
 			</ScrollView>
 		);
 

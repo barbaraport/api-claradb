@@ -24,7 +24,7 @@ def checkInitialization():
 
 
 def registerDefaultUsers():
-    dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
+    dataFrame = pandas.read_excel("./resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
     termsOfUseColumn = "termsOfUse"
@@ -84,7 +84,7 @@ def registerDefaultUsers():
 
 
 def registerDefaultDocuments():
-    dataFrame = pandas.read_excel("../resources/startUpFiles/documentsMock.xlsx", sheet_name="query")
+    dataFrame = pandas.read_excel("./resources/startUpFiles/documentsMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
     columns = dataFrame.columns.values
@@ -161,7 +161,7 @@ def synchronizeDocumentsData():
     storedDocuments = list(conn.getDocuments("folconn", "documents", {}))
 
     ws = Worksheet()
-    documentsFileAsDict = ws.xlsx_to_dict(path="../resources/startUpFiles/documentsMock.xlsx")
+    documentsFileAsDict = ws.xlsx_to_dict(path="./resources/startUpFiles/documentsMock.xlsx")
 
     updatedDocumentsList = []
 
@@ -283,7 +283,7 @@ def synchronizeUsersData():
 
     usersList = getUsersList(list(conn.getDocuments("folconn", "users", {}, {"Login": 1})))
 
-    dataFrame = pandas.read_excel("../resources/startUpFiles/usersMock.xlsx", sheet_name="query")
+    dataFrame = pandas.read_excel("./resources/startUpFiles/usersMock.xlsx", sheet_name="query")
     dataFrame = dataFrame.fillna(-1)
 
     termsOfUseColumn = "termsOfUse"
@@ -361,11 +361,11 @@ def getUsersList(usersDocuments):
 def registerMostCurrentTermsOfUse():
     conn = MongoConnection.PyMongoConnection()
 
-    versions = os.listdir("../resources/termsOfUse")
+    versions = os.listdir("./resources/termsOfUse")
 
     lastVersion = versions[-1]
 
-    options = open("../resources/termsOfUse/" + lastVersion + "/options.json")
+    options = open("./resources/termsOfUse/" + lastVersion + "/options.json")
 
     parsedDictionary = json.loads(options.read())
 

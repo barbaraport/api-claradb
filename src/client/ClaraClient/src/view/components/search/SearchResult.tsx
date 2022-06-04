@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
-import { SearchType } from "../../../enumerations/SearchType";
 import { FOLSearchResult } from "../../../interfaces/FOLSearchResult";
 import { FOLService } from "../../../services/FOLService";
+import { SearchQuery } from "../../../types/SearchQuery";
 import { SearchResultItem } from "./SearchResultItem";
 
 interface SearchResultProps {
-    searchType: SearchType,
-    searchFilter: string,
+    searchFilter: SearchQuery,
     closeSearchResultFunction: Function,
     pageRedirectFunction: Function,
     getFolTitle: Function,
@@ -34,36 +33,9 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
     }
 
     async componentDidMount() {
-        let folsList: FOLSearchResult[] = [];
-
-        switch (this.props["searchType"]) {
-            case SearchType.CAR_MODEL:
-                folsList = await FOLService.getFolsByEquipment(this.props["searchFilter"]);
-
-                break;
-            case SearchType.FOL_CATEGORY:
-                folsList = await FOLService.getFolsByCategory(this.props["userID"], this.props["searchFilter"]);
-
-                break;
-            case SearchType.FOL_KEYWORD:
-                folsList = await FOLService.getFolsByKeyword(this.props["userID"], this.props["searchFilter"]);
-
-                break;
-            case SearchType.FOL_STATUS:
-                folsList = await FOLService.getFolsByStatus(this.props["userID"], this.props["searchFilter"]);
-
-                break;
-            case SearchType.FOL_TITLE:
-                folsList = await FOLService.getFolsByTitle(this.props["userID"], this.props["searchFilter"]);
-
-                break;
-            default:
-                break;
-        }
-
+        let folsList = await FOLService.getFolsByQuery(this.props["searchFilter"]);
 
         this.setState({ folsSearchResultList: folsList });
-
     }
 
     private getSearchResult() {
@@ -73,14 +45,20 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
             const folData = this.state["folsSearchResultList"][i];
 
             const component = (
-                <SearchResultItem key={"react-list-key-" + i} onPress={this.props.getFolTitle} equipment={folData["Equipment"]} title={folData["Title"]} id={folData["id"]} issueDescription={folData["Issue description"]} />
+                <SearchResultItem key={"react-list-key-" + i} onPress={this.props.getFolTitle} status={folData["Status"]} equipment={folData["Equipment"]} title={folData["Title"]} id={folData["id"]} issueDescription={folData["Issue description"]} />
             );
 
             searchResultItems.push(component);
 
         }
 
-        return searchResultItems;
+        if (searchResultItems.length > 0) {
+            return searchResultItems;
+        }
+
+        return <View style={{ alignItems: "center", alignSelf: "center", alignContent: "center" }}>
+            <Text>There are no FOLs matching your search.</Text>
+        </View>
     }
 
     private closeSearchResult() {
