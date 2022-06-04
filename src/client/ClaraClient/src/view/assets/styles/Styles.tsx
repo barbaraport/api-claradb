@@ -4,14 +4,15 @@ import { Sizes } from "../../../enumerations/Sizes";
 
 export const Styles = StyleSheet.create({
      pdf: {
-		flex: 1,
-          width:"100%",
-          height:"100%"
-	},
+          flex: 1,
+          width: "100%",
+          height: "100%"
+     },
      textInputCollapsible: {
           flexDirection: 'row',
           justifyContent: 'space-between',
-          alignItems: "center"
+          alignItems: "center",
+          width: "100%"
      },
      textInput: {
           backgroundColor: Colors.WHITE,
@@ -19,17 +20,17 @@ export const Styles = StyleSheet.create({
           height: 27.5,
           borderRadius: 50,
           paddingLeft: 10,
-          width: '80%'
+          width: '80%',
+          flex: 1
      },
      search: {
           color: Colors.PRIMARY_BLUE,
           backgroundColor: Colors.WHITE,
-          paddingHorizontal: 7,
-          paddingVertical: 4,
+          paddingVertical: 5,
           borderRadius: 50,
-          flex: 1,
           alignItems: "center",
-          elevation: 5
+          shadowColor: Colors.PRIMARY_BLUE,
+          elevation: 15
      },
      collapsibleHeader: {
           alignItems: 'center',
@@ -146,15 +147,15 @@ export const Styles = StyleSheet.create({
           flexDirection: "column",
           alignItems: "center"
      },
-     homeBackground:{
-          width: "100%", 
-          height: "100%", 
-          position: "absolute", 
-          opacity: 0.8, 
+     homeBackground: {
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          opacity: 0.8,
           backgroundColor: '#B7E1FF'
      },
      folPageScrollViewContent: {
-          padding: 10,
+          padding: 10
      },
      buttonContainer: {
           elevation: 8,
@@ -164,7 +165,7 @@ export const Styles = StyleSheet.create({
           paddingHorizontal: 15,
           alignSelf: "center",
           marginTop: 10,
-          width: 135
+          width: 125
      },
      buttonContainerLarge: {
           elevation: 8,

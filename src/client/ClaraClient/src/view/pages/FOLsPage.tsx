@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ScrollView, Text, TouchableOpacity } from "react-native";
+import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { SearchType } from "../../enumerations/SearchType";
 import { CarService } from "../../services/CarService";
 import { FOLService } from "../../services/FOLService";
@@ -118,7 +118,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 		currentQuery['CAR_MODEL'] = filter;
 
-		this.setState({searchQuery: currentQuery});
+		this.setState({ searchQuery: currentQuery });
 
 	}
 
@@ -127,7 +127,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 		currentQuery['FOL_STATUS'] = filter;
 
-		this.setState({searchQuery: currentQuery});
+		this.setState({ searchQuery: currentQuery });
 
 	}
 
@@ -136,7 +136,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 		currentQuery['FOL_KEYWORD'] = filter.toLowerCase();
 
-		this.setState({searchQuery: currentQuery});
+		this.setState({ searchQuery: currentQuery });
 
 	}
 
@@ -145,7 +145,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 		currentQuery['FOL_TITLE'] = filter;
 
-		this.setState({searchQuery: currentQuery});
+		this.setState({ searchQuery: currentQuery });
 
 	}
 
@@ -154,7 +154,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 
 		currentQuery['FOL_CATEGORY'] = filter;
 
-		this.setState({searchQuery: currentQuery});
+		this.setState({ searchQuery: currentQuery });
 
 	}
 
@@ -168,7 +168,7 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 	}
 
 	private performSearch() {
-		this.setState({inSearch: true, showPdf: false})
+		this.setState({ inSearch: true, showPdf: false })
 	}
 
 	private buildComponent() {
@@ -187,18 +187,20 @@ export class FolPage extends Component<FOLsPageProps, FOLsPageState> {
 				}
 
 				{
-					this.state.showPdf && <PDFDisplay folTitle={this.state.folTitle} closePdfDisplay={this.closeFolPdf} userID={this.props.userID}/>
+					this.state.showPdf && <PDFDisplay folTitle={this.state.folTitle} closePdfDisplay={this.closeFolPdf} userID={this.props.userID} />
 				}
 
-				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />
-				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Status" radioData={this.status} performsSearchFunction={this.setStatus} />
-				<TextInputCollapsible userID={this.props["userID"]} title="FOL Keywords" placeholder="Clutch, hydraulic..." performsSearchFunction={this.setKeyword} />
-				<TextInputCollapsible userID={this.props["userID"]} title="FOL Title" placeholder="ABC-123/45" performsSearchFunction={this.setTitle} />
-				<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Category" radioData={this.state["categories"]} performsSearchFunction={this.setCategory} />
+				<View style={{minHeight: 600, paddingBottom: 100}}>
+					<RadioGroupButtonCollapsible userID={this.props["userID"]} title="Car Model" radioData={this.state.userCarModels} performsSearchFunction={this.setModel} />
+					<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Status" radioData={this.status} performsSearchFunction={this.setStatus} />
+					<TextInputCollapsible userID={this.props["userID"]} title="FOL Keywords" placeholder="Clutch, hydraulic..." performsSearchFunction={this.setKeyword} />
+					<TextInputCollapsible userID={this.props["userID"]} title="FOL Title" placeholder="ABC-123/45" performsSearchFunction={this.setTitle} />
+					<RadioGroupButtonCollapsible userID={this.props["userID"]} title="FOL Category" radioData={this.state["categories"]} performsSearchFunction={this.setCategory} />
 
-				<TouchableOpacity style={Styles.search} activeOpacity={0.5} onPress={this.performSearch}>
-                    <Text>Search</Text>
-                </TouchableOpacity>
+					<TouchableOpacity style={Styles.search} activeOpacity={0.5} onPress={this.performSearch}>
+						<Text>Search</Text>
+					</TouchableOpacity>
+				</View>
 			</ScrollView>
 		);
 

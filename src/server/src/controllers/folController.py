@@ -1,9 +1,18 @@
 from flask import Blueprint, abort, request
 from src.models.services.folsService import getFolsByStatus, getFolsByKeywords, getFolsCategories, getFolsByCategory, \
-    getFolsByTitle, getFolFirstPage, getOpenedFolFile, getFolsByEquipment, registerAccess
+    getFolsByTitle, getFolFirstPage, getOpenedFolFile, getFolsByEquipment, getFolsByQuery, registerAccess
 from src.models.services.userService import getUserCarsList
 
 folRoutes = Blueprint("folRoutes", __name__)
+
+
+@folRoutes.route("/fol/getByQuery", methods=["POST"])
+def getByQuery():
+    filter = request.json["filter"]
+
+    documents = getFolsByQuery(filter)
+
+    return documents
 
 
 @folRoutes.route("/fol/getByEquipment", methods=["GET"])

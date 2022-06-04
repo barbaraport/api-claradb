@@ -10,6 +10,34 @@ from src.models.enumerations.FOLsStatuses import FOLsStatuses
 from src.models.services import locationService
 
 
+def getFolsByQuery(filter):
+    conn = PyMongoConnection()
+
+    condition = {}
+
+    filter_keywords = filter["FOL_KEYWORD"].replace(" ", "").lower().split(",")
+
+    if filter["CAR_MODEL"] != "": condition["Equipment"] = filter["CAR_MODEL"]
+    if filter["FOL_STATUS"] != "": condition["Status"] = filter["FOL_STATUS"]
+    if len(filter_keywords) > 0 and filter_keywords[0] != "": condition["Keywords"] = {
+        "Keywords": {"$in": filter_keywords}}
+    if filter["FOL_CATEGORY"] != "": condition["Category"] = filter["FOL_CATEGORY"]
+    if filter["FOL_TITLE"] != "": condition["Title"] = {"$regex": filter["FOL_TITLE"]}
+
+    projection = {
+        "_id": 0,
+        "id": 1,
+        "Title": 1,
+        "Status": 1,
+        "Equipment": 1,
+        "Issue description": 1
+    }
+
+    documents = jsonify(list(conn.getDocuments("folconn", "documents", condition, projection)))
+
+    return documents
+
+
 def getFolsByEquipment(equipment):
     conn = PyMongoConnection()
 
@@ -21,6 +49,7 @@ def getFolsByEquipment(equipment):
         "_id": 0,
         "id": 1,
         "Title": 1,
+        "Status": 1,
         "Equipment": 1,
         "Issue description": 1
     }
@@ -131,7 +160,7 @@ def getFolsCategories(equipmentList):
 
         categoriesList.append(category)
 
-    return jsonify(categoriesList)
+    return jsonify(sorted(categoriesList))
 
 
 def getFolsByTitle(carsList, title):
@@ -196,7 +225,6 @@ def getFolFirstPage(folTitle):
 
 
 def getOpenedFolFile(folTitle):
-
     conn = PyMongoConnection()
 
     fol = conn.getDocument("folconn", "documents", {"Title": folTitle})

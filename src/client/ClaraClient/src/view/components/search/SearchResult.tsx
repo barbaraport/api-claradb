@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Modal, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import { Colors } from "../../../enumerations/Colors";
-import { SearchType } from "../../../enumerations/SearchType";
 import { FOLSearchResult } from "../../../interfaces/FOLSearchResult";
 import { FOLService } from "../../../services/FOLService";
 import { SearchQuery } from "../../../types/SearchQuery";
@@ -37,7 +36,6 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
         let folsList = await FOLService.getFolsByQuery(this.props["searchFilter"]);
 
         this.setState({ folsSearchResultList: folsList });
-
     }
 
     private getSearchResult() {
@@ -47,14 +45,20 @@ export class SearchResult extends Component<SearchResultProps, SearchResultState
             const folData = this.state["folsSearchResultList"][i];
 
             const component = (
-                <SearchResultItem key={"react-list-key-" + i} onPress={this.props.getFolTitle} equipment={folData["Equipment"]} title={folData["Title"]} id={folData["id"]} issueDescription={folData["Issue description"]} />
+                <SearchResultItem key={"react-list-key-" + i} onPress={this.props.getFolTitle} status={folData["Status"]} equipment={folData["Equipment"]} title={folData["Title"]} id={folData["id"]} issueDescription={folData["Issue description"]} />
             );
 
             searchResultItems.push(component);
 
         }
 
-        return searchResultItems;
+        if (searchResultItems.length > 0) {
+            return searchResultItems;
+        }
+
+        return <View style={{ alignItems: "center", alignSelf: "center", alignContent: "center" }}>
+            <Text>There are no FOLs matching your search.</Text>
+        </View>
     }
 
     private closeSearchResult() {

@@ -55,7 +55,7 @@ export class RadioGroupButtonCollapsible extends Component<CollapsibleProps,Coll
                         <RadioButton id={index+''} value={value.value} label={value.label} selected={ this.state.checked === value} color={Colors.WHITE} labelStyle={{color:Colors.WHITE,}} onPress={()=> this.setChecked(value)}/>
                     </View>
                 ))}
-                <TouchableOpacity style={Styles.search} activeOpacity={0.5} onPress={this.performSearch}>
+                <TouchableOpacity style={[Styles.search, {width: "100%"}]} activeOpacity={0.5} onPress={this.performSearch}>
                     <Text>Apply</Text>
                 </TouchableOpacity>
             </View>
