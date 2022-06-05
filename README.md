@@ -33,15 +33,23 @@
   </p>
   <p align="center">Caso queira executar nosso projeto, clique <a href="https://github.com/barbaraport/api-claradb/tree/main/docs/running_project">aqui</a>.</p>
 
-  <h2 align="center">:bookmark_tabs: <i>Mockups</i> :memo:</h3>
+<h2 align="center">:bookmark_tabs: <i>Mockups</i> :memo:</h3>
 <p align="justify">O usuário entrará primeiramente na tela de login e se ele estiver cadastrado, pode acessar o app. Da página <i>home</i> é possível navegar para as outras páginas do app. Na página de pesquisa das FOLs, ao buscar algum documento de acordo com o filtro escolhido, uma caixa se abrirá com os resultados. Ao selecionar uma opção, caso o documento selecionado exista na nossa base de dados, o PDF é exibido diretamente na página inicial do documento selecionado. Caso o documento não exista, é exibido ao usuário que o documento escolhido não está disponível.</p>
 <p align="justify">Ao logar no FolConn <i>web</i> é possível visualizar os acessos ao app e, também, o acesso às FOLs. Ambos apresentam a localização do usuário, data, hora e, caso ele esteja de acordo, o seu nome.</p>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/app/1_login.png" height="500"/>
+  <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/app/2_home.png" height="500"/>
+  <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/app/3_menu.png" height="500"/>
+  <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/app/4_filter_fols.png" height="500"/>
+  <img src="https://github.com/barbaraport/api-claradb/blob/main/docs/mockups/app/5_see_fols.png" height="500"/>
+</p>
   <p align="center">
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/web/login_admin.png" width="700"/>
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/web/landing_page.png" width="700"/>
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/web/user_activity.png" width="700"/>
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/mockups/web/user_fol.png" width="700"/>
   </p>
+  
   
   <h2 align="center">Banco de Dados :open_file_folder:</h2>
   <p align="justify">Utilizamos o MongoDB como o nosso banco de dados. Ele é um SGBD NoSQL e muito utilizado para acesso rápido aos dados. Como o aplicativo é, em sua maior parte, <i>read-only</i>, trará benefícios e não há necessidade de um banco normalizado, que é mais custoso e pode demorar mais para se obter os dados desejados.</p>
