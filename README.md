@@ -38,17 +38,16 @@
                             </tr>
                             <tr>
                                    <td><p align="center">Entrega 3</p></td>
-                                   <td><p align="justify">Em desenvolvimento!</p></td>
+                                   <td><p align="justify">O FolConn <i>web</i> possuitá todos os relatórios solicitados e o app já recebe as notificações para os documentos alterados e criados!</p></td>
                                    <td><p align="center">05/06</p></td>
-                                   <td><p align="center"><a href="">Visualizar</a></p></td>
-                                   <td><p align="center"><a href="">Baixar</a></p></td>
+                                   <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/blob/main/docs/sprint_readmes/README_s3.md">Visualizar</a></p></td>
+                                   <td><p align="center"><a href="https://github.com/barbaraport/api-claradb/releases/tag/v0.3">Baixar</a></p></td>
                             </tr>
                      </table>
   
   <h2>:running_woman: FolConn em funcionamento :computer::computer_mouse:</h2>
   <p align="center">
-    <img src="https://github.com/barbaraport/api-claradb/blob/main/docs/media/gifs/Sprint-2-Mobile.gif" height="500"/>
-    <img src="https://github.com/barbaraport/api-claradb/blob/main/docs/media/gifs/Sprint2-Web.gif"/>
+    <img src="https://github.com/barbaraport/api-claradb/blob/main/docs/media/gifs/Sprint%203.gif" height="500"/>
   </p>
   <p align="center">Caso queira executar nosso projeto, clique <a href="https://github.com/barbaraport/api-claradb/tree/main/docs/running_project">aqui</a>.</p>
  
