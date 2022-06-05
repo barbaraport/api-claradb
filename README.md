@@ -41,6 +41,16 @@
   
   <h2 align="center">Banco de Dados :open_file_folder:</h2>
   <p align="justify">Utilizamos o MongoDB como o nosso banco de dados. Ele é um SGBD NoSQL e muito utilizado para acesso rápido aos dados. Como o aplicativo é, em sua maior parte, <i>read-only</i>, trará benefícios e não há necessidade de um banco normalizado, que é mais custoso e pode demorar mais para se obter os dados desejados.</p>
+<h3><i>:file_cabinet: FOLsFiles Collection</i></h3>
+
+
+```javascript
+{
+     "_id": ObjectId,
+     "Equipment": String,
+     "FileName": String
+}
+```
 <h3><i>AdminUsers Collection</i> 👩‍👦‍👦</h3>
 
 
@@ -50,6 +60,21 @@
      "Name": String,
      "Login": String,
      "Password": Binary,
+}
+```
+<h3><i>CurrentTermsOfUse Collection</i>:white_check_mark:</h3>
+
+
+```javascript
+{
+     "_id": ObjectId,
+     "currentVersion": String,
+     "options": [
+          {
+              "option": String,
+              "text": String
+          },
+     ]
 }
 ```
 <h3><i>:gear:	DatabaseStatus Collection</i></h3>
@@ -77,8 +102,23 @@
      "Issue date": Date,
      "Revision number": Double,
      "Revision date": Date,
-     "Remarks": Int32,
+     "Remarks": String,
      "Keywords": Array
+}
+```
+<h3><i>:calling: EquipmentUsers Collection</i></h3>
+
+
+```javascript
+{
+     "_id": ObjectId,
+     "Equipment": String,
+     "Users": [
+          {
+               "UserID": ObjectId,
+               "Token": String
+          },
+     ]
 }
 ```
 <h3><i>:chart: FOLAccessAttempts Collection :card_index:</i></h3>
@@ -98,16 +138,6 @@
          "Country": String,
          "City": String
      }
-}
-```
-<h3><i>:file_cabinet: FOLsFiles Collection</i></h3>
-
-
-```javascript
-{
-     "_id": ObjectId,
-     "Equipment": String,
-     "FileName": String
 }
 ```
 <h3><i>:chart: LoginAttempts Collection :card_index:</i></h3>
@@ -136,7 +166,18 @@
      "Username": String,
      "Login": String,
      "Password": Binary,
-     "Equipment": Array
+     "Equipment": Array,
+     "Token": String,
+     "TermsOfUse": {
+          "currentVersion": Array,
+          "history": [
+               {
+                   "option": String,
+                   "modifiedTo": Boolean,
+                   "dateTime": Date
+               },
+          ]
+     }
 }
 ```
 
