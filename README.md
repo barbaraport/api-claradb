@@ -13,11 +13,12 @@
   <h3>:question: O que fizemos?</h3>
   <p align="justify">A <i>sprint</i> 3 representa a nossa última entrega, portanto, devemos entregar ao cliente tudo o que foi definido anteriormente. As últimas funcionalidades desejadas pelo cliente eram: o envio de notificações <i>push</i> caso um novo documento fosse criado, editado, excluído etc. e a visualização das FOLs que cada usuário acessou. Além disso, fizemos um ajuste na pesquisa das FOLs conforme o pedido do nosso cliente.
   </p>
-  <h4>:safety_pin: Segurança da Informação :desktop_computer::warning:</h4>
-  <p>Desenvolvemos, também, durante essa <i>sprint</i> um requisito para a validação técnina na disciplina de Segurança da Informação. <i>To be continued...</i></p>
-  <p align="center">
+   <p align="center">
     <img src="https://raw.githubusercontent.com/barbaraport/api-claradb/main/docs/media/imgs/user_stories/s3.png" width="348px"/>
   </p>
+  <h4>:safety_pin: Segurança da Informação :desktop_computer::warning:</h4>
+  <p>Desenvolvemos, também, durante essa <i>sprint</i> um requisito para a validação técnina na disciplina de Segurança da Informação. <i>To be continued...</i></p>
+
   <h3>:grey_question: Por quê?</h3>
   <p align="justify">O envio das notificações e o relatório de documentos acessados pelos usuários eram as últimas funcionalidades faltantes para a conclusão do desenvolvimento. Sendo assim, iniciamos tais atividades e conseguimos finalizá-las tranquilamente durante o período de desenvolvimento. Todos os requisitos foram implementados.</p>
   
